@@ -1,0 +1,561 @@
+# Winter 2026-27 plan, from the design session in the Training project (13 Oct 2026).
+# Format: docs/plan-format.md. Validate with:  python -m pipeline.plan.schema config/plan.yaml
+#
+# Block 0 and Block 1 are designed session by session. Later blocks carry their
+# dates, intent and load targets so governance can track them, and are marked
+# design_pending: they get their sessions in the next design session, before
+# 23 Nov (ATHX week). Weekly TSS targets are provisional until Block 0 testing
+# gives real anchors; governance treats provisional targets as advisory only.
+#
+# Test results so far (Block 0 test week):
+#   2026-10-19  bench_press 100 kg x 8 @ RPE 8.5 (1-2 RIR) -> e1RM ~127 kg (conservative)
+
+schema_version: 1
+plan_id: winter-2026-27
+created: 2026-10-13
+designed_in: Training project
+valid_from: 2026-10-14
+valid_to: 2027-04-17
+
+goals:
+  - id: solo-312
+    priority: A
+    date: 2027-04-17
+    description: Original Mallorca 312 loop, solo and unassisted, sub-10 h
+    target: { distance_km: 312, max_moving_h: 10 }
+  - id: bench-10x110
+    priority: A
+    date: 2027-04-17
+    description: 10 x 110 kg bench press, same day as the 312, before the ride
+    target: { lift: bench_press, kg: 110, reps: 10, e1rm_needed_kg: 147 }
+  - id: athx
+    priority: C
+    window: [2026-11-23, 2026-11-29]
+    description: ATHX Games, Portugal. Short sharpen, no real taper
+  - id: hyrox
+    priority: C
+    description: HYROX, February 2027, date to be confirmed
+    target: { month: 2027-02 }
+
+strength_lines:
+  - lift: bench_press           # 100 kg x 8 (Oct) ~ 127 kg e1RM -> 147 kg by the 312
+    checkpoints:
+      - [2026-10-19, 127.0]
+      - [2026-11-29, 132.5]
+      - [2026-12-31, 136.0]
+      - [2027-02-07, 141.0]
+      - [2027-03-14, 145.0]
+      - [2027-04-17, 147.0]
+
+# ------------------------------------------------------------------ progression rules
+progressions:
+  bench_top_linear:     { type: linear, increment_kg: 2.5, max_rpe: 8.0, reset_after_misses: 2, reset_pct: 0.05 }
+  lower_top_linear:     { type: linear, increment_kg: 5.0, max_rpe: 8.0, reset_after_misses: 2, reset_pct: 0.05 }
+  bench_volume_double:  { type: double, rep_range: [10, 12], increment_kg: 2.5, max_rpe: 8.5 }
+  pull_double:          { type: double, rep_range: [5, 8], increment_kg: 2.5, max_rpe: 8.5 }
+  accessory_double:     { type: double, rep_range: [8, 12], increment_kg: 2.5, max_rpe: 8.5 }
+  bench_speed_wave:     { type: wave, pcts: [0.55, 0.60, 0.65], e1rm_step_kg: 2.5 }
+  power_rpe7:           { type: rpe, target_rpe: 7.0 }
+  reentry_rpe7:         { type: rpe, target_rpe: 7.0 }
+
+# ------------------------------------------------------------------ calendar
+blocks:
+  - id: block0
+    name: Re-entry and test
+    start: 2026-10-14
+    end: 2026-10-25
+    intent: >
+      Back in after the racing block. Week 1 at about 60% volume, nothing to failure.
+      Week 2 is baseline testing: bike 20-min, hand-bike 20-min (confirms or replaces
+      the provisional 252 W), grinding 1 and 4 min, bench 100 kg AMRAP, lower top set at RPE 8.
+      Test results set the anchors and the strength start weights for Block 1.
+    weekly_tss: [250, 400]
+    targets_provisional: true
+    weeks:
+      - { start: 2026-10-14, label: re-entry, template: re_entry, volume_pct: 0.6, weekly_tss: [200, 300] }
+      - { start: 2026-10-19, label: test-week, template: test_week, volume_pct: 0.7, weekly_tss: [300, 400] }
+
+  - id: block1
+    name: Accumulation
+    start: 2026-10-26
+    end: 2026-11-22
+    intent: >
+      Strength rebuild and upper-body hypertrophy with three bench exposures a week
+      (max effort Mon, repetition Thu, dynamic Fri). Z2 builds to 8-10 h a week.
+      Hand-bike intervals and grinding repeat-sprints twice a week keep upper-body power.
+      Threshold moves from 2x20 to 3x15; the long ride grows from 3 to 5 h.
+    weekly_tss: [650, 850]
+    ctl_end: [75, 85]
+    targets_provisional: true
+    weeks:
+      - start: 2026-10-26
+        label: acc1
+        template: accumulation
+        weekly_tss: [650, 750]
+      - start: 2026-11-02
+        label: acc2
+        template: accumulation
+        weekly_tss: [675, 775]
+        swap: { sat_am: long_ride_3h30, tue_am: [handbike_intervals, grinding_repeats_10] }
+      - start: 2026-11-09
+        label: acc3
+        template: accumulation
+        weekly_tss: [700, 800]
+        swap: { sat_am: long_ride_4h, fri_pm: bike_threshold_3x15, tue_am: [handbike_intervals, grinding_repeats_12] }
+      - start: 2026-11-16
+        label: acc4
+        template: accumulation
+        weekly_tss: [750, 850]
+        swap: { sat_am: long_ride_5h, fri_pm: bike_threshold_3x15, tue_am: [handbike_intervals, grinding_repeats_12] }
+
+  - id: athx
+    name: ATHX week (Portugal)
+    start: 2026-11-23
+    end: 2026-11-29
+    status: design_pending
+    intent: Three-day sharpen into the event, no real taper (C goal). Travel week.
+    weekly_tss: [300, 450]
+    targets_provisional: true
+
+  - id: recover
+    name: Recover
+    start: 2026-11-30
+    end: 2026-12-06
+    status: design_pending
+    intent: Strength deload to about 40% volume; easy aerobic only.
+    weekly_tss: [250, 350]
+    targets_provisional: true
+
+  - id: block2
+    name: Strength intensification
+    start: 2026-12-07
+    end: 2026-12-23
+    status: design_pending
+    intent: Heavier, lower-rep strength work; bench e1RM pushed toward ~136 kg by year end. Bike volume held.
+    weekly_tss: [500, 650]
+    targets_provisional: true
+
+  - id: festive500
+    name: Festive 500
+    start: 2026-12-24
+    end: 2026-12-31
+    status: design_pending
+    intent: About 500 km in Belfast over eight days. Strength drops to two short upper sessions.
+    weekly_tss: [900, 1150]
+    targets_provisional: true
+
+  - id: transition
+    name: New-year transition
+    start: 2027-01-01
+    end: 2027-01-03
+    status: design_pending
+    intent: Easy days after the Festive 500 before Block 3.
+    targets_provisional: true
+
+  - id: block3
+    name: Strength-endurance
+    start: 2027-01-04
+    end: 2027-02-21
+    status: design_pending
+    intent: >
+      Bench toward 105-110 kg for 6-8. Retests early January and early February.
+      HYROX in February (C goal, date to confirm; the block end moves with it).
+    weekly_tss: [600, 750]
+    targets_provisional: true
+
+  - id: block4
+    name: Specific
+    start: 2027-02-22
+    end: 2027-04-09
+    status: design_pending
+    intent: >
+      5-8 h rides, one 312 rehearsal ride, bench volume at 110 kg. Rehearse the
+      same-day order in March: bench first after warm-up, then the ride.
+      Optional Calpe or Lanzarote camp mid-March.
+    weekly_tss: [700, 900]
+    targets_provisional: true
+
+  - id: taper
+    name: Taper and event
+    start: 2027-04-10
+    end: 2027-04-17
+    status: design_pending
+    intent: Taper into Saturday 17 Apr - 10 x 110 kg bench, then the solo 312.
+    weekly_tss: [350, 450]
+    targets_provisional: true
+
+# ------------------------------------------------------------------ week templates
+week_templates:
+  re_entry:
+    mon_am: upper_reentry
+    mon_pm: z2_60
+    tue_am: handbike_easy_40
+    wed_am: lower_reentry
+    wed_pm: z2_60
+    thu_am: upper_reentry
+    thu_pm: mobility_trunk
+    fri_am: z2_75
+    sat_am: long_ride_2h
+    sun_am: rest
+
+  test_week:
+    mon_am: test_bench
+    mon_pm: z2_60
+    tue_am: test_handbike_20
+    tue_pm: mobility_trunk
+    wed_am: test_lower
+    wed_pm: z2_60
+    thu_am: test_grinding
+    fri_am: mobility_trunk
+    fri_pm: z2_45_openers
+    sat_am: test_bike_20
+    sun_am: rest
+
+  accumulation:
+    mon_am: upper_me
+    mon_pm: z2_90
+    tue_am: [handbike_intervals, grinding_repeats_8]
+    tue_pm: mobility_trunk
+    wed_am: lower_me
+    wed_pm: z2_60
+    thu_am: upper_re
+    thu_pm: z2_75
+    fri_am: upper_de
+    fri_pm: bike_threshold_2x20
+    sat_am: long_ride_3h
+    sun_am: handbike_easy_40     # optional; rest is fine
+
+# ------------------------------------------------------------------ session library
+sessions:
+
+  # ---------- strength
+  upper_reentry:
+    modality: strength
+    summary: Upper re-entry - moderate, nothing to failure
+    targets: { tss: 35 }
+    exercises:
+      - lift: bench_press
+        progression: reentry_rpe7
+        start_kg: 85
+        groups: [{ role: work, sets: 3, reps: 8, rpe_cap: 7, rest_s: 150 }]
+      - lift: weighted_pullup
+        groups: [{ role: work, sets: 3, reps: 6, rpe_cap: 7, rest_s: 120 }]
+        note: Bodyweight or light added load
+      - lift: chest_supported_row
+        groups: [{ role: work, sets: 3, reps: 10, rpe_cap: 7, rest_s: 90 }]
+
+  lower_reentry:
+    modality: strength
+    summary: Lower re-entry - moderate, posterior chain and bracing
+    targets: { tss: 35 }
+    exercises:
+      - lift: trap_bar_deadlift
+        progression: reentry_rpe7
+        groups: [{ role: work, sets: 3, reps: 5, rpe_cap: 7, rest_s: 180 }]
+        note: No history yet - pick a weight that lands at RPE 7 and log it
+      - lift: rfe_split_squat
+        groups: [{ role: work, sets: 2, reps: 8, rpe_cap: 7, rest_s: 90 }]
+
+  upper_me:
+    modality: strength
+    summary: Upper max effort - bench top set, back-offs, heavy pulling
+    targets: { tss: 50 }
+    exercises:
+      - lift: bench_press
+        progression: bench_top_linear
+        start_kg: 100
+        groups:
+          - { role: top, sets: 1, reps: 6, rpe_cap: 8, rest_s: 240 }
+          - { role: backoff, sets: 3, reps: 8, pct_of_top: 0.85, rest_s: 180 }
+      - lift: weighted_pullup
+        progression: pull_double
+        groups: [{ role: work, sets: 4, reps: [5, 8], rest_s: 150 }]
+      - lift: chest_supported_row
+        progression: accessory_double
+        groups: [{ role: work, sets: 3, reps: [8, 12], rest_s: 90 }]
+        note: Rotate variations every ~4 weeks per Grinder-Strength-Endurance-Plan.md 5A/5D
+
+  upper_re:
+    modality: strength
+    summary: Upper repetition effort - bench volume toward 10 x 110
+    targets: { tss: 45 }
+    exercises:
+      - lift: bench_press
+        progression: bench_volume_double
+        start_kg: 80
+        groups: [{ role: work, sets: 3, reps: [10, 12], rest_s: 150 }]
+        note: The specific work for the 10 x 110 goal
+      - lift: bench_pull
+        progression: accessory_double
+        groups: [{ role: work, sets: 3, reps: [8, 12], rest_s: 120 }]
+      - lift: landmine_press
+        progression: accessory_double
+        groups: [{ role: work, sets: 3, reps: [8, 12], rest_s: 90 }]
+
+  upper_de:
+    modality: strength
+    summary: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
+    targets: { tss: 40 }
+    exercises:
+      - lift: bench_pull
+        progression: power_rpe7
+        groups: [{ role: speed, sets: 6, reps: 3, rpe_cap: 7, rest_s: 90 }]
+        note: Power pull - non-negotiable. Stop the set when bar speed clearly slows
+      - lift: bench_press
+        progression: bench_speed_wave
+        groups: [{ role: speed, sets: 8, reps: 3, rest_s: 60 }]
+        note: Wave of 55/60/65% of e1RM across weeks; move it fast
+      - lift: push_press
+        progression: power_rpe7
+        groups: [{ role: speed, sets: 5, reps: 3, rpe_cap: 7, rest_s: 120 }]
+
+  lower_me:
+    modality: strength
+    summary: Lower max effort - trap-bar top set, single-leg, trunk
+    targets: { tss: 50 }
+    exercises:
+      - lift: trap_bar_deadlift
+        progression: lower_top_linear
+        groups:
+          - { role: top, sets: 1, reps: 5, rpe_cap: 8, rest_s: 240 }
+          - { role: backoff, sets: 2, reps: 5, pct_of_top: 0.90, rest_s: 180 }
+        note: Start weight comes from the Block 0 test top set
+      - lift: rfe_split_squat
+        progression: accessory_double
+        groups: [{ role: work, sets: 3, reps: [8, 12], rest_s: 90 }]
+
+  test_bench:
+    modality: strength
+    summary: TEST - bench 100 kg AMRAP after a full warm-up
+    targets: { tss: 35 }
+    readiness_exempt: true
+    exercises:
+      - lift: bench_press
+        start_kg: 100
+        groups: [{ role: amrap, sets: 1, reps: 20, rest_s: 300 }]
+        note: Fixed 100 kg. Stop at clear velocity loss, not grinding to failure. Log reps and RPE
+      - lift: chest_supported_row
+        groups: [{ role: work, sets: 3, reps: 10, rpe_cap: 7 }]
+
+  test_lower:
+    modality: strength
+    summary: TEST - trap-bar deadlift, work up to a top set of 5 at RPE 8
+    targets: { tss: 40 }
+    readiness_exempt: true
+    exercises:
+      - lift: trap_bar_deadlift
+        groups: [{ role: test, sets: 1, reps: 5, rpe_cap: 8 }]
+        note: Sets the Block 1 start weight
+      - lift: rfe_split_squat
+        groups: [{ role: work, sets: 2, reps: 8, rpe_cap: 7 }]
+
+  # ---------- bike
+  z2_45_openers:
+    modality: bike
+    summary: Z2 45 min with 3 short openers, the day before the bike test
+    steps:
+      - { kind: warmup, duration_s: 600, target: { pct_ftp: [0.50, 0.65] } }
+      - { kind: steady, duration_s: 1200, target: { pct_ftp: [0.65, 0.72] } }
+      - kind: repeat
+        count: 3
+        steps:
+          - { kind: work, duration_s: 30, target: { pct_ftp: [1.10, 1.20] } }
+          - { kind: rest, duration_s: 150, target: { pct_ftp: [0.50, 0.60] } }
+      - { kind: cooldown, duration_s: 360, target: { pct_ftp: [0.45, 0.55] } }
+    targets: { tss: 38 }
+
+  z2_60:
+    modality: bike
+    summary: Z2 60 min
+    steps:
+      - { kind: warmup, duration_s: 300, target: { pct_ftp: [0.50, 0.62] } }
+      - { kind: steady, duration_s: 3300, target: { pct_ftp: [0.65, 0.72] } }
+    targets: { tss: 46, steps_held_pct: 0.9 }
+
+  z2_75:
+    modality: bike
+    summary: Z2 75 min
+    steps:
+      - { kind: warmup, duration_s: 300, target: { pct_ftp: [0.50, 0.62] } }
+      - { kind: steady, duration_s: 4200, target: { pct_ftp: [0.65, 0.72] } }
+    targets: { tss: 58, steps_held_pct: 0.9 }
+
+  z2_90:
+    modality: bike
+    summary: Z2 90 min
+    steps:
+      - { kind: warmup, duration_s: 300, target: { pct_ftp: [0.50, 0.62] } }
+      - { kind: steady, duration_s: 5100, target: { pct_ftp: [0.65, 0.72] } }
+    targets: { tss: 70, steps_held_pct: 0.9 }
+
+  long_ride_2h:
+    modality: bike
+    environment: outdoor
+    summary: Long ride 2 h, Z2, fuel from the first hour
+    steps:
+      - { kind: steady, duration_s: 7200, target: { pct_ftp: [0.62, 0.72] } }
+    targets: { tss: 92 }
+
+  long_ride_3h:
+    modality: bike
+    environment: outdoor
+    summary: Long ride 3 h, Z2, fuel 60-90 g carb/h
+    steps:
+      - { kind: steady, duration_s: 10800, target: { pct_ftp: [0.62, 0.72] } }
+    targets: { tss: 140 }
+
+  long_ride_3h30:
+    modality: bike
+    environment: outdoor
+    summary: Long ride 3 h 30, Z2, fuel 60-90 g carb/h
+    steps:
+      - { kind: steady, duration_s: 12600, target: { pct_ftp: [0.62, 0.72] } }
+    targets: { tss: 162 }
+
+  long_ride_4h:
+    modality: bike
+    environment: outdoor
+    summary: Long ride 4 h, Z2, fuel 60-90 g carb/h
+    steps:
+      - { kind: steady, duration_s: 14400, target: { pct_ftp: [0.62, 0.72] } }
+    targets: { tss: 185 }
+
+  long_ride_5h:
+    modality: bike
+    environment: outdoor
+    summary: Long ride 5 h, Z2, fuel 60-90 g carb/h - first step toward 312 duration
+    steps:
+      - { kind: steady, duration_s: 18000, target: { pct_ftp: [0.62, 0.72] } }
+    targets: { tss: 231 }
+
+  bike_threshold_2x20:
+    modality: bike
+    summary: Threshold 2 x 20 min at 92-95% FTP, 5 min easy between
+    steps:
+      - { kind: warmup, duration_s: 900, target: { pct_ftp: [0.50, 0.75] } }
+      - kind: repeat
+        count: 2
+        steps:
+          - { kind: work, duration_s: 1200, target: { pct_ftp: [0.92, 0.95] } }
+          - { kind: rest, duration_s: 300, target: { pct_ftp: [0.50, 0.60] } }
+      - { kind: cooldown, duration_s: 600, target: { pct_ftp: [0.45, 0.55] } }
+    targets: { tss: 85, steps_held_pct: 0.95 }
+
+  bike_threshold_3x15:
+    modality: bike
+    summary: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
+    steps:
+      - { kind: warmup, duration_s: 900, target: { pct_ftp: [0.50, 0.75] } }
+      - kind: repeat
+        count: 3
+        steps:
+          - { kind: work, duration_s: 900, target: { pct_ftp: [0.95, 0.98] } }
+          - { kind: rest, duration_s: 300, target: { pct_ftp: [0.50, 0.60] } }
+      - { kind: cooldown, duration_s: 600, target: { pct_ftp: [0.45, 0.55] } }
+    targets: { tss: 92, steps_held_pct: 0.95 }
+
+  test_bike_20:
+    modality: bike
+    environment: outdoor
+    summary: TEST - 20-min bike test on the power meter, outdoors
+    targets: { tss: 75 }
+    readiness_exempt: true
+    steps:
+      - { kind: warmup, duration_s: 1200, target: { pct_ftp: [0.55, 0.75] } }
+      - { kind: work, duration_s: 300, target: { pct_ftp: [1.05, 1.15] }, note: Blow-out effort }
+      - { kind: rest, duration_s: 600, target: { pct_ftp: [0.50, 0.60] } }
+      - { kind: test, duration_s: 1200, target: { rpe: 10 }, note: Even pacing; start near 300 W }
+      - { kind: cooldown, duration_s: 600, target: { pct_ftp: [0.45, 0.55] } }
+
+  # ---------- hand-bike (pct_ftp is against the hand-bike FTP)
+  handbike_easy_40:
+    modality: handbike
+    summary: Easy hand-bike 40 min (optional - rest is fine)
+    steps:
+      - { kind: steady, duration_s: 2400, target: { pct_ftp: [0.55, 0.65] } }
+    targets: { tss: 26 }
+
+  handbike_intervals:
+    modality: handbike
+    summary: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+    steps:
+      - { kind: warmup, duration_s: 600, target: { pct_ftp: [0.50, 0.65] } }
+      - kind: repeat
+        count: 5
+        steps:
+          - { kind: work, duration_s: 240, target: { pct_ftp: [1.05, 1.10] } }
+          - { kind: rest, duration_s: 180, target: { pct_ftp: [0.45, 0.55] } }
+      - { kind: cooldown, duration_s: 300, target: { pct_ftp: [0.45, 0.55] } }
+    targets: { tss: 48, steps_held_pct: 0.9 }
+
+  test_handbike_20:
+    modality: handbike
+    summary: TEST - hand-bike 20 min, confirms or replaces the provisional 252 W
+    targets: { tss: 45 }
+    readiness_exempt: true
+    steps:
+      - { kind: warmup, duration_s: 900, target: { pct_ftp: [0.50, 0.70] } }
+      - { kind: work, duration_s: 180, target: { pct_ftp: [0.90, 0.95] } }
+      - { kind: rest, duration_s: 300, target: { pct_ftp: [0.45, 0.55] } }
+      - { kind: test, duration_s: 1200, target: { rpe: 10 }, note: Even pacing; start near 240 W }
+      - { kind: cooldown, duration_s: 600, target: { pct_ftp: [0.45, 0.55] } }
+
+  # ---------- grinding (machine ceiling: nothing under 60 s is measurable)
+  grinding_repeats_8:
+    modality: grinding
+    summary: Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
+    steps:
+      - { kind: warmup, duration_s: 600, target: { rpe: 4 } }
+      - kind: repeat
+        count: 8
+        steps:
+          - { kind: work, duration_s: 60, target: { pct_curve: [grinding_60s, 0.85] } }
+          - { kind: rest, duration_s: 120, target: { rpe: 2 } }
+      - { kind: cooldown, duration_s: 300, target: { rpe: 3 } }
+    targets: { tss: 35, note: Log avg and peak watts per rep in Daily Inputs }
+
+  grinding_repeats_10:
+    modality: grinding
+    summary: Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy
+    steps:
+      - { kind: warmup, duration_s: 600, target: { rpe: 4 } }
+      - kind: repeat
+        count: 10
+        steps:
+          - { kind: work, duration_s: 60, target: { pct_curve: [grinding_60s, 0.85] } }
+          - { kind: rest, duration_s: 120, target: { rpe: 2 } }
+      - { kind: cooldown, duration_s: 300, target: { rpe: 3 } }
+    targets: { tss: 40, note: Log avg and peak watts per rep in Daily Inputs }
+
+  grinding_repeats_12:
+    modality: grinding
+    summary: Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
+    steps:
+      - { kind: warmup, duration_s: 600, target: { rpe: 4 } }
+      - kind: repeat
+        count: 12
+        steps:
+          - { kind: work, duration_s: 60, target: { pct_curve: [grinding_60s, 0.85] } }
+          - { kind: rest, duration_s: 120, target: { rpe: 2 } }
+      - { kind: cooldown, duration_s: 300, target: { rpe: 3 } }
+    targets: { tss: 45, note: Log avg and peak watts per rep in Daily Inputs }
+
+  test_grinding:
+    modality: grinding
+    summary: TEST - grinding 1-min and 4-min max efforts (max drag setting)
+    targets: { tss: 30 }
+    readiness_exempt: true
+    steps:
+      - { kind: warmup, duration_s: 600, target: { rpe: 4 } }
+      - { kind: test, duration_s: 60, target: { rpe: 10 }, note: Reference 470 W }
+      - { kind: rest, duration_s: 900, target: { rpe: 2 } }
+      - { kind: test, duration_s: 240, target: { rpe: 10 }, note: Reference 301 W }
+      - { kind: cooldown, duration_s: 300, target: { rpe: 3 } }
+
+  # ---------- other
+  mobility_trunk:
+    modality: mobility
+    summary: Mobility and trunk, 30 min
+  rest:
+    modality: rest
+    summary: Rest day
