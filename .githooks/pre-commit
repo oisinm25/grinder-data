@@ -1,0 +1,39 @@
+#!/bin/sh
+# Pedestal pre-commit: refuse commits that stage local-only files or anything that
+# looks like a credential. Enable once per clone:  git config core.hooksPath .githooks
+# Matches are reported by file only; the matching text is never printed.
+
+status=0
+
+# 1. Local-only paths.
+blocked=$(git diff --cached --name-only --diff-filter=ACMR \
+  | grep -E '(^|/)(\.env($|\.)|\.venv/|derived/|secrets/)' \
+  | grep -v -E '(^|/)\.env\.example$')
+if [ -n "$blocked" ]; then
+  echo "pre-commit: these paths must never be committed:" >&2
+  echo "$blocked" | sed 's/^/  /' >&2
+  status=1
+fi
+
+# 2. Added lines that look like secrets: GitHub tokens, common provider keys, private
+#    keys, a quoted 16+ char literal assigned to a key/secret/token/password name, and
+#    a filled-in KEY=value line in env style.
+patterns='github_pat_[A-Za-z0-9_]{20,}|gh[pousr]_[A-Za-z0-9]{30,}|sk-(ant-)?[A-Za-z0-9_-]{20,}|AKIA[0-9A-Z]{16}|xox[abposr]-[A-Za-z0-9-]{10,}|-----BEGIN [A-Z ]*PRIVATE KEY-----|^\+[[:space:]]*(export[[:space:]]+)?[A-Z0-9_]*(KEY|TOKEN|SECRET|PASSWORD)[A-Z0-9_]*=[^[:space:]<"'"'"'$]{12,}'
+generic='(api[_-]?key|secret|token|passw(or)?d)[A-Za-z0-9_]*["'"'"']?[[:space:]]*[:=][[:space:]]*["'"'"'][A-Za-z0-9_./+=-]{16,}["'"'"']'
+
+hits=$(git diff --cached --name-only --diff-filter=ACMR | while IFS= read -r f; do
+  [ "$f" = ".githooks/pre-commit" ] && continue
+  added=$(git diff --cached -U0 --no-color -- "$f" | grep -E '^\+' | grep -v -E '^\+\+\+ ')
+  if printf '%s\n' "$added" | grep -q -E "$patterns" \
+    || printf '%s\n' "$added" | grep -q -i -E "$generic"; then
+    echo "$f"
+  fi
+done)
+if [ -n "$hits" ]; then
+  echo "pre-commit: possible API key or token in staged changes (values not shown):" >&2
+  echo "$hits" | sed 's/^/  /' >&2
+  echo "Move secrets to .env and read them from the environment." >&2
+  status=1
+fi
+
+exit $status

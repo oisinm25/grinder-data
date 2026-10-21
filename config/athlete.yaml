@@ -1,0 +1,30 @@
+# Athlete anchors for config/plan.yaml (format: docs/plan-format.md; schema: pipeline/athlete.py).
+# The plan never carries FTP, LTHR or other anchors; it points at these. Update them
+# here after testing. Every lift id the plan uses must be listed under strength.lifts.
+schema_version: 1
+
+lthr_bpm: 170
+
+ftp:                             # pct_ftp targets resolve against the session's modality
+  bike:     { watts: 300 }
+  handbike: { watts: 252, provisional: true, note: Confirm or replace from the Block 0 20-min hand-bike test }
+
+curves:                          # pct_curve targets: [<key>, pct]; key suffix = duration
+  grinding_60s:  { duration_s: 60,  watts: 470 }
+  grinding_240s: { duration_s: 240, watts: 301 }
+
+strength:
+  rounding_kg: 2.5
+  lifts:
+    bench_press:         { name: Bench press }
+    bench_pull:          { name: Bench pull }
+    weighted_pullup:     { name: Weighted pull-up }
+    chest_supported_row: { name: Chest-supported row }
+    landmine_press:      { name: Landmine press }
+    push_press:          { name: Push press }
+    trap_bar_deadlift:   { name: Trap-bar deadlift }
+    rfe_split_squat:     { name: Rear-foot-elevated split squat }
+
+readiness:                       # green: the suggestion stands
+  amber: { hold_last_weight: true, allow_increment: false, rpe_cap: 8 }
+  red:   { pct_of_last_weight: 0.90, rpe_cap: 7 }
