@@ -466,35 +466,55 @@ def format_errors(err: ValidationError, data: Any = None) -> list[str]:
     return out
 
 
+class PlanLoadError(Exception):
+    """A plan or athlete file that can't be used. `lines` is the report; `exit_code` 2 = unreadable, 1 = invalid."""
+
+    def __init__(self, lines: list[str], exit_code: int):
+        super().__init__("\n".join(lines))
+        self.lines = lines
+        self.exit_code = exit_code
+
+
+def load_checked(plan_path: Path, athlete_path: Path | None = None) -> tuple[Plan, Athlete]:
+    """Load and validate a plan and its athlete file (default: athlete.yaml beside the plan)."""
+    plan_path = Path(plan_path)
+    athlete_path = Path(athlete_path) if athlete_path else plan_path.with_name("athlete.yaml")
+    try:
+        athlete_data = load_yaml(athlete_path)
+        data = load_yaml(plan_path)
+    except (OSError, yaml.YAMLError) as e:
+        raise PlanLoadError([f"error: {e}"], 2) from e
+
+    def invalid(path: Path, e: ValidationError, raw: Any) -> PlanLoadError:
+        lines = [f"{path}: INVALID - {e.error_count()} error(s)"]
+        return PlanLoadError(lines + [f"  {line}" for line in format_errors(e, raw)], 1)
+
+    try:
+        athlete = Athlete.model_validate(athlete_data)
+    except ValidationError as e:
+        raise invalid(athlete_path, e, athlete_data) from e
+    try:
+        plan = validate_plan(data, athlete)
+    except ValidationError as e:
+        raise invalid(plan_path, e, data) from e
+    return plan, athlete
+
+
+def report_load_error(e: PlanLoadError) -> int:
+    print("\n".join(e.lines), file=sys.stderr if e.exit_code == 2 else sys.stdout)
+    return e.exit_code
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m pipeline.plan.schema", description="Validate a plan file.")
     parser.add_argument("plan", type=Path, help="path to plan.yaml")
     parser.add_argument("--athlete", type=Path, help="path to athlete.yaml (default: beside the plan)")
     args = parser.parse_args(argv)
-    athlete_path = args.athlete or args.plan.with_name("athlete.yaml")
 
     try:
-        athlete_data = load_yaml(athlete_path)
-        data = load_yaml(args.plan)
-    except (OSError, yaml.YAMLError) as e:
-        print(f"error: {e}", file=sys.stderr)
-        return 2
-
-    try:
-        athlete = Athlete.model_validate(athlete_data)
-    except ValidationError as e:
-        print(f"{athlete_path}: INVALID - {e.error_count()} error(s)")
-        for line in format_errors(e, athlete_data):
-            print(f"  {line}")
-        return 1
-
-    try:
-        plan = validate_plan(data, athlete)
-    except ValidationError as e:
-        print(f"{args.plan}: INVALID - {e.error_count()} error(s)")
-        for line in format_errors(e, data):
-            print(f"  {line}")
-        return 1
+        plan, _ = load_checked(args.plan, args.athlete)
+    except PlanLoadError as e:
+        return report_load_error(e)
 
     designed = sum(b.status == "designed" for b in plan.blocks)
     print(
