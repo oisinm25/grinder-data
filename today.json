@@ -1,0 +1,91 @@
+{
+ "date": "2026-10-22",
+ "generated_at": "2026-10-22T22:12",
+ "readiness": {
+  "colour": "green",
+  "reason": "green: HRV 45 >= 32.5 (baseline 43.5 - 1 SD 11.1); resting HR 55 <= 62.4 (baseline 57.4 + 5); sleep 7.2 h >= 6"
+ },
+ "block": {
+  "id": "block0",
+  "name": "Re-entry and test",
+  "week": "test-week",
+  "design_pending": false
+ },
+ "sessions": [
+  {
+   "slot": "thu_am",
+   "order": 0,
+   "session": "test_grinding",
+   "modality": "grinding",
+   "summary": "TEST - grinding 1-min and 4-min max efforts (max drag setting)",
+   "environment": null,
+   "duration_min": 35,
+   "tss": 30.0,
+   "readiness_exempt": true,
+   "steps": [
+    {
+     "kind": "warmup",
+     "duration_s": 600,
+     "target": "RPE 4",
+     "anchor": "rpe"
+    },
+    {
+     "kind": "test",
+     "duration_s": 60,
+     "target": "RPE 10",
+     "anchor": "rpe",
+     "note": "Reference 470 W"
+    },
+    {
+     "kind": "rest",
+     "duration_s": 900,
+     "target": "RPE 2",
+     "anchor": "rpe"
+    },
+    {
+     "kind": "test",
+     "duration_s": 240,
+     "target": "RPE 10",
+     "anchor": "rpe",
+     "note": "Reference 301 W"
+    },
+    {
+     "kind": "cooldown",
+     "duration_s": 300,
+     "target": "RPE 3",
+     "anchor": "rpe"
+    }
+   ],
+   "provisional_ftp": false
+  }
+ ],
+ "yesterday": {
+  "date": "2026-10-21",
+  "grades": [
+   {
+    "session": "test_lower",
+    "item": "trap_bar_deadlift test",
+    "grade": "logged",
+    "note": "first weight logged; it's next week's basis"
+   },
+   {
+    "session": "test_lower",
+    "item": "rfe_split_squat work",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "z2_60",
+    "item": "session",
+    "grade": "missed",
+    "note": "under 50% of the planned duration"
+   }
+  ],
+  "status": "graded"
+ },
+ "review": null,
+ "pipeline": {
+  "failed": [],
+  "skipped": []
+ }
+}
