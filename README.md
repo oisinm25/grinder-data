@@ -10,15 +10,16 @@ Training plan, goals and the measurement pipeline for Oisin McClelland's grinder
 
 Design happens in the Claude Training project; Oisin reviews and commits.
 
-Version: v0.1.0. v1.0 = phases 1–5 running end to end.
+Version: v0.1.0. v1.0 = all phases running end to end.
 
 | Phase | What | State |
 |---|---|---|
 | 1 | Plan and athlete schemas, validator CLI | done |
 | 2 | Plan expanded into dated daily sessions, targets resolved to watts | done |
 | 3 | Ingest: intervals.icu activities and wellness, strength log, into `derived/` | done |
-| 4 | to be specified | — |
-| 5 | to be specified | — |
+| 4 | Strength prescriptions: progression rules, basis, readiness, rounding | done |
+| 5 | Publish the next days to intervals.icu (dry run by default), `.zwo`/`.fit` exports | done |
+| 6 | Planned against actual: compliance grading, Sunday drift check | done |
 
 ## Setup
 
@@ -68,6 +69,31 @@ HRV, resting HR and sleep against a rolling 28-day baseline (`pipeline/readiness
 thresholds in `athlete.yaml` `readiness.rules`); wellness is fetched from 28 days before
 `--from` so the first day has a baseline. Activities are mapped by title, then type
 (`map_sport` in `pipeline/ingest/tidy.py`); a plain `Workout` is flagged for review.
+
+Suggest strength weights (kg, reps and RPE cap per group, with the reason) into
+`derived/prescriptions.csv`:
+
+```
+conda run -n pedestal python -m pipeline.prescribe --from 2026-10-26 --days 7
+```
+
+Publish sessions to the intervals.icu calendar, which forwards them to Garmin and Zwift.
+Without `--push` it's a dry run: the events go to `exports/intervals_events_*.json` and
+nothing is sent. Fallback `.fit` (endurance) and `.zwo` (bike) files go to
+`exports/workouts/` either way. Only events whose `external_id` starts `pedestal:` are
+ever updated or deleted:
+
+```
+conda run -n pedestal python -m pipeline.publish --from 2026-10-26 --days 7
+conda run -n pedestal python -m pipeline.publish --from 2026-10-26 --days 7 --push
+```
+
+Grade the week against the plan into `derived/compliance.csv` and run the Sunday drift
+check into `derived/weekly.csv` (run ingest first; `--no-intervals` skips power grading):
+
+```
+conda run -n pedestal python -m pipeline.review --week-ending 2026-11-01
+```
 
 Run the tests:
 

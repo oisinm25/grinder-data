@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8"]
+dev = ["pytest>=8", "fitdecode>=0.10"]  # fitdecode: independent check of the .fit encoder
 
 [tool.setuptools.packages.find]
 include = ["pipeline*"]

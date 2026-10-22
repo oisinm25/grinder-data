@@ -253,7 +253,7 @@ def test_repo_strength_log_reads(plan, athlete):
     log = read_strength_log(ROOT / "training" / "logs" / "strength.csv", plan, athlete)
     assert len(log.sets) >= 2 and log.warnings == []
     tops = latest_top_sets(log)
-    assert tops["bench_press"].kg == 100 and round(tops["bench_press"].e1rm_kg, 1) == 126.7
+    assert tops["bench_press"].kg == 100 and round(tops["bench_press"].e1rm_kg, 1) == 131.7
 
 
 @pytest.mark.parametrize(
@@ -346,7 +346,7 @@ def test_cli_end_to_end_and_rerun(tmp_path, capsys, monkeypatch):
     assert "Wellness: 4 days in range" in out and "(13 rows incl. baseline)" in out
     assert "latest 2026-10-16: resting HR 50 bpm, HRV 55 ms, sleep 6.8 h (score 71)" in out
     assert "  readiness amber: HRV 55 < 66.3" in out
-    assert "bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 126.7 kg" in out
+    assert "bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg" in out
     assert FAKE_KEY not in out
     assert len(fake.calls) == 2
     assert dict(fake.calls[1].url.params)["oldest"] == "2026-09-16"  # wellness fetched 28 days early

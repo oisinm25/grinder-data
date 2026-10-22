@@ -40,8 +40,12 @@ class LoggedSet(StrictModel):
 
     @property
     def e1rm_kg(self) -> float:
-        """design-rules.md: e1RM = kg x (1 + reps/30), clean reps only."""
-        return self.kg * (1 + self.reps / 30)
+        return e1rm(self.kg, self.reps, self.rpe)
+
+
+def e1rm(kg: float, reps: int, rpe: float | None) -> float:
+    """e1RM = kg x (1 + (reps + (10 - RPE)) / 30), clean reps only. A missing RPE counts as 10."""
+    return kg * (1 + (reps + (10 - (10 if rpe is None else rpe))) / 30)
 
 
 @dataclass(frozen=True)

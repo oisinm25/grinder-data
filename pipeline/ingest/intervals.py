@@ -73,6 +73,36 @@ class IntervalsClient:
     def wellness(self, oldest: dt.date, newest: dt.date) -> list[dict[str, Any]]:
         return self._get("wellness", f"/athlete/{self.athlete_id}/wellness", oldest, newest)
 
+    def activity_intervals(self, activity_id: str) -> dict[str, Any]:
+        """{"icu_intervals": [{type: WORK|RECOVERY, average_watts, moving_time, ...}], ...}; cached per activity."""
+        path = f"/activity/{activity_id}/intervals"
+        if self.cache_dir is not None:
+            cached = self.cache_dir / "intervals_icu" / "intervals" / f"{activity_id}.json"
+            if self.offline:
+                if not cached.exists():
+                    raise IntervalsError(f"no cached intervals for activity {activity_id}")
+                return json.loads(cached.read_text(encoding="utf-8"))["data"]
+            data = self._request("GET", path)
+            cached.parent.mkdir(parents=True, exist_ok=True)
+            cached.write_text(json.dumps({"path": path, "data": data}, indent=1), encoding="utf-8")
+            return data
+        return self._request("GET", path)
+
+    # ------------------------------------------------------------------ calendar writes (phase 5)
+
+    def events(self, oldest: dt.date, newest: dt.date) -> list[dict[str, Any]]:
+        params = {"oldest": oldest.isoformat(), "newest": newest.isoformat()}
+        return self._request("GET", f"/athlete/{self.athlete_id}/events", params)
+
+    def create_events(self, events: list[dict[str, Any]]) -> list[dict[str, Any]]:
+        return self._request("POST", f"/athlete/{self.athlete_id}/events/bulk", json_body=events)
+
+    def update_event(self, event_id: int, event: dict[str, Any]) -> dict[str, Any]:
+        return self._request("PUT", f"/athlete/{self.athlete_id}/events/{event_id}", json_body=event)
+
+    def delete_event(self, event_id: int) -> None:
+        self._request("DELETE", f"/athlete/{self.athlete_id}/events/{event_id}", expect_json=False)
+
     # ------------------------------------------------------------------ plumbing
 
     def cache_path(self, name: str, oldest: dt.date, newest: dt.date) -> Path:
@@ -89,7 +119,7 @@ class IntervalsClient:
             return json.loads(cached.read_text(encoding="utf-8"))["data"]
 
         params = {"oldest": oldest.isoformat(), "newest": newest.isoformat()}
-        data = self._request(path, params)
+        data = self._request("GET", path, params)
         if self.cache_dir is not None:
             out = self.cache_path(name, oldest, newest)
             out.parent.mkdir(parents=True, exist_ok=True)
@@ -104,11 +134,13 @@ class IntervalsClient:
             tmp.replace(out)
         return data
 
-    def _request(self, path: str, params: dict[str, str]) -> Any:
+    def _request(self, method: str, path: str, params=None, json_body=None, expect_json: bool = True) -> Any:
+        # Writes are retried too: creates only happen for events not already on the calendar,
+        # and updates and deletes are idempotent.
         for attempt in range(1, self._max_attempts + 1):
             last = attempt == self._max_attempts
             try:
-                resp = self._http.get(path, params=params)
+                resp = self._http.request(method, path, params=params, json=json_body)
             except httpx.TransportError as e:
                 if last:
                     raise IntervalsError(f"intervals.icu unreachable for {path}: {type(e).__name__}") from None
@@ -124,7 +156,9 @@ class IntervalsClient:
                     "Check INTERVALS_ICU_API_KEY and INTERVALS_ICU_ATHLETE_ID in .env."
                 )
             if resp.status_code >= 400:
-                raise IntervalsError(f"intervals.icu returned {resp.status_code} for {path}")
+                raise IntervalsError(f"intervals.icu returned {resp.status_code} for {method} {path}")
+            if not expect_json or not resp.content:
+                return None
             try:
                 return resp.json()
             except ValueError:

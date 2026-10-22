@@ -39,6 +39,7 @@ from pipeline.plan.schema import (
 )
 
 DAYS = ("mon", "tue", "wed", "thu", "fri", "sat", "sun")
+ENDURANCE_MODALITIES = ("bike", "run", "handbike", "concept2", "grinding")
 
 
 @dataclass(frozen=True)
