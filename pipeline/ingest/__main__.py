@@ -21,7 +21,9 @@ from pipeline.ingest.tidy import (
     STRENGTH_FIELDS,
     WELLNESS_FIELDS,
     activity_row,
+    add_readiness,
     latest_measured_wellness,
+    read_csv,
     strength_rows,
     upsert_range,
     wellness_row,
@@ -39,8 +41,8 @@ def _wellness_line(r: dict[str, str]) -> str:
         parts.append(f"HRV {r['hrv']} ms")
     if r["sleep_h"]:
         parts.append(f"sleep {r['sleep_h']} h" + (f" (score {r['sleep_score']})" if r["sleep_score"] else ""))
-    if r["readiness"]:
-        parts.append(f"readiness {r['readiness']}")
+    if r["garmin_readiness"]:
+        parts.append(f"Garmin readiness {r['garmin_readiness']}")
     if r["ctl"]:
         parts.append(f"CTL {r['ctl']} / ATL {r['atl']} (form {r['form']})")
     return ", ".join(parts) or "no measurements"
@@ -89,32 +91,42 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
             print(f"error: {e}", file=sys.stderr)
             return 2
 
+        rules = athlete.readiness.rules
+        wellness_from = args.start - dt.timedelta(days=rules.baseline_days)  # so day one has a baseline
         try:
             with IntervalsClient(
                 api_key, athlete_id, cache_dir=args.cache, offline=args.offline, transport=transport, sleep=sleep
             ) as client:
                 raw_activities = client.activities(args.start, args.end)
-                raw_wellness = client.wellness(args.start, args.end)
+                raw_wellness = client.wellness(wellness_from, args.end)
         except IntervalsError as e:
             print(f"error: {e}", file=sys.stderr)
             return 1
 
-        activities = [activity_row(a) for a in raw_activities]
-        wellness = [wellness_row(w) for w in raw_wellness]
+        strength_dates = frozenset(s.date.isoformat() for _, s in log.sets)
+        activities = [activity_row(a, strength_dates) for a in raw_activities]
         act_path, well_path = args.out / "activities.csv", args.out / "wellness.csv"
         act_total = upsert_range(act_path, ACTIVITY_FIELDS, "id", activities, args.start, args.end)
-        well_total = upsert_range(well_path, WELLNESS_FIELDS, "date", wellness, args.start, args.end)
+        upsert_range(well_path, WELLNESS_FIELDS, "date", [wellness_row(w) for w in raw_wellness], wellness_from, args.end)
+        wellness = add_readiness(read_csv(well_path), rules)
+        write_csv(well_path, WELLNESS_FIELDS, wellness)
 
         sports = Counter(a["sport"] for a in activities)
         by_sport = ", ".join(f"{s} {n}" for s, n in sports.most_common()) or "none"
         print(f"Activities: {len(activities)} ({by_sport}) -> {act_path} ({act_total} rows total)")
+        for a in activities:
+            if a["review"]:
+                print(f"  review: {a['date']} {a['name'] or '(untitled)'!r} [{a['type']}] -> {a['sport']}: {a['review']}")
         stubs = sum(a["detail"] == "stub" for a in activities)
         if stubs:
             print(f"  {stubs} came from Strava without detail (intervals.icu doesn't serve those via the API)")
-        print(f"Wellness: {len(wellness)} days -> {well_path} ({well_total} rows total)")
-        latest = latest_measured_wellness(wellness)
+
+        in_range = [r for r in wellness if args.start.isoformat() <= r["date"] <= args.end.isoformat()]
+        print(f"Wellness: {len(in_range)} days in range -> {well_path} ({len(wellness)} rows incl. baseline)")
+        latest = latest_measured_wellness(in_range)
         if latest:
             print(f"  latest {latest['date']}: {_wellness_line(latest)}")
+            print(f"  readiness {latest['readiness_reason']}")
 
     strength_path = args.out / "strength.csv"
     rows = strength_rows(log)

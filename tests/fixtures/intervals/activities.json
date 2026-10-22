@@ -65,6 +65,41 @@
     "source": "GARMIN_CONNECT"
   },
   {
+    "id": "i1006",
+    "start_date_local": "2026-10-19T07:00:00",
+    "type": "WeightTraining",
+    "name": "Strength",
+    "moving_time": 3366,
+    "icu_training_load": 9,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1007",
+    "start_date_local": "2026-10-17T15:00:00",
+    "type": "HighIntensityIntervalTraining",
+    "name": "HIIT",
+    "moving_time": 2400,
+    "icu_training_load": 40,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1008",
+    "start_date_local": "2026-10-18T13:00:00",
+    "type": "Sail",
+    "name": "Sailing",
+    "moving_time": 10800,
+    "distance": 38000.0,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1009",
+    "start_date_local": "2026-10-20T17:00:00",
+    "type": "Workout",
+    "name": "Workout",
+    "moving_time": 3000,
+    "source": "GARMIN_CONNECT"
+  },
+  {
     "id": "88123456",
     "start_date_local": "2026-10-18T10:00:00",
     "type": "Run",

@@ -9,7 +9,7 @@ import pytest
 from pipeline.ingest.__main__ import main
 from pipeline.ingest.intervals import IntervalsClient, IntervalsError
 from pipeline.ingest.strength import StrengthLogError, latest_top_sets, read_strength_log
-from pipeline.ingest.tidy import ACTIVITY_FIELDS, activity_row, upsert_range, wellness_row
+from pipeline.ingest.tidy import ACTIVITY_FIELDS, activity_row, add_readiness, map_sport, upsert_range, wellness_row
 from pipeline.plan.schema import validate_plan
 from pipeline.settings import MissingSetting, require_env
 from tests.conftest import ROOT
@@ -64,7 +64,7 @@ def test_missing_setting_names_the_variable():
 def test_request_shape_and_basic_auth():
     fake = FakeIntervals()
     with client(fake) as c:
-        assert len(c.activities(D(2026, 10, 14), D(2026, 10, 22))) == 6
+        assert len(c.activities(D(2026, 10, 14), D(2026, 10, 22))) == 10
     (req,) = fake.calls
     assert req.url.path == "/api/v1/athlete/i99999/activities"
     assert dict(req.url.params) == {"oldest": "2026-10-14", "newest": "2026-10-22"}
@@ -81,7 +81,7 @@ def test_retries_rate_limit_honouring_retry_after():
     waits = []
     fake = FakeIntervals(fail_first=2, status=429, headers={"Retry-After": "3"})
     with client(fake, sleep=waits.append) as c:
-        assert len(c.wellness(D(2026, 10, 14), D(2026, 10, 17))) == 4
+        assert len(c.wellness(D(2026, 10, 14), D(2026, 10, 17))) == 13
     assert waits == [3.0, 3.0] and len(fake.calls) == 3
 
 
@@ -142,33 +142,85 @@ def test_cache_written_without_key_and_read_offline(tmp_path):
 
 
 def test_activity_rows():
-    rows = {r["id"]: r for r in map(activity_row, recorded("activities"))}
+    rows = {r["id"]: r for r in (activity_row(a, frozenset({"2026-10-19"})) for a in recorded("activities"))}
     z2 = rows["i1001"]
     assert (z2["date"], z2["sport"], z2["moving_min"], z2["distance_km"], z2["np_watts"], z2["trainer"]) == (
         "2026-10-14", "bike", "60", "31.25", "204", "true"
     )
-    assert rows["i1002"]["sport"] == "strength"
-    assert rows["i1004"]["sport"] == "handbike"
-    assert rows["i1005"]["sport"] == "other" and rows["i1005"]["type"] == "Workout"
+    assert {i: r["sport"] for i, r in rows.items()} == {
+        "i1001": "bike",
+        "i1002": "conditioning",  # WeightTraining, nothing in the strength log that day
+        "i1003": "bike",
+        "i1004": "handbike",
+        "i1005": "grinding",  # Workout titled "Grinder"
+        "i1006": "strength",  # WeightTraining on a logged day
+        "i1007": "conditioning",  # HIIT
+        "i1008": "sail",
+        "i1009": "sail_or_other",
+        "88123456": "run",
+    }
+    assert rows["i1009"]["review"] and not any(r["review"] for i, r in rows.items() if i != "i1009")
     assert rows["88123456"]["detail"] == "stub" and rows["i1001"]["detail"] == "full"
 
 
+S = frozenset({"2026-10-19"})  # dates with logged strength sets
+
+
+@pytest.mark.parametrize(
+    ("name", "kind", "date", "sport", "mapped_by"),
+    [
+        ("Grinding repeats", "Workout", "2026-10-21", "grinding", "name"),
+        ("grind 1+4 min test", "Rowing", "2026-10-22", "grinding", "name"),  # name beats type
+        ("  GRIND", "HighIntensityIntervalTraining", "2026-10-21", "grinding", "name"),
+        ("Grinder pedestal", "WeightTraining", "2026-10-19", "grinding", "name"),
+        ("HIIT", "HIIT", "2026-10-17", "conditioning", "type"),
+        ("HIIT", "HighIntensityIntervalTraining", "2026-10-17", "conditioning", "type"),
+        ("Box WOD", "Crossfit", "2026-10-17", "conditioning", "type"),
+        ("Strength", "WeightTraining", "2026-10-19", "strength", "type+log"),
+        ("Strength", "WeightTraining", "2026-10-16", "conditioning", "type, no log"),
+        ("Sailing", "Sail", "2026-10-18", "sail", "type"),
+        ("Workout", "Workout", "2026-10-20", "sail_or_other", "type"),
+        ("Afternoon Workout", "Workout", "2026-10-20", "sail_or_other", "type"),
+        ("Ride", "VirtualRide", "2026-10-18", "bike", "type"),
+        ("Hand-bike", "Handcycle", "2026-10-20", "handbike", "type"),
+        ("Erg", "Rowing", "2026-10-20", "concept2", "type"),
+        ("Swim", "Swim", "2026-10-20", "other", "type"),
+        ("Engrind", "Workout", "2026-10-20", "sail_or_other", "type"),  # "grind" must start the title
+    ],
+)
+def test_map_sport(name, kind, date, sport, mapped_by):
+    got, by, review = map_sport(name, kind, date, S)
+    assert (got, by) == (sport, mapped_by)
+    assert bool(review) == (sport == "sail_or_other")
+
+
 def test_wellness_rows():
-    rows = [wellness_row(w) for w in recorded("wellness")]
-    first = rows[0]
-    assert (first["date"], first["resting_hr"], first["hrv"], first["sleep_h"], first["readiness"]) == (
-        "2026-10-14", "49", "66", "7.25", "62"
-    )
-    assert first["form"] == "3.8"
-    assert rows[3]["resting_hr"] == "" and rows[3]["ctl"] == "53.2"
+    rows = {r["date"]: r for r in (wellness_row(w) for w in recorded("wellness"))}
+    day = rows["2026-10-14"]
+    assert (day["resting_hr"], day["hrv"], day["sleep_h"], day["weight_kg"], day["form"]) == ("49", "66", "7.25", "92.4", "3.8")
+    assert day["garmin_readiness"] == ""  # nullable until Garmin sends it
+    assert wellness_row({"id": "2026-10-14", "readiness": 64})["garmin_readiness"] == "64"
+    assert rows["2026-10-17"]["resting_hr"] == "" and rows["2026-10-17"]["ctl"] == "53.2"
+
+
+def test_add_readiness_over_rows(athlete):
+    rows = add_readiness([wellness_row(w) for w in recorded("wellness")], athlete.readiness.rules)
+    by_date = {r["date"]: r for r in rows}
+    assert by_date["2026-10-05"]["readiness"] == ""  # no baseline yet
+    assert by_date["2026-10-15"]["readiness"] == "green"
+    assert by_date["2026-10-16"]["readiness"] == "amber"
+    assert by_date["2026-10-16"]["readiness_reason"].startswith("amber: HRV 55 < 66.3 (baseline 68.7 - 1 SD 2.4)")
+    assert by_date["2026-10-16"]["hrv_baseline"] == "68.7"
+    assert by_date["2026-10-17"]["readiness"] == ""  # only CTL/ATL that day
 
 
 def test_upsert_is_idempotent_and_replaces_the_range(tmp_path):
     path = tmp_path / "activities.csv"
     rows = [activity_row(a) for a in recorded("activities")]
+    n = len(rows)
     lo, hi = D(2026, 10, 14), D(2026, 10, 22)
-    assert upsert_range(path, ACTIVITY_FIELDS, "id", rows, lo, hi) == 6
-    assert upsert_range(path, ACTIVITY_FIELDS, "id", rows, lo, hi) == 6  # re-run: no duplicates
+    assert upsert_range(path, ACTIVITY_FIELDS, "id", rows, lo, hi) == n
+    assert upsert_range(path, ACTIVITY_FIELDS, "id", rows, lo, hi) == n  # re-run: no duplicates
 
     old = dict(rows[0], id="i0001", date="2026-10-01", start_local="2026-10-01T08:00:00")
     upsert_range(path, ACTIVITY_FIELDS, "id", [old], D(2026, 10, 1), D(2026, 10, 1))
@@ -176,7 +228,7 @@ def test_upsert_is_idempotent_and_replaces_the_range(tmp_path):
     total = upsert_range(path, ACTIVITY_FIELDS, "id", [r for r in rows if r["id"] != "i1005"], lo, hi)
     with open(path, newline="", encoding="utf-8") as f:
         ids = [r["id"] for r in csv.DictReader(f)]
-    assert total == 6 and "i1005" not in ids and ids[0] == "i0001"
+    assert total == n and "i1005" not in ids and ids[0] == "i0001"
     assert ids == sorted(set(ids), key=ids.index)  # no duplicates, date order kept
 
 
@@ -285,18 +337,24 @@ def test_cli_end_to_end_and_rerun(tmp_path, capsys, monkeypatch):
     code, fake = run(tmp_path)
     out = capsys.readouterr().out
     assert code == 0, out
-    assert "Activities: 6 (bike 2, strength 1, handbike 1, other 1, run 1)" in out
+    assert (
+        "Activities: 10 (bike 2, conditioning 2, handbike 1, grinding 1, strength 1, sail 1, sail_or_other 1, run 1)"
+    ) in out
+    assert "review: 2026-10-20 'Workout' [Workout] -> sail_or_other: plain Workout without a Grind title" in out
+    assert out.count("review:") == 1
     assert "1 came from Strava without detail" in out
-    assert "Wellness: 4 days" in out
-    assert "latest 2026-10-16: resting HR 50 bpm, HRV 63 ms, sleep 6.8 h (score 71), readiness 55" in out
+    assert "Wellness: 4 days in range" in out and "(13 rows incl. baseline)" in out
+    assert "latest 2026-10-16: resting HR 50 bpm, HRV 55 ms, sleep 6.8 h (score 71)" in out
+    assert "  readiness amber: HRV 55 < 66.3" in out
     assert "bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 126.7 kg" in out
     assert FAKE_KEY not in out
     assert len(fake.calls) == 2
+    assert dict(fake.calls[1].url.params)["oldest"] == "2026-09-16"  # wellness fetched 28 days early
 
     code, _ = run(tmp_path)
     assert code == 0
     derived = tmp_path / "derived"
-    for name, n in (("activities.csv", 6), ("wellness.csv", 4)):
+    for name, n in (("activities.csv", 10), ("wellness.csv", 13)):
         with open(derived / name, newline="", encoding="utf-8") as f:
             assert len(list(csv.DictReader(f))) == n
     assert (derived / "strength.csv").exists()

@@ -50,7 +50,28 @@ class RedRule(StrictModel):
     rpe_cap: Rpe
 
 
+class ReadinessRules(StrictModel):
+    """How the day's colour is computed (pipeline/readiness.py)."""
+
+    baseline_days: PositiveInt
+    min_baseline_days: PositiveInt
+    hrv_sd_below: PositiveFloat
+    resting_hr_above_bpm: PositiveFloat
+    sleep_min_h: PositiveFloat
+
+    @field_validator("min_baseline_days")
+    @classmethod
+    def _fits_window(cls, n, info):
+        window = info.data.get("baseline_days")
+        if n < 2:
+            raise ValueError("needs at least 2 days to compute an SD")
+        if window is not None and n > window:
+            raise ValueError(f"more than baseline_days ({window})")
+        return n
+
+
 class Readiness(StrictModel):
+    rules: ReadinessRules
     amber: AmberRule
     red: RedRule
 

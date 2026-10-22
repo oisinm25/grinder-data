@@ -63,6 +63,12 @@ conda run -n pedestal python -m pipeline.ingest --from 2026-10-14
 conda run -n pedestal python -m pipeline.ingest --from 2026-10-14 --offline   # from the cache
 ```
 
+Each wellness day gets a computed `readiness` (green / amber / red, with the reason) from
+HRV, resting HR and sleep against a rolling 28-day baseline (`pipeline/readiness.py`,
+thresholds in `athlete.yaml` `readiness.rules`); wellness is fetched from 28 days before
+`--from` so the first day has a baseline. Activities are mapped by title, then type
+(`map_sport` in `pipeline/ingest/tidy.py`); a plain `Workout` is flagged for review.
+
 Run the tests:
 
 ```

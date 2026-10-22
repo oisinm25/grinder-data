@@ -22,6 +22,8 @@ def test_repo_athlete_values(athlete):
     amber, red = athlete.readiness.amber, athlete.readiness.red
     assert amber.hold_last_weight and not amber.allow_increment and amber.rpe_cap == 8
     assert red.pct_of_last_weight == 0.9 and red.rpe_cap == 7
+    rules = athlete.readiness.rules
+    assert (rules.baseline_days, rules.hrv_sd_below, rules.resting_hr_above_bpm, rules.sleep_min_h) == (28, 1, 5, 6)
 
 
 @pytest.mark.parametrize(

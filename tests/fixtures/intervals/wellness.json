@@ -1,6 +1,15 @@
 [
-  {"id": "2026-10-14", "restingHR": 49, "hrv": 66.0, "sleepSecs": 26100, "sleepScore": 78, "readiness": 62, "weight": 92.4, "ctl": 52.1, "atl": 48.3},
-  {"id": "2026-10-15", "restingHR": 48, "hrv": 71.5, "sleepSecs": 27720, "sleepScore": 84, "readiness": 70, "ctl": 52.0, "atl": 44.9},
-  {"id": "2026-10-16", "restingHR": 50, "hrv": 63.0, "hrvSDNN": 58.2, "sleepSecs": 24480, "sleepScore": 71, "readiness": 55, "soreness": 2, "fatigue": 3, "ctl": 52.3, "atl": 47.6},
+  {"id": "2026-10-05", "restingHR": 48, "hrv": 68.0, "sleepSecs": 27000, "sleepScore": 80, "ctl": 50.2, "atl": 46.0},
+  {"id": "2026-10-06", "restingHR": 47, "hrv": 70.0, "sleepSecs": 27900, "sleepScore": 83, "ctl": 50.4, "atl": 47.1},
+  {"id": "2026-10-07", "restingHR": 49, "hrv": 66.0, "sleepSecs": 25200, "sleepScore": 76, "ctl": 50.5, "atl": 47.9},
+  {"id": "2026-10-08", "restingHR": 48, "hrv": 72.0, "sleepSecs": 28800, "sleepScore": 88, "ctl": 50.9, "atl": 49.2},
+  {"id": "2026-10-09", "restingHR": 48, "hrv": 69.0, "sleepSecs": 27000, "sleepScore": 81, "ctl": 51.0, "atl": 48.3},
+  {"id": "2026-10-10", "restingHR": 47, "hrv": 67.0, "sleepSecs": 26100, "sleepScore": 79, "ctl": 51.2, "atl": 49.0},
+  {"id": "2026-10-11", "restingHR": 49, "hrv": 71.0, "sleepSecs": 27500, "sleepScore": 82, "ctl": 51.5, "atl": 48.8},
+  {"id": "2026-10-12", "restingHR": 48, "hrv": 65.0, "sleepSecs": 26000, "sleepScore": 77, "ctl": 51.6, "atl": 48.1},
+  {"id": "2026-10-13", "restingHR": 48, "hrv": 70.0, "sleepSecs": 27300, "sleepScore": 82, "ctl": 51.9, "atl": 48.6},
+  {"id": "2026-10-14", "restingHR": 49, "hrv": 66.0, "sleepSecs": 26100, "sleepScore": 78, "weight": 92.4, "ctl": 52.1, "atl": 48.3},
+  {"id": "2026-10-15", "restingHR": 48, "hrv": 71.5, "sleepSecs": 27720, "sleepScore": 84, "ctl": 52.0, "atl": 44.9},
+  {"id": "2026-10-16", "restingHR": 50, "hrv": 55.0, "hrvSDNN": 58.2, "sleepSecs": 24480, "sleepScore": 71, "soreness": 2, "fatigue": 3, "ctl": 52.3, "atl": 47.6},
   {"id": "2026-10-17", "ctl": 53.2, "atl": 55.0}
 ]

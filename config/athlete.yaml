@@ -25,6 +25,13 @@ strength:
     trap_bar_deadlift:   { name: Trap-bar deadlift }
     rfe_split_squat:     { name: Rear-foot-elevated split squat }
 
-readiness:                       # green: the suggestion stands
+readiness:
+  rules:                         # the day's colour, computed by pipeline/readiness.py
+    baseline_days: 28            # rolling baseline: the 28 days before today
+    min_baseline_days: 7         # fewer measured days in the window -> no call
+    hrv_sd_below: 1.0            # amber: HRV below baseline mean - 1 SD
+    resting_hr_above_bpm: 5      # amber: resting HR more than 5 bpm above baseline mean
+    sleep_min_h: 6               # red: sleep under 6 h (red also: both amber triggers at once)
+  # effects -- green: the suggestion stands
   amber: { hold_last_weight: true, allow_increment: false, rpe_cap: 8 }
   red:   { pct_of_last_weight: 0.90, rpe_cap: 7 }

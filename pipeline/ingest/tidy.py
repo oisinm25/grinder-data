@@ -3,6 +3,7 @@
 Re-running never duplicates. Activities and wellness are keyed by activity id and by date.
 A fetch replaces every row inside its date range (so an activity deleted upstream
 disappears) and keeps rows outside it. The strength CSV is rebuilt from the whole log each run.
+Readiness is recomputed over the whole wellness file after each fetch.
 """
 
 import csv
@@ -12,28 +13,59 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import Any
 
+from pipeline.athlete import ReadinessRules
 from pipeline.ingest.strength import StrengthLog
+from pipeline.readiness import DayInput, assess
 
+# Activity mapping, first match wins (see map_sport):
+#   1. title starts with "Grind" (any case)             -> grinding
+#   2. HIIT / Crossfit types                             -> conditioning
+#   3. WeightTraining: strength log has sets that date   -> strength, else conditioning
+#   4. Sail                                              -> sail
+#   5. plain Workout (no Grind title)                    -> sail_or_other, flagged for review
+#   6. the type table below                              -> bike, handbike, run, concept2, walk
+#   7. anything else                                     -> other
+CONDITIONING_TYPES = {"HIIT", "HighIntensityIntervalTraining", "Crossfit", "CrossFit"}
 SPORTS = {
     "bike": {"Ride", "VirtualRide", "GravelRide", "MountainBikeRide", "EBikeRide", "EMountainBikeRide", "TrackRide", "Velomobile"},
     "handbike": {"Handcycle"},
     "run": {"Run", "VirtualRun", "TrailRun"},
     "concept2": {"Rowing", "VirtualRow"},
-    "strength": {"WeightTraining"},
     "walk": {"Walk", "Hike"},
 }
 SPORT_OF = {t: sport for sport, types in SPORTS.items() for t in types}
+REVIEW_WORKOUT = "plain Workout without a Grind title: sail or something else?"
 
 ACTIVITY_FIELDS = (
-    "id", "date", "start_local", "sport", "type", "name", "moving_min", "elapsed_min", "distance_km",
-    "load", "avg_watts", "np_watts", "avg_hr", "max_hr", "intensity", "trainer", "source", "detail",
+    "id", "date", "start_local", "sport", "mapped_by", "review", "type", "name", "moving_min", "elapsed_min",
+    "distance_km", "load", "avg_watts", "np_watts", "avg_hr", "max_hr", "intensity", "trainer", "source", "detail",
 )  # fmt: skip
 WELLNESS_FIELDS = (
-    "date", "resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score", "sleep_quality", "readiness",
-    "weight_kg", "ctl", "atl", "form", "soreness", "fatigue", "stress", "mood", "motivation", "spo2", "steps",
+    "date", "readiness", "readiness_reason", "resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score",
+    "sleep_quality", "garmin_readiness", "weight_kg", "ctl", "atl", "form", "soreness", "fatigue", "stress",
+    "mood", "motivation", "spo2", "steps", "hrv_baseline", "hrv_sd", "resting_hr_baseline",
 )  # fmt: skip
 STRENGTH_FIELDS = ("date", "session", "lift", "role", "set_no", "kg", "reps", "rpe", "e1rm_kg", "notes", "log_line")
-MEASURED_WELLNESS = ("resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score", "readiness")
+MEASURED_WELLNESS = ("resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score", "garmin_readiness")
+
+
+def map_sport(name: str, kind: str, date: str, strength_dates: frozenset[str]) -> tuple[str, str, str]:
+    """(sport, mapped_by, review) for one activity. Name rules first, then type."""
+    if name.strip().lower().startswith("grind"):
+        return "grinding", "name", ""
+    if kind in CONDITIONING_TYPES:
+        return "conditioning", "type", ""
+    if kind == "WeightTraining":
+        if date in strength_dates:
+            return "strength", "type+log", ""
+        return "conditioning", "type, no log", ""
+    if kind == "Sail":
+        return "sail", "type", ""
+    if kind == "Workout":
+        return "sail_or_other", "type", REVIEW_WORKOUT
+    if kind in SPORT_OF:
+        return SPORT_OF[kind], "type", ""
+    return "other", "type", ""
 
 
 def _num(v: Any, scale: float = 1.0, digits: int = 1) -> str:
@@ -46,18 +78,23 @@ def _num(v: Any, scale: float = 1.0, digits: int = 1) -> str:
     return f"{round(x, digits):g}"
 
 
-def activity_row(a: dict[str, Any]) -> dict[str, str]:
+def activity_row(a: dict[str, Any], strength_dates: frozenset[str] = frozenset()) -> dict[str, str]:
+    """One tidy row. `strength_dates`: ISO dates with sets in the strength log."""
     start = str(a.get("start_date_local") or "")
     kind = str(a.get("type") or "")
+    name = str(a.get("name") or "")
+    sport, mapped_by, review = map_sport(name, kind, start[:10], strength_dates)
     # Strava-sourced activities come through the API as stubs without detail.
     stub = "_note" in a or (a.get("source") == "STRAVA" and a.get("moving_time") is None)
     return {
         "id": str(a.get("id", "")),
         "date": start[:10],
         "start_local": start,
-        "sport": SPORT_OF.get(kind, "other"),
+        "sport": sport,
+        "mapped_by": mapped_by,
+        "review": review,
         "type": kind,
-        "name": str(a.get("name") or ""),
+        "name": name,
         "moving_min": _num(a.get("moving_time"), 60),
         "elapsed_min": _num(a.get("elapsed_time"), 60),
         "distance_km": _num(a.get("distance"), 1000, 2),
@@ -83,7 +120,7 @@ def wellness_row(w: dict[str, Any]) -> dict[str, str]:
         "sleep_h": _num(w.get("sleepSecs"), 3600, 2),
         "sleep_score": _num(w.get("sleepScore"), digits=0),
         "sleep_quality": _num(w.get("sleepQuality"), digits=0),
-        "readiness": _num(w.get("readiness"), digits=0),
+        "garmin_readiness": _num(w.get("readiness"), digits=0),  # nullable; not sent by Garmin today
         "weight_kg": _num(w.get("weight")),
         "ctl": _num(ctl),
         "atl": _num(atl),
@@ -150,6 +187,28 @@ def upsert_range(
     ordered = sorted(merged.values(), key=lambda r: (r.get("date", ""), r.get("start_local", ""), r[key]))
     write_csv(path, fields, ordered)
     return len(ordered)
+
+
+def add_readiness(rows: list[dict[str, str]], rules: ReadinessRules) -> list[dict[str, str]]:
+    """Fill the readiness columns on every row (each judged against the rows before it)."""
+
+    def f(v: str) -> float | None:
+        return float(v) if v not in ("", None) else None
+
+    inputs = [DayInput(dt.date.fromisoformat(r["date"]), f(r.get("hrv")), f(r.get("resting_hr")), f(r.get("sleep_h"))) for r in rows]
+    by_date = {a.date.isoformat(): a for a in assess(inputs, rules)}
+    out = []
+    for r in rows:
+        a = by_date[r["date"]]
+        out.append(dict(
+            r,
+            readiness=a.status,
+            readiness_reason=a.reason,
+            hrv_baseline=_num(a.hrv_baseline),
+            hrv_sd=_num(a.hrv_sd),
+            resting_hr_baseline=_num(a.resting_hr_baseline),
+        ))  # fmt: skip
+    return out
 
 
 def latest_measured_wellness(rows: list[dict[str, str]]) -> dict[str, str] | None:
