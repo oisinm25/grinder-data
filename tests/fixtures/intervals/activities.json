@@ -1,0 +1,75 @@
+[
+  {
+    "id": "i1001",
+    "start_date_local": "2026-10-14T17:30:00",
+    "type": "VirtualRide",
+    "name": "Z2 60",
+    "moving_time": 3600,
+    "elapsed_time": 3660,
+    "distance": 31250.0,
+    "icu_training_load": 46,
+    "icu_average_watts": 201,
+    "icu_weighted_avg_watts": 204,
+    "average_heartrate": 128.4,
+    "max_heartrate": 141,
+    "icu_intensity": 68.0,
+    "trainer": true,
+    "source": "ZWIFT"
+  },
+  {
+    "id": "i1002",
+    "start_date_local": "2026-10-14T07:10:00",
+    "type": "WeightTraining",
+    "name": "Lower re-entry",
+    "moving_time": 3300,
+    "elapsed_time": 3900,
+    "icu_training_load": 35,
+    "average_heartrate": 102,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1003",
+    "start_date_local": "2026-10-17T09:00:00",
+    "type": "Ride",
+    "name": "Long ride",
+    "moving_time": 7140,
+    "elapsed_time": 7500,
+    "distance": 61800.0,
+    "icu_training_load": 95,
+    "icu_average_watts": 196,
+    "icu_weighted_avg_watts": 205,
+    "average_heartrate": 131,
+    "max_heartrate": 158,
+    "icu_intensity": 68.3,
+    "trainer": false,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1004",
+    "start_date_local": "2026-10-20T07:05:00",
+    "type": "Handcycle",
+    "name": "Hand-bike 20 test",
+    "moving_time": 3180,
+    "elapsed_time": 3300,
+    "icu_training_load": 47,
+    "icu_average_watts": 188,
+    "trainer": true,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "i1005",
+    "start_date_local": "2026-10-21T12:00:00",
+    "type": "Workout",
+    "name": "Grinder",
+    "moving_time": 2100,
+    "source": "GARMIN_CONNECT"
+  },
+  {
+    "id": "88123456",
+    "start_date_local": "2026-10-18T10:00:00",
+    "type": "Run",
+    "name": "",
+    "source": "STRAVA",
+    "_note": "STRAVA activities are not available via the API"
+  }
+]

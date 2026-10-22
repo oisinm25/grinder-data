@@ -16,9 +16,9 @@ Version: v0.1.0. v1.0 = phases 1–5 running end to end.
 |---|---|---|
 | 1 | Plan and athlete schemas, validator CLI | done |
 | 2 | Plan expanded into dated daily sessions, targets resolved to watts | done |
-| 3 | Strength prescriptions (progression rules, readiness, rounding) | — |
-| 4 | Publish the next 7 days to intervals.icu, `.zwo`/`.fit` exports | — |
-| 5 | Planned against actual: compliance grading, Sunday drift check | — |
+| 3 | Ingest: intervals.icu activities and wellness, strength log, into `derived/` | done |
+| 4 | to be specified | — |
+| 5 | to be specified | — |
 
 ## Setup
 
@@ -52,6 +52,16 @@ conda run -n pedestal python -m pipeline.plan.expand config/plan.yaml --from 202
 Watts marked `*` come from a provisional anchor (the hand-bike FTP until it's tested).
 `rpe` and `hr_zone` targets stay as written. Strength sessions list their lifts and sets;
 weights come with phase 3.
+
+Ingest intervals.icu activities and wellness, plus `training/logs/strength.csv`, into
+`derived/activities.csv`, `derived/wellness.csv` and `derived/strength.csv` (needs
+`INTERVALS_ICU_API_KEY` and `INTERVALS_ICU_ATHLETE_ID` in `.env`; raw responses are cached
+in `cache/`; re-runs replace rows in the date range, never duplicate):
+
+```
+conda run -n pedestal python -m pipeline.ingest --from 2026-10-14
+conda run -n pedestal python -m pipeline.ingest --from 2026-10-14 --offline   # from the cache
+```
 
 Run the tests:
 

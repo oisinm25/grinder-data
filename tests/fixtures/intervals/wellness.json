@@ -1,0 +1,6 @@
+[
+  {"id": "2026-10-14", "restingHR": 49, "hrv": 66.0, "sleepSecs": 26100, "sleepScore": 78, "readiness": 62, "weight": 92.4, "ctl": 52.1, "atl": 48.3},
+  {"id": "2026-10-15", "restingHR": 48, "hrv": 71.5, "sleepSecs": 27720, "sleepScore": 84, "readiness": 70, "ctl": 52.0, "atl": 44.9},
+  {"id": "2026-10-16", "restingHR": 50, "hrv": 63.0, "hrvSDNN": 58.2, "sleepSecs": 24480, "sleepScore": 71, "readiness": 55, "soreness": 2, "fatigue": 3, "ctl": 52.3, "atl": 47.6},
+  {"id": "2026-10-17", "ctl": 53.2, "atl": 55.0}
+]

@@ -1,4 +1,5 @@
 import copy
+import socket
 from pathlib import Path
 
 import pytest
@@ -12,6 +13,17 @@ ATHLETE = ROOT / "config" / "athlete.yaml"
 
 _PLAN_DATA = load_yaml(PLAN)
 _ATHLETE_DATA = load_yaml(ATHLETE)
+
+
+@pytest.fixture(autouse=True)
+def no_network(monkeypatch):
+    """Tests never reach the internet; HTTP goes through httpx.MockTransport."""
+
+    def refuse(*args, **kwargs):
+        raise RuntimeError("network access in tests")
+
+    monkeypatch.setattr(socket.socket, "connect", refuse)
+    monkeypatch.setattr(socket, "create_connection", refuse)
 
 
 @pytest.fixture
