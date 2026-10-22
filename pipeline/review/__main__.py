@@ -1,9 +1,11 @@
-"""python -m pipeline.review [--week-ending 2026-11-01] [--offline | --no-intervals]
+"""python -m pipeline.review [--week-ending 2026-11-01 | --day 2026-10-27] [--offline | --no-intervals]
 
 Grades every planned session of the week (Monday to the given Sunday, up to today) into
 derived/compliance.csv, appends the week's record to derived/weekly.csv and prints the drift
-check. Endurance power is graded from intervals.icu activity intervals (cached in cache/);
-`--no-intervals` grades without them. Run `python -m pipeline.ingest` first.
+check. `--day` grades just that day; a Sunday reviews its whole week (so Monday's daily run
+completes the week Sunday's run could only partly see). Endurance power is graded from
+intervals.icu activity intervals (cached in cache/); `--no-intervals` grades without them.
+Run `python -m pipeline.ingest` first.
 """
 
 import argparse
@@ -21,7 +23,7 @@ from pipeline.plan.expand import expand
 from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
 from pipeline.prescribe import load_history, load_readiness, prescribe
 from pipeline.review.compliance import FIELDS, grade_days
-from pipeline.review.drift import WEEKLY_FIELDS, review_week
+from pipeline.review.drift import WEEKLY_FIELDS, review_week, week_markdown
 from pipeline.settings import MissingSetting, load_env, require_env
 
 
@@ -32,7 +34,9 @@ def last_sunday(today: dt.date) -> dt.date:
 def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, sleep=time.sleep, today=None) -> int:
     today = today or dt.date.today()
     parser = argparse.ArgumentParser(prog="python -m pipeline.review", description="Planned against actual.")
-    parser.add_argument("--week-ending", dest="end", type=dt.date.fromisoformat, default=last_sunday(today))
+    when = parser.add_mutually_exclusive_group()
+    when.add_argument("--week-ending", dest="end", type=dt.date.fromisoformat, default=last_sunday(today))
+    when.add_argument("--day", type=dt.date.fromisoformat, help="grade one day (a Sunday reviews its week)")
     parser.add_argument("--plan", type=Path, default=Path("config/plan.yaml"))
     parser.add_argument("--athlete", type=Path)
     parser.add_argument("--derived", type=Path, default=Path("derived"))
@@ -41,12 +45,15 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
     mode.add_argument("--offline", action="store_true", help="activity intervals from the cache only")
     mode.add_argument("--no-intervals", action="store_true", help="grade without activity intervals")
     args = parser.parse_args(argv)
-    if args.end.weekday() != 6:
+    day_only = args.day is not None and args.day.weekday() != 6
+    if args.day is not None:
+        args.end = args.day
+    if not day_only and args.end.weekday() != 6:
         parser.error("--week-ending must be a Sunday")
-    start = args.end - dt.timedelta(days=6)
+    start = args.end if day_only else args.end - dt.timedelta(days=6)
     graded_to = min(args.end, today)
     if graded_to < start:
-        print(f"week {start} to {args.end} hasn't started yet")
+        print(f"{'day' if day_only else 'week'} {start} to {args.end} hasn't started yet")
         return 0
 
     try:
@@ -100,10 +107,21 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
 
     kept = [r for r in read_csv(d / "compliance.csv") if not start.isoformat() <= r["date"] <= args.end.isoformat()]
     write_csv(d / "compliance.csv", FIELDS, sorted(kept + [g.row() for g in grades], key=lambda r: r["date"]))
+    if day_only:
+        counts = Counter(g.grade for g in grades)
+        print(f"Day {start:%a %Y-%m-%d}: " + (", ".join(f"{k} {n}" for k, n in counts.most_common()) or "nothing planned"))
+        for g in grades:
+            if g.grade not in ("held", "done", "logged", "pending"):
+                print(f"  {g.grade:<10} {g.session} {g.item if g.modality == 'strength' else ''}".rstrip() + (f": {g.note}" if g.note else ""))
+        for p in problems:
+            print(f"  note: no intervals for {p}")
+        print(f"Wrote {len(grades)} grades to {d / 'compliance.csv'}")
+        return 0
     previous = read_csv(d / "weekly.csv")
     week = review_week(plan, start, args.end, planned_tss, grades, activities, wellness, logged, previous, graded_to)
     others = [r for r in previous if r["week_end"] != args.end.isoformat()]
     write_csv(d / "weekly.csv", WEEKLY_FIELDS, sorted(others + [week.record], key=lambda r: r["week_end"]))
+    (d / "week.md").write_text(week_markdown(week, grades, graded_to), encoding="utf-8")
 
     r = week.record
     partial = f" (graded to {graded_to})" if graded_to < args.end else ""
@@ -128,7 +146,7 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
         print(f"  - {f}")
     for p in problems:
         print(f"  note: no intervals for {p}")
-    print(f"Wrote {len(grades)} grades to {d / 'compliance.csv'} and the week to {d / 'weekly.csv'}")
+    print(f"Wrote {len(grades)} grades to {d / 'compliance.csv'} and the week to {d / 'weekly.csv'} and {d / 'week.md'}")
     return 0
 
 

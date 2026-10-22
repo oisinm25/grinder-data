@@ -302,6 +302,28 @@ def test_cli_missing_secret_suggests_no_intervals(derived, capsys, monkeypatch):
     assert code == 2 and "--no-intervals" in capsys.readouterr().err
 
 
+def test_cli_day_grades_one_day(derived, capsys, monkeypatch):
+    monkeypatch.chdir(ROOT)
+    assert main(["--day", "2026-10-26", "--derived", str(derived), "--no-intervals"], env={}, today=D(2026, 10, 27)) == 0
+    out = capsys.readouterr().out
+    assert out.startswith("Day Mon 2026-10-26: ")
+    with open(derived / "compliance.csv", newline="", encoding="utf-8") as f:
+        assert {r["date"] for r in csv.DictReader(f)} == {"2026-10-26"}
+    assert not (derived / "weekly.csv").exists()
+
+
+def test_cli_day_on_a_sunday_reviews_the_week(derived, capsys, monkeypatch):
+    monkeypatch.chdir(ROOT)
+    assert main(["--day", "2026-11-01", "--derived", str(derived), "--no-intervals"], env={}, today=D(2026, 11, 2)) == 0
+    assert capsys.readouterr().out.startswith("Week 2026-10-26 to 2026-11-01")
+    assert (derived / "weekly.csv").exists()
+    week = (derived / "week.md").read_text(encoding="utf-8")
+    assert week.startswith("# Week 26 Oct to 1 Nov 2026\n\nblock1, week acc1")
+    assert "## Load\n150 TSS done of 693 planned (target 650-750)." in week
+    assert "## Sessions\nEndurance: held 1, done 1, skipped " in week  # z2 held on its ride average; threshold done (no intervals)
+    assert "- **skipped** Sat long_ride_3h: no matching activity" in week
+
+
 def test_cli_rejects_non_sunday_and_future_weeks(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
     with pytest.raises(SystemExit):

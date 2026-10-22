@@ -42,6 +42,36 @@ def _fmt(x, digits=1) -> str:
     return "" if x is None else f"{round(x, digits):g}"
 
 
+def week_markdown(week: WeekReview, grades: list[Grade], graded_to: dt.date) -> str:
+    """derived/week.md: the drift report to read."""
+    r = week.record
+    start, end = dt.date.fromisoformat(r["week_start"]), dt.date.fromisoformat(r["week_end"])
+    partial = f" (graded to {graded_to:%a} {graded_to.day} {graded_to:%b})" if graded_to < end else ""
+    out = [f"# Week {start.day} {start:%b} to {end.day} {end:%b %Y}{partial}", ""]
+    if r["block"]:
+        out += [f"{r['block']}" + (f", week {r['week']}" if r["week"] else ""), ""]
+    out += ["## Flags"] + ([f"- {f}" for f in week.flags] or ["None."]) + [""]
+    target = f" (target {r['tss_target']})" if r["tss_target"] else ""
+    out += ["## Load", f"{r['actual_tss']} TSS done of {r['planned_tss']} planned{target}.", ""]
+    counts = ", ".join(f"{k.replace('_', ' ')} {r[k]}" for k in ("held", "faded", "off_target", "done", "missed", "skipped") if r[k] != "0")
+    strength = ", ".join(f"{k} {r['strength_' + k]}" for k in ("held", "under", "over_rpe", "logged", "skipped") if r["strength_" + k] != "0")
+    out += ["## Sessions", f"Endurance: {counts or 'none graded'}. Strength: {strength or 'none graded'}.", ""]
+    misses = [g for g in grades if g.grade not in ("held", "done", "logged", "pending")]
+    out += [f"- **{g.grade}** {g.date:%a} {g.session}" + (f" {g.item}" if g.modality == "strength" else "") + (f": {g.note}" if g.note else "")
+            for g in misses]  # fmt: skip
+    if misses:
+        out.append("")
+    out += ["## Recovery",
+            f"Readiness: green {r['green']}, amber {r['amber']}, red {r['red']}, no call {r['no_call']}.",
+            f"HRV 7-day {r['hrv_7d'] or '-'} vs 28-day {r['hrv_28d'] or '-'}; resting HR 7-day {r['rhr_7d'] or '-'} vs 28-day {r['rhr_28d'] or '-'}.",
+            f"CTL {r['ctl'] or '-'}, ATL {r['atl'] or '-'}, form {r['form'] or '-'}.", ""]  # fmt: skip
+    if r["bench_e1rm"]:
+        out += ["## Bench", f"e1RM {r['bench_e1rm']} kg against a line of {r['bench_line']} kg ({float(r['bench_gap_kg']):+g} kg).", ""]
+    if r["power_index"]:
+        out += [f"Power index (actual / target watts across graded steps): {r['power_index']}.", ""]
+    return "\n".join(out)
+
+
 def strength_line_at(plan: Plan, lift: str, day: dt.date) -> tuple[float, dt.date | None] | None:
     """Linear interpolation of the lift's strength line at `day`, and the checkpoint date if `day` is one."""
     line = next((s for s in plan.strength_lines if s.lift == lift), None)
