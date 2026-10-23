@@ -1,0 +1,58 @@
+# daily 2026-10-23: 6 ok
+
+## [ok     ] ingest    9 activities (bike 3, strength 2, conditioning 2, sail_or_other 2), 15 wellness days, 2 strength sets; 2 to review
+Ingest 2026-10-09 to 2026-10-23
+Activities: 9 (bike 3, strength 2, conditioning 2, sail_or_other 2) -> derived/activities.csv (11 rows total)
+  review: 2026-10-10 'Cardio' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+  review: 2026-10-09 'Cardio' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+Wellness: 15 days in range -> derived/wellness.csv (44 rows incl. baseline)
+  latest 2026-10-23: resting HR 56 bpm, HRV 39 ms, sleep 6.88 h (score 76), CTL 30.7 / ATL 54.4 (form -23.8)
+  readiness green: HRV 39 >= 32.4 (baseline 43.4 - 1 SD 11.0); resting HR 56 <= 62.4 (baseline 57.4 + 5); sleep 6.88 h >= 6
+Strength: 2 sets from training/logs/strength.csv -> derived/strength.csv
+  bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg
+  trap_bar_deadlift  2026-10-21  180 kg x 6  (test)  e1RM 216.0 kg
+
+## [ok     ] readiness green: HRV 39 >= 32.4; RHR 56 <= 62.4; sleep 6.88 h >= 6
+green: HRV 39 >= 32.4; RHR 56 <= 62.4; sleep 6.88 h >= 6
+
+## [ok     ] prescribe wrote 10 prescriptions
+Mon 2026-10-26  upper_me (mon_am)  readiness: not known yet
+  bench_press          top     1 x 6      105 kg  RPE<=8    e1RM 132 from 100x8 @8.5 on 19 Oct -> 105 x 6 @RPE 8; readiness not known yet
+  bench_press          backoff 3 x 8       90 kg            85% of top 105 -> 90 x 8
+  weighted_pullup      work    4 x 5      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it
+  chest_supported_row  work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Wed 2026-10-28  lower_me (wed_am)  readiness: not known yet
+  trap_bar_deadlift    top     1 x 5      175 kg  RPE<=8    e1RM 216 from 180x6 (RPE not logged, treated as 10) on 21 Oct -> 175 x 5 @RPE 8; readiness not known yet
+  trap_bar_deadlift    backoff 2 x 5    157.5 kg            90% of top 175 -> 157.5 x 5
+  rfe_split_squat      work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Thu 2026-10-29  upper_re (thu_am)  readiness: not known yet
+  bench_press          work    3 x 10      95 kg  RPE<=8.5  e1RM 132 from 100x8 @8.5 on 19 Oct -> 95 x 10 @RPE 8.5; readiness not known yet
+  bench_pull           work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+  landmine_press       work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+
+wrote 10 prescriptions to derived/prescriptions.csv (10 rows total)
+
+## [ok     ] publish   intervals.icu: 0 created, 12 updated, 0 stale Pedestal events deleted
+Publish 2026-10-23 to 2026-10-29: 12 sessions
+  2026-10-23 07:00  Workout                   Mobility and trunk, 30 min
+  2026-10-23 17:00  VirtualRide       38 TSS  Z2 45 min with 3 short openers, the day before the bike test
+  2026-10-24 07:00  Ride              75 TSS  TEST - 20-min bike test on the power meter, outdoors
+  2026-10-26 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
+  2026-10-26 17:00  VirtualRide       70 TSS  Z2 90 min
+  2026-10-27 07:00  Handcycle         48 TSS  Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+  2026-10-27 08:00  Workout           35 TSS  Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
+  2026-10-27 17:00  Workout                   Mobility and trunk, 30 min
+  2026-10-28 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
+  2026-10-28 17:00  VirtualRide       46 TSS  Z2 60 min
+  2026-10-29 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
+  2026-10-29 17:00  VirtualRide       58 TSS  Z2 75 min
+Files: 12 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: 0 created, 12 updated, 0 stale Pedestal events deleted
+
+## [ok     ] review    Day Thu 2026-10-22: skipped 1
+Day Thu 2026-10-22: skipped 1
+  skipped    test_grinding: no matching activity
+Wrote 1 grades to derived/compliance.csv
+
+## [ok     ] brief     wrote today.md and today.json: 2 sessions, readiness green
+wrote today.md and today.json: 2 sessions, readiness green

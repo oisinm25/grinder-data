@@ -6,3 +6,6 @@ date,session,lift,role,sets,reps,kg,rpe_cap,basis,reason
 2026-10-28,lower_me,trap_bar_deadlift,top,1,5,175,8,e1rm,"e1RM 216 from 180x6 (RPE not logged, treated as 10) on 21 Oct -> 175 x 5 @RPE 8; readiness not known yet"
 2026-10-28,lower_me,trap_bar_deadlift,backoff,2,5,157.5,,top,90% of top 175 -> 157.5 x 5
 2026-10-28,lower_me,rfe_split_squat,work,3,8,,8.5,choose,"no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+2026-10-29,upper_re,bench_press,work,3,10,95,8.5,e1rm,e1RM 132 from 100x8 @8.5 on 19 Oct -> 95 x 10 @RPE 8.5; readiness not known yet
+2026-10-29,upper_re,bench_pull,work,3,8,,8.5,choose,"no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+2026-10-29,upper_re,landmine_press,work,3,8,,8.5,choose,"no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"

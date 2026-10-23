@@ -1,9 +1,9 @@
 {
- "date": "2026-10-22",
- "generated_at": "2026-10-22T22:12",
+ "date": "2026-10-23",
+ "generated_at": "2026-10-23T06:37",
  "readiness": {
   "colour": "green",
-  "reason": "green: HRV 45 >= 32.5 (baseline 43.5 - 1 SD 11.1); resting HR 55 <= 62.4 (baseline 57.4 + 5); sleep 7.2 h >= 6"
+  "reason": "green: HRV 39 >= 32.4 (baseline 43.4 - 1 SD 11.0); resting HR 56 <= 62.4 (baseline 57.4 + 5); sleep 6.88 h >= 6"
  },
  "block": {
   "id": "block0",
@@ -13,72 +13,101 @@
  },
  "sessions": [
   {
-   "slot": "thu_am",
+   "slot": "fri_am",
    "order": 0,
-   "session": "test_grinding",
-   "modality": "grinding",
-   "summary": "TEST - grinding 1-min and 4-min max efforts (max drag setting)",
+   "session": "mobility_trunk",
+   "modality": "mobility",
+   "summary": "Mobility and trunk, 30 min",
    "environment": null,
-   "duration_min": 35,
-   "tss": 30.0,
-   "readiness_exempt": true,
+   "duration_min": null,
+   "tss": null,
+   "readiness_exempt": false
+  },
+  {
+   "slot": "fri_pm",
+   "order": 0,
+   "session": "z2_45_openers",
+   "modality": "bike",
+   "summary": "Z2 45 min with 3 short openers, the day before the bike test",
+   "environment": null,
+   "duration_min": 45,
+   "tss": 38.0,
+   "readiness_exempt": false,
    "steps": [
     {
      "kind": "warmup",
      "duration_s": 600,
-     "target": "RPE 4",
-     "anchor": "rpe"
+     "target": "150-195 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      150,
+      195
+     ],
+     "provisional": false
     },
     {
-     "kind": "test",
-     "duration_s": 60,
-     "target": "RPE 10",
-     "anchor": "rpe",
-     "note": "Reference 470 W"
+     "kind": "steady",
+     "duration_s": 1200,
+     "target": "195-216 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      195,
+      216
+     ],
+     "provisional": false
     },
     {
-     "kind": "rest",
-     "duration_s": 900,
-     "target": "RPE 2",
-     "anchor": "rpe"
-    },
-    {
-     "kind": "test",
-     "duration_s": 240,
-     "target": "RPE 10",
-     "anchor": "rpe",
-     "note": "Reference 301 W"
+     "kind": "repeat",
+     "count": 3,
+     "duration_s": 540,
+     "steps": [
+      {
+       "kind": "work",
+       "duration_s": 30,
+       "target": "330-360 W",
+       "anchor": "pct_ftp",
+       "watts": [
+        330,
+        360
+       ],
+       "provisional": false
+      },
+      {
+       "kind": "rest",
+       "duration_s": 150,
+       "target": "150-180 W",
+       "anchor": "pct_ftp",
+       "watts": [
+        150,
+        180
+       ],
+       "provisional": false
+      }
+     ]
     },
     {
      "kind": "cooldown",
-     "duration_s": 300,
-     "target": "RPE 3",
-     "anchor": "rpe"
+     "duration_s": 360,
+     "target": "135-165 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      135,
+      165
+     ],
+     "provisional": false
     }
    ],
    "provisional_ftp": false
   }
  ],
  "yesterday": {
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "grades": [
    {
-    "session": "test_lower",
-    "item": "trap_bar_deadlift test",
-    "grade": "logged",
-    "note": "first weight logged; it's next week's basis"
-   },
-   {
-    "session": "test_lower",
-    "item": "rfe_split_squat work",
-    "grade": "skipped",
-    "note": "not logged"
-   },
-   {
-    "session": "z2_60",
+    "session": "test_grinding",
     "item": "session",
-    "grade": "missed",
-    "note": "under 50% of the planned duration"
+    "grade": "skipped",
+    "note": "no matching activity"
    }
   ],
   "status": "graded"
