@@ -3,8 +3,9 @@
 Basis, first that applies (docs/plan-format.md "Progression rules"):
 
 1. last   - the same lift in the same session and slot, within 14 days
-2. e1rm   - the lift's latest e1RM from derived/strength.csv
-3. start  - the exercise's `start_kg`
+2. start  - the exercise's `start_kg`: a deliberate design choice for a slot's first
+            session, so it beats a calculated e1RM
+3. e1rm   - the lift's latest e1RM from derived/strength.csv
 4. choose - "choose a weight at the RPE cap and log it"
 
 e1RM = kg x (1 + (reps + (10 - RPE)) / 30); a missing RPE counts as 10 (and the reason
@@ -23,7 +24,8 @@ With an `e1rm` basis, linear, double and by-feel lifts start at the `rpe` formul
 e1RM / (1 + (reps + (10 - RPE)) / 30), at the rule's max_rpe or the group's rpe_cap
 (whichever is lower); rpe uses its target_rpe and pct_e1rm its pct. `wave` is defined on
 e1RM, so it skips `last`: week k of the block takes pcts[k % n] of the e1RM as of the
-block start, plus e1rm_step_kg per completed cycle.
+block start, plus e1rm_step_kg per completed cycle (`start_kg`, if given, sets only the
+lift's very first session in that slot, since a wave never builds on last week's weight).
 
 Backoffs are pct_of_top x the suggested top. Readiness (derived/wellness.csv) then
 applies: green as is; amber holds last weight, no increment, RPE cap 8; red is 90% of last
@@ -259,7 +261,7 @@ class Prescriber:
         e1 = latest_e1rm(prior)
 
         if isinstance(rule, Wave):
-            return self.wave(date, sid, ex, g, rule, prior, made)
+            return self.wave(date, sid, ex, g, rule, prior, same_all, made)
 
         if last and isinstance(rule, Linear):
             return self.linear(g, rule, last, same_all, made)
@@ -272,14 +274,15 @@ class Prescriber:
             w = max(r.kg for r in last)
             return made(w, "last", f"no progression rule: repeat last {describe_set(last[0])} -> {w:g} x {reps}", last=w)
 
+        r0 = rule.rep_range[0] if isinstance(rule, Double) else reps
+        if ex.start_kg is not None:  # the plan's deliberate first weight beats a calculated e1RM
+            return made(ex.start_kg, "start",
+                        f"start_kg {ex.start_kg:g} x {r0}: no {sid} history in this slot within {BASIS_WINDOW_DAYS} days",
+                        reps=r0)  # fmt: skip
+
         if e1 is not None and (rule is not None or cap is not None):
             return self.from_e1rm(g, rule, e1.e1rm, f"e1RM {e1.e1rm:.0f} from {describe_set(e1)}", made, "e1rm")
 
-        if ex.start_kg is not None:
-            r0 = rule.rep_range[0] if isinstance(rule, Double) else reps
-            return made(ex.start_kg, "start", f"no history: start_kg {ex.start_kg:g} x {r0}", reps=r0)
-
-        r0 = rule.rep_range[0] if isinstance(rule, Double) else reps
         at = f"RPE {cap:g}" if cap is not None else "a weight you can move well"
         return made(None, "choose", f"no history, e1RM or start_kg: choose a weight for {r0} at {at} and log it", reps=r0)
 
@@ -336,14 +339,15 @@ class Prescriber:
         short = f" ({len(done)} of {g.sets} sets logged)" if len(done) < g.sets else ""
         return made(w, "last", f"last {shown}{short}: weakest {weakest} -> same weight, aim {aim}", reps=aim, last=w)
 
-    def wave(self, date, sid, ex, g, rule: Wave, prior, made) -> Prescription:
+    def wave(self, date, sid, ex, g, rule: Wave, prior, same_all, made) -> Prescription:
         block = self.block_of(date)
         before_block = [r for r in prior if r.date < block.start]
         ref = latest_e1rm(before_block) or latest_e1rm(prior)
         reps = target_reps(g)
+        # A wave never builds on last week's weight, so start_kg only sets its very first session.
+        if ex.start_kg is not None and not same_all:
+            return made(ex.start_kg, "start", f"start_kg {ex.start_kg:g} x {reps}: first {sid} session for this lift")
         if ref is None:
-            if ex.start_kg is not None:
-                return made(ex.start_kg, "start", f"wave needs an e1RM; none logged: start_kg {ex.start_kg:g} x {reps}")
             return made(None, "choose", f"wave needs an e1RM; none logged: choose a fast weight for {reps} and log it")
         k = sum(
             1

@@ -38,9 +38,9 @@ goals:
     target: { month: 2027-02 }
 
 strength_lines:
-  - lift: bench_press           # 100 kg x 8 (Oct) ~ 127 kg e1RM -> 147 kg by the 312
+  - lift: bench_press           # 100 kg x 8 @ 8.5 (Oct) ~ 131.5 kg e1RM -> 147 kg by the 312
     checkpoints:
-      - [2026-10-19, 127.0]
+      - [2026-10-19, 131.5]
       - [2026-11-29, 132.5]
       - [2026-12-31, 136.0]
       - [2027-02-07, 141.0]

@@ -134,9 +134,9 @@ def test_strength_grades(p, rows, grade, note):
 
 
 def test_strength_line_interpolation(plan):
-    assert strength_line_at(plan, "bench_press", D(2026, 10, 19)) == (127.0, D(2026, 10, 19))
-    value, checkpoint = strength_line_at(plan, "bench_press", D(2026, 11, 8))  # 19 Oct 127 -> 29 Nov 132.5
-    assert value == pytest.approx(127 + 20 / 41 * 5.5) and checkpoint is None
+    assert strength_line_at(plan, "bench_press", D(2026, 10, 19)) == (131.5, D(2026, 10, 19))
+    value, checkpoint = strength_line_at(plan, "bench_press", D(2026, 11, 8))  # 19 Oct 131.5 -> 29 Nov 132.5
+    assert value == pytest.approx(131.5 + 20 / 41 * 1.0) and checkpoint is None
     assert strength_line_at(plan, "bench_press", D(2026, 11, 29))[1] == D(2026, 11, 29)
     assert strength_line_at(plan, "trap_bar_deadlift", MON) is None
 
@@ -194,7 +194,7 @@ def test_bench_checkpoint_missed_by_more_than_a_rep(plan):
 
 
 def test_bench_behind_the_line_between_checkpoints(plan):
-    rows = [LogRow(D(2026, 10, 27), "upper_me", "bench_press", "top", 95, 6, 9)]  # 117.2 vs ~127.6
+    rows = [LogRow(D(2026, 10, 27), "upper_me", "bench_press", "top", 95, 6, 9)]  # 117.2 vs ~131.6
     assert any(f.startswith("bench: e1RM 117.2 is") for f in week(plan, logged_rows=rows).flags)
 
 

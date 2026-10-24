@@ -113,7 +113,7 @@ def test_events_for_the_week(plan, athlete):
     by_id = {e["external_id"]: e for e in events}
     upper = by_id[f"{PREFIX}winter-2026-27:2026-10-26:mon_am:0"]
     assert upper["type"] == "WeightTraining" and upper["start_date_local"] == "2026-10-26T07:00:00"
-    assert "- Bench press (top): 1 x 6 @ 105 kg, RPE<=8" in upper["description"]
+    assert "- Bench press (top): 1 x 6 @ 100 kg, RPE<=8" in upper["description"]
     z2 = by_id[f"{PREFIX}winter-2026-27:2026-10-26:mon_pm:0"]
     assert (z2["type"], z2["indoor"], z2["moving_time"], z2["icu_training_load"]) == ("VirtualRide", True, 5400, 70)
     long = by_id[f"{PREFIX}winter-2026-27:2026-10-31:sat_am:0"]

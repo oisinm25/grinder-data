@@ -140,7 +140,7 @@ Named once in `progressions`, referenced per lift. A lift can change rule betwee
 | `rpe` | `target_rpe` | Weight that should land on the RPE: `e1RM / (1 + (reps + (10 − RPE)) / 30)`. |
 | `pct_e1rm` | `pct` | Fixed share of the rolling e1RM. |
 
-**Basis** (where the weight starts): the last time that lift was done in the same session slot, within 14 days. Failing that, the latest e1RM. Failing that, `start_kg`. Failing that, "choose a weight at the RPE cap and log it".
+**Basis** (where the weight starts): the last time that lift was done in the same session slot, within 14 days. Failing that, `start_kg`: it's a deliberate design choice for a slot's first session, so it beats a calculated e1RM. Failing that, the latest e1RM, where e1RM = kg × (1 + (reps + (10 − RPE)) / 30), counting clean reps only, with a missing RPE treated as 10. Failing that, "choose a weight at the RPE cap and log it". (A `wave` lift works from e1RM every week, so its `start_kg` sets only its very first session.)
 
 **Readiness:** green, the suggestion stands. Amber holds last weight, no increment, RPE cap 8. Red: 90% of last weight, RPE cap 7. Values in `athlete.yaml`.
 

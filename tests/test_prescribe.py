@@ -19,6 +19,15 @@ def plan(plan_data, athlete):
     return validate_plan(plan_data, athlete)
 
 
+@pytest.fixture
+def no_start(plan_data, athlete):
+    """The plan with every start_kg removed, to exercise the e1RM basis."""
+    for s in plan_data["sessions"].values():
+        for ex in s.get("exercises", []):
+            ex.pop("start_kg", None)
+    return validate_plan(plan_data, athlete)
+
+
 def rx(plan, athlete, history, day, readiness=None, session=None):
     """Prescriptions for one day, keyed (lift, role)."""
     items = prescribe(plan, athlete, history, readiness or {}, day, day)
@@ -45,18 +54,34 @@ def test_rounding():
 # ------------------------------------------------------------------ linear
 
 
-def test_linear_from_e1rm_with_backoff(plan, athlete):
+def test_linear_starts_at_start_kg_with_backoff(plan, athlete):
     p = rx(plan, athlete, [TEST_BENCH], MON1)
     top, back = p[("bench_press", "top")], p[("bench_press", "backoff")]
-    assert (top.kg, top.reps, top.rpe_cap, top.basis) == (105, 6, 8, "e1rm")
+    assert (top.kg, top.reps, top.rpe_cap, top.basis) == (100, 6, 8, "start")  # start_kg beats the e1RM
+    assert top.reason.startswith("start_kg 100 x 6: no upper_me history in this slot within 14 days")
+    assert (back.kg, back.sets, back.reps, back.basis) == (85, 3, 8, "top")  # 0.85 x 100
+    assert back.reason == "85% of top 100 -> 85 x 8"
+
+
+def test_linear_from_e1rm_without_start_kg(no_start, athlete):
+    p = rx(no_start, athlete, [TEST_BENCH], MON1)
+    top, back = p[("bench_press", "top")], p[("bench_press", "backoff")]
+    assert (top.kg, top.basis) == (105, "e1rm")
     assert top.reason.startswith("e1RM 132 from 100x8 @8.5 on 19 Oct -> 105 x 6 @RPE 8")
-    assert (back.kg, back.sets, back.reps, back.basis) == (90, 3, 8, "top")  # 0.85 x 105 = 89.25
-    assert back.reason == "85% of top 105 -> 90 x 8"
+    assert back.kg == 90  # 0.85 x 105 = 89.25
 
 
 def test_test_session_in_same_slot_is_not_a_last_basis(plan, athlete):
     # test_bench ran in mon_am on 19 Oct, but it's a different session from upper_me
-    assert rx(plan, athlete, [TEST_BENCH], MON1)[("bench_press", "top")].basis == "e1rm"
+    assert rx(plan, athlete, [TEST_BENCH], MON1)[("bench_press", "top")].basis == "start"
+
+
+def test_basis_order(plan, no_start, athlete):
+    hist = [TEST_BENCH, *sets(MON1, "upper_me", "bench_press", "top", 102.5, [6], 8)]
+    assert rx(plan, athlete, hist, MON2)[("bench_press", "top")].basis == "last"  # 1. last beats start_kg
+    assert rx(plan, athlete, [TEST_BENCH], MON1)[("bench_press", "top")].basis == "start"  # 2. start beats e1RM
+    assert rx(no_start, athlete, [TEST_BENCH], MON1)[("bench_press", "top")].basis == "e1rm"  # 3. e1RM
+    assert rx(no_start, athlete, [], MON1)[("bench_press", "top")].basis == "choose"  # 4. choose
 
 
 def test_linear_hit_adds_increment(plan, athlete):
@@ -89,17 +114,24 @@ def test_linear_resets_after_two_misses(plan, athlete):
     assert "2 misses in a row -> reset -5% = 100 x 6" in top.reason
 
 
-def test_last_basis_only_within_14_days(plan, athlete):
+def test_last_basis_only_within_14_days(plan, no_start, athlete):
     hist = [TEST_BENCH, *sets(MON1, "upper_me", "bench_press", "top", 105, [6], 8)]
-    top = rx(plan, athlete, hist, D(2026, 11, 16))[("bench_press", "top")]  # 21 days later
+    later = D(2026, 11, 16)  # 21 days later
+    assert rx(plan, athlete, hist, later)[("bench_press", "top")].basis == "start"
+    top = rx(no_start, athlete, hist, later)[("bench_press", "top")]
     assert top.basis == "e1rm" and "from 105x6 @8 on 26 Oct" in top.reason  # latest e1RM is that set
 
 
 # ------------------------------------------------------------------ double
 
 
-def test_double_from_e1rm_starts_at_bottom_of_range(plan, athlete):
+def test_double_from_start_kg_at_bottom_of_range(plan, athlete):
     p = rx(plan, athlete, [TEST_BENCH], THU1)[("bench_press", "work")]
+    assert (p.kg, p.sets, p.reps, p.rpe_cap, p.basis) == (80, 3, 10, 8.5, "start")
+
+
+def test_double_from_e1rm_starts_at_bottom_of_range(no_start, athlete):
+    p = rx(no_start, athlete, [TEST_BENCH], THU1)[("bench_press", "work")]
     assert (p.kg, p.reps, p.rpe_cap, p.basis) == (95, 10, 8.5, "e1rm")  # 131.7 / (1 + 11.5/30) = 95.2
 
 
@@ -139,6 +171,16 @@ def test_wave_cycles_by_week(plan, athlete, day, kg, week):
     p = rx(plan, athlete, [TEST_BENCH], day, session="upper_de")[("bench_press", "speed")]
     assert (p.kg, p.basis) == (kg, "e1rm")
     assert p.reason.startswith(week)
+
+
+def test_wave_start_kg_sets_only_the_first_session(plan_data, athlete):
+    plan_data["sessions"]["upper_de"]["exercises"][1]["start_kg"] = 70
+    plan = validate_plan(plan_data, athlete)
+    first = rx(plan, athlete, [TEST_BENCH], FRI1, session="upper_de")[("bench_press", "speed")]
+    assert (first.kg, first.basis) == (70, "start")
+    hist = [TEST_BENCH, *sets(FRI1, "upper_de", "bench_press", "speed", 70, [3] * 8, None)]
+    second = rx(plan, athlete, hist, FRI2, session="upper_de")[("bench_press", "speed")]
+    assert (second.kg, second.basis) == (80, "e1rm")  # week 2: 60% of e1RM 131.7, not start_kg again
 
 
 def test_wave_uses_e1rm_from_before_the_block(plan, athlete):
@@ -233,7 +275,7 @@ def test_amber_holds_last_weight(plan, athlete):
 
 def test_amber_caps_rpe_at_8(plan, athlete):
     p = rx(plan, athlete, [TEST_BENCH], THU1, {THU1: "amber"})[("bench_press", "work")]
-    assert (p.kg, p.rpe_cap) == (95, 8)
+    assert (p.kg, p.rpe_cap) == (80, 8)  # start_kg held, cap from 8.5 down to 8
 
 
 def test_red_is_90_percent_of_last(plan, athlete):
@@ -247,7 +289,7 @@ def test_red_is_90_percent_of_last(plan, athlete):
 
 def test_red_without_last_takes_90_percent_of_suggestion(plan, athlete):
     top = rx(plan, athlete, [TEST_BENCH], MON1, {MON1: "red"})[("bench_press", "top")]
-    assert top.kg == 95  # 0.9 x 105 = 94.5
+    assert top.kg == 90  # 0.9 x start_kg 100
 
 
 def test_red_on_a_choose_day_only_caps_rpe(plan, athlete):
@@ -290,8 +332,8 @@ def test_csv_columns_and_rerun(tmp_path, plan, athlete):
     assert tuple(reader.fieldnames) == FIELDS
     assert rows[0] == {
         "date": "2026-10-26", "session": "upper_me", "lift": "bench_press", "role": "top", "sets": "1",
-        "reps": "6", "kg": "105", "rpe_cap": "8", "basis": "e1rm",
-        "reason": "e1RM 132 from 100x8 @8.5 on 19 Oct -> 105 x 6 @RPE 8; readiness not known yet",
+        "reps": "6", "kg": "100", "rpe_cap": "8", "basis": "start",
+        "reason": "start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet",
     }  # fmt: skip
 
 

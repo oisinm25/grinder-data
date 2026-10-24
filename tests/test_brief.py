@@ -54,9 +54,9 @@ def test_structured_brief(plan, athlete, derived):
     assert (upper["slot"], upper["session"], upper["modality"], upper["tss"]) == ("mon_am", "upper_me", "strength", 50)
     top = upper["strength"][0]
     assert {k: top[k] for k in ("name", "role", "sets", "reps", "kg", "rpe_cap", "basis")} == {
-        "name": "Bench press", "role": "top", "sets": 1, "reps": 6, "kg": 105, "rpe_cap": 8, "basis": "e1rm",
+        "name": "Bench press", "role": "top", "sets": 1, "reps": 6, "kg": 100, "rpe_cap": 8, "basis": "start",
     }  # fmt: skip
-    assert top["reason"].startswith("e1RM 132 from 100x8 @8.5 on 19 Oct")
+    assert top["reason"].startswith("start_kg 100 x 6: no upper_me history")
     assert upper["strength"][2]["kg"] is None  # a "choose" group
     assert (z2["slot"], z2["duration_min"]) == ("mon_pm", 90)
     assert z2["steps"][1] == {"kind": "steady", "duration_s": 5100, "target": "195-216 W", "anchor": "pct_ftp", "watts": [195, 216], "provisional": False}
@@ -71,7 +71,7 @@ def test_markdown(plan, athlete, derived):
     assert "**Readiness: AMBER**: HRV 30 < 32.9 (baseline 44.1 - 1 SD 11.2);" in md
     assert "> Pipeline: publish failed today; this brief may use older data." in md
     assert "## AM: Upper max effort - bench top set, back-offs, heavy pulling\nstrength · 50 TSS" in md
-    assert "| Bench press | top | 1 × 6 | 105 | 8 | e1RM 132 from 100x8 @8.5 on 19 Oct -> 105 x 6 @RPE 8; readiness not known yet |" in md
+    assert "| Bench press | top | 1 × 6 | 100 | 8 | start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet |" in md
     assert "| Weighted pull-up | work | 4 × 5 | choose | 8.5 |" in md
     assert "## PM: Z2 90 min\nbike · 90 min · 70 TSS\n\n- warmup 5:00 150-186 W\n- steady 1:25:00 195-216 W" in md
     assert "## Yesterday (Sun 25 Oct)\nRest day." in md
