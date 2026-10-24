@@ -4,7 +4,8 @@
     python -m pipeline.run weekly [--day DATE]
 
 daily:  ingest (last 14 days) -> readiness -> prescribe (7 days) -> publish (7 days)
-        -> review yesterday -> (Sundays: weekly) -> brief (derived/today.md, today.json)
+        -> review yesterday -> (Sundays: weekly) -> debrief yesterday (derived/debrief.md, .json)
+        -> brief (derived/today.md, today.json, with the debrief in it)
 weekly: the drift review for the week ending on the latest Sunday (derived/week.md)
 
 The workflow fires a few times each morning; `daily` decides for itself whether to go:
@@ -46,13 +47,15 @@ from pipeline import notify as notify_mod
 from pipeline.athlete import load_athlete
 from pipeline.brief import day_status, short_readiness
 from pipeline.ingest.__main__ import main as ingest_main
+from pipeline.ingest.intervals import IntervalsClient
 from pipeline.notify import NotifyError
+from pipeline.review import debrief as debrief_mod
 from pipeline.plan.schema import load_checked
 from pipeline.prescribe import main as prescribe_main
 from pipeline.publish.__main__ import main as publish_main
 from pipeline.review.__main__ import last_sunday
 from pipeline.review.__main__ import main as review_main
-from pipeline.settings import load_env
+from pipeline.settings import MissingSetting, load_env, require_env
 
 SECRETS = ("INTERVALS_ICU_API_KEY", "NTFY_TOPIC")
 INGEST_DAYS = 14
@@ -170,6 +173,7 @@ class Runner:
                   lambda out, _: _last_line(out, "Day ") or _last_line(out, "Week ") or _last_line(out))  # fmt: skip
         if day.weekday() == 6:
             self.weekly()
+        self.step("debrief", self.debrief, lambda out, _: _last_line(out))
         self.step("brief", self.brief, lambda out, _: _last_line(out))
 
     def weekly(self) -> None:
@@ -196,6 +200,22 @@ class Runner:
         else:
             print(f"{row['readiness']}: {short_readiness(row['readiness_reason'])}; {self.status}"
                   + (f" ({self.status_reason})" if self.status_reason else ""))  # fmt: skip
+        return 0
+
+    def debrief(self) -> int:
+        plan, athlete = load_checked(Path("config/plan.yaml"))  # a PlanLoadError fails the step
+        try:
+            client = IntervalsClient(require_env("INTERVALS_ICU_API_KEY", self.env), require_env("INTERVALS_ICU_ATHLETE_ID", self.env),
+                                     cache_dir=Path("cache"), transport=self.transport, sleep=self.sleep)  # fmt: skip
+        except MissingSetting:
+            client = None  # the debrief still runs on what's in derived/
+        try:
+            b = debrief_mod.build(self.day - dt.timedelta(days=1), plan, athlete, self.derived, debrief_mod.Fetch(client))
+        finally:
+            if client is not None:
+                client.close()
+        debrief_mod.write(b, self.derived)
+        print(f"wrote debrief.md and debrief.json: {b['verdict']}")
         return 0
 
     def brief(self) -> int:

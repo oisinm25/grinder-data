@@ -75,18 +75,29 @@ class IntervalsClient:
 
     def activity_intervals(self, activity_id: str) -> dict[str, Any]:
         """{"icu_intervals": [{type: WORK|RECOVERY, average_watts, moving_time, ...}], ...}; cached per activity."""
-        path = f"/activity/{activity_id}/intervals"
-        if self.cache_dir is not None:
-            cached = self.cache_dir / "intervals_icu" / "intervals" / f"{activity_id}.json"
-            if self.offline:
-                if not cached.exists():
-                    raise IntervalsError(f"no cached intervals for activity {activity_id}")
-                return json.loads(cached.read_text(encoding="utf-8"))["data"]
-            data = self._request("GET", path)
-            cached.parent.mkdir(parents=True, exist_ok=True)
-            cached.write_text(json.dumps({"path": path, "data": data}, indent=1), encoding="utf-8")
-            return data
-        return self._request("GET", path)
+        return self._cached("intervals", activity_id, f"/activity/{activity_id}/intervals")
+
+    def activity(self, activity_id: str) -> dict[str, Any]:
+        """One activity in full: decoupling, icu_weighted_avg_watts, icu_intensity, hr_load, ...; cached."""
+        return self._cached("activity", activity_id, f"/activity/{activity_id}")
+
+    def activity_streams(self, activity_id: str, types: str = "time,watts,heartrate") -> dict[str, list]:
+        """{stream type: values}, e.g. {"time": [0, 1, ...], "heartrate": [...]}; cached."""
+        data = self._cached("streams", activity_id, f"/activity/{activity_id}/streams.json", {"types": types})
+        return {s["type"]: s.get("data") or [] for s in data or [] if s.get("type")}
+
+    def _cached(self, kind: str, activity_id: str, path: str, params: dict | None = None) -> Any:
+        if self.cache_dir is None:
+            return self._request("GET", path, params)
+        cached = self.cache_dir / "intervals_icu" / kind / f"{activity_id}.json"
+        if self.offline:
+            if not cached.exists():
+                raise IntervalsError(f"no cached {kind} for activity {activity_id}")
+            return json.loads(cached.read_text(encoding="utf-8"))["data"]
+        data = self._request("GET", path, params)
+        cached.parent.mkdir(parents=True, exist_ok=True)
+        cached.write_text(json.dumps({"path": path, "data": data}, indent=1), encoding="utf-8")
+        return data
 
     # ------------------------------------------------------------------ calendar writes (phase 5)
 

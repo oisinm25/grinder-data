@@ -143,7 +143,13 @@ The daily run:
    only those whose content changed (each carries a content hash); otherwise "no changes"
 5. **review** yesterday into `compliance.csv` (on Monday that completes last week's drift record)
 6. on Sundays, **weekly**: the drift review, into `derived/week.md` (the same as `pipeline.run weekly`)
-7. **brief**: `derived/today.md` to read and `derived/today.json` for anything else to use:
+7. **debrief** yesterday into `derived/debrief.md` and `debrief.json`: intervals against their
+   bands, NP, IF, TSS and HR drift; strength sets against the prescription, e1RM change and
+   next time's weight; grinding reps, fade and Grind Load; sailing and other unplanned
+   sessions; the day's readiness, sleep and load; a one-line verdict and a note for today,
+   from the rules in `pipeline/review/debrief.py` (`python -m pipeline.review.debrief --print`)
+8. **brief**: `derived/today.md` to read and `derived/today.json` for anything else to use,
+   with yesterday's debrief in it:
    the date, status (provisional or final) and when it was generated, readiness colour and reason, each session today (watt targets, or strength
    groups as kg × reps @ RPE cap with the reason), yesterday's grades, the flags from the
    latest Sunday review, and anything in the pipeline that failed

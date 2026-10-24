@@ -21,6 +21,7 @@ from pathlib import Path
 from pipeline.athlete import Athlete
 from pipeline.plan.expand import ResolvedStep, expand
 from pipeline.plan.schema import Plan, PlanLoadError, load_checked, report_load_error
+from pipeline.review.debrief import to_markdown as debrief_markdown
 
 
 def _rows(path: Path) -> list[dict[str, str]]:
@@ -109,6 +110,13 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
     planned_y = [s for x in expand(plan, athlete, yesterday, yesterday) for s in x.sessions if s.session.modality not in ("rest", "mobility")]
     weeks = [r for r in _rows(derived / "weekly.csv") if r["week_end"] <= iso]
     latest = max(weeks, key=lambda r: r["week_end"]) if weeks else None
+    debrief = None
+    try:
+        debrief = json.loads((derived / "debrief.json").read_text(encoding="utf-8"))
+        if debrief.get("date") != yesterday.isoformat():
+            debrief = None  # a stale debrief is left out
+    except (OSError, ValueError):
+        pass
 
     return {
         "date": iso,
@@ -121,6 +129,7 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
         "sessions": sessions,
         "yesterday": {"date": yesterday.isoformat(), "grades": graded,
                       "status": "graded" if graded else ("not graded" if planned_y else "rest day")},  # fmt: skip
+        "debrief": debrief,
         "review": {"week_end": latest["week_end"], "flags": [f for f in latest["flags"].split(" | ") if f]} if latest else None,
         "pipeline": {"failed": list(failed), "skipped": list(skipped)},
         "alerts_sent": list(alerts_sent),
@@ -188,14 +197,17 @@ def to_markdown(b: dict) -> str:
             out.append("")
 
     y = b["yesterday"]
-    out += [f"## Yesterday ({_day(y['date'])})"]
-    if y["grades"]:
-        for g in y["grades"]:
-            what = g["session"] if g["item"] == "session" else f"{g['session']}: {g['item']}"
-            out.append(f"- **{g['grade']}** {what}" + (f": {g['note']}" if g["note"] else ""))
+    if b.get("debrief"):  # the debrief has the grades and much more
+        out += [debrief_markdown(b["debrief"], heading="##").replace("## Debrief:", "## Yesterday's debrief:", 1)]
     else:
-        out.append("Rest day." if y["status"] == "rest day" else "Not graded yet.")
-    out.append("")
+        out += [f"## Yesterday ({_day(y['date'])})"]
+        if y["grades"]:
+            for g in y["grades"]:
+                what = g["session"] if g["item"] == "session" else f"{g['session']}: {g['item']}"
+                out.append(f"- **{g['grade']}** {what}" + (f": {g['note']}" if g["note"] else ""))
+        else:
+            out.append("Rest day." if y["status"] == "rest day" else "Not graded yet.")
+        out.append("")
 
     if b["review"]:
         out += [f"## Flags (review of the week ending {_day(b['review']['week_end'])})"]
