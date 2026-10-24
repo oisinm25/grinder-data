@@ -1,0 +1,82 @@
+# Minimal valid Pedestal plan. Copy to plans/<plan_id>.yaml, then:
+#   python -m pipeline.plan.adopt plans/<plan_id>.yaml          # check and preview
+#   python -m pipeline.plan.adopt plans/<plan_id>.yaml --yes    # adopt
+# Full format: docs/plan-format.md. Cheat sheet: docs/new-plan.md.
+# Lift ids, FTPs, curve points and the schedule live in config/athlete.yaml, never here.
+
+schema_version: 1                # always 1
+plan_id: example-spring-2027     # new id for a new macro plan; keep it when revising
+created: 2027-04-26
+designed_in: Training project
+valid_from: 2027-05-03           # = the first block's start
+valid_to: 2027-05-16             # = the last block's end
+
+goals:                           # at least one
+  - id: example-goal
+    priority: B                  # A | B | C
+    date: 2027-05-16             # or `window: [start, end]`, or neither if TBC (not both)
+    description: What this plan is for
+
+progressions:                    # named once, used by lifts below (types: linear, double, wave, rpe, pct_e1rm)
+  bench_linear: { type: linear, increment_kg: 2.5, max_rpe: 8.0, reset_after_misses: 2, reset_pct: 0.05 }
+  rows_double: { type: double, rep_range: [8, 12], increment_kg: 2.5, max_rpe: 8.5 }
+
+blocks:                          # in date order, no overlaps
+  - id: base1
+    name: Example base block
+    start: 2027-05-03
+    end: 2027-05-16
+    intent: Free text the weekly review reads when judging drift.
+    status: designed             # designed (needs weeks) | design_pending (dates, intent, weekly_tss only)
+    weekly_tss: [400, 500]
+    targets_provisional: true    # until tests confirm the anchors
+    weeks:                       # first week starts on the block start; each runs to the next week's start
+      - { start: 2027-05-03, label: base1-1, template: base }
+      - start: 2027-05-10
+        label: base1-2
+        template: base
+        swap: { sat_am: long_ride_2h, sun_am: null }   # this week only: replace a slot, or null to drop it
+
+week_templates:                  # slots: mon_am ... sun_pm (14); a slot holds one session id or a list
+  base:
+    mon_am: upper_strength
+    tue_pm: z2_60
+    thu_am: upper_strength
+    sat_am: z2_60
+    sun_am: rest
+
+sessions:
+  upper_strength:
+    modality: strength           # bike, run, handbike, concept2, grinding (need steps); strength (needs exercises); mobility; rest
+    summary: Upper strength - bench top set and rows   # the one line on the morning brief
+    targets: { tss: 45 }          # strength and grinding: ~45 TSS/h
+    exercises:
+      - lift: bench_press         # an id from config/athlete.yaml strength.lifts
+        progression: bench_linear
+        start_kg: 100             # the slot's first session; beats a calculated e1RM
+        groups:
+          - { role: top, sets: 1, reps: 6, rpe_cap: 8, rest_s: 240 }
+          - { role: backoff, sets: 3, reps: 8, pct_of_top: 0.85, rest_s: 180 }   # backoffs need a top group
+      - lift: chest_supported_row
+        progression: rows_double
+        groups: [{ role: work, sets: 3, reps: [8, 12], rest_s: 90 }]           # a rep range needs a double rule
+
+  z2_60:
+    modality: bike
+    summary: Z2 60 min
+    targets: { tss: 46, steps_held_pct: 0.9 }
+    steps:                        # each target has exactly one anchor: pct_ftp, watts, pct_curve, hr_zone or rpe
+      - { kind: warmup, duration_s: 300, target: { pct_ftp: [0.50, 0.62] } }
+      - { kind: steady, duration_s: 3300, target: { pct_ftp: [0.65, 0.72] } }
+
+  long_ride_2h:
+    modality: bike
+    environment: outdoor          # indoor | outdoor | either
+    summary: Long ride 2 h, Z2
+    targets: { tss: 92 }
+    steps:
+      - { kind: steady, duration_s: 7200, target: { pct_ftp: [0.62, 0.72] } }
+
+  rest:
+    modality: rest
+    summary: Rest day

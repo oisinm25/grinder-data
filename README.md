@@ -102,6 +102,22 @@ Run the tests:
 conda run -n pedestal python -m pytest
 ```
 
+## Changing the plan
+
+Design in the Training project, save the complete file as `plans/<plan_id>.yaml` (a new plan
+starts from `plans/TEMPLATE.yaml`; cheat sheet: `docs/new-plan.md`), then:
+
+```
+conda run -n pedestal python -m pipeline.plan.adopt plans/<plan_id>.yaml        # check + preview
+conda run -n pedestal python -m pipeline.plan.adopt plans/<plan_id>.yaml --yes  # adopt
+```
+
+It validates the file, refuses any change before today, prints a plain-English diff
+(blocks, sessions and TSS per week, strength rules per lift) and the calendar changes the
+next daily run would make. `--yes` archives the old plan to `plans/archive/`, copies the new
+one to `config/plan.yaml` and records it in `plans/HISTORY.md`; commit those. From the phone,
+open a pull request with the plan file: the `plan-check` workflow comments the same diff.
+
 ## Every morning, in the cloud
 
 `.github/workflows/daily.yml` runs on GitHub Actions, so nothing depends on a PC being on.
