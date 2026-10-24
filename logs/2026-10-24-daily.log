@@ -5,7 +5,7 @@ Ingest 2026-10-10 to 2026-10-24
 Activities: 9 (bike 4, strength 2, conditioning 2, sail_or_other 1) -> derived/activities.csv (12 rows total)
   review: 2026-10-10 'Cardio' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Wellness: 15 days in range -> derived/wellness.csv (45 rows incl. baseline)
-  latest 2026-10-24: resting HR 55 bpm, HRV 54 ms, sleep 7.37 h (score 92), CTL 32.3 / ATL 57 (form -24.8)
+  latest 2026-10-24: resting HR 55 bpm, HRV 54 ms, sleep 7.37 h (score 92), CTL 31.4 / ATL 52.7 (form -21.3)
   readiness green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6
 Strength: 2 sets from training/logs/strength.csv -> derived/strength.csv
   bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg
