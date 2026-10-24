@@ -1,35 +1,33 @@
 # Pedestal morning run, in the cloud: ingest -> readiness -> prescribe -> publish -> review
 # (-> weekly on Sundays) -> brief (derived/today.md, today.json). ntfy only alerts on failures.
 #
-# It fires every hour, and pipeline.gate decides whether this hour runs: once a day, inside a
-# local-time morning window, as soon as today's HRV and sleep have reached intervals.icu, with a
-# fallback run at the end of the window if they never do. Most hours exit in seconds.
+# It fires a few times each morning, and `pipeline.run daily` decides for itself: it exits
+# outside the window in config/athlete.yaml `schedule` (06:30-07:00 Europe/Madrid), and once
+# today's brief is final (sleep data in). A manual run ignores the window.
 #
 # State lives on the `data` branch, checked out into derived/. This workflow never writes `main`.
 name: daily
 
 on:
   schedule:
-    - cron: "17 * * * *" # hourly, off the top of the hour when GitHub's scheduler is busiest
-  workflow_dispatch: # a manual run goes straight away, as the final run of the day
+    # 06:30-07:00 Madrid: 04:30-05:00 UTC in summer time (CEST), 05:30-06:00 UTC in winter (CET)
+    - cron: "30,45 4 * * *"
+    - cron: "0 5 * * *"
+    - cron: "30,45 5 * * *"
+    - cron: "0 6 * * *"
+  workflow_dispatch:
 
 # Only what's needed to push the data branch.
 permissions:
   contents: write
 
-concurrency:
-  group: pedestal-daily
-  cancel-in-progress: false
+concurrency: { group: daily, cancel-in-progress: false }
 
 jobs:
   run:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     env:
-      # Local time for "today" and the morning window. Set repo variables to change them:
-      # PEDESTAL_TZ when you travel (e.g. Europe/Madrid), PEDESTAL_WINDOW as start-end hours.
-      TZ: ${{ vars.PEDESTAL_TZ || 'Europe/Dublin' }}
-      PEDESTAL_WINDOW: ${{ vars.PEDESTAL_WINDOW || '05-11' }}
       NTFY_SERVER: ${{ vars.NTFY_SERVER }}
     steps:
       - name: Check out main (code, plan, strength log)
@@ -50,31 +48,24 @@ jobs:
             git -C derived switch --orphan data
           fi
 
-      - name: Gate (window, once a day)
-        id: gate
-        run: python3 -m pipeline.gate --state derived/state/morning.json ${{ github.event_name == 'workflow_dispatch' && '--forced' || '' }}
-
       - uses: actions/setup-python@v5
-        if: steps.gate.outputs.run == 'true'
         with:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: pyproject.toml
 
       - name: Install
-        if: steps.gate.outputs.run == 'true'
         run: pip install .
 
-      - name: Morning run
-        if: steps.gate.outputs.run == 'true'
+      - name: Daily run
         env:
           INTERVALS_ICU_API_KEY: ${{ secrets.INTERVALS_ICU_API_KEY }}
           INTERVALS_ICU_ATHLETE_ID: ${{ secrets.INTERVALS_ICU_ATHLETE_ID }}
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
-        run: python -m pipeline.run daily --wait-for-sleep ${{ steps.gate.outputs.final == 'true' && '--final' || '' }}
+        run: python -m pipeline.run daily ${{ github.event_name == 'workflow_dispatch' && '--ignore-window' || '' }}
 
       - name: Commit derived/ to the data branch
-        if: always() && steps.gate.outputs.run == 'true'
+        if: always()
         run: |
           cd derived
           git add -A
@@ -87,7 +78,7 @@ jobs:
           fi
 
       - name: Keep the .fit/.zwo files for a week
-        if: always() && steps.gate.outputs.run == 'true'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: workouts-${{ github.run_id }}

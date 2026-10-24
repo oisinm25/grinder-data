@@ -12,6 +12,7 @@ dependencies = [
     "pydantic>=2.7,<3",
     "python-dotenv>=1.0",
     "PyYAML>=6",
+    "tzdata>=2024.1", # time zones for zoneinfo on Windows (Linux has the system database)
 ]
 
 [project.optional-dependencies]

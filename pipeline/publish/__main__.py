@@ -3,9 +3,11 @@
 Builds one intervals.icu calendar event per planned session (rest days excluded):
 endurance sessions carry their steps as workout text with targets in watts from
 athlete.yaml; strength sessions carry the day's prescriptions. Every event's
-external_id starts `pedestal:`, and on --push only those events are touched: existing
-ones are updated, new ones created, and Pedestal events no longer in the plan deleted.
-Nothing else on the calendar is changed.
+external_id starts `pedestal:`, and on --push only those events are touched: new ones
+are created, changed ones updated, and Pedestal events no longer in the plan deleted.
+Nothing else on the calendar is changed. Each description ends with a short hash of the
+event's content, so an event that hasn't changed is left alone (intervals.icu rewrites some
+fields, such as its computed load, so comparing fields directly would always differ).
 
 Without --push nothing is sent: the events are written to
 exports/intervals_events_<from>_<to>.json for inspection. The .zwo (bike) and .fit
@@ -14,7 +16,9 @@ exports/intervals_events_<from>_<to>.json for inspection. The .zwo (bike) and .f
 
 import argparse
 import datetime as dt
+import hashlib
 import json
+import re
 import sys
 import time
 from pathlib import Path
@@ -32,6 +36,18 @@ PREFIX = "pedestal:"
 EVENT_TYPE = {"handbike": "Handcycle", "run": "Run", "concept2": "Rowing", "grinding": "Workout",
               "strength": "WeightTraining", "mobility": "Workout"}  # fmt: skip
 START_HOUR = {"am": 7, "pm": 17}
+FOOTER = "Planned by Pedestal"
+HASH_RE = re.compile(r"Planned by Pedestal \[([0-9a-f]{10})\]\s*$")
+
+
+def content_hash(event: dict) -> str:
+    return hashlib.sha256(json.dumps(event, sort_keys=True).encode()).hexdigest()[:10]
+
+
+def event_hash(event: dict) -> str | None:
+    """The content hash in an event's description footer (None for events without one)."""
+    m = HASH_RE.search(event.get("description") or "")
+    return m.group(1) if m else None
 
 
 def event_type(s: ScheduledSession) -> str:
@@ -82,7 +98,7 @@ def build_event(plan_id: str, s: ScheduledSession, rx: list[Prescription], lift_
         "start_date_local": f"{s.date}T{hour:02d}:00:00",
         "type": event_type(s),
         "name": event_name(s),
-        "description": "\n".join(lines).rstrip() + "\n\nPlanned by Pedestal",
+        "description": "\n".join(lines).rstrip(),
         "external_id": external_id(plan_id, s),
     }
     if s.duration_s:
@@ -93,6 +109,7 @@ def build_event(plan_id: str, s: ScheduledSession, rx: list[Prescription], lift_
         event["indoor"] = session.environment == "indoor"
     elif event["type"] == "VirtualRide":
         event["indoor"] = True
+    event["description"] += f"\n\n{FOOTER} [{content_hash(event)}]"
     return event
 
 
@@ -127,20 +144,25 @@ def write_files(sessions: list[ScheduledSession], athlete, out_dir: Path) -> lis
     return written
 
 
-def sync(client: IntervalsClient, events: list[dict], start: dt.date, end: dt.date) -> tuple[int, int, int]:
-    """Create, update and delete Pedestal's own events in start..end. Returns (created, updated, deleted)."""
+def sync(client: IntervalsClient, events: list[dict], start: dt.date, end: dt.date) -> tuple[int, int, int, int]:
+    """Create, update and delete Pedestal's own events in start..end, sending only what changed.
+    Returns (created, updated, deleted, unchanged)."""
     existing = {e["external_id"]: e for e in client.events(start, end) if str(e.get("external_id") or "").startswith(PREFIX)}
     wanted = {e["external_id"] for e in events}
     new = [e for e in events if e["external_id"] not in existing]
-    for e in events:
-        if e["external_id"] in existing:
-            client.update_event(existing[e["external_id"]]["id"], e)
+    def unchanged(e: dict) -> bool:  # no hash on either side means we can't tell, so send it
+        h = event_hash(e)
+        return h is not None and h == event_hash(existing[e["external_id"]])
+
+    changed = [e for e in events if e["external_id"] in existing and not unchanged(e)]
+    for e in changed:
+        client.update_event(existing[e["external_id"]]["id"], e)
     if new:
         client.create_events(new)
     stale = [e for eid, e in existing.items() if eid not in wanted]
     for e in stale:
         client.delete_event(e["id"])
-    return len(new), len(events) - len(new), len(stale)
+    return len(new), len(changed), len(stale), len(events) - len(new) - len(changed)
 
 
 def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, sleep=time.sleep) -> int:
@@ -190,11 +212,14 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
         return 2
     try:
         with IntervalsClient(api_key, athlete_id, transport=transport, sleep=sleep) as client:
-            created, updated, deleted = sync(client, events, args.start, end)
+            created, updated, deleted, unchanged = sync(client, events, args.start, end)
     except IntervalsError as e:
         print(f"error: {e}", file=sys.stderr)
         return 1
-    print(f"intervals.icu: {created} created, {updated} updated, {deleted} stale Pedestal events deleted")
+    if created + updated + deleted == 0:
+        print(f"intervals.icu: no changes ({unchanged} events unchanged)")
+    else:
+        print(f"intervals.icu: {created} created, {updated} updated, {deleted} stale Pedestal events deleted, {unchanged} unchanged")
     return 0
 
 

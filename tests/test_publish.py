@@ -9,8 +9,10 @@ import pytest
 from pipeline.plan.expand import ResolvedStep, ResolvedTarget, expand
 from pipeline.plan.schema import validate_plan
 from pipeline.prescribe import LogRow
-from pipeline.publish.__main__ import PREFIX, build, main, sync
+from pipeline.publish.__main__ import PREFIX, build, event_hash, main, sync
 from pipeline.publish.formats import fit_crc, fit_workout, text_duration, workout_text, zwo
+from pipeline.athlete import load_athlete
+from pipeline.common import load_yaml
 from pipeline.ingest.intervals import IntervalsClient
 from tests.conftest import ROOT
 
@@ -161,7 +163,7 @@ def test_sync_only_touches_pedestal_events():
         {"external_id": f"{PREFIX}p:2026-10-26:mon_pm:0", "name": "z2"},
     ]
     with IntervalsClient("k", "i99999", transport=httpx.MockTransport(fake), sleep=lambda s: None) as c:
-        assert sync(c, events, MON, SUN) == (1, 1, 1)
+        assert sync(c, events, MON, SUN) == (1, 1, 1, 0)
     methods = [(m, p) for m, p, _ in fake.calls]
     assert methods == [
         ("GET", "/api/v1/athlete/i99999/events"),
@@ -170,6 +172,47 @@ def test_sync_only_touches_pedestal_events():
         ("DELETE", "/api/v1/athlete/i99999/events/12"),
     ]
     assert json.loads(fake.calls[2][2]) == [events[1]]
+
+
+def as_stored(event, id, **server_changes):
+    """The event as intervals.icu returns it: our fields, its id, and fields it recomputes."""
+    return {**event, "id": id, **server_changes}
+
+
+def test_unchanged_events_are_not_resent(plan, athlete):
+    events, _ = build(plan, athlete, [TEST_BENCH], {}, MON, SUN)
+    # intervals.icu recomputes load and adds fields of its own; the hash in the description still matches
+    stored = [as_stored(e, 100 + i, icu_training_load=999, workout_doc={"steps": []}) for i, e in enumerate(events)]
+    fake = FakeCalendar(stored)
+    with IntervalsClient("k", "i99999", transport=httpx.MockTransport(fake), sleep=lambda s: None) as c:
+        assert sync(c, events, MON, SUN) == (0, 0, 0, 13)
+    assert [m for m, _, _ in fake.calls] == ["GET"]
+
+
+def test_only_changed_events_are_sent(plan, athlete):
+    old, _ = build(plan, athlete, [TEST_BENCH], {}, MON, SUN)
+    new, _ = build(plan, athlete, [TEST_BENCH], {MON: "red"}, MON, SUN)  # a red Monday changes the weights
+    fake = FakeCalendar([as_stored(e, 100 + i) for i, e in enumerate(old)])
+    with IntervalsClient("k", "i99999", transport=httpx.MockTransport(fake), sleep=lambda s: None) as c:
+        assert sync(c, new, MON, SUN) == (0, 1, 0, 12)
+    (put,) = [(p, body) for m, p, body in fake.calls if m == "PUT"]
+    assert put[0] == "/api/v1/athlete/i99999/events/100"  # Monday's strength session only
+    assert "@ 90 kg" in json.loads(put[1])["description"]
+
+
+def test_events_without_a_hash_are_updated_once():
+    legacy = {"id": 7, "external_id": f"{PREFIX}p:2026-10-26:mon_am:0", "description": "...\n\nPlanned by Pedestal"}
+    event = {"external_id": legacy["external_id"], "description": "new\n\nPlanned by Pedestal [0123456789]"}
+    fake = FakeCalendar([legacy])
+    with IntervalsClient("k", "i99999", transport=httpx.MockTransport(fake), sleep=lambda s: None) as c:
+        assert sync(c, [event], MON, SUN) == (0, 1, 0, 0)
+
+
+def test_hash_tracks_content(plan, athlete):
+    a, _ = build(plan, athlete, [TEST_BENCH], {}, MON, SUN)
+    b, _ = build(plan, athlete, [TEST_BENCH], {}, MON, SUN)
+    assert [event_hash(e) for e in a] == [event_hash(e) for e in b]  # deterministic
+    assert all(event_hash(e) for e in a) and a[0]["description"].endswith(f"Planned by Pedestal [{event_hash(a[0])}]")
 
 
 # ------------------------------------------------------------------ CLI
@@ -197,8 +240,20 @@ def test_push(tmp_path, capsys, monkeypatch):
     code = main(["--from", "2026-10-26", "--exports", str(tmp_path), "--push"],
                 env=FAKE_ENV, transport=httpx.MockTransport(fake), sleep=lambda s: None)  # fmt: skip
     assert code == 0
-    assert "13 created, 0 updated, 0 stale" in capsys.readouterr().out
+    assert "13 created, 0 updated, 0 stale Pedestal events deleted, 0 unchanged" in capsys.readouterr().out
     assert [m for m, _, _ in fake.calls] == ["GET", "POST"]
+
+
+def test_push_logs_no_changes(tmp_path, capsys, monkeypatch):
+    monkeypatch.chdir(ROOT)
+    strength = tmp_path / "none.csv"
+    events, _ = build(validate_plan(load_yaml(ROOT / "config" / "plan.yaml"), load_athlete(ROOT / "config" / "athlete.yaml")),
+                      load_athlete(ROOT / "config" / "athlete.yaml"), None, {}, MON, SUN)  # fmt: skip
+    fake = FakeCalendar([{**e, "id": i} for i, e in enumerate(events)])
+    argv = ["--from", "2026-10-26", "--exports", str(tmp_path), "--strength", str(strength), "--wellness", str(tmp_path / "w.csv"), "--push"]
+    assert main(argv, env=FAKE_ENV, transport=httpx.MockTransport(fake), sleep=lambda s: None) == 0
+    assert "intervals.icu: no changes (13 events unchanged)" in capsys.readouterr().out
+    assert [m for m, _, _ in fake.calls] == ["GET"]
 
 
 def test_push_without_secret_sends_nothing(tmp_path, capsys, monkeypatch):

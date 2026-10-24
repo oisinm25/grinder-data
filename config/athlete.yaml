@@ -25,6 +25,10 @@ strength:
     trap_bar_deadlift:   { name: Trap-bar deadlift }
     rfe_split_squat:     { name: Rear-foot-elevated split squat }
 
+schedule:                        # when the daily cloud run may go (local time, end inclusive)
+  timezone: Europe/Madrid
+  window: ["06:30", "07:00"]
+
 readiness:
   rules:                         # the day's colour, computed by pipeline/readiness.py
     baseline_days: 28            # rolling baseline: the 28 days before today

@@ -1,25 +1,29 @@
 """One entry point for the scheduled runs.
 
-    python -m pipeline.run daily  [--day DATE] [--wait-for-sleep [--final]] [--dry-run] [--no-alert]
+    python -m pipeline.run daily  [--day DATE] [--ignore-window] [--dry-run] [--no-alert]
     python -m pipeline.run weekly [--day DATE]
 
 daily:  ingest (last 14 days) -> readiness -> prescribe (7 days) -> publish (7 days)
         -> review yesterday -> (Sundays: weekly) -> brief (derived/today.md, today.json)
 weekly: the drift review for the week ending on the latest Sunday (derived/week.md)
 
-`--wait-for-sleep` (the hourly workflow): first ask intervals.icu, read-only, whether today's
-HRV and sleep have arrived. If not, stop without writing anything; the next hour tries again.
-`--final` runs regardless (the end of the morning window).
+The workflow fires a few times each morning; `daily` decides for itself whether to go:
+- it exits cleanly outside the window in `athlete.yaml` `schedule` (local time in its
+  timezone, end inclusive); `--ignore-window` (a manual workflow_dispatch run) skips this;
+- it exits cleanly once derived/today.json for today says "status": "final";
+- otherwise it runs. After ingest the day is "final" if today's wellness row has sleep, and
+  "provisional" ("no sleep yet") if not; readiness uses whatever HRV and resting HR exist. A
+  provisional day runs again at the next slot in the window.
 
 Each step prints one status line; its full output goes to derived/logs/<day>-<mode>.log.
 A failed step doesn't stop the others, with one exception: publish is skipped when
-prescribe failed, so the calendar keeps its last good weights. The run exits 1 if
-anything failed. Secret values are scrubbed from everything printed or logged.
+prescribe failed, so the calendar keeps its last good weights; publish only sends events
+whose content changed. The run exits 1 if anything failed. Secret values are scrubbed from
+everything printed or logged.
 
 When a step fails and NTFY_TOPIC is set, one ntfy line names the failed steps (pipeline.notify);
-nothing else ever goes to ntfy. derived/state/morning.json records the day as done once a
-run has no failures (or was the final one), so the later hours skip (pipeline.gate); a run with
-failures retries the next hour, alerting only about steps it hasn't alerted about today.
+nothing else ever goes to ntfy. Each failed step alerts at most once a day (today.json
+keeps the list in "alerts_sent").
 """
 
 import argparse
@@ -39,16 +43,16 @@ from pathlib import Path
 
 from pipeline import brief as brief_mod
 from pipeline import notify as notify_mod
-from pipeline.brief import short_readiness
+from pipeline.athlete import load_athlete
+from pipeline.brief import day_status, short_readiness
 from pipeline.ingest.__main__ import main as ingest_main
-from pipeline.ingest.intervals import IntervalsClient, IntervalsError
 from pipeline.notify import NotifyError
-from pipeline.plan.schema import PlanLoadError, load_checked
+from pipeline.plan.schema import load_checked
 from pipeline.prescribe import main as prescribe_main
 from pipeline.publish.__main__ import main as publish_main
 from pipeline.review.__main__ import last_sunday
 from pipeline.review.__main__ import main as review_main
-from pipeline.settings import MissingSetting, load_env, require_env
+from pipeline.settings import load_env
 
 SECRETS = ("INTERVALS_ICU_API_KEY", "NTFY_TOPIC")
 INGEST_DAYS = 14
@@ -66,42 +70,28 @@ class StepResult:
         return f"[{self.state:<7}] {self.name:<9} {self.status}"
 
 
-def sleep_data_in(day: dt.date, env, transport=None, sleep=time.sleep) -> bool | None:
-    """Has intervals.icu got today's HRV and sleep? None when it can't be asked (no key set)."""
-    try:
-        key, athlete_id = require_env("INTERVALS_ICU_API_KEY", env), require_env("INTERVALS_ICU_ATHLETE_ID", env)
-    except MissingSetting:
-        return None
-    try:
-        with IntervalsClient(key, athlete_id, transport=transport, sleep=sleep) as client:
-            rows = client.wellness(day, day)
-    except IntervalsError:
-        return False  # can't tell: wait for the next hour (the final run goes regardless)
-    row = next((r for r in rows if str(r.get("id", ""))[:10] == day.isoformat()), None)
-    return bool(row and row.get("hrv") is not None and row.get("sleepSecs"))
-
-
 def _last_line(text: str, prefix: str = "") -> str:
     lines = [ln.strip() for ln in text.splitlines() if ln.strip() and ln.strip().startswith(prefix)]
     return lines[-1] if lines else ""
 
 
-def read_state(derived: Path) -> dict:
+def read_today(derived: Path) -> dict:
     try:
-        return json.loads((derived / "state" / "morning.json").read_text(encoding="utf-8"))
+        return json.loads((derived / "today.json").read_text(encoding="utf-8"))
     except (OSError, ValueError):
         return {}
 
 
 class Runner:
     def __init__(self, day: dt.date, *, env=None, transport=None, ntfy_transport=None, sleep=time.sleep,
-                 push: bool = True, send: bool = True, derived: Path = Path("derived"), missing_note: str = ""):  # fmt: skip
+                 push: bool = True, send: bool = True, derived: Path = Path("derived"), alerts_sent=()):  # fmt: skip
         if env is None:
             load_env()
             env = os.environ
         self.day, self.env, self.transport, self.ntfy_transport = day, env, transport, ntfy_transport
         self.sleep, self.push, self.send, self.derived = sleep, push, send, derived
-        self.missing_note = missing_note  # readiness reason when sleep data never arrived
+        self.alerts_sent = list(alerts_sent)  # steps already alerted about today
+        self.status, self.status_reason = "provisional", "no sleep yet"
         self.results: list[StepResult] = []
 
     def scrub(self, text: str) -> str:
@@ -164,6 +154,7 @@ class Runner:
 
         self.step("ingest", lambda: ingest_main(["--from", ingest_from.isoformat(), "--to", day.isoformat(), "--out", str(d)], **self.kw()),
                   ingest_status)  # fmt: skip
+        self.status, self.status_reason = day_status(d, day)
         self.step("readiness", self.readiness, lambda out, _: out.strip())
         rx = self.step("prescribe", lambda: prescribe_main(ahead + ["--strength", str(d / "strength.csv"), "--wellness",
                                                                     str(d / "wellness.csv"), "--out", str(d / "prescriptions.csv")]),
@@ -201,40 +192,45 @@ class Runner:
         with open(path, newline="", encoding="utf-8") as f:
             row = next((r for r in csv.DictReader(f) if r["date"] == self.day.isoformat()), None)
         if row is None or not row.get("readiness"):
-            print(f"no call for {self.day} yet (no HRV synced)" if row else f"no wellness row for {self.day} yet")
+            print(f"no call for {self.day} yet" + (" (no HRV or resting HR synced)" if row else " (no wellness row)") + f"; {self.status}")
         else:
-            print(f"{row['readiness']}: {short_readiness(row['readiness_reason'])}")
+            print(f"{row['readiness']}: {short_readiness(row['readiness_reason'])}; {self.status}"
+                  + (f" ({self.status_reason})" if self.status_reason else ""))  # fmt: skip
         return 0
 
     def brief(self) -> int:
         plan, athlete = load_checked(Path("config/plan.yaml"))  # a PlanLoadError fails the step
-        b = brief_mod.build(plan, athlete, self.day, self.derived, self.names("failed"), self.names("skipped"), self.missing_note)
+        b = brief_mod.build(plan, athlete, self.day, self.derived, self.names("failed"), self.names("skipped"),
+                            status=self.status, status_reason=self.status_reason, alerts_sent=self.alerts_sent)  # fmt: skip
         md, js = brief_mod.write(b, self.derived)
-        print(f"wrote {md.name} and {js.name}: {len(b['sessions'])} sessions, readiness {b['readiness']['colour'] or 'no call'}")
+        print(f"wrote {md.name} and {js.name}: {b['status']}, {len(b['sessions'])} sessions, readiness {b['readiness']['colour'] or 'no call'}")
         return 0
 
     # ------------------------------------------------------------------ wrap-up
 
-    def alert(self, state: dict) -> list[str]:
-        """One ntfy line for steps that failed and haven't been alerted about today. Returns the steps alerted."""
-        failed = self.names("failed")
-        already = state.get("alerted", []) if state.get("alerted_on") == self.day.isoformat() else []
-        new = [n for n in failed if n not in already]
+    def alert(self) -> None:
+        """One ntfy line for steps that failed and haven't been alerted about today."""
+        new = [n for n in self.names("failed") if n not in self.alerts_sent]
         if not new:
-            return []
+            return
         if not self.send:
             self.record(StepResult("alert", "skipped", "not sent (--no-alert): " + notify_mod.alert_text(self.day, new)))
-            return []
+            return
         try:
             sent = notify_mod.alert(self.day, new, env=self.env, transport=self.ntfy_transport, sleep=self.sleep)
         except NotifyError as e:
             self.record(StepResult("alert", "failed", str(e)))
-            return []
+            return
         if sent is None:
             self.record(StepResult("alert", "skipped", "alerts off (NTFY_TOPIC not set)"))
-            return []
+            return
+        self.alerts_sent += new
         self.record(StepResult("alert", "ok", f"sent: {', '.join(new)} failed"))
-        return new
+        js = self.derived / "today.json"  # remember them, so the next slot doesn't alert again
+        b = read_today(self.derived)
+        if b.get("date") == self.day.isoformat():
+            b["alerts_sent"] = self.alerts_sent
+            js.write_text(json.dumps(b, indent=1) + "\n", encoding="utf-8")
 
     def finish(self, mode: str) -> int:
         ok = sum(r.state == "ok" for r in self.results)
@@ -243,6 +239,8 @@ class Runner:
         summary = f"{mode} {self.day}: {ok} ok" + (f", {len(failed)} failed ({', '.join(failed)})" if failed else "") + (
             f", {len(skipped)} skipped ({', '.join(skipped)})" if skipped else ""
         )
+        if mode == "daily":
+            summary += f"; {self.status}" + (f" ({self.status_reason})" if self.status_reason else "")
         print(summary)
         logs = self.derived / "logs"
         logs.mkdir(parents=True, exist_ok=True)
@@ -252,31 +250,16 @@ class Runner:
                 f.write(f"\n## {r.line()}\n{r.output}")
         return 1 if failed else 0
 
-    def save_state(self, state: dict, alerted: list[str], with_sleep: bool, final: bool) -> None:
-        """Mark the day done (no failures, or the final run), and remember today's alerts."""
-        today = self.day.isoformat()
-        if state.get("alerted_on") != today:
-            state = {k: v for k, v in state.items() if k not in ("alerted", "alerted_on")}
-        if alerted:
-            state["alerted_on"] = today
-            state["alerted"] = sorted(set(state.get("alerted", [])) | set(alerted))
-        if final or not self.names("failed"):
-            state.update(last_done=today, done_at=dt.datetime.now().strftime("%H:%M"), with_sleep=with_sleep,
-                         failed=self.names("failed"))  # fmt: skip
-        path = self.derived / "state" / "morning.json"
-        path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(state, sort_keys=True) + "\n", encoding="utf-8")
 
-
-def main(argv=None, *, env=None, transport=None, ntfy_transport=None, sleep=time.sleep) -> int:
+def main(argv=None, *, env=None, transport=None, ntfy_transport=None, sleep=time.sleep, now: dt.datetime | None = None) -> int:
     parser = argparse.ArgumentParser(prog="python -m pipeline.run", description="Run the pipeline.")
     parser.add_argument("mode", choices=("daily", "weekly"))
-    parser.add_argument("--day", type=dt.date.fromisoformat, default=dt.date.today(), help="default: today (local, or TZ)")
+    parser.add_argument("--day", type=dt.date.fromisoformat, help="default: today in the schedule's timezone")
+    parser.add_argument("--ignore-window", action="store_true", help="run now, whatever the time (manual runs)")
     parser.add_argument("--dry-run", action="store_true", help="don't write to the intervals.icu calendar")
     parser.add_argument("--no-alert", action="store_true", help="don't send failure alerts (print them)")
     parser.add_argument("--derived", type=Path, default=Path("derived"))
-    parser.add_argument("--wait-for-sleep", action="store_true", help="stop unless today's HRV and sleep are in")
-    parser.add_argument("--final", action="store_true", help="with --wait-for-sleep: run even without them")
+    parser.add_argument("--athlete", type=Path, default=Path("config/athlete.yaml"))
     args = parser.parse_args(argv)
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(errors="replace")
@@ -284,24 +267,33 @@ def main(argv=None, *, env=None, transport=None, ntfy_transport=None, sleep=time
         load_env()
         env = os.environ
 
-    with_sleep = True
-    if args.mode == "daily" and args.wait_for_sleep:
-        with_sleep = sleep_data_in(args.day, env, transport, sleep) is not False
-        if not with_sleep and not args.final:
-            print(f"waiting: today's ({args.day}) HRV and sleep aren't in intervals.icu yet; the next hour tries again")
-            return 0
-    missing = "" if with_sleep else f"no HRV/sleep synced by {dt.datetime.now():%H:%M}"
+    try:
+        schedule = load_athlete(args.athlete).schedule
+    except Exception as e:  # noqa: BLE001 - an unreadable athlete.yaml is reported, not raised
+        print(f"error: {args.athlete}: {e}".splitlines()[0])
+        return 1
+    local = now.astimezone(schedule.zone()) if now else dt.datetime.now(schedule.zone())
+    day = args.day or local.date()
 
-    runner = Runner(args.day, env=env, transport=transport, ntfy_transport=ntfy_transport, sleep=sleep,
-                    push=not args.dry_run, send=not args.no_alert, derived=args.derived, missing_note=missing)  # fmt: skip
-    print(f"Pedestal {args.mode} run for {args.day}" + ("" if with_sleep else " (sleep data not in: fallback run)"))
+    if args.mode == "daily":
+        start, end = schedule.window
+        if not args.ignore_window and not schedule.contains(local):
+            print(f"outside the morning window: {local:%H:%M} {schedule.timezone}, window {start}-{end}; nothing to do")
+            return 0
+        previous = read_today(args.derived)
+        if previous.get("date") == day.isoformat() and previous.get("status") == "final":
+            print(f"today's brief is already final (generated {previous.get('generated_at', '?')}); nothing to do")
+            return 0
+        alerts_sent = previous.get("alerts_sent", []) if previous.get("date") == day.isoformat() else []
+    else:
+        alerts_sent = []
+
+    runner = Runner(day, env=env, transport=transport, ntfy_transport=ntfy_transport, sleep=sleep, push=not args.dry_run,
+                    send=not args.no_alert, derived=args.derived, alerts_sent=alerts_sent)  # fmt: skip
+    print(f"Pedestal {args.mode} run for {day} ({local:%H:%M} {schedule.timezone})")
     getattr(runner, args.mode)()
-    state = read_state(args.derived)
-    alerted = runner.alert(state)
-    code = runner.finish(args.mode)
-    if args.mode == "daily" and runner.send:
-        runner.save_state(state, alerted, with_sleep, final=args.final or not args.wait_for_sleep)
-    return code
+    runner.alert()
+    return runner.finish(args.mode)
 
 
 if __name__ == "__main__":

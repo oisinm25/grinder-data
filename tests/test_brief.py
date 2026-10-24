@@ -88,9 +88,26 @@ def test_watts_repeats_and_yesterdays_grades(plan, athlete, derived):
     assert "- **held** z2_90: 2/2 steps in band" in md and "- **under** upper_me: bench_press top: reps under 6" in md
 
 
-def test_no_sleep_note_and_special_days(plan, athlete, derived):
-    b = build(plan, athlete, TUE, derived, missing_note="no HRV/sleep synced by 10:17")
-    assert "**Readiness: no call**: no HRV/sleep synced by 10:17" in to_markdown(b)
+def test_status_and_generated_at_at_the_top(plan, athlete, derived):
+    b = build(plan, athlete, MON, derived, status="provisional", status_reason="no sleep yet")
+    assert (b["status"], b["status_reason"]) == ("provisional", "no sleep yet")
+    assert b["generated_at"].endswith(("+01:00", "+02:00"))  # Madrid time, from athlete.yaml schedule
+    lines = to_markdown(b).splitlines()
+    assert lines[2].startswith("*Status: provisional (no sleep yet) · generated 20") and lines[2].endswith("*")
+    final = to_markdown(build(plan, athlete, MON, derived, status="final"))
+    assert final.splitlines()[2].startswith("*Status: final · generated ")
+
+
+def test_status_from_todays_sleep(tmp_path):
+    from pipeline.brief import day_status
+
+    write_rows(tmp_path / "wellness.csv", [{"date": "2026-10-26", "sleep_h": "7.2"}, {"date": "2026-10-27", "sleep_h": ""}])
+    assert day_status(tmp_path, MON) == ("final", "")
+    assert day_status(tmp_path, TUE) == ("provisional", "no sleep yet")
+    assert day_status(tmp_path, D(2026, 10, 28)) == ("provisional", "no sleep yet")  # no row at all
+
+
+def test_special_days(plan, athlete, derived):
     assert "Rest day." in to_markdown(build(plan, athlete, D(2026, 10, 25), derived))
     assert "Design pending: no sessions planned yet." in to_markdown(build(plan, athlete, D(2026, 11, 24), derived))
 

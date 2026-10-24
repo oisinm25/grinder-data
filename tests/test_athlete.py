@@ -24,6 +24,15 @@ def test_repo_athlete_values(athlete):
     assert red.pct_of_last_weight == 0.9 and red.rpe_cap == 7
     rules = athlete.readiness.rules
     assert (rules.baseline_days, rules.hrv_sd_below, rules.resting_hr_above_bpm, rules.sleep_min_h) == (28, 1, 5, 6)
+    assert (athlete.schedule.timezone, athlete.schedule.window) == ("Europe/Madrid", ("06:30", "07:00"))
+
+
+def test_schedule_window_is_inclusive(athlete):
+    import datetime as dt
+
+    tz = athlete.schedule.zone()
+    at = lambda h, m: dt.datetime(2026, 10, 26, h, m, tzinfo=tz)  # noqa: E731
+    assert [athlete.schedule.contains(at(*t)) for t in ((6, 29), (6, 30), (7, 0), (7, 1))] == [False, True, True, False]
 
 
 @pytest.mark.parametrize(
@@ -38,6 +47,9 @@ def test_repo_athlete_values(athlete):
         (["strength", "lifts", "Bench Press"], {"name": "x"}, "strength.lifts.Bench Press"),
         (["curves", "grinding_90s"], {"duration_s": 60, "watts": 400}, "curves"),
         (["secret_key"], "x", "secret_key"),
+        (["schedule", "timezone"], "Europe/Atlantis", "schedule.timezone"),
+        (["schedule", "window"], ["07:00", "06:30"], "schedule.window"),
+        (["schedule", "window"], ["6:30", "07:00"], "schedule.window[0]"),
     ],
 )
 def test_invalid_athlete_names_the_field(athlete_data, path, value, field):

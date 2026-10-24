@@ -105,27 +105,30 @@ conda run -n pedestal python -m pytest
 ## Every morning, in the cloud
 
 `.github/workflows/daily.yml` runs on GitHub Actions, so nothing depends on a PC being on.
-It wakes every hour, and `pipeline.gate` decides whether that hour runs:
+It fires at 04:30, 04:45, 05:00, 05:30, 05:45 and 06:00 UTC, which covers a 06:30-07:00
+morning window in Madrid in both summer and winter time. `python -m pipeline.run daily`
+then decides for itself:
 
-- once a day, inside a morning window in local time (default 05:00-11:00)
-- as soon as today's HRV and sleep have reached intervals.icu (after your watch syncs), so
-  the readiness call and the weights use last night's data; until then each hour just checks
-  and exits, writing nothing
-- in the window's last hour (or the two after it, if GitHub skipped a slot) it runs anyway,
-  and the brief says the sleep data never arrived
-- once a run has gone through with no failures (or the last-chance run is done), the rest
-  of the day's hours skip; a run with failures tries again the next hour
+- it exits straight away outside the window set in `config/athlete.yaml`:
+  `schedule: { timezone: Europe/Madrid, window: ["06:30", "07:00"] }` (end inclusive; change
+  the timezone when you travel);
+- it exits straight away once today's `derived/today.json` says `"status": "final"`;
+- otherwise it runs. After ingest, today is **final** if its wellness row has sleep, or
+  **provisional** ("no sleep yet") if not, with readiness from whatever HRV and resting HR
+  have arrived. A provisional day runs again at the next slot, until it's final or the
+  window closes.
 
-The morning run is `python -m pipeline.run daily --wait-for-sleep`:
+The daily run:
 
 1. **ingest** the last 14 days of intervals.icu activities and wellness, and the strength log
 2. **readiness** for today (green / amber / red, with the reason)
 3. **prescribe** strength for the next 7 days
-4. **publish** the next 7 days to the intervals.icu calendar (only `pedestal:` events)
+4. **publish** the next 7 days to the intervals.icu calendar: only `pedestal:` events, and
+   only those whose content changed (each carries a content hash); otherwise "no changes"
 5. **review** yesterday into `compliance.csv` (on Monday that completes last week's drift record)
 6. on Sundays, **weekly**: the drift review, into `derived/week.md` (the same as `pipeline.run weekly`)
 7. **brief**: `derived/today.md` to read and `derived/today.json` for anything else to use:
-   the date, readiness colour and reason, each session today (watt targets, or strength
+   the date, status (provisional or final) and when it was generated, readiness colour and reason, each session today (watt targets, or strength
    groups as kg × reps @ RPE cap with the reason), yesterday's grades, the flags from the
    latest Sunday review, and anything in the pipeline that failed
 
@@ -136,12 +139,13 @@ Each step logs a one-line status; a failed step doesn't stop the others (publish
 if prescribe failed, so the calendar keeps its last good weights). **ntfy is only for
 failures**: when a step fails and `NTFY_TOPIC` is set, one line names the failed steps, with
 a link to the run, and nothing else: no training data, no error detail. Each failed step
-alerts at most once a day. The workflow run also goes red, and GitHub emails you.
+alerts at most once a day (`today.json` keeps the list). The workflow run also goes red, and
+GitHub emails you.
 
 **State** lives on the `data` branch: the workflow checks it out into `derived/`, runs, and
-commits it back as the Actions bot: the CSVs, `today.md`, `today.json`, `week.md`, full step
-logs in `derived/logs/` and the once-a-day marker in `derived/state/morning.json`. `main` is
-never written by the workflow, and `derived/` stays git-ignored on `main`. The `.fit`/`.zwo`
+commits it back as the Actions bot: the CSVs, `today.md`, `today.json`, `week.md` and full
+step logs in `derived/logs/`. `main` is never written by the workflow, and `derived/` stays
+git-ignored on `main`. The `.fit`/`.zwo`
 files are kept as a run artifact for 7 days.
 
 **Secrets to add** (repo Settings > Secrets and variables > Actions > New repository secret):
@@ -152,19 +156,13 @@ files are kept as a run artifact for 7 days.
 | `INTERVALS_ICU_ATHLETE_ID` | your athlete id, e.g. `i12345` |
 | `NTFY_TOPIC` | optional: a long, unguessable ntfy topic name for failure alerts; subscribe to it in the ntfy app. Without it, alerts are off |
 
-Optional repo **variables** (same page, Variables tab):
+Optional repo **variable** (same page, Variables tab): `NTFY_SERVER` for a self-hosted ntfy
+server (default `https://ntfy.sh`).
 
-| Variable | Default | What |
-|---|---|---|
-| `PEDESTAL_TZ` | `Europe/Dublin` | your local time zone: what "today" and the window mean. Change it when you travel, e.g. `Europe/Madrid` |
-| `PEDESTAL_WINDOW` | `05-11` | the morning window, start-end hours in local time |
-| `NTFY_SERVER` | `https://ntfy.sh` | a self-hosted ntfy server |
+**Run it now**: Actions > daily > Run workflow. A manual run ignores the window and goes
+straight away (it still exits if today is already final).
 
-**Run it now**: Actions > daily > Run workflow (or `gh workflow run daily.yml`). A manual
-run goes straight away, sleep data or not, and counts as the day's run.
-
-**Pause it**: Actions > daily > ... > Disable workflow (or `gh workflow disable daily.yml`);
-enable it the same way.
+**Pause it**: Actions > daily > ... > Disable workflow; enable it the same way.
 
 **Log lifts**: add rows to `training/logs/strength.csv` on `main`, from the GitHub app
 (open the file, edit, commit) or through the Training project. Format:
@@ -174,7 +172,7 @@ Locally, the same run without touching the calendar or sending alerts, then toda
 and a test alert to check your ntfy subscription:
 
 ```
-conda run -n pedestal python -m pipeline.run daily --dry-run --no-alert
+conda run -n pedestal python -m pipeline.run daily --ignore-window --dry-run --no-alert
 conda run -n pedestal python -m pipeline.brief --print
 conda run -n pedestal python -m pipeline.notify --test
 ```

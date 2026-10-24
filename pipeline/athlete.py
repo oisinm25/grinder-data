@@ -4,9 +4,11 @@ FTP, LTHR, power-curve points, strength rounding, readiness rules and the lift i
 plan may use live here and never in the plan (docs/plan-format.md).
 """
 
+import datetime as dt
 import re
 from pathlib import Path
 from typing import Annotated, Literal
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from pydantic import Field, PositiveFloat, PositiveInt, StringConstraints, field_validator
 
@@ -76,6 +78,38 @@ class Readiness(StrictModel):
     red: RedRule
 
 
+HHMM = Annotated[str, StringConstraints(pattern=r"^([01]\d|2[0-3]):[0-5]\d$")]
+
+
+class Schedule(StrictModel):
+    """When the daily run may go: a local-time window in `timezone` (end inclusive)."""
+
+    timezone: str
+    window: tuple[HHMM, HHMM]
+
+    @field_validator("timezone")
+    @classmethod
+    def _known_zone(cls, tz: str) -> str:
+        try:
+            ZoneInfo(tz)
+        except (ZoneInfoNotFoundError, ValueError):
+            raise ValueError(f"unknown time zone {tz!r} (use an IANA name such as Europe/Madrid)") from None
+        return tz
+
+    @field_validator("window")
+    @classmethod
+    def _ordered(cls, window: tuple[str, str]) -> tuple[str, str]:
+        if window[0] >= window[1]:
+            raise ValueError(f"window start {window[0]} must be before its end {window[1]}")
+        return window
+
+    def zone(self) -> ZoneInfo:
+        return ZoneInfo(self.timezone)
+
+    def contains(self, local: dt.datetime) -> bool:
+        return self.window[0] <= local.strftime("%H:%M") <= self.window[1]
+
+
 class Athlete(StrictModel):
     schema_version: Literal[1]
     lthr_bpm: PositiveInt
@@ -83,6 +117,7 @@ class Athlete(StrictModel):
     curves: dict[CurveRef, CurvePoint] = {}
     strength: Strength
     readiness: Readiness
+    schedule: Schedule
 
     @field_validator("curves")
     @classmethod

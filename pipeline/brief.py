@@ -37,6 +37,12 @@ def _num(v: str):
     return int(x) if x.is_integer() else x
 
 
+def day_status(derived: Path, day: dt.date) -> tuple[str, str]:
+    """('final', '') when today's wellness row has sleep, else ('provisional', 'no sleep yet')."""
+    row = next((r for r in _rows(derived / "wellness.csv") if r["date"] == day.isoformat()), None)
+    return ("final", "") if row and row.get("sleep_h") else ("provisional", "no sleep yet")
+
+
 def short_readiness(reason: str) -> str:
     """Drop the baseline arithmetic: 'amber: HRV 30 < 32.9 (baseline ...)' -> 'HRV 30 < 32.9'."""
     body = reason.split(": ", 1)[1] if ": " in reason else reason
@@ -62,14 +68,14 @@ def _provisional(steps) -> bool:
 
 
 def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: list[str] = (), skipped: list[str] = (),
-          missing_note: str = "") -> dict:  # fmt: skip
-    """The structured brief (what today.json holds)."""
+          *, status: str = "provisional", status_reason: str = "", alerts_sent: list[str] = ()) -> dict:  # fmt: skip
+    """The structured brief (what today.json holds). `status` is "final" once today's sleep is in."""
     iso = day.isoformat()
     well = next((r for r in _rows(derived / "wellness.csv") if r["date"] == iso), {})
     colour = well.get("readiness") or None
     reason = well.get("readiness_reason", "")
     if not colour:
-        reason = missing_note or reason or "no wellness data for today yet"
+        reason = reason or "no wellness data for today yet"
     rx = [r for r in _rows(derived / "prescriptions.csv") if r["date"] == iso]
     names = {k: v.name for k, v in athlete.strength.lifts.items()}
 
@@ -106,7 +112,9 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
 
     return {
         "date": iso,
-        "generated_at": dt.datetime.now().isoformat(timespec="minutes"),
+        "status": status,
+        "status_reason": status_reason,
+        "generated_at": dt.datetime.now(athlete.schedule.zone()).isoformat(timespec="minutes"),
         "readiness": {"colour": colour, "reason": reason},
         "block": {"id": d.block.id, "name": d.block.name, "week": d.week.label if d.week else None,
                   "design_pending": d.design_pending} if d else None,  # fmt: skip
@@ -115,6 +123,7 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
                       "status": "graded" if graded else ("not graded" if planned_y else "rest day")},  # fmt: skip
         "review": {"week_end": latest["week_end"], "flags": [f for f in latest["flags"].split(" | ") if f]} if latest else None,
         "pipeline": {"failed": list(failed), "skipped": list(skipped)},
+        "alerts_sent": list(alerts_sent),
     }
 
 
@@ -140,7 +149,9 @@ def _day(iso: str) -> str:
 
 def to_markdown(b: dict) -> str:
     d = dt.date.fromisoformat(b["date"])
-    out = [f"# Pedestal brief: {d:%a} {d.day} {d:%b %Y}", ""]
+    gen = dt.datetime.fromisoformat(b["generated_at"])
+    status = b["status"] + (f" ({b['status_reason']})" if b.get("status_reason") else "")
+    out = [f"# Pedestal brief: {d:%a} {d.day} {d:%b %Y}", "", f"*Status: {status} · generated {gen:%Y-%m-%d %H:%M}*", ""]
     r = b["readiness"]
     out += [f"**Readiness: {r['colour'].upper()}**: {r['reason'].split(': ', 1)[-1]}" if r["colour"]
             else f"**Readiness: no call**: {r['reason']}", ""]  # fmt: skip
@@ -215,7 +226,8 @@ def main(argv=None) -> int:
         plan, athlete = load_checked(args.plan, args.athlete)
     except PlanLoadError as e:
         return report_load_error(e)
-    b = build(plan, athlete, args.day, args.derived)
+    status, reason = day_status(args.derived, args.day)
+    b = build(plan, athlete, args.day, args.derived, status=status, status_reason=reason)
     md, js = write(b, args.derived)
     if args.show:
         print(md.read_text(encoding="utf-8"))

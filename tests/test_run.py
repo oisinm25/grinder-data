@@ -3,6 +3,8 @@ import datetime as dt
 import json
 import shutil
 
+from zoneinfo import ZoneInfo
+
 import httpx
 import pytest
 
@@ -10,6 +12,7 @@ from pipeline import run as run_mod
 from pipeline.run import main
 from tests.conftest import ROOT
 
+REAL_BRIEF = run_mod.Runner.brief  # kept before the steps fixture swaps it for a fake
 MON = dt.date(2026, 10, 26)
 KEY = "fake-key-" + "0123456789abcdef"
 TOPIC = "pedestal-" + "secret-topic-1234567890"
@@ -50,7 +53,7 @@ def steps(monkeypatch):
     monkeypatch.setattr(run_mod.Runner, "readiness", lambda self: print("green: all fine") or 0)
 
     def brief(self):
-        calls.made.append(("brief", self.names("failed"), {"note": self.missing_note}))
+        calls.made.append(("brief", self.names("failed"), {"status": self.status, "reason": self.status_reason}))
         print("wrote today.md and today.json")
         return 0
 
@@ -67,13 +70,23 @@ class FakeNtfy:
         return httpx.Response(self.status)
 
 
-def run(*argv, ntfy=None, env=ENV, transport=None):
+MADRID = ZoneInfo("Europe/Madrid")
+IN_WINDOW = dt.datetime(2026, 10, 26, 6, 45, tzinfo=MADRID)
+
+
+def run(*argv, ntfy=None, env=ENV, transport=None, now=IN_WINDOW):
     return main(["daily", "--day", "2026-10-26", *argv], env=env, transport=transport,
-                ntfy_transport=httpx.MockTransport(ntfy or FakeNtfy()), sleep=lambda s: None)  # fmt: skip
+                ntfy_transport=httpx.MockTransport(ntfy or FakeNtfy()), sleep=lambda s: None, now=now)  # fmt: skip
 
 
-def state(workdir):
-    return json.loads((workdir / "derived" / "state" / "morning.json").read_text())
+def today_json(workdir, **fields):
+    (workdir / "derived").mkdir(exist_ok=True)
+    (workdir / "derived" / "today.json").write_text(json.dumps({"date": "2026-10-26", **fields}))
+
+
+def wellness(workdir, sleep_h=""):
+    (workdir / "derived").mkdir(exist_ok=True)
+    (workdir / "derived" / "wellness.csv").write_text(f"date,readiness,readiness_reason,sleep_h\n2026-10-26,green,green: fine,{sleep_h}\n")
 
 
 def lines(out):
@@ -89,7 +102,7 @@ def test_all_steps_in_order_and_no_ntfy_when_all_is_well(workdir, steps, capsys)
     out = capsys.readouterr().out
     assert [c[0] for c in steps.made] == ["ingest", "prescribe", "publish", "review", "brief"]
     assert lines(out) == ORDER
-    assert out.rstrip().endswith("daily 2026-10-26: 6 ok")
+    assert out.rstrip().endswith("daily 2026-10-26: 6 ok; provisional (no sleep yet)")
     assert ntfy.bodies == []  # ntfy is for failures only
 
 
@@ -115,10 +128,10 @@ def test_a_failed_step_does_not_stop_the_others(workdir, steps, monkeypatch, cap
     out = capsys.readouterr().out
     assert "[failed ] ingest    intervals.icu returned 503 for GET /x" in out
     assert [c[0] for c in steps.made] == ["ingest", "prescribe", "publish", "review", "brief"]
-    assert ("brief", ["ingest"], {"note": ""}) in steps.made  # the brief says what failed
+    assert ("brief", ["ingest"], {"status": "provisional", "reason": "no sleep yet"}) in steps.made  # the brief says what failed
     assert ntfy.bodies == ["Pedestal Mon 26 Oct: ingest failed."]
     assert "[ok     ] alert     sent: ingest failed" in out
-    assert out.rstrip().endswith("daily 2026-10-26: 6 ok, 1 failed (ingest)")
+    assert out.rstrip().endswith("daily 2026-10-26: 6 ok, 1 failed (ingest); provisional (no sleep yet)")
 
 
 def test_alert_never_carries_error_detail_or_training_data(workdir, steps, monkeypatch):
@@ -182,7 +195,7 @@ def test_log_has_every_step(workdir, steps):
 
 
 def test_sunday_daily_includes_the_weekly_review(workdir, steps, capsys):
-    assert main(["daily", "--day", "2026-11-01"], env=ENV) == 0
+    assert main(["daily", "--day", "2026-11-01", "--ignore-window"], env=ENV) == 0
     reviews = [argv for name, argv, _ in steps.made if name == "review"]
     assert reviews == [["--day", "2026-10-31", "--derived", "derived"], ["--week-ending", "2026-11-01", "--derived", "derived"]]
     assert "[ok     ] weekly" in capsys.readouterr().out
@@ -195,89 +208,114 @@ def test_weekly_reviews_the_latest_sunday(workdir, steps):
     assert reviews == [["--week-ending", "2026-11-01", "--derived", "derived"]] * 2
 
 
-# ------------------------------------------------------------------ waiting for sleep data, and the day's state
+# ------------------------------------------------------------------ the morning window and the day's status
 
 
-class Wellness:
-    """A fake intervals.icu that only answers the wellness check."""
-
-    def __init__(self, row):
-        self.row = row
-
-    def __call__(self, request):
-        assert request.method == "GET" and request.url.path.endswith("/wellness")
-        return httpx.Response(200, json=[self.row] if self.row else [])
+UTC = dt.timezone.utc
 
 
-IN = {"id": "2026-10-26", "hrv": 44.0, "sleepSecs": 26000}
+@pytest.mark.parametrize(
+    ("now", "runs"),
+    [
+        (dt.datetime(2026, 10, 26, 6, 29, tzinfo=MADRID), False),  # just before the window
+        (dt.datetime(2026, 10, 26, 6, 30, tzinfo=MADRID), True),
+        (dt.datetime(2026, 10, 26, 7, 0, tzinfo=MADRID), True),  # the end is inclusive
+        (dt.datetime(2026, 10, 26, 7, 1, tzinfo=MADRID), False),
+        (dt.datetime(2026, 10, 24, 4, 30, tzinfo=UTC), True),  # summer time: 04:30 UTC is 06:30 CEST
+        (dt.datetime(2026, 10, 26, 5, 30, tzinfo=UTC), True),  # winter time: 05:30 UTC is 06:30 CET
+        (dt.datetime(2026, 10, 26, 4, 30, tzinfo=UTC), False),  # winter: 04:30 UTC is only 05:30 CET
+        (dt.datetime(2026, 10, 26, 6, 0, tzinfo=UTC), True),  # winter: the last cron slot, 07:00 CET
+    ],
+)
+def test_window(workdir, steps, capsys, now, runs):
+    assert main(["daily"], env=ENV, now=now, ntfy_transport=httpx.MockTransport(FakeNtfy())) == 0
+    out = capsys.readouterr().out
+    assert bool(steps.made) is runs
+    if not runs:
+        assert "outside the morning window" in out and "window 06:30-07:00" in out
+        assert not (workdir / "derived").exists()  # nothing written
 
 
-def waiting_run(row, *extra, ntfy=None):
-    return run("--wait-for-sleep", *extra, ntfy=ntfy, transport=httpx.MockTransport(Wellness(row)))
+def test_default_day_is_the_local_date(workdir, steps, capsys):
+    main(["daily"], env=ENV, now=dt.datetime(2026, 10, 24, 4, 45, tzinfo=UTC))  # 06:45 in Madrid on the 24th
+    assert "Pedestal daily run for 2026-10-24 (06:45 Europe/Madrid)" in capsys.readouterr().out
 
 
-@pytest.mark.parametrize("row", [None, {"id": "2026-10-26", "hrv": None, "sleepSecs": 26000}, {"id": "2026-10-26", "hrv": 44.0}])
-def test_waits_without_writing_anything(workdir, steps, capsys, row):
-    assert waiting_run(row) == 0
-    assert "waiting: today's (2026-10-26) HRV and sleep aren't in" in capsys.readouterr().out
-    assert steps.made == [] and not (workdir / "derived").exists()
+def test_manual_run_ignores_the_window(workdir, steps):
+    late = dt.datetime(2026, 10, 26, 22, 0, tzinfo=MADRID)
+    assert run("--ignore-window", now=late) == 0
+    assert [c[0] for c in steps.made][0] == "ingest"
 
 
-def test_a_clean_run_marks_the_day_done(workdir, steps):
-    assert waiting_run(IN) == 0
-    s = state(workdir)
-    assert (s["last_done"], s["with_sleep"], s["failed"]) == ("2026-10-26", True, [])
+def test_exits_once_today_is_final(workdir, steps, capsys):
+    today_json(workdir, status="final", generated_at="2026-10-26T06:31")
+    assert run() == 0
+    assert "today's brief is already final (generated 2026-10-26T06:31)" in capsys.readouterr().out
+    assert steps.made == []
 
 
-def test_final_runs_without_sleep_and_says_so(workdir, steps, capsys):
-    waiting_run(None, "--final")
-    assert "(sleep data not in: fallback run)" in capsys.readouterr().out
-    note = next(kw["note"] for name, _, kw in steps.made if name == "brief")
-    assert note.startswith("no HRV/sleep synced by ")
-    assert state(workdir)["with_sleep"] is False and state(workdir)["last_done"] == "2026-10-26"
+def test_runs_again_while_provisional_or_on_a_new_day(workdir, steps):
+    today_json(workdir, status="provisional")
+    run()
+    assert steps.made
+    steps.made.clear()
+    (workdir / "derived" / "today.json").write_text(json.dumps({"date": "2026-10-25", "status": "final"}))  # yesterday's
+    run()
+    assert steps.made
 
 
-def test_a_failed_run_retries_and_alerts_once(workdir, steps, monkeypatch):
+def test_final_when_todays_sleep_is_in(workdir, steps, capsys):
+    wellness(workdir, sleep_h="7.2")
+    run()
+    brief = next(kw for name, _, kw in steps.made if name == "brief")
+    assert brief == {"status": "final", "reason": ""}
+    assert capsys.readouterr().out.rstrip().endswith("daily 2026-10-26: 6 ok; final")
+
+
+def test_provisional_without_sleep_but_readiness_still_runs(workdir, steps, capsys):
+    wellness(workdir, sleep_h="")
+    run()
+    brief = next(kw for name, _, kw in steps.made if name == "brief")
+    assert brief == {"status": "provisional", "reason": "no sleep yet"}
+    out = capsys.readouterr().out
+    assert out.rstrip().endswith("daily 2026-10-26: 6 ok; provisional (no sleep yet)")
+    assert [c[0] for c in steps.made] == ["ingest", "prescribe", "publish", "review", "brief"]
+
+
+def test_each_failed_step_alerts_once_a_day(workdir, steps, monkeypatch):
+    monkeypatch.setattr(run_mod.Runner, "brief", REAL_BRIEF)  # the real brief writes today.json
     monkeypatch.setattr(run_mod, "publish_main", steps.fake("publish", code=1))
     ntfy = FakeNtfy()
-    assert waiting_run(IN, ntfy=ntfy) == 1
-    s = state(workdir)
-    assert "last_done" not in s  # not done: the next hour runs again
-    assert (s["alerted_on"], s["alerted"]) == ("2026-10-26", ["publish"])
-    waiting_run(IN, ntfy=ntfy)  # next hour, still failing: no second alert
+    assert run(ntfy=ntfy) == 1
+    assert json.loads((workdir / "derived" / "today.json").read_text())["alerts_sent"] == ["publish"]
+    run(ntfy=ntfy)  # the next slot, still failing: no second alert
     monkeypatch.setattr(run_mod, "review_main", steps.fake("review", code=1))
-    waiting_run(IN, ntfy=ntfy)  # a new failure gets its own alert
+    run(ntfy=ntfy)  # a new failure gets its own alert
     assert ntfy.bodies == ["Pedestal Mon 26 Oct: publish failed.", "Pedestal Mon 26 Oct: review failed."]
 
 
-def test_the_final_run_marks_done_even_with_failures(workdir, steps, monkeypatch):
-    monkeypatch.setattr(run_mod, "publish_main", steps.fake("publish", code=1))
-    waiting_run(IN, "--final")
-    s = state(workdir)
-    assert (s["last_done"], s["failed"]) == ("2026-10-26", ["publish"])
-
-
 def test_yesterdays_alerts_dont_silence_today(workdir, steps, monkeypatch):
-    (workdir / "derived" / "state").mkdir(parents=True)
-    (workdir / "derived" / "state" / "morning.json").write_text(json.dumps({"alerted_on": "2026-10-25", "alerted": ["publish"]}))
+    (workdir / "derived").mkdir()
+    (workdir / "derived" / "today.json").write_text(json.dumps({"date": "2026-10-25", "alerts_sent": ["publish"]}))
     monkeypatch.setattr(run_mod, "publish_main", steps.fake("publish", code=1))
     ntfy = FakeNtfy()
-    waiting_run(IN, ntfy=ntfy)
+    run(ntfy=ntfy)
     assert ntfy.bodies == ["Pedestal Mon 26 Oct: publish failed."]
 
 
-def test_no_alert_flag_prints_instead_and_leaves_state_alone(workdir, steps, monkeypatch, capsys):
+def test_no_alert_flag_prints_instead(workdir, steps, monkeypatch, capsys):
     monkeypatch.setattr(run_mod, "publish_main", steps.fake("publish", code=1))
     ntfy = FakeNtfy()
     run("--no-alert", ntfy=ntfy)
     assert ntfy.bodies == []
     assert "[skipped] alert     not sent (--no-alert): Pedestal Mon 26 Oct: publish failed." in capsys.readouterr().out
-    assert not (workdir / "derived" / "state" / "morning.json").exists()
 
 
-def test_cannot_ask_without_a_key_so_it_runs_and_reports(workdir, steps):
-    run("--wait-for-sleep", env={"NTFY_TOPIC": TOPIC})  # no intervals.icu key: the run's own steps report it
-    assert [c[0] for c in steps.made][0] == "ingest"
+def test_unreadable_athlete_file_is_reported(workdir, steps, capsys):
+    (workdir / "config" / "athlete.yaml").write_text("schema_version: 1\n")
+    assert run() == 1
+    assert capsys.readouterr().out.startswith("error: config")
+    assert steps.made == []
 
 
 # ------------------------------------------------------------------ end to end, real steps, fake services
@@ -307,11 +345,11 @@ class FakeServices:
 
 def test_daily_end_to_end(workdir, capsys):
     svc = FakeServices()
-    code = main(["daily", "--day", "2026-10-26"], env=ENV, transport=httpx.MockTransport(svc.intervals),
+    code = main(["daily", "--day", "2026-10-26", "--ignore-window"], env=ENV, transport=httpx.MockTransport(svc.intervals),
                 ntfy_transport=httpx.MockTransport(svc.ntfy), sleep=lambda s: None)  # fmt: skip
     out = capsys.readouterr().out
     assert code == 0, out
-    assert out.rstrip().endswith("daily 2026-10-26: 6 ok")
+    assert out.rstrip().endswith("daily 2026-10-26: 6 ok; provisional (no sleep yet)")
     assert ("POST", "/api/v1/athlete/i99999/events/bulk") in svc.calls  # published the week
     assert not [c for c in svc.calls if c[0] == "NTFY"]  # nothing failed, so nothing to ntfy
     d = workdir / "derived"
@@ -328,14 +366,14 @@ def test_daily_end_to_end(workdir, capsys):
 
 def test_sunday_end_to_end_writes_week_md(workdir):
     svc = FakeServices()
-    main(["daily", "--day", "2026-11-01"], env=ENV, transport=httpx.MockTransport(svc.intervals),
+    main(["daily", "--day", "2026-11-01", "--ignore-window"], env=ENV, transport=httpx.MockTransport(svc.intervals),
          ntfy_transport=httpx.MockTransport(svc.ntfy), sleep=lambda s: None)  # fmt: skip
     week = (workdir / "derived" / "week.md").read_text(encoding="utf-8")
     assert week.startswith("# Week 26 Oct to 1 Nov 2026") and "## Flags" in week and "## Recovery" in week
 
 
 def test_daily_without_secrets_reports_each_failure(workdir, capsys):
-    code = main(["daily", "--day", "2026-10-26"], env={}, sleep=lambda s: None)
+    code = main(["daily", "--day", "2026-10-26", "--ignore-window"], env={}, sleep=lambda s: None)
     out = capsys.readouterr().out
     assert code == 1
     assert "[failed ] ingest    INTERVALS_ICU_API_KEY is not set" in out
