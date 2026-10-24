@@ -1,19 +1,17 @@
-# Pedestal brief: Fri 23 Oct 2026
+# Pedestal brief: Sat 24 Oct 2026
 
-**Readiness: GREEN**: HRV 39 >= 32.4 (baseline 43.4 - 1 SD 11.0); resting HR 56 <= 62.4 (baseline 57.4 + 5); sleep 6.88 h >= 6
+**Readiness: GREEN**: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6
 
 Re-entry and test, week test-week
 
-## AM: Mobility and trunk, 30 min
-mobility
+## AM: TEST - 20-min bike test on the power meter, outdoors
+bike · 65 min · 75 TSS · test: readiness-exempt
 
-## PM: Z2 45 min with 3 short openers, the day before the bike test
-bike · 45 min · 38 TSS
+- warmup 20:00 165-225 W
+- work 5:00 315-345 W (Blow-out effort)
+- rest 10:00 150-180 W
+- test 20:00 RPE 10 (Even pacing; start near 300 W)
+- cooldown 10:00 135-165 W
 
-- warmup 10:00 150-195 W
-- steady 20:00 195-216 W
-- 3 × [work 0:30 330-360 W, rest 2:30 150-180 W]
-- cooldown 6:00 135-165 W
-
-## Yesterday (Thu 22 Oct)
-- **skipped** test_grinding: no matching activity
+## Yesterday (Fri 23 Oct)
+- **done** z2_45_openers: no interval data to grade power

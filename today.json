@@ -1,9 +1,9 @@
 {
- "date": "2026-10-23",
- "generated_at": "2026-10-23T06:37",
+ "date": "2026-10-24",
+ "generated_at": "2026-10-24T07:36",
  "readiness": {
   "colour": "green",
-  "reason": "green: HRV 39 >= 32.4 (baseline 43.4 - 1 SD 11.0); resting HR 56 <= 62.4 (baseline 57.4 + 5); sleep 6.88 h >= 6"
+  "reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6"
  },
  "block": {
   "id": "block0",
@@ -13,81 +13,60 @@
  },
  "sessions": [
   {
-   "slot": "fri_am",
+   "slot": "sat_am",
    "order": 0,
-   "session": "mobility_trunk",
-   "modality": "mobility",
-   "summary": "Mobility and trunk, 30 min",
-   "environment": null,
-   "duration_min": null,
-   "tss": null,
-   "readiness_exempt": false
-  },
-  {
-   "slot": "fri_pm",
-   "order": 0,
-   "session": "z2_45_openers",
+   "session": "test_bike_20",
    "modality": "bike",
-   "summary": "Z2 45 min with 3 short openers, the day before the bike test",
-   "environment": null,
-   "duration_min": 45,
-   "tss": 38.0,
-   "readiness_exempt": false,
+   "summary": "TEST - 20-min bike test on the power meter, outdoors",
+   "environment": "outdoor",
+   "duration_min": 65,
+   "tss": 75.0,
+   "readiness_exempt": true,
    "steps": [
     {
      "kind": "warmup",
+     "duration_s": 1200,
+     "target": "165-225 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      165,
+      225
+     ],
+     "provisional": false
+    },
+    {
+     "kind": "work",
+     "duration_s": 300,
+     "target": "315-345 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      315,
+      345
+     ],
+     "provisional": false,
+     "note": "Blow-out effort"
+    },
+    {
+     "kind": "rest",
      "duration_s": 600,
-     "target": "150-195 W",
+     "target": "150-180 W",
      "anchor": "pct_ftp",
      "watts": [
       150,
-      195
+      180
      ],
      "provisional": false
     },
     {
-     "kind": "steady",
+     "kind": "test",
      "duration_s": 1200,
-     "target": "195-216 W",
-     "anchor": "pct_ftp",
-     "watts": [
-      195,
-      216
-     ],
-     "provisional": false
-    },
-    {
-     "kind": "repeat",
-     "count": 3,
-     "duration_s": 540,
-     "steps": [
-      {
-       "kind": "work",
-       "duration_s": 30,
-       "target": "330-360 W",
-       "anchor": "pct_ftp",
-       "watts": [
-        330,
-        360
-       ],
-       "provisional": false
-      },
-      {
-       "kind": "rest",
-       "duration_s": 150,
-       "target": "150-180 W",
-       "anchor": "pct_ftp",
-       "watts": [
-        150,
-        180
-       ],
-       "provisional": false
-      }
-     ]
+     "target": "RPE 10",
+     "anchor": "rpe",
+     "note": "Even pacing; start near 300 W"
     },
     {
      "kind": "cooldown",
-     "duration_s": 360,
+     "duration_s": 600,
      "target": "135-165 W",
      "anchor": "pct_ftp",
      "watts": [
@@ -101,13 +80,13 @@
   }
  ],
  "yesterday": {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "grades": [
    {
-    "session": "test_grinding",
+    "session": "z2_45_openers",
     "item": "session",
-    "grade": "skipped",
-    "note": "no matching activity"
+    "grade": "done",
+    "note": "no interval data to grade power"
    }
   ],
   "status": "graded"
