@@ -96,6 +96,20 @@ CTL shown alongside for comparison.
 - The morning brief (Claude scheduled task) reads `dashboard.json` and renders the
   headline charts (fitness and fatigue, yesterday, bench line, readiness) in the styled brief.
 
+**Email version** (email clients don't run JavaScript, and Gmail strips SVG, so the
+interactive page can't be sent as the email body):
+- `derived/email/*.png`: static charts at 600 px wide, 2× for sharp phone screens, white
+  background, readable labels, each under ~150 KB. Fitness and fatigue, weekly load,
+  bench line, readiness strip, yesterday's intervals.
+- `derived/email/dashboard_email.html`: email-safe HTML (tables, inline CSS, no scripts),
+  referencing the charts as `cid:` inline images: readiness, today's session, yesterday's
+  debrief, then the charts.
+- `derived/email/manifest.json`: list of image files with their `cid` and alt text.
+- The morning brief sends one email to Gmail: its own day plan first, then the training
+  section from `dashboard_email.html` with the PNGs inline, and `dashboard.html` attached
+  for the full interactive view.
+- If today's files are missing or stale, the email says so and leaves the charts out.
+
 ---
 
 ## Later ideas
