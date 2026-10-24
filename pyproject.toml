@@ -9,6 +9,7 @@ description = "Grinder training plan and measurement pipeline"
 requires-python = ">=3.11"
 dependencies = [
     "httpx>=0.27,<1",
+    "matplotlib>=3.8", # the email version's PNG charts
     "pydantic>=2.7,<3",
     "python-dotenv>=1.0",
     "PyYAML>=6",

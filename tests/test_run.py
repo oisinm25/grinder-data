@@ -18,7 +18,7 @@ KEY = "fake-key-" + "0123456789abcdef"
 TOPIC = "pedestal-" + "secret-topic-1234567890"
 ENV = {"INTERVALS_ICU_API_KEY": KEY, "INTERVALS_ICU_ATHLETE_ID": "i99999", "NTFY_TOPIC": TOPIC}
 FIXTURES = ROOT / "tests" / "fixtures" / "intervals"
-ORDER = ["ingest", "readiness", "prescribe", "publish", "review", "debrief", "brief"]
+ORDER = ["ingest", "readiness", "prescribe", "publish", "review", "debrief", "brief", "dashboard"]
 
 
 @pytest.fixture
@@ -102,7 +102,7 @@ def test_all_steps_in_order_and_no_ntfy_when_all_is_well(workdir, steps, capsys)
     out = capsys.readouterr().out
     assert [c[0] for c in steps.made] == ["ingest", "prescribe", "publish", "review", "brief"]
     assert lines(out) == ORDER
-    assert out.rstrip().endswith("daily 2026-10-26: 7 ok; provisional (no sleep yet)")
+    assert out.rstrip().endswith("daily 2026-10-26: 8 ok; provisional (no sleep yet)")
     assert ntfy.bodies == []  # ntfy is for failures only
 
 
@@ -131,7 +131,7 @@ def test_a_failed_step_does_not_stop_the_others(workdir, steps, monkeypatch, cap
     assert ("brief", ["ingest"], {"status": "provisional", "reason": "no sleep yet"}) in steps.made  # the brief says what failed
     assert ntfy.bodies == ["Pedestal Mon 26 Oct: ingest failed."]
     assert "[ok     ] alert     sent: ingest failed" in out
-    assert out.rstrip().endswith("daily 2026-10-26: 7 ok, 1 failed (ingest); provisional (no sleep yet)")
+    assert out.rstrip().endswith("daily 2026-10-26: 8 ok, 1 failed (ingest); provisional (no sleep yet)")
 
 
 def test_alert_never_carries_error_detail_or_training_data(workdir, steps, monkeypatch):
@@ -190,7 +190,7 @@ def test_secrets_are_scrubbed_from_output_and_log(workdir, steps, monkeypatch, c
 def test_log_has_every_step(workdir, steps):
     run()
     log = (workdir / "derived" / "logs" / "2026-10-26-daily.log").read_text(encoding="utf-8")
-    assert log.startswith("# daily 2026-10-26: 7 ok")
+    assert log.startswith("# daily 2026-10-26: 8 ok")
     assert "## [ok     ] prescribe" in log and "prescribe output" in log
 
 
@@ -269,7 +269,7 @@ def test_final_when_todays_sleep_is_in(workdir, steps, capsys):
     run()
     brief = next(kw for name, _, kw in steps.made if name == "brief")
     assert brief == {"status": "final", "reason": ""}
-    assert capsys.readouterr().out.rstrip().endswith("daily 2026-10-26: 7 ok; final")
+    assert capsys.readouterr().out.rstrip().endswith("daily 2026-10-26: 8 ok; final")
 
 
 def test_provisional_without_sleep_but_readiness_still_runs(workdir, steps, capsys):
@@ -278,7 +278,7 @@ def test_provisional_without_sleep_but_readiness_still_runs(workdir, steps, caps
     brief = next(kw for name, _, kw in steps.made if name == "brief")
     assert brief == {"status": "provisional", "reason": "no sleep yet"}
     out = capsys.readouterr().out
-    assert out.rstrip().endswith("daily 2026-10-26: 7 ok; provisional (no sleep yet)")
+    assert out.rstrip().endswith("daily 2026-10-26: 8 ok; provisional (no sleep yet)")
     assert [c[0] for c in steps.made] == ["ingest", "prescribe", "publish", "review", "brief"]
 
 
@@ -349,7 +349,7 @@ def test_daily_end_to_end(workdir, capsys):
                 ntfy_transport=httpx.MockTransport(svc.ntfy), sleep=lambda s: None)  # fmt: skip
     out = capsys.readouterr().out
     assert code == 0, out
-    assert out.rstrip().endswith("daily 2026-10-26: 7 ok; provisional (no sleep yet)")
+    assert out.rstrip().endswith("daily 2026-10-26: 8 ok; provisional (no sleep yet)")
     assert ("POST", "/api/v1/athlete/i99999/events/bulk") in svc.calls  # published the week
     assert not [c for c in svc.calls if c[0] == "NTFY"]  # nothing failed, so nothing to ntfy
     d = workdir / "derived"

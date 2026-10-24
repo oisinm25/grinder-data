@@ -38,7 +38,8 @@ REVIEW_WORKOUT = "plain Workout without a Grind title: sail or something else?"
 
 ACTIVITY_FIELDS = (
     "id", "date", "start_local", "sport", "mapped_by", "review", "type", "name", "moving_min", "elapsed_min",
-    "distance_km", "load", "avg_watts", "np_watts", "avg_hr", "max_hr", "intensity", "trainer", "source", "detail",
+    "distance_km", "load", "power_load", "hr_load", "icu_ftp", "avg_watts", "np_watts", "avg_hr", "max_hr", "intensity",
+    "trainer", "source", "detail",
 )  # fmt: skip
 WELLNESS_FIELDS = (
     "date", "readiness", "readiness_reason", "resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score",
@@ -99,6 +100,9 @@ def activity_row(a: dict[str, Any], strength_dates: frozenset[str] = frozenset()
         "elapsed_min": _num(a.get("elapsed_time"), 60),
         "distance_km": _num(a.get("distance"), 1000, 2),
         "load": _num(a.get("icu_training_load"), digits=0),
+        "power_load": _num(a.get("power_load"), digits=0),  # power TSS, when there was power
+        "hr_load": _num(a.get("hr_load"), digits=0),  # hrTSS
+        "icu_ftp": _num(a.get("icu_ftp"), digits=0),  # the FTP intervals.icu held for this activity
         "avg_watts": _num(a.get("icu_average_watts", a.get("average_watts")), digits=0),
         "np_watts": _num(a.get("icu_weighted_avg_watts"), digits=0),
         "avg_hr": _num(a.get("average_heartrate"), digits=0),

@@ -149,10 +149,16 @@ The daily run:
    sessions; the day's readiness, sleep and load; a one-line verdict and a note for today,
    from the rules in `pipeline/review/debrief.py` (`python -m pipeline.review.debrief --print`)
 8. **brief**: `derived/today.md` to read and `derived/today.json` for anything else to use,
-   with yesterday's debrief in it:
-   the date, status (provisional or final) and when it was generated, readiness colour and reason, each session today (watt targets, or strength
-   groups as kg × reps @ RPE cap with the reason), yesterday's grades, the flags from the
-   latest Sunday review, and anything in the pipeline that failed
+   with yesterday's debrief in it: the date, status (provisional or final) and when it was
+   generated, readiness colour and reason, each session today (watt targets, or strength
+   groups as kg × reps @ RPE cap with the reason), the flags from the latest Sunday review,
+   and anything in the pipeline that failed
+9. **dashboard**: `derived/dashboard.json` (chart-ready data for ten charts),
+   `derived/dashboard.html` (one self-contained page: open it from the `data` branch, works on
+   a phone, light and dark) and `derived/email/` (PNG charts, `dashboard_email.html` and
+   `manifest.json` for an email). The load model, CTL 42 days, ATL 7 days, form = CTL - ATL
+   from power TSS or hrTSS plus a Grind Load correction, is documented in
+   `pipeline/dashboard/load.py` (`python -m pipeline.dashboard` builds it on its own)
 
 **Read the brief** on the `data` branch: in the GitHub app open the repo, switch the
 branch to `data`, and open `today.md` (and `week.md` on Sundays).

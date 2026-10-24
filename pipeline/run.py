@@ -6,6 +6,7 @@
 daily:  ingest (last 14 days) -> readiness -> prescribe (7 days) -> publish (7 days)
         -> review yesterday -> (Sundays: weekly) -> debrief yesterday (derived/debrief.md, .json)
         -> brief (derived/today.md, today.json, with the debrief in it)
+        -> dashboard (derived/dashboard.json, dashboard.html, email/)
 weekly: the drift review for the week ending on the latest Sunday (derived/week.md)
 
 The workflow fires a few times each morning; `daily` decides for itself whether to go:
@@ -46,6 +47,7 @@ from pipeline import brief as brief_mod
 from pipeline import notify as notify_mod
 from pipeline.athlete import load_athlete
 from pipeline.brief import day_status, short_readiness
+from pipeline.dashboard import __main__ as dashboard_main
 from pipeline.ingest.__main__ import main as ingest_main
 from pipeline.ingest.intervals import IntervalsClient
 from pipeline.notify import NotifyError
@@ -175,6 +177,7 @@ class Runner:
             self.weekly()
         self.step("debrief", self.debrief, lambda out, _: _last_line(out))
         self.step("brief", self.brief, lambda out, _: _last_line(out))
+        self.step("dashboard", self.dashboard, lambda out, _: _last_line(out))
 
     def weekly(self) -> None:
         sunday = last_sunday(self.day)
@@ -202,13 +205,17 @@ class Runner:
                   + (f" ({self.status_reason})" if self.status_reason else ""))  # fmt: skip
         return 0
 
+    def client(self) -> IntervalsClient | None:
+        """An intervals.icu client for the read-only extras (detail, streams); None without a key."""
+        try:
+            return IntervalsClient(require_env("INTERVALS_ICU_API_KEY", self.env), require_env("INTERVALS_ICU_ATHLETE_ID", self.env),
+                                   cache_dir=Path("cache"), transport=self.transport, sleep=self.sleep)  # fmt: skip
+        except MissingSetting:
+            return None  # the step still runs on what's in derived/
+
     def debrief(self) -> int:
         plan, athlete = load_checked(Path("config/plan.yaml"))  # a PlanLoadError fails the step
-        try:
-            client = IntervalsClient(require_env("INTERVALS_ICU_API_KEY", self.env), require_env("INTERVALS_ICU_ATHLETE_ID", self.env),
-                                     cache_dir=Path("cache"), transport=self.transport, sleep=self.sleep)  # fmt: skip
-        except MissingSetting:
-            client = None  # the debrief still runs on what's in derived/
+        client = self.client()
         try:
             b = debrief_mod.build(self.day - dt.timedelta(days=1), plan, athlete, self.derived, debrief_mod.Fetch(client))
         finally:
@@ -216,6 +223,18 @@ class Runner:
                 client.close()
         debrief_mod.write(b, self.derived)
         print(f"wrote debrief.md and debrief.json: {b['verdict']}")
+        return 0
+
+    def dashboard(self) -> int:
+        plan, athlete = load_checked(Path("config/plan.yaml"))
+        client = self.client()
+        try:
+            d, manifest = dashboard_main.build_all(plan, athlete, self.derived, self.day, debrief_mod.Fetch(client), Path("training/goals.md"))
+        finally:
+            if client is not None:
+                client.close()
+        last = (d["charts"]["fitness"]["days"] or [{}])[-1]
+        print(f"wrote dashboard.json, dashboard.html, email/ ({len(manifest['images'])} charts): CTL {last.get('ctl', '-')}, form {last.get('form', '-')}")
         return 0
 
     def brief(self) -> int:
