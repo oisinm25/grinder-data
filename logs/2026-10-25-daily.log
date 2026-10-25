@@ -34,7 +34,7 @@ Fri 2026-10-30  upper_de (fri_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (13 rows total)
 
-## [ok     ] publish   intervals.icu: 0 created, 12 updated, 0 stale Pedestal events deleted, 0 unchanged
+## [ok     ] publish   intervals.icu: no changes (12 events unchanged)
 Publish 2026-10-25 to 2026-10-31: 12 sessions
   2026-10-26 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
   2026-10-26 17:00  VirtualRide       70 TSS  Z2 90 min
@@ -49,7 +49,7 @@ Publish 2026-10-25 to 2026-10-31: 12 sessions
   2026-10-30 17:00  VirtualRide       85 TSS  Threshold 2 x 20 min at 92-95% FTP, 5 min easy between
   2026-10-31 07:00  Ride             140 TSS  Long ride 3 h, Z2, fuel 60-90 g carb/h
 Files: 12 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 0 created, 12 updated, 0 stale Pedestal events deleted, 0 unchanged
+intervals.icu: no changes (12 events unchanged)
 
 ## [ok     ] review    Day Sat 2026-10-24: skipped 1
 Day Sat 2026-10-24: skipped 1
