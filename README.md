@@ -139,6 +139,54 @@ branch, or `docs/requests-branch-README.md`) or run Actions > analyse > Run work
 result is committed to the `data`
 branch under `analysis/`.
 
+## Refresh the dashboard
+
+The Pedestal dashboard (a Claude Dashboard artifact,
+https://claude.ai/artifact/UWyBZJSZzpSpHvJoai4mPi) shows the data branch as 17 attached
+datasets. Its header says when it was last refreshed. To refresh it, type **run** in the
+Training chat. Any Claude session with this repo, the conda env `pedestal` and the Artifact and
+ArtifactData tools can do it. The steps:
+
+1. **Request, wait, export:**
+
+   ```
+   conda run -n pedestal python -m pipeline.dashboard.refresh
+   ```
+
+   It pushes `requests/<UTC timestamp>.json` (`{"activity": "latest"}`) to the `requests`
+   branch, which runs the `analyse` workflow. It then polls origin/data every 20 s, for up to
+   12 minutes, until `analysis/latest.json` has a `generated_at` at or after the request.
+   Finally it runs `export_rows` from origin/data into `derived/rows/`, one file per dataset.
+   It prints one JSON line:
+   `{requested_at, finished_at, result, activity_id, status_detail, rows}`. `result` is
+   `ok`, `no_new_activity`, `error` or `timed_out`. The rows are exported in every case except a
+   git failure, so the dashboard also picks up the morning run's data. It pushes only to
+   `requests`: never to main, the plan, `athlete.yaml` or the calendar. Use `--no-request` to
+   export without asking for an analysis, or `--activity <id>` for one workout.
+   `python -m pipeline.dashboard.export_rows --ref origin/data` runs the export alone.
+2. **Upload each file:** for every `derived/rows/<id>.json`, run the Artifact tool's publish with
+   `url` set to the dashboard, `asset: true` and `file_path` set to that file. A JSON file goes
+   up one per call. Keep each reply's `/_blob/<asset id>`.
+3. **Point the datasets at the new files:** list the dashboard's `datasets` collection with
+   ArtifactData, for each document's `version`. Then send one `batch` of 17 `update` writes, each
+   pinned with `if_version`. Each write sets `source` to
+   `{"kind": "file", "url": "/_blob/<asset id>", "name": "<id>.json"}` and `updated` to
+   `{"at": "<ISO UTC now>", "by": "Pedestal refresh (Claude)"}`. The dataset ids are the file
+   names: summary, today_sessions, latest_session, yesterday_items, fitness_days,
+   fitness_planned, blocks, events, weekly_load, bench_points, bench_checkpoints, lifts,
+   grinding, bike, readiness_days, compliance, body. Don't change the page (`files/index.html`).
+4. **Tidy up:** delete the assets the datasets used to point at, with the Artifact tool's
+   delete (`url` and the old asset id as `path`). Delete only those.
+5. **Report** in one line from step 1's JSON (times in Europe/Madrid):
+   - `ok`: "Requested 18:32, done 18:39".
+   - `no_new_activity`: "No new activity yet, try again in a few minutes".
+   - `error`: the error.
+   - `timed_out`: "the analysis didn't arrive within 12 minutes; the dashboard shows the last
+     one".
+
+The page reads only these datasets. Every figure on it comes from them, and `summary.exported_at`
+is the "Last refreshed" time.
+
 ## Every morning, in the cloud
 
 `.github/workflows/daily.yml` runs on GitHub Actions, so nothing depends on a PC being on.
