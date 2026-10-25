@@ -91,10 +91,13 @@ CTL shown alongside for comparison.
 
 **Where it lives**
 - `derived/dashboard.json`: chart-ready data, written daily on the `data` branch.
-- `derived/dashboard.html`: one self-contained page (no network) built from it, for opening
-  locally or attaching.
-- The morning brief (Claude scheduled task) reads `dashboard.json` and renders the
-  headline charts (fitness and fatigue, yesterday, bench line, readiness) in the styled brief.
+- `derived/dashboard.html`: one self-contained page (no network) built from it, kept as an
+  offline fallback.
+- **The main dashboard is a Claude Artifact made from the Dashboard type:** one private,
+  pinned page in Claude ("Pedestal dashboard"), always at the same address. Its data is
+  refreshed from `dashboard.json` (and `analysis/latest.json`) by Claude: after every "run"
+  from a chat, on "refresh the dashboard", and optionally by the morning brief task.
+  Pedestal computes; the Artifact only displays.
 
 **Email version** (email clients don't run JavaScript, and Gmail strips SVG, so the
 interactive page can't be sent as the email body):
@@ -106,8 +109,8 @@ interactive page can't be sent as the email body):
   debrief, then the charts.
 - `derived/email/manifest.json`: list of image files with their `cid` and alt text.
 - The morning brief sends one email to Gmail: its own day plan first, then the training
-  section from `dashboard_email.html` with the PNGs inline, and `dashboard.html` attached
-  for the full interactive view.
+  section from `dashboard_email.html` with the PNGs inline, and a link to the Pedestal
+  dashboard Artifact for the full interactive view.
 - If today's files are missing or stale, the email says so and leaves the charts out.
 
 ---
@@ -136,8 +139,8 @@ not the next morning.
    commits to the `data` branch.
 7. Never publishes to the calendar and never touches `today.json`.
 
-**In the chat:** Claude reads `latest.json`, shows the breakdown and charts, and
-republishes one persistent "Workout debrief" page.
+**In the chat:** Claude reads `latest.json`, shows the breakdown and charts, and refreshes
+the Pedestal dashboard Artifact so it includes the session (a "Latest session" section).
 
 ---
 
