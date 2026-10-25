@@ -344,7 +344,7 @@ def note_for_today(items: list[dict], context: dict, today: list[ScheduledSessio
         return "Amber today: last weights held, RPE cap 8."
     rough = next((i for i in items if i.get("grade") in ("faded", "off_target")), None)
     if rough:
-        hard = next((s for s in today if _hard(s, athlete)), None)
+        hard = next((s for s in today if hard_session(s, athlete)), None)
         if hard:
             return f"{_short(rough['summary'])} faded: start today's {_short(hard.session.summary)} at the bottom of its band."
         rep = f" in rep {rough['reps'][-1]['n']}" if rough.get("reps") else ""
@@ -364,7 +364,7 @@ def note_for_today(items: list[dict], context: dict, today: list[ScheduledSessio
     return f"Today: {_short(work[0].session.summary)}." if work else "Rest today."
 
 
-def _hard(s: ScheduledSession, athlete: Athlete) -> bool:
+def hard_session(s: ScheduledSession, athlete: Athlete) -> bool:
     if s.session.modality == "strength":
         return any(g.role == "top" for ex in s.session.exercises or [] for g in ex.groups)
     ftp = athlete.ftp.get(s.session.modality)

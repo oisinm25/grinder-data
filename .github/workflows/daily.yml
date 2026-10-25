@@ -72,10 +72,14 @@ jobs:
           sh ../.githooks/pre-commit # the same secret check as main
           if git diff --cached --quiet; then
             echo "no data changes"
-          else
-            git commit -q -m "data: $(date +%F) run ${GITHUB_RUN_ID}"
-            git push origin HEAD:refs/heads/data
+            exit 0
           fi
+          git commit -q -m "data: $(date +%F) run ${GITHUB_RUN_ID}"
+          for i in 1 2 3; do # an on-demand analysis may push to data at the same time
+            git pull -q --rebase origin data && git push origin HEAD:refs/heads/data && exit 0
+            sleep 5
+          done
+          exit 1
 
       - name: Keep the .fit/.zwo files for a week
         if: always()

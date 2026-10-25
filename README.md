@@ -118,6 +118,27 @@ next daily run would make. `--yes` archives the old plan to `plans/archive/`, co
 one to `config/plan.yaml` and records it in `plans/HISTORY.md`; commit those. From the phone,
 open a pull request with the plan file: the `plan-check` workflow comments the same diff.
 
+## Analyse a workout now
+
+After a key session, don't wait for the morning:
+
+```
+conda run -n pedestal python -m pipeline.analyse --activity latest      # or an activity id
+```
+
+It ingests the last 3 days, then writes `derived/analysis/<date>-<activity_id>.md` and `.json`
+and `latest.json`: the breakdown against the planned session, power-curve points, fitness
+before and after, form tomorrow and going into the next key session, the week's share of
+its `weekly_tss`, new bests, and anchor flags (e.g. a 20-min best x 0.95 more than 3% above
+the FTP in `athlete.yaml`). Flags only: it never edits `athlete.yaml`, the plan, the
+calendar or `today.json`. With `latest`, an activity already analysed gives
+`no_new_activity`.
+
+In the cloud, push a request file to the `requests` branch (format: `requests/README.md` on that
+branch, or `docs/requests-branch-README.md`) or run Actions > analyse > Run workflow; the
+result is committed to the `data`
+branch under `analysis/`.
+
 ## Every morning, in the cloud
 
 `.github/workflows/daily.yml` runs on GitHub Actions, so nothing depends on a PC being on.
