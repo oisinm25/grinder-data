@@ -112,6 +112,35 @@ interactive page can't be sent as the email body):
 
 ---
 
+## v1.4: on-demand workout analysis ("run" from a chat)
+
+**Why:** after a key session, see the breakdown and what it did to fitness straight away,
+not the next morning.
+
+**Trigger:** a chat with Claude (with `grinder-data` attached) pushes a request file to a
+`requests` branch: `requests/<timestamp>.json` with `{"activity": "latest" | "<id>",
+"requested_at": "..."}`. Workflow `analyse.yml` runs on push to `requests` (and on
+`workflow_dispatch`), separate `concurrency` group from the daily run, no time window.
+
+**`python -m pipeline.analyse --activity latest|<id>`:**
+1. Ingest the last 3 days (activities, wellness, strength log).
+2. If no activity newer than the last analysed one exists: write status `no_new_activity`.
+3. Breakdown: intervals vs targets, NP, IF, TSS, HR drift, power-curve points; strength
+   sets vs prescription and e1RM change; grinding reps, fade, Grind Load.
+4. Fitness impact: session load; CTL, ATL and form before and after; projected form
+   tomorrow and on the next key session using the plan's planned load; share of the
+   week's `weekly_tss` done.
+5. New bests and anchor flags (e.g. a 20-min effort implying FTP more than 3% above the
+   anchor). Flags only: never edits `athlete.yaml` or the plan.
+6. Writes `derived/analysis/<date>-<activity_id>.json` and `.md`, plus `latest.json`, and
+   commits to the `data` branch.
+7. Never publishes to the calendar and never touches `today.json`.
+
+**In the chat:** Claude reads `latest.json`, shows the breakdown and charts, and
+republishes one persistent "Workout debrief" page.
+
+---
+
 ## Later ideas
 
 - Daily Inputs sheet (Google Sheets) as the logging front end, pre-filled with prescriptions.
