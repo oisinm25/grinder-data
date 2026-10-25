@@ -1,6 +1,11 @@
 date,slot,session,modality,item,planned,actual,grade,note
+2026-10-19,mon_am,test_bench,strength,bench_press amrap,1 x 20 @ 100 kg,1 x 8 @ 100 kg RPE 8.5,logged,"test result, not graded"
+2026-10-19,mon_am,test_bench,strength,chest_supported_row work,3 x 10 @ choose RPE<=7,,skipped,not logged
+2026-10-19,mon_pm,z2_60,bike,session,60 min,,skipped,no matching activity
+2026-10-20,tue_am,test_handbike_20,handbike,session,53 min,,skipped,no matching activity
 2026-10-21,wed_am,test_lower,strength,trap_bar_deadlift test,1 x 5 @ choose RPE<=8,1 x 6 @ 180 kg,logged,first weight logged; it's next week's basis
 2026-10-21,wed_am,test_lower,strength,rfe_split_squat work,2 x 8 @ choose RPE<=7,,skipped,not logged
 2026-10-21,wed_pm,z2_60,bike,session,60 min,"27 min, activity i200384301",missed,under 50% of the planned duration
 2026-10-22,thu_am,test_grinding,grinding,session,35 min,,skipped,no matching activity
 2026-10-23,fri_pm,z2_45_openers,bike,session,45 min,"29 min, activity i200663412",done,no interval data to grade power
+2026-10-24,sat_am,test_bike_20,bike,session,65 min,,skipped,no matching activity

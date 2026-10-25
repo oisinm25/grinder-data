@@ -1,0 +1,26 @@
+{
+ "date": "2026-10-24",
+ "verdict": "Missed: TEST - 20-min bike test on the power meter, outdoors.",
+ "note_for_today": "Rest today.",
+ "context": {
+  "readiness": "green",
+  "readiness_reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6",
+  "sleep_h": 7.37,
+  "load_done": 0,
+  "load_planned": 75
+ },
+ "items": [
+  {
+   "kind": "endurance",
+   "slot": "sat_am",
+   "session": "test_bike_20",
+   "modality": "bike",
+   "summary": "TEST - 20-min bike test on the power meter, outdoors",
+   "planned_min": 65,
+   "planned_tss": 75.0,
+   "grade": "skipped",
+   "grade_note": "no matching activity"
+  }
+ ],
+ "problems": []
+}

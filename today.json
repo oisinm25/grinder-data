@@ -1,9 +1,11 @@
 {
- "date": "2026-10-24",
- "generated_at": "2026-10-24T08:57",
+ "date": "2026-10-25",
+ "status": "provisional",
+ "status_reason": "no sleep yet",
+ "generated_at": "2026-10-25T06:40+01:00",
  "readiness": {
-  "colour": "green",
-  "reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6"
+  "colour": null,
+  "reason": "no call: no HRV; resting HR 58 <= 62.4 (baseline 57.4 + 5); no sleep"
  },
  "block": {
   "id": "block0",
@@ -11,89 +13,55 @@
   "week": "test-week",
   "design_pending": false
  },
- "sessions": [
-  {
-   "slot": "sat_am",
-   "order": 0,
-   "session": "test_bike_20",
-   "modality": "bike",
-   "summary": "TEST - 20-min bike test on the power meter, outdoors",
-   "environment": "outdoor",
-   "duration_min": 65,
-   "tss": 75.0,
-   "readiness_exempt": true,
-   "steps": [
-    {
-     "kind": "warmup",
-     "duration_s": 1200,
-     "target": "165-225 W",
-     "anchor": "pct_ftp",
-     "watts": [
-      165,
-      225
-     ],
-     "provisional": false
-    },
-    {
-     "kind": "work",
-     "duration_s": 300,
-     "target": "315-345 W",
-     "anchor": "pct_ftp",
-     "watts": [
-      315,
-      345
-     ],
-     "provisional": false,
-     "note": "Blow-out effort"
-    },
-    {
-     "kind": "rest",
-     "duration_s": 600,
-     "target": "150-180 W",
-     "anchor": "pct_ftp",
-     "watts": [
-      150,
-      180
-     ],
-     "provisional": false
-    },
-    {
-     "kind": "test",
-     "duration_s": 1200,
-     "target": "RPE 10",
-     "anchor": "rpe",
-     "note": "Even pacing; start near 300 W"
-    },
-    {
-     "kind": "cooldown",
-     "duration_s": 600,
-     "target": "135-165 W",
-     "anchor": "pct_ftp",
-     "watts": [
-      135,
-      165
-     ],
-     "provisional": false
-    }
-   ],
-   "provisional_ftp": false
-  }
- ],
+ "sessions": [],
  "yesterday": {
-  "date": "2026-10-23",
+  "date": "2026-10-24",
   "grades": [
    {
-    "session": "z2_45_openers",
+    "session": "test_bike_20",
     "item": "session",
-    "grade": "done",
-    "note": "no interval data to grade power"
+    "grade": "skipped",
+    "note": "no matching activity"
    }
   ],
   "status": "graded"
  },
- "review": null,
+ "debrief": {
+  "date": "2026-10-24",
+  "verdict": "Missed: TEST - 20-min bike test on the power meter, outdoors.",
+  "note_for_today": "Rest today.",
+  "context": {
+   "readiness": "green",
+   "readiness_reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6",
+   "sleep_h": 7.37,
+   "load_done": 0,
+   "load_planned": 75
+  },
+  "items": [
+   {
+    "kind": "endurance",
+    "slot": "sat_am",
+    "session": "test_bike_20",
+    "modality": "bike",
+    "summary": "TEST - 20-min bike test on the power meter, outdoors",
+    "planned_min": 65,
+    "planned_tss": 75.0,
+    "grade": "skipped",
+    "grade_note": "no matching activity"
+   }
+  ],
+  "problems": []
+ },
+ "review": {
+  "week_end": "2026-10-25",
+  "flags": [
+   "load: 272 TSS done, under the 300-400 target (advisory: targets provisional)",
+   "sessions: 5 endurance sessions missed or skipped"
+  ]
+ },
  "pipeline": {
   "failed": [],
   "skipped": []
- }
+ },
+ "alerts_sent": []
 }

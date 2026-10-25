@@ -1,0 +1,2 @@
+week_end,week_start,block,week,planned_tss,actual_tss,tss_target,held,faded,off_target,done,missed,skipped,strength_held,strength_under,strength_over_rpe,strength_logged,strength_skipped,green,amber,red,no_call,hrv_7d,hrv_28d,rhr_7d,rhr_28d,ctl,atl,form,power_index,bench_e1rm,bench_line,bench_gap_kg,flags
+2026-10-25,2026-10-19,block0,test-week,355,272,300-400,0,0,0,1,1,4,0,0,0,2,2,5,0,1,1,45.7,43.9,55.9,57.4,28.9,37,-8.1,,131.7,131.6,0,"load: 272 TSS done, under the 300-400 target (advisory: targets provisional) | sessions: 5 endurance sessions missed or skipped"

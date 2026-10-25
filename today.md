@@ -1,17 +1,24 @@
-# Pedestal brief: Sat 24 Oct 2026
+# Pedestal brief: Sun 25 Oct 2026
 
-**Readiness: GREEN**: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6
+*Status: provisional (no sleep yet) · generated 2026-10-25 06:40*
+
+**Readiness: no call**: no call: no HRV; resting HR 58 <= 62.4 (baseline 57.4 + 5); no sleep
 
 Re-entry and test, week test-week
 
-## AM: TEST - 20-min bike test on the power meter, outdoors
-bike · 65 min · 75 TSS · test: readiness-exempt
+Rest day.
 
-- warmup 20:00 165-225 W
-- work 5:00 315-345 W (Blow-out effort)
-- rest 10:00 150-180 W
-- test 20:00 RPE 10 (Even pacing; start near 300 W)
-- cooldown 10:00 135-165 W
+## Yesterday's debrief: Sat 24 Oct 2026
 
-## Yesterday (Fri 23 Oct)
-- **done** z2_45_openers: no interval data to grade power
+**Missed: TEST - 20-min bike test on the power meter, outdoors.**
+
+Note for today: Rest today.
+
+readiness green · sleep 7.37 h · load 0 of 75 planned TSS
+
+### AM: TEST - 20-min bike test on the power meter, outdoors
+skipped: no matching activity
+
+## Flags (review of the week ending Sun 25 Oct)
+- load: 272 TSS done, under the 300-400 target (advisory: targets provisional)
+- sessions: 5 endurance sessions missed or skipped
