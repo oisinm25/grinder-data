@@ -11,7 +11,7 @@ from pipeline.prescribe import LogRow, Prescription
 from pipeline.review.__main__ import last_sunday, main
 from pipeline.review.compliance import Grade, grade_endurance, grade_strength, match_activities, power_steps
 from pipeline.review.drift import review_week, strength_line_at
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT
 
 D = dt.date
 MON, FRI, SAT, SUN = D(2026, 10, 26), D(2026, 10, 30), D(2026, 10, 31), D(2026, 11, 1)
@@ -259,7 +259,7 @@ class FakeIntervals:
 def test_cli_week(derived, tmp_path, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
     fake = FakeIntervals()
-    code = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--cache", str(tmp_path / "cache")],
+    code = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE), "--cache", str(tmp_path / "cache")],
                 env=FAKE_ENV, transport=httpx.MockTransport(fake), today=D(2026, 11, 1))  # fmt: skip
     out = capsys.readouterr().out
     assert code == 0, out
@@ -273,7 +273,7 @@ def test_cli_week(derived, tmp_path, capsys, monkeypatch):
     assert grades[("z2_90", "session")] == "held"  # ride average 205 W inside 195-216
     assert grades[("upper_me", "bench_press top")] == "held"
     assert grades[("long_ride_3h", "session")] == "skipped"
-    rerun = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--cache", str(tmp_path / "cache"), "--offline"],
+    rerun = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE), "--cache", str(tmp_path / "cache"), "--offline"],
                  env=FAKE_ENV, transport=httpx.MockTransport(fake), today=D(2026, 11, 1))  # fmt: skip
     assert rerun == 0
     with open(derived / "weekly.csv", newline="", encoding="utf-8") as f:
@@ -282,7 +282,7 @@ def test_cli_week(derived, tmp_path, capsys, monkeypatch):
 
 def test_cli_today_is_pending_not_skipped(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
-    assert main(["--week-ending", "2026-11-01", "--derived", str(derived), "--no-intervals"], env={}, today=SAT) == 0
+    assert main(["--week-ending", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE), "--no-intervals"], env={}, today=SAT) == 0
     out = capsys.readouterr().out
     assert "(graded to 2026-10-31)" in out and "pending 1" in out
     with open(derived / "compliance.csv", newline="", encoding="utf-8") as f:
@@ -292,19 +292,19 @@ def test_cli_today_is_pending_not_skipped(derived, capsys, monkeypatch):
 
 def test_cli_without_intervals_needs_no_secret(derived, tmp_path, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
-    code = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--no-intervals"], env={}, today=D(2026, 11, 1))
+    code = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE), "--no-intervals"], env={}, today=D(2026, 11, 1))
     assert code == 0 and "done" in capsys.readouterr().out
 
 
 def test_cli_missing_secret_suggests_no_intervals(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
-    code = main(["--week-ending", "2026-11-01", "--derived", str(derived)], env={}, today=D(2026, 11, 1))
+    code = main(["--week-ending", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE)], env={}, today=D(2026, 11, 1))
     assert code == 2 and "--no-intervals" in capsys.readouterr().err
 
 
 def test_cli_day_grades_one_day(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
-    assert main(["--day", "2026-10-26", "--derived", str(derived), "--no-intervals"], env={}, today=D(2026, 10, 27)) == 0
+    assert main(["--day", "2026-10-26", "--derived", str(derived), "--athlete", str(ATHLETE), "--no-intervals"], env={}, today=D(2026, 10, 27)) == 0
     out = capsys.readouterr().out
     assert out.startswith("Day Mon 2026-10-26: ")
     with open(derived / "compliance.csv", newline="", encoding="utf-8") as f:
@@ -314,7 +314,7 @@ def test_cli_day_grades_one_day(derived, capsys, monkeypatch):
 
 def test_cli_day_on_a_sunday_reviews_the_week(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
-    assert main(["--day", "2026-11-01", "--derived", str(derived), "--no-intervals"], env={}, today=D(2026, 11, 2)) == 0
+    assert main(["--day", "2026-11-01", "--derived", str(derived), "--athlete", str(ATHLETE), "--no-intervals"], env={}, today=D(2026, 11, 2)) == 0
     assert capsys.readouterr().out.startswith("Week 2026-10-26 to 2026-11-01")
     assert (derived / "weekly.csv").exists()
     week = (derived / "week.md").read_text(encoding="utf-8")
@@ -327,6 +327,6 @@ def test_cli_day_on_a_sunday_reviews_the_week(derived, capsys, monkeypatch):
 def test_cli_rejects_non_sunday_and_future_weeks(derived, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
     with pytest.raises(SystemExit):
-        main(["--week-ending", "2026-10-31", "--derived", str(derived)], env={})
-    assert main(["--week-ending", "2026-11-08", "--derived", str(derived)], env={}, today=D(2026, 11, 1)) == 0
+        main(["--week-ending", "2026-10-31", "--derived", str(derived), "--athlete", str(ATHLETE)], env={})
+    assert main(["--week-ending", "2026-11-08", "--derived", str(derived), "--athlete", str(ATHLETE)], env={}, today=D(2026, 11, 1)) == 0
     assert "hasn't started yet" in capsys.readouterr().out

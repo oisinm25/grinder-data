@@ -6,7 +6,7 @@ schema_version: 1
 lthr_bpm: 170
 
 ftp:                             # pct_ftp targets resolve against the session's modality
-  bike:     { watts: 300 }
+  bike:     { watts: 340 }       # 20-min test 361 W on 25 Oct 2026, Coll de sa Creu; 95% = 343, rounded down for a climbing test
   handbike: { watts: 252, provisional: true, note: Confirm or replace from the Block 0 20-min hand-bike test }
 
 curves:                          # pct_curve targets: [<key>, pct]; key suffix = duration

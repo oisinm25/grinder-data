@@ -10,7 +10,7 @@ import pytest
 
 from pipeline import run as run_mod
 from pipeline.run import main
-from tests.conftest import ROOT
+from tests.conftest import ROOT, use_test_athlete
 
 REAL_BRIEF = run_mod.Runner.brief  # kept before the steps fixture swaps it for a fake
 MON = dt.date(2026, 10, 26)
@@ -25,6 +25,7 @@ ORDER = ["ingest", "readiness", "prescribe", "publish", "review", "debrief", "br
 def workdir(tmp_path, monkeypatch):
     """A copy of the repo's config and strength log; the run writes derived/ and exports/ here."""
     shutil.copytree(ROOT / "config", tmp_path / "config")
+    use_test_athlete(tmp_path / "config")
     shutil.copytree(ROOT / "training", tmp_path / "training")
     monkeypatch.chdir(tmp_path)
     return tmp_path

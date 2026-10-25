@@ -9,7 +9,13 @@ from pipeline.common import load_yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PLAN = ROOT / "config" / "plan.yaml"
-ATHLETE = ROOT / "config" / "athlete.yaml"
+ATHLETE = ROOT / "tests" / "fixtures" / "athlete.yaml"  # frozen anchors (bike FTP 300 W): see the file
+REAL_ATHLETE = ROOT / "config" / "athlete.yaml"
+
+
+def use_test_athlete(config_dir: Path) -> None:
+    """Put the frozen test anchors into a copied config/ directory."""
+    (config_dir / "athlete.yaml").write_bytes(ATHLETE.read_bytes())
 
 _PLAN_DATA = load_yaml(PLAN)
 _ATHLETE_DATA = load_yaml(ATHLETE)

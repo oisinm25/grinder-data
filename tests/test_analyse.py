@@ -9,7 +9,7 @@ import pytest
 
 from pipeline.analyse import analyse, anchor_flags, main, power_curve, to_markdown
 from pipeline.plan.schema import validate_plan
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT, use_test_athlete
 
 MADRID = ZoneInfo("Europe/Madrid")
 D = dt.date
@@ -158,7 +158,7 @@ def test_grinding_session(plan, athlete, derived):
 def test_grinding_curve_flag():
     from pipeline.athlete import load_athlete
 
-    athlete = load_athlete(ROOT / "config" / "athlete.yaml")
+    athlete = load_athlete(ATHLETE)
     flags = anchor_flags("grinding", {60: 495, 240: 305}, athlete)
     assert [f["anchor"] for f in flags] == ["curves.grinding_60s"]  # 495 is +5.3%; 305 is only +1.3%
 
@@ -228,6 +228,7 @@ class FakeIntervals:
 @pytest.fixture
 def workdir(tmp_path, monkeypatch):
     shutil.copytree(ROOT / "config", tmp_path / "config")
+    use_test_athlete(tmp_path / "config")
     shutil.copytree(ROOT / "training", tmp_path / "training")
     (tmp_path / "derived").mkdir()
     (tmp_path / "derived" / "today.json").write_text('{"date": "2026-10-24", "status": "final"}')

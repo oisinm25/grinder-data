@@ -14,7 +14,7 @@ from pipeline.publish.formats import fit_crc, fit_workout, text_duration, workou
 from pipeline.athlete import load_athlete
 from pipeline.common import load_yaml
 from pipeline.ingest.intervals import IntervalsClient
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT
 
 D = dt.date
 MON, SUN = D(2026, 10, 26), D(2026, 11, 1)
@@ -247,10 +247,11 @@ def test_push(tmp_path, capsys, monkeypatch):
 def test_push_logs_no_changes(tmp_path, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
     strength = tmp_path / "none.csv"
-    events, _ = build(validate_plan(load_yaml(ROOT / "config" / "plan.yaml"), load_athlete(ROOT / "config" / "athlete.yaml")),
-                      load_athlete(ROOT / "config" / "athlete.yaml"), None, {}, MON, SUN)  # fmt: skip
+    events, _ = build(validate_plan(load_yaml(ROOT / "config" / "plan.yaml"), load_athlete(ATHLETE)),
+                      load_athlete(ATHLETE), None, {}, MON, SUN)  # fmt: skip
     fake = FakeCalendar([{**e, "id": i} for i, e in enumerate(events)])
-    argv = ["--from", "2026-10-26", "--exports", str(tmp_path), "--strength", str(strength), "--wellness", str(tmp_path / "w.csv"), "--push"]
+    argv = ["--from", "2026-10-26", "--exports", str(tmp_path), "--strength", str(strength), "--wellness", str(tmp_path / "w.csv"),
+            "--athlete", str(ATHLETE), "--push"]
     assert main(argv, env=FAKE_ENV, transport=httpx.MockTransport(fake), sleep=lambda s: None) == 0
     assert "intervals.icu: no changes (13 events unchanged)" in capsys.readouterr().out
     assert [m for m, _, _ in fake.calls] == ["GET"]

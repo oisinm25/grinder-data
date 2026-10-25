@@ -7,9 +7,9 @@ import yaml
 
 from pipeline.common import load_yaml
 from pipeline.plan.adopt import main
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT
 
-ATHLETE = ROOT / "config" / "athlete.yaml"
+
 TODAY = "2026-10-24"  # Saturday: block0's test week is still running
 
 

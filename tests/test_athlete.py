@@ -1,8 +1,9 @@
 import pytest
 from pydantic import ValidationError
 
-from pipeline.athlete import Athlete
+from pipeline.athlete import Athlete, load_athlete
 from pipeline.plan.schema import format_errors
+from tests.conftest import REAL_ATHLETE
 
 
 def errors_for(data) -> list[str]:
@@ -11,8 +12,10 @@ def errors_for(data) -> list[str]:
     return format_errors(exc.value, data)
 
 
-def test_repo_athlete_values(athlete):
-    assert athlete.ftp["bike"].watts == 300
+def test_repo_athlete_values():
+    """The real config/athlete.yaml (the rest of the suite uses frozen anchors in tests/fixtures/)."""
+    athlete = load_athlete(REAL_ATHLETE)
+    assert athlete.ftp["bike"].watts == 340  # 20-min test 361 W on 25 Oct 2026
     assert athlete.ftp["handbike"].watts == 252 and athlete.ftp["handbike"].provisional
     assert not athlete.ftp["bike"].provisional
     assert athlete.lthr_bpm == 170

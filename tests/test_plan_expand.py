@@ -7,7 +7,7 @@ import pytest
 
 from pipeline.plan.expand import expand, week_summaries
 from pipeline.plan.schema import validate_plan
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT
 
 D = dt.date
 
@@ -194,6 +194,6 @@ def test_cli_refuses_invalid_plan(tmp_path, plan_data):
 
     plan_data["sessions"]["z2_60"]["modality"] = "cycling"
     (tmp_path / "plan.yaml").write_text(yaml.safe_dump(plan_data, sort_keys=False))
-    r = run_cli(tmp_path / "plan.yaml", "--athlete", ROOT / "config" / "athlete.yaml")
+    r = run_cli(tmp_path / "plan.yaml", "--athlete", ATHLETE)
     assert r.returncode == 1
     assert "sessions.z2_60.modality" in r.stdout
