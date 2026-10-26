@@ -4,6 +4,7 @@ import subprocess
 import pytest
 
 from pipeline.dashboard import export_rows as ex
+from tests.conftest import ATHLETE
 
 
 def dashboard():
@@ -214,10 +215,19 @@ def write_sources(root, analysis_too=True):
 def test_cli_from_a_directory(tmp_path, capsys):
     write_sources(tmp_path / "derived")
     out = tmp_path / "rows"
-    assert ex.main(["--src", str(tmp_path / "derived"), "--out", str(out)]) == 0
-    assert sorted(p.stem for p in out.glob("*.json")) == sorted(ex.build(dashboard(), today(), debrief(), analysis()))
+    assert ex.main(["--src", str(tmp_path / "derived"), "--out", str(out), "--athlete", str(ATHLETE)]) == 0
+    week = ["week_outline", "fitness_week", "zones_week", "heavy_reps_week"]
+    assert sorted(p.stem for p in out.glob("*.json")) == sorted([*ex.build(dashboard(), today(), debrief(), analysis()), *week])
     assert json.loads((out / "summary.json").read_text(encoding="utf-8"))[0]["days_to_goal"] == 172
-    assert "wrote 17 datasets" in capsys.readouterr().out
+    assert len(json.loads((out / "fitness_week.json").read_text(encoding="utf-8"))) == 7
+    assert "wrote 21 datasets" in capsys.readouterr().out
+
+
+def test_week_tables_are_read_when_present(tmp_path):
+    write_sources(tmp_path)
+    (tmp_path / "zones.csv").write_text("activity_id,date,sport,kind,zone,seconds,source\ni1,2026-10-26,bike,hr,1,60,icu\n", encoding="utf-8")
+    s = ex.read_sources(tmp_path)
+    assert s["tables"] == {"zones.csv": [{"activity_id": "i1", "date": "2026-10-26", "sport": "bike", "kind": "hr", "zone": "1", "seconds": "60", "source": "icu"}]}
 
 
 def test_missing_analysis_is_allowed_but_a_missing_dashboard_is_not(tmp_path, capsys):

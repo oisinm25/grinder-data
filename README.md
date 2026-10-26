@@ -142,7 +142,7 @@ branch under `analysis/`.
 ## Refresh the dashboard
 
 The Pedestal dashboard (a Claude Dashboard artifact,
-https://claude.ai/artifact/UWyBZJSZzpSpHvJoai4mPi) shows the data branch as 17 attached
+https://claude.ai/artifact/UWyBZJSZzpSpHvJoai4mPi) shows the data branch as 21 attached
 datasets. Its header says when it was last refreshed. To refresh it, type **run** in the
 Training chat. Any Claude session with this repo, the conda env `pedestal` and the Artifact and
 ArtifactData tools can do it. The steps:
@@ -156,9 +156,9 @@ ArtifactData tools can do it. The steps:
    It pushes `requests/<UTC timestamp>.json` (`{"activity": "latest"}`) to the `requests`
    branch, which runs the `analyse` workflow. It then polls origin/data every 20 s, for up to
    12 minutes, until `analysis/latest.json` has a `generated_at` at or after the request.
-   Finally it runs `export_rows` from origin/data into `derived/rows/`, one file per dataset.
-   It prints one JSON line:
-   `{requested_at, finished_at, result, activity_id, status_detail, rows}`. `result` is
+   Finally it runs `export_rows` from origin/data, plus the plan in `config/` for the week rows,
+   into `derived/rows/`, one file per dataset. It prints one JSON line:
+   `{requested_at, finished_at, result, activity_id, status_detail, rows, datasets}`. `result` is
    `ok`, `no_new_activity`, `error` or `timed_out`. The rows are exported in every case except a
    git failure, so the dashboard also picks up the morning run's data. It pushes only to
    `requests`: never to main, the plan, `athlete.yaml` or the calendar. Use `--no-request` to
@@ -168,13 +168,15 @@ ArtifactData tools can do it. The steps:
    `url` set to the dashboard, `asset: true` and `file_path` set to that file. A JSON file goes
    up one per call. Keep each reply's `/_blob/<asset id>`.
 3. **Point the datasets at the new files:** list the dashboard's `datasets` collection with
-   ArtifactData, for each document's `version`. Then send one `batch` of 17 `update` writes, each
+   ArtifactData, for each document's `version`. Then send one `batch` of 21 `update` writes, each
    pinned with `if_version`. Each write sets `source` to
    `{"kind": "file", "url": "/_blob/<asset id>", "name": "<id>.json"}` and `updated` to
    `{"at": "<ISO UTC now>", "by": "Pedestal refresh (Claude)"}`. The dataset ids are the file
    names: summary, today_sessions, latest_session, yesterday_items, fitness_days,
    fitness_planned, blocks, events, weekly_load, bench_points, bench_checkpoints, lifts,
-   grinding, bike, readiness_days, compliance, body. Don't change the page (`files/index.html`).
+   grinding, bike, readiness_days, compliance, body, and the four "This week" ones: week_outline,
+   fitness_week, zones_week, heavy_reps_week (step 1's `datasets` lists them all). Don't change
+   the page (`files/index.html`).
 4. **Tidy up:** delete the assets the datasets used to point at, with the Artifact tool's
    delete (`url` and the old asset id as `path`). Delete only those.
 5. **Report** in one line from step 1's JSON (times in Europe/Madrid):
@@ -185,7 +187,18 @@ ArtifactData tools can do it. The steps:
      one".
 
 The page reads only these datasets. Every figure on it comes from them, and `summary.exported_at`
-is the "Last refreshed" time.
+is the "Last refreshed" time. The "This week" section uses four of them:
+
+- `week_outline`: today-3 to today+3, from the plan, `wellness.csv`, `compliance.csv` and
+  `activities.csv`.
+- `fitness_week`: CTL, ATL and form over those days, actual to today and then projected.
+- `zones_week`: from `zones.csv`. Ingest writes it from each activity's `icu_zone_times` and
+  `icu_hr_zone_times`. Where streams exist, the seconds are recomputed with athlete.yaml's
+  anchors: bike or hand-bike FTP for power, and LTHR with Friel's 7 zones for HR.
+- `heavy_reps_week`: from `heavy_reps.csv`, the work, top and test sets at or above 90% of the
+  lift's e1RM as it stood that day.
+
+All of them are rebuilt by every refresh.
 
 ## Every morning, in the cloud
 

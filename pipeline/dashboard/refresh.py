@@ -2,8 +2,9 @@
 
 The git half of "Refresh the dashboard" (README.md): push requests/<UTC timestamp>.json to the
 `requests` branch, wait for origin/data's analysis/latest.json to have a generated_at at or after
-the request, then run export_rows from origin/data into derived/rows/. Prints one JSON line:
-{requested_at, finished_at, result, activity_id, status_detail, rows}, where result is ok,
+the request, then run export_rows from origin/data (and the plan in config/) into derived/rows/,
+one file per dashboard dataset. Prints one JSON line:
+{requested_at, finished_at, result, activity_id, status_detail, rows, datasets}, where result is ok,
 no_new_activity, error or timed_out. Uploading the rows to the Pedestal dashboard is done by Claude
 with the Artifact tools (README.md). Never touches main, the plan, athlete.yaml or the calendar.
 """
@@ -18,6 +19,7 @@ import time
 from pathlib import Path
 
 from pipeline.dashboard import export_rows
+from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
 
 UTC = dt.timezone.utc
 
@@ -93,14 +95,20 @@ def main(argv=None, *, run=subprocess.run, sleep=time.sleep, clock=time.monotoni
     parser.add_argument("--poll", type=float, default=20, help="seconds between checks of origin/data (default 20)")
     parser.add_argument("--no-request", action="store_true", help="skip the request and the wait: just export origin/data")
     parser.add_argument("--out", type=Path, default=Path("derived/rows"))
+    parser.add_argument("--plan", type=Path, default=Path("config/plan.yaml"), help="for the week rows (default: config/plan.yaml)")
+    parser.add_argument("--athlete", type=Path, help="default: athlete.yaml beside the plan")
     args = parser.parse_args(argv)
     if not (args.activity == "latest" or args.activity.replace("_", "").replace("-", "").isalnum()) or len(args.activity) > 40:
         print(f"refresh: refusing activity {args.activity!r}: 'latest' or an activity id", file=sys.stderr)
         return 2
+    try:
+        plan, athlete = load_checked(args.plan, args.athlete)
+    except PlanLoadError as e:
+        return report_load_error(e)
 
     now = now or (lambda: dt.datetime.now(UTC))
     requested = now()
-    out = {"requested_at": None, "finished_at": None, "result": None, "activity_id": None, "status_detail": "", "rows": None}
+    out = {"requested_at": None, "finished_at": None, "result": None, "activity_id": None, "status_detail": "", "rows": None, "datasets": []}
     try:
         if args.no_request:
             latest = read_latest(run=run)
@@ -115,9 +123,9 @@ def main(argv=None, *, run=subprocess.run, sleep=time.sleep, clock=time.monotoni
             out["status_detail"] = latest.get("error", "")
         s = export_rows.read_sources(ref="origin/data", git=run)
         rows = export_rows.build(s["dashboard.json"], s["today.json"], s["debrief.json"], s["analysis/latest.json"],
-                                  request=s["analysis/request"], now=now())  # fmt: skip
+                                  request=s["analysis/request"], now=now(), plan=plan, athlete=athlete, tables=s["tables"])  # fmt: skip
         export_rows.write(rows, args.out)
-        out["rows"] = str(args.out)
+        out["rows"], out["datasets"] = str(args.out), list(rows)
     except (GitError, FileNotFoundError, json.JSONDecodeError) as e:
         out["result"], out["status_detail"] = "error", str(e)
     out["finished_at"] = _stamp(now())

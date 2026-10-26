@@ -4,6 +4,7 @@ import subprocess
 from pathlib import Path
 
 from pipeline.dashboard import refresh
+from tests.conftest import ATHLETE
 from tests.test_export_rows import analysis, dashboard, debrief, today
 
 UTC = dt.timezone.utc
@@ -57,7 +58,7 @@ class Clock:
 def run(tmp_path, git, *extra, clock=None):
     clock = clock or Clock()
     times = iter([REQUESTED, REQUESTED + dt.timedelta(minutes=5), REQUESTED + dt.timedelta(minutes=6)])
-    code = refresh.main(["--out", str(tmp_path / "rows"), "--poll", "20", *extra], run=git, sleep=clock.sleep, clock=clock, now=lambda: next(times))
+    code = refresh.main(["--out", str(tmp_path / "rows"), "--poll", "20", "--athlete", str(ATHLETE), *extra], run=git, sleep=clock.sleep, clock=clock, now=lambda: next(times))
     return code, clock
 
 
@@ -78,6 +79,9 @@ def test_pushes_a_request_waits_and_exports(tmp_path, capsys):
     code, clock = run(tmp_path, git)
     out = json.loads(capsys.readouterr().out)
     assert code == 0
+    datasets = out.pop("datasets")
+    assert len(datasets) == 21 and datasets[-4:] == ["week_outline", "fitness_week", "zones_week", "heavy_reps_week"]
+    assert (tmp_path / "rows" / "week_outline.json").exists()
     assert out == {"requested_at": "2026-10-27T18:03:57Z", "finished_at": "2026-10-27T18:09:57Z", "result": "ok",
                    "activity_id": "i9", "status_detail": "", "rows": str(tmp_path / "rows")}  # fmt: skip
     assert git.pushed == {"20261027T180357Z.json": '{"activity": "latest", "requested_at": "2026-10-27T18:03:57Z", "by": "claude-chat"}\n'}
@@ -128,6 +132,13 @@ def test_no_request_just_exports(tmp_path, capsys):
     code, _ = run(tmp_path, git, "--no-request")
     assert code == 0 and not any(c[0] == "push" for c in git.calls)
     assert json.loads(capsys.readouterr().out)["requested_at"] is None
+
+
+def test_an_invalid_plan_stops_before_any_request(tmp_path, capsys):
+    git = FakeGit([new()])
+    (tmp_path / "plan.yaml").write_text("plan_id: [", encoding="utf-8")
+    assert refresh.main(["--plan", str(tmp_path / "plan.yaml"), "--athlete", str(ATHLETE)], run=git) != 0
+    assert git.calls == []
 
 
 def test_refuses_an_odd_activity(tmp_path, capsys):

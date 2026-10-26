@@ -1,8 +1,8 @@
 """python -m pipeline.ingest --from 2026-10-14 [--to DATE] [--offline] [--skip-intervals]
 
 Reads the strength log first (and stops on any error, before touching the network),
-then fetches intervals.icu activities and wellness, writes the three tidy CSVs and
-prints a short summary.
+then fetches intervals.icu activities and wellness, writes the tidy CSVs (activities,
+wellness, zones, strength, heavy_reps) and prints a short summary.
 """
 
 import argparse
@@ -18,9 +18,11 @@ from pipeline.ingest.intervals import IntervalsClient, IntervalsError
 from pipeline.ingest.strength import StrengthLogError, latest_top_sets, read_strength_log
 from pipeline.ingest.tidy import (
     ACTIVITY_FIELDS,
+    HEAVY_FIELDS,
     STRENGTH_FIELDS,
     WELLNESS_FIELDS,
     activity_row,
+    heavy_rows,
     add_readiness,
     latest_measured_wellness,
     read_csv,
@@ -29,6 +31,7 @@ from pipeline.ingest.tidy import (
     wellness_row,
     write_csv,
 )
+from pipeline.ingest.zones import ZONE_FIELDS, activity_zone_rows, merge_zone_rows
 from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
 from pipeline.settings import MissingSetting, load_env, require_env
 
@@ -99,17 +102,22 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
             ) as client:
                 raw_activities = client.activities(args.start, args.end)
                 raw_wellness = client.wellness(wellness_from, args.end)
+                strength_dates = frozenset(s.date.isoformat() for _, s in log.sets)
+                activities = [activity_row(a, strength_dates) for a in raw_activities]
+                zone_rows, zone_sources = _zones(args.out / "zones.csv", activities, raw_activities, athlete, client)
         except IntervalsError as e:
             print(f"error: {e}", file=sys.stderr)
             return 1
 
-        strength_dates = frozenset(s.date.isoformat() for _, s in log.sets)
-        activities = [activity_row(a, strength_dates) for a in raw_activities]
         act_path, well_path = args.out / "activities.csv", args.out / "wellness.csv"
         act_total = upsert_range(act_path, ACTIVITY_FIELDS, "id", activities, args.start, args.end)
         upsert_range(well_path, WELLNESS_FIELDS, "date", [wellness_row(w) for w in raw_wellness], wellness_from, args.end)
         wellness = add_readiness(read_csv(well_path), rules)
         write_csv(well_path, WELLNESS_FIELDS, wellness)
+
+        zones_path = args.out / "zones.csv"
+        merged = merge_zone_rows(read_csv(zones_path), zone_rows, {a["id"] for a in activities}, args.start.isoformat(), args.end.isoformat())
+        write_csv(zones_path, ZONE_FIELDS, merged)
 
         sports = Counter(a["sport"] for a in activities)
         by_sport = ", ".join(f"{s} {n}" for s, n in sports.most_common()) or "none"
@@ -120,6 +128,9 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
         stubs = sum(a["detail"] == "stub" for a in activities)
         if stubs:
             print(f"  {stubs} came from Strava without detail (intervals.icu doesn't serve those via the API)")
+
+        print(f"Zones: {sum(zone_sources.values())} activities ({', '.join(f'{k} {n}' for k, n in sorted(zone_sources.items())) or 'none'})"
+              f" -> {zones_path}")  # fmt: skip
 
         in_range = [r for r in wellness if args.start.isoformat() <= r["date"] <= args.end.isoformat()]
         print(f"Wellness: {len(in_range)} days in range -> {well_path} ({len(wellness)} rows incl. baseline)")
@@ -132,6 +143,9 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
     rows = strength_rows(log)
     write_csv(strength_path, STRENGTH_FIELDS, rows)
     print(f"Strength: {len(rows)} sets from {args.log} -> {strength_path}")
+    heavy = heavy_rows(rows)
+    write_csv(args.out / "heavy_reps.csv", HEAVY_FIELDS, heavy)
+    print(f"Heavy reps: {sum(int(r['heavy_reps']) for r in heavy)} reps at >= 90% e1RM in {len(heavy)} sets -> {args.out / 'heavy_reps.csv'}")
     tops = latest_top_sets(log)
     width = max((len(lift) for lift in tops), default=0)
     for lift, s in tops.items():
@@ -140,6 +154,29 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
     for w in log.warnings:
         print(f"  warning: {args.log} {w}")
     return 0
+
+
+def _zones(path: Path, activities: list[dict], raw: list[dict], athlete, client: IntervalsClient):
+    """zones.csv rows for this fetch, and how many activities came from each source. An activity whose
+    zones were already recomputed from streams keeps those rows (its streams are fetched once)."""
+    done = {}
+    for r in read_csv(path):
+        if r["source"] == "streams":
+            done.setdefault(r["activity_id"], []).append(r)
+
+    def streams(aid: str):
+        try:
+            return client.activity_streams(aid)
+        except IntervalsError:
+            return None  # offline without a cached copy, or not served: keep intervals.icu's seconds
+
+    rows, sources = [], Counter()
+    for row, a in zip(activities, raw):
+        got = done.get(row["id"]) or activity_zone_rows(row, a, athlete, streams)
+        if got:
+            sources["streams" if any(r["source"] == "streams" for r in got) else "icu"] += 1
+        rows += got
+    return rows, sources
 
 
 if __name__ == "__main__":

@@ -47,6 +47,9 @@ WELLNESS_FIELDS = (
     "mood", "motivation", "spo2", "steps", "hrv_baseline", "hrv_sd", "resting_hr_baseline",
 )  # fmt: skip
 STRENGTH_FIELDS = ("date", "session", "lift", "role", "set_no", "kg", "reps", "rpe", "e1rm_kg", "notes", "log_line")
+HEAVY_FIELDS = ("date", "lift", "role", "kg", "reps", "e1rm_basis_kg", "basis", "pct_of_e1rm", "heavy_reps")
+HEAVY_ROLES = ("top", "amrap", "work", "test")  # work, top and test sets; backoff and speed sets don't count
+HEAVY_PCT = 0.90
 MEASURED_WELLNESS = ("resting_hr", "hrv", "hrv_sdnn", "sleep_h", "sleep_score", "garmin_readiness")
 
 
@@ -191,6 +194,27 @@ def upsert_range(
     ordered = sorted(merged.values(), key=lambda r: (r.get("date", ""), r.get("start_local", ""), r[key]))
     write_csv(path, fields, ordered)
     return len(ordered)
+
+
+def heavy_rows(strength: list[dict[str, str]]) -> list[dict[str, str]]:
+    """One row per work, top (incl. AMRAP) or test set: its load as a share of the lift's e1RM as it
+    stood that day, and its reps when that share is >= 90%. The e1RM basis is the lift's best e1RM on
+    the latest earlier day it was logged (any role); a lift's first day uses the set's own e1RM."""
+    out, latest = [], {}
+    for day in sorted({r["date"] for r in strength}):
+        todays = [r for r in strength if r["date"] == day]
+        for r in todays:
+            if r["role"] not in HEAVY_ROLES:
+                continue
+            kg, reps, own = float(r["kg"]), int(r["reps"]), float(r["e1rm_kg"])
+            basis, source = (latest[r["lift"]], "earlier") if r["lift"] in latest else (own, "own set")
+            pct = kg / basis if basis else 0.0
+            out.append({"date": day, "lift": r["lift"], "role": r["role"], "kg": r["kg"], "reps": r["reps"],
+                        "e1rm_basis_kg": f"{basis:.1f}", "basis": source, "pct_of_e1rm": f"{pct:.3f}",
+                        "heavy_reps": str(reps if pct >= HEAVY_PCT - 1e-9 else 0)})  # fmt: skip
+        for lift in {r["lift"] for r in todays}:
+            latest[lift] = max(float(r["e1rm_kg"]) for r in todays if r["lift"] == lift)
+    return out
 
 
 def add_readiness(rows: list[dict[str, str]], rules: ReadinessRules) -> list[dict[str, str]]:

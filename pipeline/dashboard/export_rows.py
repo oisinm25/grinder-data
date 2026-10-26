@@ -6,13 +6,16 @@ with the same keys. Reads nothing else and writes only into --out.
 """
 
 import argparse
+import csv
 import datetime as dt
+import io
 import json
 import subprocess
 import sys
 from pathlib import Path
 
 SOURCES = ("dashboard.json", "today.json", "debrief.json", "analysis/latest.json")
+TABLES = ("wellness.csv", "compliance.csv", "activities.csv", "zones.csv", "heavy_reps.csv")  # for the week rows; may be absent
 GOAL_DATE = "2027-04-17"
 
 
@@ -157,7 +160,7 @@ def bike(dash: dict) -> list[dict]:
 
 
 def build(dash: dict, today: dict, debrief: dict, analysis: dict | None, *, request: dict | None = None,
-          now: dt.datetime | None = None) -> dict[str, list[dict]]:  # fmt: skip
+          now: dt.datetime | None = None, plan=None, athlete=None, tables: dict | None = None) -> dict[str, list[dict]]:  # fmt: skip
     """`now` (UTC) is stamped on the summary row as exported_at: when the dashboard was last refreshed.
     `request` is what analysis/latest.json said, when `analysis` is an older successful one."""
     c, fit = dash["charts"], dash["charts"]["fitness"]
@@ -187,7 +190,15 @@ def build(dash: dict, today: dict, debrief: dict, analysis: dict | None, *, requ
         "readiness_days": _even(c["readiness"]),
         "compliance": _even(c["compliance"]),
         "body": _even([{"kind": "weight", **w} for w in c["body"]["weight"]] + [{"kind": "dexa", **x} for x in c["body"].get("dexa", [])]),
+        **(_week(dash, today, plan, athlete, tables or {}) if plan is not None else {}),
     }  # fmt: skip
+
+
+def _week(dash: dict, today: dict, plan, athlete, tables: dict) -> dict[str, list[dict]]:
+    from pipeline.dashboard import week
+
+    day = dt.date.fromisoformat(today.get("date") or dash["date"])
+    return {k: _even(v) for k, v in week.build(day, plan, athlete, dash["charts"]["fitness"], tables).items()}
 
 
 def read_sources(src: Path | None = None, ref: str | None = None, *, git=subprocess.run) -> dict[str, dict | None]:
@@ -219,6 +230,7 @@ def read_sources(src: Path | None = None, ref: str | None = None, *, git=subproc
         if text is None and name != "analysis/latest.json":
             raise FileNotFoundError(f"{name} not found in {ref or src}")
         out[name] = json.loads(text) if text else None
+    out["tables"] = {name: list(csv.DictReader(io.StringIO(text))) for name in TABLES if (text := read(name))}
     latest = out["analysis/latest.json"]
     out["analysis/request"] = latest
     if latest and latest.get("status") != "ok":
@@ -250,13 +262,22 @@ def main(argv=None) -> int:
     where.add_argument("--ref", help="read the files from this git ref, e.g. origin/data")
     where.add_argument("--src", type=Path, default=Path("derived"), help="read the files from this directory (default: derived)")
     parser.add_argument("--out", type=Path, default=Path("derived/rows"))
+    parser.add_argument("--plan", type=Path, default=Path("config/plan.yaml"), help="for the week rows (default: config/plan.yaml)")
+    parser.add_argument("--athlete", type=Path, help="default: athlete.yaml beside the plan")
     args = parser.parse_args(argv)
+    from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
+
+    try:
+        plan, athlete = load_checked(args.plan, args.athlete)
+    except PlanLoadError as e:
+        return report_load_error(e)
     try:
         s = read_sources(None if args.ref else args.src, args.ref)
     except (FileNotFoundError, json.JSONDecodeError) as e:
         print(f"export_rows: {e}", file=sys.stderr)
         return 1
-    rows = build(s["dashboard.json"], s["today.json"], s["debrief.json"], s["analysis/latest.json"], request=s["analysis/request"])
+    rows = build(s["dashboard.json"], s["today.json"], s["debrief.json"], s["analysis/latest.json"], request=s["analysis/request"],
+                 plan=plan, athlete=athlete, tables=s["tables"])  # fmt: skip
     write(rows, args.out)
     print(f"wrote {len(rows)} datasets to {args.out}: " + ", ".join(f"{k} {len(v)}" for k, v in rows.items()))
     return 0
