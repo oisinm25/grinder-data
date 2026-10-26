@@ -1,7 +1,7 @@
 {
  "date": "2026-10-26",
- "status": "provisional",
- "generated_at": "2026-10-26T06:45+01:00",
+ "status": "final",
+ "generated_at": "2026-10-26T06:56+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": null,
-   "reason": "no call: no HRV; resting HR 59 <= 62.3 (baseline 57.3 + 5); no sleep"
+   "colour": "red",
+   "reason": "red: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6"
   },
   "sessions": [
    {
@@ -32,10 +32,10 @@
       "role": "top",
       "sets": 1,
       "reps": 6,
-      "kg": 100,
-      "rpe_cap": 8,
+      "kg": 90,
+      "rpe_cap": 7,
       "basis": "start",
-      "reason": "start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet"
+      "reason": "start_kg 100 x 6: no upper_me history in this slot within 14 days; red: 90% of 100 -> 90, RPE cap 7"
      },
      {
       "lift": "bench_press",
@@ -43,10 +43,10 @@
       "role": "backoff",
       "sets": 3,
       "reps": 8,
-      "kg": 85,
+      "kg": 77.5,
       "rpe_cap": null,
       "basis": "top",
-      "reason": "85% of top 100 -> 85 x 8"
+      "reason": "85% of top 90 -> 77.5 x 8"
      },
      {
       "lift": "weighted_pullup",
@@ -55,9 +55,9 @@
       "sets": 4,
       "reps": 5,
       "kg": null,
-      "rpe_cap": 8.5,
+      "rpe_cap": 7,
       "basis": "choose",
-      "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it"
+      "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7"
      },
      {
       "lift": "chest_supported_row",
@@ -66,9 +66,9 @@
       "sets": 3,
       "reps": 8,
       "kg": null,
-      "rpe_cap": 8.5,
+      "rpe_cap": 7,
       "basis": "choose",
-      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7"
      }
     ]
    },
@@ -281,8 +281,8 @@
      "ctl": 36.3,
      "atl": 56.6,
      "form": -20.3,
-     "icu_ctl": 34.5,
-     "icu_atl": 71.3
+     "icu_ctl": 35.0,
+     "icu_atl": 73.7
     }
    ],
    "planned": [
@@ -1333,7 +1333,7 @@
   "yesterday": {
    "date": "2026-10-25",
    "verdict": "Unplanned: bike 148 min.",
-   "note_for_today": "HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.",
+   "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
    "context": {
     "readiness": "green",
     "readiness_reason": "green: HRV 56 >= 32.0 (baseline 42.9 - 1 SD 10.8); resting HR 52 <= 62.4 (baseline 57.4 + 5); sleep 9.9 h >= 6",
@@ -1837,12 +1837,12 @@
    },
    {
     "date": "2026-10-26",
-    "readiness": null,
-    "hrv": null,
+    "readiness": "red",
+    "hrv": 58.0,
     "hrv_baseline": 42.9,
-    "resting_hr": 59.0,
+    "resting_hr": 55.0,
     "resting_hr_baseline": 57.3,
-    "sleep_h": null
+    "sleep_h": 5.38
    }
   ],
   "compliance": [

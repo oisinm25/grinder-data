@@ -1,8 +1,8 @@
 # Pedestal brief: Mon 26 Oct 2026
 
-*Status: provisional (no sleep yet) · generated 2026-10-26 06:45*
+*Status: final · generated 2026-10-26 06:56*
 
-**Readiness: no call**: no call: no HRV; resting HR 59 <= 62.3 (baseline 57.3 + 5); no sleep
+**Readiness: RED**: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6
 
 Accumulation, week acc1
 
@@ -11,10 +11,10 @@ strength · 50 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench press | top | 1 × 6 | 100 | 8 | start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet |
-| Bench press | backoff | 3 × 8 | 85 |  | 85% of top 100 -> 85 x 8 |
-| Weighted pull-up | work | 4 × 5 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it |
-| Chest-supported row | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
+| Bench press | top | 1 × 6 | 90 | 7 | start_kg 100 x 6: no upper_me history in this slot within 14 days; red: 90% of 100 -> 90, RPE cap 7 |
+| Bench press | backoff | 3 × 8 | 77.5 |  | 85% of top 90 -> 77.5 x 8 |
+| Weighted pull-up | work | 4 × 5 | choose | 7 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7 |
+| Chest-supported row | work | 3 × 8 | choose | 7 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7 |
 
 ## PM: Z2 90 min
 bike · 90 min · 70 TSS
@@ -26,7 +26,7 @@ bike · 90 min · 70 TSS
 
 **Unplanned: bike 148 min.**
 
-Note for today: HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.
+Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
 
 readiness green · sleep 9.9 h · load 207 of 0 planned TSS
 

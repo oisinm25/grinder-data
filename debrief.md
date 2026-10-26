@@ -2,7 +2,7 @@
 
 **Unplanned: bike 148 min.**
 
-Note for today: HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.
+Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
 
 readiness green · sleep 9.9 h · load 207 of 0 planned TSS
 
