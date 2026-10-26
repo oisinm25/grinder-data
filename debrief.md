@@ -1,10 +1,10 @@
-# Debrief: Sat 24 Oct 2026
+# Debrief: Sun 25 Oct 2026
 
-**Missed: TEST - 20-min bike test on the power meter, outdoors.**
+**Unplanned: bike 148 min.**
 
-Note for today: Rest today.
+Note for today: HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.
 
-readiness green · sleep 7.37 h · load 0 of 75 planned TSS
+readiness green · sleep 9.9 h · load 207 of 0 planned TSS
 
-## AM: TEST - 20-min bike test on the power meter, outdoors
-skipped: no matching activity
+## Unplanned: Palma Road Cycling (bike)
+148 min · NP 284 W · IF 0.92 · TSS 207 · HR load 131 · avg HR 149 · HR drift 11%

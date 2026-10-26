@@ -1,25 +1,28 @@
 {
- "date": "2026-10-24",
- "verdict": "Missed: TEST - 20-min bike test on the power meter, outdoors.",
- "note_for_today": "Rest today.",
+ "date": "2026-10-25",
+ "verdict": "Unplanned: bike 148 min.",
+ "note_for_today": "HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6",
-  "sleep_h": 7.37,
-  "load_done": 0,
-  "load_planned": 75
+  "readiness_reason": "green: HRV 56 >= 32.0 (baseline 42.9 - 1 SD 10.8); resting HR 52 <= 62.4 (baseline 57.4 + 5); sleep 9.9 h >= 6",
+  "sleep_h": 9.9,
+  "load_done": 207,
+  "load_planned": 0
  },
  "items": [
   {
-   "kind": "endurance",
-   "slot": "sat_am",
-   "session": "test_bike_20",
-   "modality": "bike",
-   "summary": "TEST - 20-min bike test on the power meter, outdoors",
-   "planned_min": 65,
-   "planned_tss": 75.0,
-   "grade": "skipped",
-   "grade_note": "no matching activity"
+   "kind": "unplanned",
+   "sport": "bike",
+   "type": "Ride",
+   "name": "Palma Road Cycling",
+   "moving_min": 147.9,
+   "hr_load": 131.0,
+   "avg_hr": 149.0,
+   "review": "",
+   "np_w": 284.0,
+   "intensity": 0.92,
+   "tss": 207.0,
+   "hr_drift_pct": 11.0
   }
  ],
  "problems": []

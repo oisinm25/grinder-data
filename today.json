@@ -1,53 +1,143 @@
 {
- "date": "2026-10-25",
+ "date": "2026-10-26",
  "status": "provisional",
  "status_reason": "no sleep yet",
- "generated_at": "2026-10-25T06:51+01:00",
+ "generated_at": "2026-10-26T06:45+01:00",
  "readiness": {
   "colour": null,
-  "reason": "no call: no HRV; resting HR 58 <= 62.4 (baseline 57.4 + 5); no sleep"
+  "reason": "no call: no HRV; resting HR 59 <= 62.3 (baseline 57.3 + 5); no sleep"
  },
  "block": {
-  "id": "block0",
-  "name": "Re-entry and test",
-  "week": "test-week",
+  "id": "block1",
+  "name": "Accumulation",
+  "week": "acc1",
   "design_pending": false
  },
- "sessions": [],
+ "sessions": [
+  {
+   "slot": "mon_am",
+   "order": 0,
+   "session": "upper_me",
+   "modality": "strength",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "environment": null,
+   "duration_min": null,
+   "tss": 50.0,
+   "readiness_exempt": false,
+   "strength": [
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "role": "top",
+     "sets": 1,
+     "reps": 6,
+     "kg": 100,
+     "rpe_cap": 8,
+     "basis": "start",
+     "reason": "start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet"
+    },
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "role": "backoff",
+     "sets": 3,
+     "reps": 8,
+     "kg": 85,
+     "rpe_cap": null,
+     "basis": "top",
+     "reason": "85% of top 100 -> 85 x 8"
+    },
+    {
+     "lift": "weighted_pullup",
+     "name": "Weighted pull-up",
+     "role": "work",
+     "sets": 4,
+     "reps": 5,
+     "kg": null,
+     "rpe_cap": 8.5,
+     "basis": "choose",
+     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it"
+    },
+    {
+     "lift": "chest_supported_row",
+     "name": "Chest-supported row",
+     "role": "work",
+     "sets": 3,
+     "reps": 8,
+     "kg": null,
+     "rpe_cap": 8.5,
+     "basis": "choose",
+     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+    }
+   ]
+  },
+  {
+   "slot": "mon_pm",
+   "order": 0,
+   "session": "z2_90",
+   "modality": "bike",
+   "summary": "Z2 90 min",
+   "environment": null,
+   "duration_min": 90,
+   "tss": 70.0,
+   "readiness_exempt": false,
+   "steps": [
+    {
+     "kind": "warmup",
+     "duration_s": 300,
+     "target": "170-211 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      170,
+      211
+     ],
+     "provisional": false
+    },
+    {
+     "kind": "steady",
+     "duration_s": 5100,
+     "target": "221-245 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      221,
+      245
+     ],
+     "provisional": false
+    }
+   ],
+   "provisional_ftp": false
+  }
+ ],
  "yesterday": {
-  "date": "2026-10-24",
-  "grades": [
-   {
-    "session": "test_bike_20",
-    "item": "session",
-    "grade": "skipped",
-    "note": "no matching activity"
-   }
-  ],
-  "status": "graded"
+  "date": "2026-10-25",
+  "grades": [],
+  "status": "rest day"
  },
  "debrief": {
-  "date": "2026-10-24",
-  "verdict": "Missed: TEST - 20-min bike test on the power meter, outdoors.",
-  "note_for_today": "Rest today.",
+  "date": "2026-10-25",
+  "verdict": "Unplanned: bike 148 min.",
+  "note_for_today": "HR drift 11% on yesterday's ride: start the next long ride easier and fuel early.",
   "context": {
    "readiness": "green",
-   "readiness_reason": "green: HRV 54 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 7.37 h >= 6",
-   "sleep_h": 7.37,
-   "load_done": 0,
-   "load_planned": 75
+   "readiness_reason": "green: HRV 56 >= 32.0 (baseline 42.9 - 1 SD 10.8); resting HR 52 <= 62.4 (baseline 57.4 + 5); sleep 9.9 h >= 6",
+   "sleep_h": 9.9,
+   "load_done": 207,
+   "load_planned": 0
   },
   "items": [
    {
-    "kind": "endurance",
-    "slot": "sat_am",
-    "session": "test_bike_20",
-    "modality": "bike",
-    "summary": "TEST - 20-min bike test on the power meter, outdoors",
-    "planned_min": 65,
-    "planned_tss": 75.0,
-    "grade": "skipped",
-    "grade_note": "no matching activity"
+    "kind": "unplanned",
+    "sport": "bike",
+    "type": "Ride",
+    "name": "Palma Road Cycling",
+    "moving_min": 147.9,
+    "hr_load": 131.0,
+    "avg_hr": 149.0,
+    "review": "",
+    "np_w": 284.0,
+    "intensity": 0.92,
+    "tss": 207.0,
+    "hr_drift_pct": 11.0
    }
   ],
   "problems": []
@@ -55,7 +145,7 @@
  "review": {
   "week_end": "2026-10-25",
   "flags": [
-   "load: 272 TSS done, under the 300-400 target (advisory: targets provisional)",
+   "load: 479 TSS done, over the 300-400 target (advisory: targets provisional)",
    "sessions: 5 endurance sessions missed or skipped"
   ]
  },
