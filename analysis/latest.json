@@ -1,89 +1,108 @@
 {
  "status": "ok",
- "generated_at": "2026-10-26T10:50+01:00",
- "activity_id": "i201411654",
+ "generated_at": "2026-10-26T17:13+01:00",
+ "activity_id": "i201941402",
  "activity": {
-  "id": "i201411654",
-  "date": "2026-10-25",
-  "start_local": "2026-10-25T09:46:03",
+  "id": "i201941402",
+  "date": "2026-10-26",
+  "start_local": "2026-10-26T13:36:59",
   "sport": "bike",
   "type": "Ride",
   "name": "Palma Road Cycling",
-  "moving_min": "147.9"
+  "moving_min": "117.2"
  },
  "breakdown": {
-  "kind": "unplanned",
-  "sport": "bike",
-  "type": "Ride",
-  "name": "Palma Road Cycling",
-  "moving_min": 147.9,
-  "hr_load": 131.0,
-  "avg_hr": 149.0,
-  "review": "",
-  "np_w": 284.0,
-  "intensity": 0.92,
-  "tss": 207.0,
-  "hr_drift_pct": 11.0,
+  "kind": "endurance",
+  "slot": "mon_pm",
+  "session": "z2_90",
+  "modality": "bike",
+  "summary": "Z2 90 min",
+  "planned_min": 90,
+  "planned_tss": 70.0,
+  "grade": "off_target",
+  "grade_note": "0/1 steps in band; W: 406!",
+  "activity": {
+   "id": "i201941402",
+   "name": "Palma Road Cycling",
+   "moving_min": 117.2
+  },
+  "np_w": 184.0,
+  "intensity": 0.59,
+  "tss": 69.0,
+  "reps": [
+   {
+    "n": 1,
+    "target": "221-245 W",
+    "band": [
+     221,
+     245
+    ],
+    "watts": 406,
+    "hr": 161.0,
+    "status": "over"
+   }
+  ],
+  "hr_drift_pct": -4.6,
   "power_curve": {
-   "5": 1416,
-   "60": 491,
-   "240": 396,
-   "300": 372,
-   "1200": 361,
-   "3600": 231
+   "5": 612,
+   "60": 407,
+   "240": 249,
+   "300": 249,
+   "1200": 218,
+   "3600": 140
   }
  },
  "fitness": {
-  "session_load": 207.0,
+  "session_load": 69.0,
   "load_source": "power",
   "grind_correction": 0.0,
   "before": {
-   "ctl": 32.3,
-   "atl": 37.7,
-   "form": -5.5
+   "ctl": 36.3,
+   "atl": 56.6,
+   "form": -20.3
   },
   "after": {
-   "ctl": 37.1,
-   "atl": 65.3,
-   "form": -28.2
+   "ctl": 37.9,
+   "atl": 65.8,
+   "form": -27.9
   },
   "projections": {
-   "form_tomorrow": -28.2,
+   "form_tomorrow": -27.9,
    "next_key_session": {
-    "date": "2026-10-26",
-    "session": "upper_me",
-    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-    "form": -28.2
+    "date": "2026-10-27",
+    "session": "handbike_intervals",
+    "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+    "form": -27.9
    }
   },
   "week": {
-   "start": "2026-10-19",
-   "label": "test-week",
-   "done_tss": 479,
+   "start": "2026-10-26",
+   "label": "acc1",
+   "done_tss": 69,
    "band": [
-    300.0,
-    400.0
+    650.0,
+    750.0
    ],
    "share_pct": [
-    120,
-    160
+    9,
+    11
    ]
   }
  },
  "projections": {
-  "form_tomorrow": -28.2,
+  "form_tomorrow": -27.9,
   "next_key_session": {
-   "date": "2026-10-26",
-   "session": "upper_me",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-   "form": -28.2
+   "date": "2026-10-27",
+   "session": "handbike_intervals",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+   "form": -27.9
   }
  },
  "bests": [],
  "bests_since": "2026-10-25",
  "anchor_flags": [],
  "files": {
-  "json": "analysis/2026-10-25-i201411654.json",
-  "md": "analysis/2026-10-25-i201411654.md"
+  "json": "analysis/2026-10-26-i201941402.json",
+  "md": "analysis/2026-10-26-i201941402.md"
  }
 }
