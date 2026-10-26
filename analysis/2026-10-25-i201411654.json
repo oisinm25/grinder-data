@@ -1,6 +1,6 @@
 {
  "status": "ok",
- "generated_at": "2026-10-25T18:04+01:00",
+ "generated_at": "2026-10-26T10:50+01:00",
  "activity_id": "i201411654",
  "activity": {
   "id": "i201411654",
@@ -79,66 +79,9 @@
    "form": -28.2
   }
  },
- "bests": [
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "5 s",
-   "watts": 1416,
-   "previous": null,
-   "first": true
-  },
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "1 min",
-   "watts": 491,
-   "previous": null,
-   "first": true
-  },
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "4 min",
-   "watts": 396,
-   "previous": null,
-   "first": true
-  },
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "5 min",
-   "watts": 372,
-   "previous": null,
-   "first": true
-  },
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "20 min",
-   "watts": 361,
-   "previous": null,
-   "first": true
-  },
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "60 min",
-   "watts": 231,
-   "previous": null,
-   "first": true
-  }
- ],
+ "bests": [],
  "bests_since": "2026-10-25",
- "anchor_flags": [
-  {
-   "anchor": "ftp.bike",
-   "current_w": 300.0,
-   "suggested_w": 343,
-   "change_pct": 14.3,
-   "evidence": "20-min best 361 W x 0.95"
-  }
- ],
+ "anchor_flags": [],
  "files": {
   "json": "analysis/2026-10-25-i201411654.json",
   "md": "analysis/2026-10-25-i201411654.md"

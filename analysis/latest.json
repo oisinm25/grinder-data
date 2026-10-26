@@ -1,7 +1,89 @@
 {
- "status": "no_new_activity",
- "generated_at": "2026-10-25T19:01+01:00",
+ "status": "ok",
+ "generated_at": "2026-10-26T10:50+01:00",
  "activity_id": "i201411654",
- "requested": "latest",
- "last_analysis": "analysis/2026-10-25-i201411654.md"
+ "activity": {
+  "id": "i201411654",
+  "date": "2026-10-25",
+  "start_local": "2026-10-25T09:46:03",
+  "sport": "bike",
+  "type": "Ride",
+  "name": "Palma Road Cycling",
+  "moving_min": "147.9"
+ },
+ "breakdown": {
+  "kind": "unplanned",
+  "sport": "bike",
+  "type": "Ride",
+  "name": "Palma Road Cycling",
+  "moving_min": 147.9,
+  "hr_load": 131.0,
+  "avg_hr": 149.0,
+  "review": "",
+  "np_w": 284.0,
+  "intensity": 0.92,
+  "tss": 207.0,
+  "hr_drift_pct": 11.0,
+  "power_curve": {
+   "5": 1416,
+   "60": 491,
+   "240": 396,
+   "300": 372,
+   "1200": 361,
+   "3600": 231
+  }
+ },
+ "fitness": {
+  "session_load": 207.0,
+  "load_source": "power",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 32.3,
+   "atl": 37.7,
+   "form": -5.5
+  },
+  "after": {
+   "ctl": 37.1,
+   "atl": 65.3,
+   "form": -28.2
+  },
+  "projections": {
+   "form_tomorrow": -28.2,
+   "next_key_session": {
+    "date": "2026-10-26",
+    "session": "upper_me",
+    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+    "form": -28.2
+   }
+  },
+  "week": {
+   "start": "2026-10-19",
+   "label": "test-week",
+   "done_tss": 479,
+   "band": [
+    300.0,
+    400.0
+   ],
+   "share_pct": [
+    120,
+    160
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -28.2,
+  "next_key_session": {
+   "date": "2026-10-26",
+   "session": "upper_me",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "form": -28.2
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-10-25-i201411654.json",
+  "md": "analysis/2026-10-25-i201411654.md"
+ }
 }
