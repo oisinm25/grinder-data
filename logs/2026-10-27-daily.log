@@ -5,7 +5,7 @@ Ingest 2026-10-13 to 2026-10-27
 Activities: 10 (bike 6, strength 2, conditioning 2) -> derived/activities.csv (14 rows total)
 Zones: 10 activities (streams 10) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (48 rows incl. baseline)
-  latest 2026-10-27: resting HR 55 bpm, CTL 35 / ATL 73.3 (form -38.3)
+  latest 2026-10-27: resting HR 55 bpm, CTL 35 / ATL 67.5 (form -32.6)
   readiness no call: no HRV; resting HR 55 <= 62.4 (baseline 57.4 + 5); no sleep
 Strength: 2 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 0 reps at >= 90% e1RM in 2 sets -> derived/heavy_reps.csv
@@ -36,7 +36,7 @@ Mon 2026-11-02  upper_me (mon_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (17 rows total)
 
-## [ok     ] publish   intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
 Publish 2026-10-27 to 2026-11-02: 13 sessions
   2026-10-27 07:00  Handcycle         48 TSS  Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
   2026-10-27 08:00  Workout           35 TSS  Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
@@ -52,7 +52,7 @@ Publish 2026-10-27 to 2026-11-02: 13 sessions
   2026-11-02 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
   2026-11-02 17:00  VirtualRide       70 TSS  Z2 90 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+intervals.icu: no changes (13 events unchanged)
 
 ## [ok     ] review    Day Mon 2026-10-26: skipped 4, off_target 1
 Day Mon 2026-10-26: skipped 4, off_target 1
