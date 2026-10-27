@@ -1,19 +1,19 @@
-# daily 2026-10-27: 8 ok; provisional (no sleep yet)
+# daily 2026-10-27: 8 ok; final
 
 ## [ok     ] ingest    10 activities (bike 6, strength 2, conditioning 2), 15 wellness days, 2 strength sets
 Ingest 2026-10-13 to 2026-10-27
 Activities: 10 (bike 6, strength 2, conditioning 2) -> derived/activities.csv (14 rows total)
 Zones: 10 activities (streams 10) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (48 rows incl. baseline)
-  latest 2026-10-27: resting HR 55 bpm, CTL 35 / ATL 67.5 (form -32.6)
-  readiness no call: no HRV; resting HR 55 <= 62.4 (baseline 57.4 + 5); no sleep
+  latest 2026-10-27: resting HR 54 bpm, HRV 47 ms, sleep 8.08 h (score 84), CTL 35 / ATL 67.5 (form -32.6)
+  readiness green: HRV 47 >= 32.1 (baseline 42.8 - 1 SD 10.7); resting HR 54 <= 62.4 (baseline 57.4 + 5); sleep 8.08 h >= 6
 Strength: 2 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 0 reps at >= 90% e1RM in 2 sets -> derived/heavy_reps.csv
   bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg
   trap_bar_deadlift  2026-10-21  180 kg x 6  (test)  e1RM 216.0 kg
 
-## [ok     ] readiness no call for 2026-10-27 yet (no HRV or resting HR synced); provisional
-no call for 2026-10-27 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness green: HRV 47 >= 32.1; RHR 54 <= 62.4; sleep 8.08 h >= 6; final
+green: HRV 47 >= 32.1; RHR 54 <= 62.4; sleep 8.08 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
 Wed 2026-10-28  lower_me (wed_am)  readiness: not known yet
@@ -66,8 +66,8 @@ Wrote 5 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Z2 90 min off target: 0/1 steps in band.
 wrote debrief.md and debrief.json: Z2 90 min off target: 0/1 steps in band.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 3 sessions, readiness no call
-wrote today.md and today.json: provisional, 3 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 3 sessions, readiness green
+wrote today.md and today.json: final, 3 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 37.0, form -20.0
 wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 37.0, form -20.0

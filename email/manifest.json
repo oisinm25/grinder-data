@@ -1,7 +1,7 @@
 {
  "date": "2026-10-27",
- "status": "provisional",
- "generated_at": "2026-10-27T06:55+01:00",
+ "status": "final",
+ "generated_at": "2026-10-27T08:40+01:00",
  "html": "dashboard_email.html",
  "attachment": "../dashboard.html",
  "images": [
@@ -27,7 +27,7 @@
    "file": "readiness_strip.png",
    "cid": "readiness_strip",
    "alt": "Readiness per day: green, amber, red or no call.",
-   "bytes": 24044
+   "bytes": 24038
   },
   {
    "file": "yesterday_intervals.png",
