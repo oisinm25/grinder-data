@@ -1,0 +1,73 @@
+# daily 2026-10-27: 8 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    10 activities (bike 6, strength 2, conditioning 2), 15 wellness days, 2 strength sets
+Ingest 2026-10-13 to 2026-10-27
+Activities: 10 (bike 6, strength 2, conditioning 2) -> derived/activities.csv (14 rows total)
+Zones: 10 activities (streams 10) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (48 rows incl. baseline)
+  latest 2026-10-27: resting HR 55 bpm, CTL 35 / ATL 73.3 (form -38.3)
+  readiness no call: no HRV; resting HR 55 <= 62.4 (baseline 57.4 + 5); no sleep
+Strength: 2 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 0 reps at >= 90% e1RM in 2 sets -> derived/heavy_reps.csv
+  bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg
+  trap_bar_deadlift  2026-10-21  180 kg x 6  (test)  e1RM 216.0 kg
+
+## [ok     ] readiness no call for 2026-10-27 yet (no HRV or resting HR synced); provisional
+no call for 2026-10-27 yet (no HRV or resting HR synced); provisional
+
+## [ok     ] prescribe wrote 13 prescriptions
+Wed 2026-10-28  lower_me (wed_am)  readiness: not known yet
+  trap_bar_deadlift    top     1 x 5      175 kg  RPE<=8    e1RM 216 from 180x6 (RPE not logged, treated as 10) on 21 Oct -> 175 x 5 @RPE 8; readiness not known yet
+  trap_bar_deadlift    backoff 2 x 5    157.5 kg            90% of top 175 -> 157.5 x 5
+  rfe_split_squat      work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Thu 2026-10-29  upper_re (thu_am)  readiness: not known yet
+  bench_press          work    3 x 10      80 kg  RPE<=8.5  start_kg 80 x 10: no upper_re history in this slot within 14 days; readiness not known yet
+  bench_pull           work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+  landmine_press       work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Fri 2026-10-30  upper_de (fri_am)  readiness: not known yet
+  bench_pull           speed   6 x 3      choose  RPE<=7    no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it
+  bench_press          speed   8 x 3     72.5 kg            wave week 1 of 3: 55% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 72.5 x 3; readiness not known yet
+  push_press           speed   5 x 3      choose  RPE<=7    no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it
+Mon 2026-11-02  upper_me (mon_am)  readiness: not known yet
+  bench_press          top     1 x 6      100 kg  RPE<=8    start_kg 100 x 6: no upper_me history in this slot within 14 days; readiness not known yet
+  bench_press          backoff 3 x 8       85 kg            85% of top 100 -> 85 x 8
+  weighted_pullup      work    4 x 5      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it
+  chest_supported_row  work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+
+wrote 13 prescriptions to derived/prescriptions.csv (17 rows total)
+
+## [ok     ] publish   intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+Publish 2026-10-27 to 2026-11-02: 13 sessions
+  2026-10-27 07:00  Handcycle         48 TSS  Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+  2026-10-27 08:00  Workout           35 TSS  Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
+  2026-10-27 17:00  Workout                   Mobility and trunk, 30 min
+  2026-10-28 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
+  2026-10-28 17:00  VirtualRide       46 TSS  Z2 60 min
+  2026-10-29 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
+  2026-10-29 17:00  VirtualRide       58 TSS  Z2 75 min
+  2026-10-30 07:00  WeightTraining    40 TSS  Upper dynamic effort - speed bench, power pull, push press (freshest slot)
+  2026-10-30 17:00  VirtualRide       85 TSS  Threshold 2 x 20 min at 92-95% FTP, 5 min easy between
+  2026-10-31 07:00  Ride             140 TSS  Long ride 3 h, Z2, fuel 60-90 g carb/h
+  2026-11-01 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
+  2026-11-02 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
+  2026-11-02 17:00  VirtualRide       70 TSS  Z2 90 min
+Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+
+## [ok     ] review    Day Mon 2026-10-26: skipped 4, off_target 1
+Day Mon 2026-10-26: skipped 4, off_target 1
+  skipped    upper_me bench_press top: not logged
+  skipped    upper_me bench_press backoff: not logged
+  skipped    upper_me weighted_pullup work: not logged
+  skipped    upper_me chest_supported_row work: not logged
+  off_target z2_90: 0/1 steps in band; W: 406!
+Wrote 5 grades to derived/compliance.csv
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Z2 90 min off target: 0/1 steps in band.
+wrote debrief.md and debrief.json: Z2 90 min off target: 0/1 steps in band.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 3 sessions, readiness no call
+wrote today.md and today.json: provisional, 3 sessions, readiness no call
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 37.0, form -20.0
+wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 37.0, form -20.0

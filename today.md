@@ -1,37 +1,54 @@
-# Pedestal brief: Mon 26 Oct 2026
+# Pedestal brief: Tue 27 Oct 2026
 
-*Status: final · generated 2026-10-26 06:56*
+*Status: provisional (no sleep yet) · generated 2026-10-27 06:43*
 
-**Readiness: RED**: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6
+**Readiness: no call**: no call: no HRV; resting HR 55 <= 62.4 (baseline 57.4 + 5); no sleep
 
 Accumulation, week acc1
 
-## AM: Upper max effort - bench top set, back-offs, heavy pulling
-strength · 50 TSS
+## AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+handbike · 50 min · 48 TSS
 
-| Lift | Group | Sets × reps | kg | RPE cap | Why |
-|---|---|---|---|---|---|
-| Bench press | top | 1 × 6 | 90 | 7 | start_kg 100 x 6: no upper_me history in this slot within 14 days; red: 90% of 100 -> 90, RPE cap 7 |
-| Bench press | backoff | 3 × 8 | 77.5 |  | 85% of top 90 -> 77.5 x 8 |
-| Weighted pull-up | work | 4 × 5 | choose | 7 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7 |
-| Chest-supported row | work | 3 × 8 | choose | 7 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7 |
+- warmup 10:00 126-164 W*
+- 5 × [work 4:00 265-277 W*, rest 3:00 113-139 W*]
+- cooldown 5:00 113-139 W*
+- \* watts from a provisional FTP
 
-## PM: Z2 90 min
-bike · 90 min · 70 TSS
+## AM: Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
+grinding · 39 min · 35 TSS
 
-- warmup 5:00 170-211 W
-- steady 1:25:00 221-245 W
+- warmup 10:00 RPE 4
+- 8 × [work 1:00 400 W, rest 2:00 RPE 2]
+- cooldown 5:00 RPE 3
 
-## Yesterday's debrief: Sun 25 Oct 2026
+## PM: Mobility and trunk, 30 min
+mobility
 
-**Unplanned: bike 148 min.**
+## Yesterday's debrief: Mon 26 Oct 2026
 
-Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
+**Z2 90 min off target: 0/1 steps in band.**
 
-readiness green · sleep 9.9 h · load 207 of 0 planned TSS
+Note for today: Z2 90 min faded: start today's Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy at the bottom of its band.
 
-### Unplanned: Palma Road Cycling (bike)
-148 min · NP 284 W · IF 0.92 · TSS 207 · HR load 131 · avg HR 149 · HR drift 11%
+readiness red · sleep 5.38 h · load 69 of 120 planned TSS
+
+### AM: Upper max effort - bench top set, back-offs, heavy pulling
+skipped
+
+| Lift | Set | Prescribed | Achieved | |
+|---|---|---|---|---|
+| Bench press | top | 1 x 6 @ 90 kg RPE<=7 | - | not logged |
+| Bench press | backoff | 3 x 8 @ 77.5 kg | - | not logged |
+| Weighted pull-up | work | 4 x 5 @ choose RPE<=7 | - | not logged |
+| Chest-supported row | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+
+
+### PM: Z2 90 min
+off_target: 0/1 steps in band; W: 406! · 117 of 90 min · NP 184 W · IF 0.59 · TSS 69 · HR drift -4.6%
+
+| Rep | Target | Watts | HR | |
+|---|---|---|---|---|
+| 1 | 221-245 W | 406 | 161 | over |
 
 ## Flags (review of the week ending Sun 25 Oct)
 - load: 479 TSS done, over the 300-400 target (advisory: targets provisional)

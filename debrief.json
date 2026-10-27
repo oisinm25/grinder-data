@@ -1,28 +1,113 @@
 {
- "date": "2026-10-25",
- "verdict": "Unplanned: bike 148 min.",
- "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+ "date": "2026-10-26",
+ "verdict": "Z2 90 min off target: 0/1 steps in band.",
+ "note_for_today": "Z2 90 min faded: start today's Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy at the bottom of its band.",
  "context": {
-  "readiness": "green",
-  "readiness_reason": "green: HRV 56 >= 32.0 (baseline 42.9 - 1 SD 10.8); resting HR 52 <= 62.4 (baseline 57.4 + 5); sleep 9.9 h >= 6",
-  "sleep_h": 9.9,
-  "load_done": 207,
-  "load_planned": 0
+  "readiness": "red",
+  "readiness_reason": "red: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 54 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6",
+  "sleep_h": 5.38,
+  "load_done": 69,
+  "load_planned": 120
  },
  "items": [
   {
-   "kind": "unplanned",
-   "sport": "bike",
-   "type": "Ride",
-   "name": "Palma Road Cycling",
-   "moving_min": 147.9,
-   "hr_load": 131.0,
-   "avg_hr": 149.0,
-   "review": "",
-   "np_w": 284.0,
-   "intensity": 0.92,
-   "tss": 207.0,
-   "hr_drift_pct": 11.0
+   "kind": "strength",
+   "slot": "mon_am",
+   "session": "upper_me",
+   "modality": "strength",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "planned_tss": 50.0,
+   "lifts": [
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "sets": [
+      {
+       "role": "top",
+       "set": null,
+       "prescribed": "1 x 6 @ 90 kg RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      },
+      {
+       "role": "backoff",
+       "set": null,
+       "prescribed": "3 x 8 @ 77.5 kg",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 131.7,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "weighted_pullup",
+     "name": "Weighted pull-up",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "4 x 5 @ choose RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "chest_supported_row",
+     "name": "Chest-supported row",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 8 @ choose RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    }
+   ],
+   "grade": "skipped"
+  },
+  {
+   "kind": "endurance",
+   "slot": "mon_pm",
+   "session": "z2_90",
+   "modality": "bike",
+   "summary": "Z2 90 min",
+   "planned_min": 90,
+   "planned_tss": 70.0,
+   "grade": "off_target",
+   "grade_note": "0/1 steps in band; W: 406!",
+   "activity": {
+    "id": "i201941402",
+    "name": "Palma Road Cycling",
+    "moving_min": 117.2
+   },
+   "np_w": 184.0,
+   "intensity": 0.59,
+   "tss": 69.0,
+   "reps": [
+    {
+     "n": 1,
+     "target": "221-245 W",
+     "band": [
+      221,
+      245
+     ],
+     "watts": 406,
+     "hr": 161.0,
+     "status": "over"
+    }
+   ],
+   "hr_drift_pct": -4.6
   }
  ],
  "problems": []

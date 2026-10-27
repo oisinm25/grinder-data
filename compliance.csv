@@ -9,3 +9,8 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-10-22,thu_am,test_grinding,grinding,session,35 min,,skipped,no matching activity
 2026-10-23,fri_pm,z2_45_openers,bike,session,45 min,"29 min, activity i200663412",done,no interval data to grade power
 2026-10-24,sat_am,test_bike_20,bike,session,65 min,,skipped,no matching activity
+2026-10-26,mon_am,upper_me,strength,bench_press top,1 x 6 @ 90 kg RPE<=7,,skipped,not logged
+2026-10-26,mon_am,upper_me,strength,bench_press backoff,3 x 8 @ 77.5 kg,,skipped,not logged
+2026-10-26,mon_am,upper_me,strength,weighted_pullup work,4 x 5 @ choose RPE<=7,,skipped,not logged
+2026-10-26,mon_am,upper_me,strength,chest_supported_row work,3 x 8 @ choose RPE<=7,,skipped,not logged
+2026-10-26,mon_pm,z2_90,bike,session,"90 min, 1 steps","117 min, activity i201941402",off_target,0/1 steps in band; W: 406!

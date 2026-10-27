@@ -1,11 +1,11 @@
 {
- "date": "2026-10-26",
- "status": "final",
- "status_reason": "",
- "generated_at": "2026-10-26T06:56+01:00",
+ "date": "2026-10-27",
+ "status": "provisional",
+ "status_reason": "no sleep yet",
+ "generated_at": "2026-10-27T06:43+01:00",
  "readiness": {
-  "colour": "red",
-  "reason": "red: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 55 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6"
+  "colour": null,
+  "reason": "no call: no HRV; resting HR 55 <= 62.4 (baseline 57.4 + 5); no sleep"
  },
  "block": {
   "id": "block1",
@@ -15,129 +15,278 @@
  },
  "sessions": [
   {
-   "slot": "mon_am",
+   "slot": "tue_am",
    "order": 0,
-   "session": "upper_me",
-   "modality": "strength",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "session": "handbike_intervals",
+   "modality": "handbike",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
    "environment": null,
-   "duration_min": null,
-   "tss": 50.0,
-   "readiness_exempt": false,
-   "strength": [
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "role": "top",
-     "sets": 1,
-     "reps": 6,
-     "kg": 90,
-     "rpe_cap": 7,
-     "basis": "start",
-     "reason": "start_kg 100 x 6: no upper_me history in this slot within 14 days; red: 90% of 100 -> 90, RPE cap 7"
-    },
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "role": "backoff",
-     "sets": 3,
-     "reps": 8,
-     "kg": 77.5,
-     "rpe_cap": null,
-     "basis": "top",
-     "reason": "85% of top 90 -> 77.5 x 8"
-    },
-    {
-     "lift": "weighted_pullup",
-     "name": "Weighted pull-up",
-     "role": "work",
-     "sets": 4,
-     "reps": 5,
-     "kg": null,
-     "rpe_cap": 7,
-     "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7"
-    },
-    {
-     "lift": "chest_supported_row",
-     "name": "Chest-supported row",
-     "role": "work",
-     "sets": 3,
-     "reps": 8,
-     "kg": null,
-     "rpe_cap": 7,
-     "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7"
-    }
-   ]
-  },
-  {
-   "slot": "mon_pm",
-   "order": 0,
-   "session": "z2_90",
-   "modality": "bike",
-   "summary": "Z2 90 min",
-   "environment": null,
-   "duration_min": 90,
-   "tss": 70.0,
+   "duration_min": 50,
+   "tss": 48.0,
    "readiness_exempt": false,
    "steps": [
     {
      "kind": "warmup",
-     "duration_s": 300,
-     "target": "170-211 W",
+     "duration_s": 600,
+     "target": "126-164 W*",
      "anchor": "pct_ftp",
      "watts": [
-      170,
-      211
+      126,
+      164
      ],
-     "provisional": false
+     "provisional": true
     },
     {
-     "kind": "steady",
-     "duration_s": 5100,
-     "target": "221-245 W",
+     "kind": "repeat",
+     "count": 5,
+     "duration_s": 2100,
+     "steps": [
+      {
+       "kind": "work",
+       "duration_s": 240,
+       "target": "265-277 W*",
+       "anchor": "pct_ftp",
+       "watts": [
+        265,
+        277
+       ],
+       "provisional": true
+      },
+      {
+       "kind": "rest",
+       "duration_s": 180,
+       "target": "113-139 W*",
+       "anchor": "pct_ftp",
+       "watts": [
+        113,
+        139
+       ],
+       "provisional": true
+      }
+     ]
+    },
+    {
+     "kind": "cooldown",
+     "duration_s": 300,
+     "target": "113-139 W*",
      "anchor": "pct_ftp",
      "watts": [
-      221,
-      245
+      113,
+      139
      ],
-     "provisional": false
+     "provisional": true
+    }
+   ],
+   "provisional_ftp": true
+  },
+  {
+   "slot": "tue_am",
+   "order": 1,
+   "session": "grinding_repeats_8",
+   "modality": "grinding",
+   "summary": "Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy",
+   "environment": null,
+   "duration_min": 39,
+   "tss": 35.0,
+   "readiness_exempt": false,
+   "steps": [
+    {
+     "kind": "warmup",
+     "duration_s": 600,
+     "target": "RPE 4",
+     "anchor": "rpe"
+    },
+    {
+     "kind": "repeat",
+     "count": 8,
+     "duration_s": 1440,
+     "steps": [
+      {
+       "kind": "work",
+       "duration_s": 60,
+       "target": "400 W",
+       "anchor": "pct_curve",
+       "watts": [
+        400,
+        400
+       ],
+       "provisional": false
+      },
+      {
+       "kind": "rest",
+       "duration_s": 120,
+       "target": "RPE 2",
+       "anchor": "rpe"
+      }
+     ]
+    },
+    {
+     "kind": "cooldown",
+     "duration_s": 300,
+     "target": "RPE 3",
+     "anchor": "rpe"
     }
    ],
    "provisional_ftp": false
+  },
+  {
+   "slot": "tue_pm",
+   "order": 0,
+   "session": "mobility_trunk",
+   "modality": "mobility",
+   "summary": "Mobility and trunk, 30 min",
+   "environment": null,
+   "duration_min": null,
+   "tss": null,
+   "readiness_exempt": false
   }
  ],
  "yesterday": {
-  "date": "2026-10-25",
-  "grades": [],
-  "status": "rest day"
+  "date": "2026-10-26",
+  "grades": [
+   {
+    "session": "upper_me",
+    "item": "bench_press top",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "upper_me",
+    "item": "bench_press backoff",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "upper_me",
+    "item": "weighted_pullup work",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "upper_me",
+    "item": "chest_supported_row work",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "z2_90",
+    "item": "session",
+    "grade": "off_target",
+    "note": "0/1 steps in band; W: 406!"
+   }
+  ],
+  "status": "graded"
  },
  "debrief": {
-  "date": "2026-10-25",
-  "verdict": "Unplanned: bike 148 min.",
-  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+  "date": "2026-10-26",
+  "verdict": "Z2 90 min off target: 0/1 steps in band.",
+  "note_for_today": "Z2 90 min faded: start today's Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy at the bottom of its band.",
   "context": {
-   "readiness": "green",
-   "readiness_reason": "green: HRV 56 >= 32.0 (baseline 42.9 - 1 SD 10.8); resting HR 52 <= 62.4 (baseline 57.4 + 5); sleep 9.9 h >= 6",
-   "sleep_h": 9.9,
-   "load_done": 207,
-   "load_planned": 0
+   "readiness": "red",
+   "readiness_reason": "red: HRV 58 >= 32.0 (baseline 42.9 - 1 SD 10.9); resting HR 54 <= 62.3 (baseline 57.3 + 5); sleep 5.38 h < 6",
+   "sleep_h": 5.38,
+   "load_done": 69,
+   "load_planned": 120
   },
   "items": [
    {
-    "kind": "unplanned",
-    "sport": "bike",
-    "type": "Ride",
-    "name": "Palma Road Cycling",
-    "moving_min": 147.9,
-    "hr_load": 131.0,
-    "avg_hr": 149.0,
-    "review": "",
-    "np_w": 284.0,
-    "intensity": 0.92,
-    "tss": 207.0,
-    "hr_drift_pct": 11.0
+    "kind": "strength",
+    "slot": "mon_am",
+    "session": "upper_me",
+    "modality": "strength",
+    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+    "planned_tss": 50.0,
+    "lifts": [
+     {
+      "lift": "bench_press",
+      "name": "Bench press",
+      "sets": [
+       {
+        "role": "top",
+        "set": null,
+        "prescribed": "1 x 6 @ 90 kg RPE<=7",
+        "achieved": "",
+        "status": "not logged"
+       },
+       {
+        "role": "backoff",
+        "set": null,
+        "prescribed": "3 x 8 @ 77.5 kg",
+        "achieved": "",
+        "status": "not logged"
+       }
+      ],
+      "e1rm_before": 131.7,
+      "e1rm_after": null,
+      "next": null
+     },
+     {
+      "lift": "weighted_pullup",
+      "name": "Weighted pull-up",
+      "sets": [
+       {
+        "role": "work",
+        "set": null,
+        "prescribed": "4 x 5 @ choose RPE<=7",
+        "achieved": "",
+        "status": "not logged"
+       }
+      ],
+      "e1rm_before": null,
+      "e1rm_after": null,
+      "next": null
+     },
+     {
+      "lift": "chest_supported_row",
+      "name": "Chest-supported row",
+      "sets": [
+       {
+        "role": "work",
+        "set": null,
+        "prescribed": "3 x 8 @ choose RPE<=7",
+        "achieved": "",
+        "status": "not logged"
+       }
+      ],
+      "e1rm_before": null,
+      "e1rm_after": null,
+      "next": null
+     }
+    ],
+    "grade": "skipped"
+   },
+   {
+    "kind": "endurance",
+    "slot": "mon_pm",
+    "session": "z2_90",
+    "modality": "bike",
+    "summary": "Z2 90 min",
+    "planned_min": 90,
+    "planned_tss": 70.0,
+    "grade": "off_target",
+    "grade_note": "0/1 steps in band; W: 406!",
+    "activity": {
+     "id": "i201941402",
+     "name": "Palma Road Cycling",
+     "moving_min": 117.2
+    },
+    "np_w": 184.0,
+    "intensity": 0.59,
+    "tss": 69.0,
+    "reps": [
+     {
+      "n": 1,
+      "target": "221-245 W",
+      "band": [
+       221,
+       245
+      ],
+      "watts": 406,
+      "hr": 161.0,
+      "status": "over"
+     }
+    ],
+    "hr_drift_pct": -4.6
    }
   ],
   "problems": []
