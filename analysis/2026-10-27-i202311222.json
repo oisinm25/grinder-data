@@ -1,0 +1,88 @@
+{
+ "status": "ok",
+ "generated_at": "2026-10-27T15:47+01:00",
+ "activity_id": "i202311222",
+ "activity": {
+  "id": "i202311222",
+  "date": "2026-10-27",
+  "start_local": "2026-10-27T14:06:59",
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Strength",
+  "moving_min": "47.6"
+ },
+ "breakdown": {
+  "kind": "unplanned",
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Strength",
+  "moving_min": 47.6,
+  "hr_load": 17.0,
+  "avg_hr": 113.0,
+  "review": "",
+  "np_w": null,
+  "intensity": 0.46,
+  "tss": 17.0,
+  "hr_drift_pct": null,
+  "grind_load": {
+   "source": "hr stream",
+   "efforts": 5,
+   "work_min": 10.1,
+   "efforts_85": 1
+  },
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 17.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 39.2,
+   "atl": 69.3,
+   "form": -30.1
+  },
+  "after": {
+   "ctl": 39.6,
+   "atl": 71.6,
+   "form": -32.0
+  },
+  "projections": {
+   "form_tomorrow": -32.0,
+   "next_key_session": {
+    "date": "2026-10-28",
+    "session": "lower_me",
+    "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+    "form": -32.0
+   }
+  },
+  "week": {
+   "start": "2026-10-26",
+   "label": "acc1",
+   "done_tss": 178,
+   "band": [
+    650.0,
+    750.0
+   ],
+   "share_pct": [
+    24,
+    27
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -32.0,
+  "next_key_session": {
+   "date": "2026-10-28",
+   "session": "lower_me",
+   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+   "form": -32.0
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-10-27-i202311222.json",
+  "md": "analysis/2026-10-27-i202311222.md"
+ }
+}
