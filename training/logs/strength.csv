@@ -1,3 +1,7 @@
 date,session,lift,role,kg,reps,rpe,notes
 2026-10-19,test_bench,bench_press,amrap,100,8,8.5,"Clean reps only; 1-2 slow reps left in reserve. e1RM ~127 kg"
 2026-10-21,test_lower,trap_bar_deadlift,test,180,6,,"Test top set (target was 5 @ RPE 8). e1RM ~216 kg. RPE not reported"
+2026-10-26,upper_me,bench_press,top,100,6,,"Top set 100 x 6 (prescribed 90 on a red day). RPE not reported"
+2026-10-26,upper_me,bench_press,backoff,77.5,8,,"Back-off set 1, logged as prescribed (3 x 8 @ 77.5)"
+2026-10-26,upper_me,bench_press,backoff,77.5,8,,"Back-off set 2, logged as prescribed"
+2026-10-26,upper_me,bench_press,backoff,77.5,8,,"Back-off set 3, logged as prescribed"
