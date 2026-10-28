@@ -1,25 +1,25 @@
-# Debrief: Mon 26 Oct 2026
+# Debrief: Tue 27 Oct 2026
 
-**Z2 90 min off target: 0/1 steps in band.**
+**Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy. Did sail or other 30 min, sail or other 44 min, conditioning 48 min instead.**
 
-Note for today: Z2 90 min faded: start today's Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy at the bottom of its band.
+Note for today: Today: Lower max effort.
 
-readiness red · sleep 5.38 h · load 69 of 120 planned TSS
+readiness green · sleep 8.08 h · load 63 of 83 planned TSS
 
-## AM: Upper max effort - bench top set, back-offs, heavy pulling
-skipped
+## AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+skipped: no matching activity
 
-| Lift | Set | Prescribed | Achieved | |
-|---|---|---|---|---|
-| Bench press | top | 1 x 6 @ 90 kg RPE<=7 | - | not logged |
-| Bench press | backoff | 3 x 8 @ 77.5 kg | - | not logged |
-| Weighted pull-up | work | 4 x 5 @ choose RPE<=7 | - | not logged |
-| Chest-supported row | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+## AM: Grinding repeat-sprints 8 x 1 min at ~85% of 1-min best, 2 min easy
+skipped: no matching activity
 
+## Unplanned: Mobility (sail or other)
+30 min · IF 0.28 · TSS 4 · HR load 4 · avg HR 84
+Grind Load: 1 efforts, 0.3 work min, 0 at >= 85% LTHR (hr stream)
 
-## PM: Z2 90 min
-off_target: 0/1 steps in band; W: 406! · 117 of 90 min · NP 184 W · IF 0.59 · TSS 69 · HR drift -4.6%
+## Unplanned: Cardio (sail or other)
+44 min · IF 0.62 · TSS 42 · HR load 42 · avg HR 139
+Grind Load: 7 efforts, 36 work min, 5 at >= 85% LTHR (hr stream)
 
-| Rep | Target | Watts | HR | |
-|---|---|---|---|---|
-| 1 | 221-245 W | 406 | 161 | over |
+## Unplanned: Strength (conditioning)
+48 min · IF 0.46 · TSS 17 · HR load 17 · avg HR 113
+Grind Load: 5 efforts, 10.1 work min, 1 at >= 85% LTHR (hr stream)
