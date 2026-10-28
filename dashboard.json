@@ -1,7 +1,7 @@
 {
  "date": "2026-10-28",
  "status": "provisional",
- "generated_at": "2026-10-28T06:36+01:00",
+ "generated_at": "2026-10-28T06:49+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -279,8 +279,8 @@
      "ctl": 39.6,
      "atl": 71.6,
      "form": -32.0,
-     "icu_ctl": 35.0,
-     "icu_atl": 71.2
+     "icu_ctl": 33.8,
+     "icu_atl": 64.9
     },
     {
      "date": "2026-10-28",
@@ -288,8 +288,8 @@
      "ctl": 38.6,
      "atl": 62.1,
      "form": -23.4,
-     "icu_ctl": 35.4,
-     "icu_atl": 75.7
+     "icu_ctl": 34.3,
+     "icu_atl": 70.2
     }
    ],
    "planned": [
