@@ -1,0 +1,130 @@
+{
+ "status": "ok",
+ "generated_at": "2026-10-29T22:22+01:00",
+ "activity_id": "i203303190",
+ "activity": {
+  "id": "i203303190",
+  "date": "2026-10-29",
+  "start_local": "2026-10-29T18:42:48",
+  "sport": "conditioning",
+  "type": "HighIntensityIntervalTraining",
+  "name": "HIIT",
+  "moving_min": "53"
+ },
+ "breakdown": {
+  "kind": "strength",
+  "slot": "thu_am",
+  "session": "upper_re",
+  "modality": "strength",
+  "summary": "Upper repetition effort - bench volume toward 10 x 110",
+  "planned_tss": 45.0,
+  "lifts": [
+   {
+    "lift": "bench_press",
+    "name": "Bench press",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "3 x 10 @ 80 kg RPE<=8.5",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": 125.0,
+    "e1rm_after": null,
+    "next": null
+   },
+   {
+    "lift": "bench_pull",
+    "name": "Bench pull",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": null,
+    "next": null
+   },
+   {
+    "lift": "landmine_press",
+    "name": "Landmine press",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": null,
+    "next": null
+   }
+  ],
+  "grade": "skipped",
+  "np_w": null,
+  "intensity": 0.75,
+  "tss": 50.0,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 50.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 38.2,
+   "atl": 56.3,
+   "form": -18.1
+  },
+  "after": {
+   "ctl": 39.4,
+   "atl": 63.0,
+   "form": -23.6
+  },
+  "projections": {
+   "form_tomorrow": -23.6,
+   "next_key_session": {
+    "date": "2026-10-30",
+    "session": "bike_threshold_2x20",
+    "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+    "form": -23.6
+   }
+  },
+  "week": {
+   "start": "2026-10-26",
+   "label": "acc1",
+   "done_tss": 247,
+   "band": [
+    650.0,
+    750.0
+   ],
+   "share_pct": [
+    33,
+    38
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -23.6,
+  "next_key_session": {
+   "date": "2026-10-30",
+   "session": "bike_threshold_2x20",
+   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+   "form": -23.6
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-10-29-i203303190.json",
+  "md": "analysis/2026-10-29-i203303190.md"
+ }
+}
