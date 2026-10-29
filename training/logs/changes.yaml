@@ -10,3 +10,4 @@
 - { type: done_late, session: upper_me, planned: 2026-10-26 am, done: 2026-10-27 pm, reason: "skipped Monday" }
 - { type: done_late, session: lower_me, planned: 2026-10-28 am, done: 2026-10-29 pm, reason: "done Thursday afternoon instead of Wednesday" }
 - { type: move, session: upper_re, from: 2026-10-29 am, to: 2026-10-30 am, reason: "Thursday went to the late lower session and erg intervals" }
+- { type: move, session: upper_de, from: 2026-10-30 am, to: 2026-11-01 am, reason: "upper rep day moved to Friday AM" }

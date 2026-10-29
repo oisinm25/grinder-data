@@ -6,3 +6,5 @@ date,session,lift,role,kg,reps,rpe,notes
 2026-10-27,upper_me,bench_press,backoff,77.5,8,,"Back-off set 2, logged as prescribed"
 2026-10-27,upper_me,bench_press,backoff,77.5,8,,"Back-off set 3, logged as prescribed"
 2026-10-29,lower_me,trap_bar_deadlift,top,170,5,8,"Top set 170 x 5 @ RPE 8 (prescribed 175 x 5 @ RPE 8). Done Thu 29 Oct (planned Wed 28)"
+2026-10-29,lower_me,trap_bar_deadlift,backoff,145,5,,"Back-off set 1 (prescribed 2 x 5 @ 90% of top). RPE not reported"
+2026-10-29,lower_me,trap_bar_deadlift,backoff,145,5,,"Back-off set 2. RPE not reported"
