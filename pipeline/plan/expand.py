@@ -10,6 +10,10 @@ where an anchor allows it:
 - `pct_curve` x the curve point (e.g. 60 s)    -> single watts value
 - `hr_zone`, `rpe`                             -> left as written (no watts)
 
+Then the session changes in training/logs/changes.yaml (pipeline.plan.changes) are applied in
+file order: a moved or swapped session carries `moved_from`, and the slot it left carries a
+`Vacated` marker on its Day.
+
 Resolved watts carry `provisional` when the anchor behind them is provisional
 (the hand-bike FTP until it's tested). Strength weights are not prescribed here;
 that is the progression engine's job.
@@ -26,6 +30,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from pipeline.athlete import Athlete
+from pipeline.plan.changes import Applied, Pos, Vacated, apply
 from pipeline.plan.schema import (
     Block,
     IntervalStep,
@@ -90,10 +95,27 @@ class ScheduledSession:
     steps: tuple[ResolvedStep, ...]
     duration_s: int | None  # None when the session has no timed steps
     tss: float
+    moved_from: Pos | None = None  # where the plan had it, when changes.yaml moved or swapped it
+    change_reason: str | None = None
+    change_kind: str | None = None  # moved | done_late, with moved_from
 
     @property
     def steps_text(self) -> str:
         return "; ".join(s.text() for s in self.steps)
+
+    @property
+    def home_slot(self) -> str:
+        """The plan's slot for this session: its history and basis follow it when it moves."""
+        return self.moved_from.slot if self.moved_from else self.slot
+
+    @property
+    def moved_note(self) -> str:
+        """'(moved from Mon)', '(moved from AM)' on the same day, '(done late, planned Mon)', or ''."""
+        if not self.moved_from:
+            return ""
+        same_day = self.moved_from.date == self.date
+        where = self.moved_from.half.upper() if same_day else f"{self.moved_from.date:%a}"
+        return f"(done late, planned {where})" if self.change_kind == "done_late" else f"(moved from {where})"
 
 
 @dataclass(frozen=True)
@@ -102,6 +124,7 @@ class Day:
     block: Block
     week: Week | None  # None in a design-pending block
     sessions: tuple[ScheduledSession, ...]
+    vacated: tuple[Vacated, ...] = ()  # planned here, but moved away or dropped by changes.yaml
 
     @property
     def design_pending(self) -> bool:
@@ -198,9 +221,26 @@ def slots_for(plan: Plan, week: Week) -> dict[str, list[str]]:
     return slots
 
 
-def expand(plan: Plan, athlete: Athlete, start: dt.date, end: dt.date) -> list[Day]:
-    """One Day per date from start to end inclusive, clipped to the plan's validity window."""
+def planned_slots(plan: Plan, day: dt.date) -> dict[str, list[str]] | None:
+    """The plan's own slots for one date (no changes): slot -> session ids. None outside a designed week."""
+    block = _block_for(plan, day)
+    week = _week_for(block, day) if block else None
+    return slots_for(plan, week) if week is not None else None
+
+
+def apply_changes(plan: Plan, athlete: Athlete, changes=None) -> Applied:
+    """The plan's changes (default: plan.changes) applied in order. Raises changes.ChangesError."""
+    return apply(plan.changes if changes is None else changes, lambda d: planned_slots(plan, d), plan.sessions,
+                 (plan.valid_from, plan.valid_to))  # fmt: skip
+
+
+def expand(plan: Plan, athlete: Athlete, start: dt.date, end: dt.date, *, changes=None) -> list[Day]:
+    """One Day per date from start to end inclusive, clipped to the plan's validity window.
+    `changes` defaults to plan.changes; pass () for the plan as written."""
     start, end = max(start, plan.valid_from), min(end, plan.valid_to)
+    todo = plan.changes if changes is None else changes
+    applied = apply_changes(plan, athlete, todo) if todo else None
+    changed = applied.dates() if applied else set()
     resolved: dict[str, tuple[tuple[ResolvedStep, ...], int | None]] = {}
     days = []
     day = start
@@ -216,15 +256,21 @@ def expand(plan: Plan, athlete: Athlete, start: dt.date, end: dt.date) -> list[D
             prefix = DAYS[day.weekday()]
             for half in ("am", "pm"):
                 slot = f"{prefix}_{half}"
-                for order, sid in enumerate(slots.get(slot, [])):
+                here = Pos(day, half)
+                entries = applied.slots.get(here, []) if day in changed else [None] * len(slots.get(slot, []))
+                ids = [e.session_id for e in entries] if day in changed else slots.get(slot, [])
+                for order, (sid, entry) in enumerate(zip(ids, entries)):
                     session = plan.sessions[sid]
                     if sid not in resolved:
                         steps = resolve_steps(session.steps or [], session.modality, athlete)
                         resolved[sid] = (steps, sum(s.duration_s for s in steps) if steps else None)
                     steps, duration = resolved[sid]
                     tss = session.targets.tss if session.targets and session.targets.tss is not None else 0.0
-                    sessions.append(ScheduledSession(day, slot, order, sid, session, steps, duration, tss))
-        days.append(Day(day, block, week, tuple(sessions)))
+                    moved = entry.origin if entry is not None and entry.origin != here else None
+                    sessions.append(ScheduledSession(day, slot, order, sid, session, steps, duration, tss, moved,
+                                                     entry.reason if moved else None, entry.kind if moved else None))  # fmt: skip
+        vacated = tuple(applied.vacated.get(day, ())) if applied else ()
+        days.append(Day(day, block, week, tuple(sessions), vacated))
         day += dt.timedelta(days=1)
     return days
 
@@ -245,7 +291,7 @@ def week_summaries(plan: Plan, days: list[Day]) -> list[WeekSummary]:
 
 CSV_FIELDS = (
     "date", "weekday", "slot", "order", "block_id", "week_label", "session_id", "modality",
-    "environment", "summary", "duration_min", "tss", "readiness_exempt", "steps",
+    "environment", "summary", "duration_min", "tss", "readiness_exempt", "steps", "moved_from",
 )  # fmt: skip
 
 
@@ -271,6 +317,7 @@ def write_csv(days: list[Day], path: Path) -> None:
                     "tss": f"{s.tss:g}",
                     "readiness_exempt": s.session.readiness_exempt,
                     "steps": s.steps_text,
+                    "moved_from": str(s.moved_from) if s.moved_from else "",
                 })  # fmt: skip
 
 
@@ -281,13 +328,18 @@ def format_days(plan: Plan, days: list[Day]) -> list[str]:
         lines.append(f"{d.date:%a %Y-%m-%d}  {where}")
         if d.design_pending:
             lines.append("    (design pending - no sessions yet)")
-        elif not d.sessions:
+        elif not d.sessions and not d.vacated:
             lines.append("    (nothing scheduled)")
-        for s in d.sessions:
+        rows = [(s.slot[-2:], 0, s) for s in d.sessions] + [(v.slot[-2:], 1, v) for v in d.vacated]
+        for _, gone, s in sorted(rows, key=lambda r: (r[0], r[1])):
+            if gone:
+                lines.append(f"  {s.slot[-2:]}  {s.session_id:<22} {s.note(d.date)}")
+                continue
             dur = f"{_clock(s.duration_s):>7}" if s.duration_s else " " * 7
             tss = f"{s.tss:>4g} TSS" if s.tss else " " * 8
             exempt = " [test: readiness-exempt]" if s.session.readiness_exempt else ""
-            lines.append(f"  {s.slot[-2:]}  {s.session_id:<22} {s.session.modality:<9} {dur} {tss}  {s.session.summary}{exempt}")
+            moved = f" {s.moved_note}" if s.moved_from else ""
+            lines.append(f"  {s.slot[-2:]}  {s.session_id:<22} {s.session.modality:<9} {dur} {tss}  {s.session.summary}{exempt}{moved}")
             if s.steps:
                 lines.append(f"        {s.steps_text}")
             for ex in s.session.exercises or []:

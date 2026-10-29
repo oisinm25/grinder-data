@@ -204,9 +204,10 @@ class Prescriber:
         self._slots: dict[dt.date, dict[str, str]] = {}
 
     def slot_of(self, r: LogRow) -> str | None:
-        """The slot the plan had r.session in on r.date (None if it wasn't scheduled that day)."""
+        """The plan's slot for r.session on r.date (None if it wasn't scheduled that day). A session
+        moved by changes.yaml keeps its home slot, so its history stays with the same session and slot."""
         if r.date not in self._slots:
-            self._slots[r.date] = {s.session_id: s.slot for d in expand(self.plan, self.athlete, r.date, r.date) for s in d.sessions}
+            self._slots[r.date] = {s.session_id: s.home_slot for d in expand(self.plan, self.athlete, r.date, r.date) for s in d.sessions}
         return self._slots[r.date].get(r.session)
 
     def block_of(self, d: dt.date) -> Block:
@@ -222,15 +223,18 @@ class Prescriber:
                     continue
                 status = self.readiness.get(day.date, "")
                 for ex in s.session.exercises:
-                    out.extend(self.exercise(day.date, s.session_id, s.slot, ex, status, s.session.readiness_exempt))
+                    out.extend(self.exercise(day.date, s.session_id, s.slot, ex, status, s.session.readiness_exempt, s.home_slot))
         return out
 
-    def exercise(self, date, sid, slot, ex: Exercise, status: str, exempt: bool) -> list[Prescription]:
+    def exercise(self, date, sid, slot, ex: Exercise, status: str, exempt: bool, home: str | None = None) -> list[Prescription]:
+        """`slot` is where the session is today; `home` the plan's slot for it (different when moved),
+        whose history is the basis. Readiness (`status`) is today's."""
         rule = self.plan.progressions.get(ex.progression) if ex.progression else None
         prior = [r for r in self.history if r.lift == ex.lift and r.date < date]
         since = date - dt.timedelta(days=BASIS_WINDOW_DAYS)
-        same = [r for r in prior if r.session == sid and r.date >= since and self.slot_of(r) in (slot, None)]
-        same_all = [r for r in prior if r.session == sid and self.slot_of(r) in (slot, None)]
+        home = home or slot
+        same = [r for r in prior if r.session == sid and r.date >= since and self.slot_of(r) in (home, None)]
+        same_all = [r for r in prior if r.session == sid and self.slot_of(r) in (home, None)]
 
         results: list[Prescription | None] = [None] * len(ex.groups)
         top: Prescription | None = None

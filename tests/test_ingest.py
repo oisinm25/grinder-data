@@ -6,13 +6,14 @@ import json
 import httpx
 import pytest
 
+
 from pipeline.ingest.__main__ import main
 from pipeline.ingest.intervals import IntervalsClient, IntervalsError
 from pipeline.ingest.strength import StrengthLogError, latest_top_sets, read_strength_log
 from pipeline.ingest.tidy import ACTIVITY_FIELDS, activity_row, add_readiness, map_sport, upsert_range, wellness_row
-from pipeline.plan.schema import validate_plan
+from pipeline.plan.schema import load_checked, validate_plan
 from pipeline.settings import MissingSetting, require_env
-from tests.conftest import ROOT
+from tests.conftest import ATHLETE, ROOT
 
 FIXTURES = ROOT / "tests" / "fixtures" / "intervals"
 FAKE_KEY = "fake-key-" + "0123456789abcdef"
@@ -249,11 +250,14 @@ def write_log(tmp_path, body, header=HEADER):
     return p
 
 
-def test_repo_strength_log_reads(plan, athlete):
+def test_repo_strength_log_reads():
+    """The real log against the real plan and its changes log (upper_me was done late, Tue 27 Oct)."""
+    plan, athlete = load_checked(ROOT / "config" / "plan.yaml", ATHLETE, changes_path=ROOT / "training" / "logs" / "changes.yaml")
     log = read_strength_log(ROOT / "training" / "logs" / "strength.csv", plan, athlete)
     assert len(log.sets) >= 2 and log.warnings == []
     tops = latest_top_sets(log)
-    assert tops["bench_press"].kg == 100 and round(tops["bench_press"].e1rm_kg, 1) == 131.7
+    assert (tops["bench_press"].date, tops["bench_press"].kg) == (D(2026, 10, 27), 100)  # 100 x 6 @ 8.5
+    assert round(tops["bench_press"].e1rm_kg, 1) == 125.0
 
 
 @pytest.mark.parametrize(
@@ -334,6 +338,7 @@ def run(tmp_path, *extra, env=FAKE_ENV, fake=None):
 
 def test_cli_end_to_end_and_rerun(tmp_path, capsys, monkeypatch):
     monkeypatch.chdir(ROOT)
+    monkeypatch.setenv("PEDESTAL_CHANGES", str(ROOT / "training" / "logs" / "changes.yaml"))  # the real log needs it
     code, fake = run(tmp_path)
     out = capsys.readouterr().out
     assert code == 0, out
@@ -346,7 +351,8 @@ def test_cli_end_to_end_and_rerun(tmp_path, capsys, monkeypatch):
     assert "Wellness: 4 days in range" in out and "(13 rows incl. baseline)" in out
     assert "latest 2026-10-16: resting HR 50 bpm, HRV 55 ms, sleep 6.8 h (score 71)" in out
     assert "  readiness amber: HRV 55 < 66.3" in out
-    assert "bench_press        2026-10-19  100 kg x 8 @ RPE 8.5  (amrap)  e1RM 131.7 kg" in out
+    assert "bench_press        2026-10-27  100 kg x 6 @ RPE 8.5  (top)  e1RM 125.0 kg" in out
+    assert "warning" not in out
     assert FAKE_KEY not in out
     assert len(fake.calls) == 2
     assert dict(fake.calls[1].url.params)["oldest"] == "2026-09-16"  # wellness fetched 28 days early

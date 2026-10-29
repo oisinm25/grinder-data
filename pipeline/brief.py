@@ -92,6 +92,8 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
             "duration_min": round(s.duration_s / 60) if s.duration_s else None, "tss": s.tss or None,
             "readiness_exempt": s.session.readiness_exempt,
         }  # fmt: skip
+        if s.moved_from:
+            item.update(moved_from=str(s.moved_from), moved_note=s.moved_note, change_reason=s.change_reason, change_kind=s.change_kind)
         if s.steps:
             item["steps"] = [_step(x) for x in s.steps]
             item["provisional_ftp"] = _provisional(s.steps)
@@ -127,6 +129,8 @@ def build(plan: Plan, athlete: Athlete, day: dt.date, derived: Path, failed: lis
         "block": {"id": d.block.id, "name": d.block.name, "week": d.week.label if d.week else None,
                   "design_pending": d.design_pending} if d else None,  # fmt: skip
         "sessions": sessions,
+        "moved_away": [{"slot": v.slot, "session": v.session_id, "summary": plan.sessions[v.session_id].summary, "note": v.note(day)}
+                       for v in (d.vacated if d else ())],  # changes.yaml: planned today, moved or dropped
         "yesterday": {"date": yesterday.isoformat(), "grades": graded,
                       "status": "graded" if graded else ("not graded" if planned_y else "rest day")},  # fmt: skip
         "debrief": debrief,
@@ -172,10 +176,11 @@ def to_markdown(b: dict) -> str:
 
     if b["block"] and b["block"]["design_pending"]:
         out += ["Design pending: no sessions planned yet.", ""]
-    elif not b["sessions"]:
+    elif not b["sessions"] and not b.get("moved_away"):
         out += ["Rest day.", ""]
     for s in b["sessions"]:
-        out.append(f"## {s['slot'][-2:].upper()}: {s['summary']}")
+        moved = f" {s['moved_note']}" if s.get("moved_note") else ""
+        out.append(f"## {s['slot'][-2:].upper()}: {s['summary']}{moved}")
         meta = [s["modality"]] + ([f"{s['duration_min']} min"] if s["duration_min"] else []) + ([f"{s['tss']:g} TSS"] if s["tss"] else [])
         if s["readiness_exempt"]:
             meta.append("test: readiness-exempt")
@@ -195,6 +200,9 @@ def to_markdown(b: dict) -> str:
             if s.get("provisional_ftp"):
                 out.append("- \\* watts from a provisional FTP")
             out.append("")
+
+    for v in b.get("moved_away", []):
+        out += [f"*{v['slot'][-2:].upper()}: {v['summary']}: {v['note']}.*", ""]
 
     y = b["yesterday"]
     if b.get("debrief"):  # the debrief has the grades and much more

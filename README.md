@@ -118,6 +118,46 @@ next daily run would make. `--yes` archives the old plan to `plans/archive/`, co
 one to `config/plan.yaml` and records it in `plans/HISTORY.md`; commit those. From the phone,
 open a pull request with the plan file: the `plan-check` workflow comments the same diff.
 
+## Moving a session
+
+To move, swap or drop a session without touching the plan, add an entry to
+`training/logs/changes.yaml`:
+
+```yaml
+- { type: move, session: upper_me, from: 2026-10-26 am, to: 2026-10-27 am, reason: "skipped Monday" }
+- { type: swap, a: 2026-10-27 pm, b: 2026-10-28 pm }
+- { type: drop, session: z2_60, date: 2026-10-28 pm, reason: "travel" }
+- { type: done_late, session: upper_me, planned: 2026-10-26 am, done: 2026-10-27 pm }
+```
+
+`done_late` records after the fact that a session was done later than planned. It applies like
+a move, but it's the one kind you can add for past dates. Its slot shows "done late: Tue PM",
+and the session shows "(done late, planned Mon)".
+
+`pipeline.plan.expand` applies the entries in file order. This affects everything downstream:
+- **Calendar:** the next publish updates the affected days only.
+- **Compliance and debrief:** a moved session is graded on its new date. The slot it left shows
+  "moved to Tue AM", or "dropped" with the reason.
+- **Prescriptions:** a moved session keeps the same session-and-slot history, so a moved
+  `upper_me` builds on the last `upper_me`. Readiness comes from the new day.
+- **Brief, debrief and dashboard:** these show "(moved from Mon)".
+
+Check the file after adding an entry:
+
+```
+conda run -n pedestal python -m pipeline.plan.changes
+```
+
+The check validates the entries and refuses a new entry that touches a date before today.
+Entries already committed are history and stay. It also warns, without blocking, when the
+change breaks a design rule:
+- strength and endurance under 6 h apart
+- two upper max-effort sessions within 48 h
+- bike VO2 and hand-bike VO2 within 48 h
+
+An entry that can't apply, such as moving a session that isn't in that slot after the
+entries before it, stops the daily run until it is fixed.
+
 ## Analyse a workout now
 
 After a key session, don't wait for the morning:

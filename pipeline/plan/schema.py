@@ -16,6 +16,7 @@ The athlete file defaults to `athlete.yaml` beside the plan.
 
 import argparse
 import datetime as dt
+import os
 import sys
 from pathlib import Path
 from typing import Annotated, Any, Literal, Union
@@ -28,6 +29,7 @@ from pydantic import (
     NonNegativeInt,
     PositiveFloat,
     PositiveInt,
+    PrivateAttr,
     ValidationError,
     ValidationInfo,
     field_validator,
@@ -305,6 +307,13 @@ class Plan(StrictModel):
     blocks: list[Block] = Field(min_length=1)
     week_templates: dict[str, dict[Slot, SessionRef]]
     sessions: dict[str, Session] = Field(min_length=1)
+    _changes: tuple = PrivateAttr(default=())
+
+    @property
+    def changes(self) -> tuple:
+        """Date-scoped session changes (training/logs/changes.yaml, pipeline.plan.changes) that
+        expand applies on top of the plan. Empty unless load_checked found the file."""
+        return self._changes
 
 
 # ------------------------------------------------------------------ pass 2: references
@@ -475,8 +484,25 @@ class PlanLoadError(Exception):
         self.exit_code = exit_code
 
 
-def load_checked(plan_path: Path, athlete_path: Path | None = None) -> tuple[Plan, Athlete]:
-    """Load and validate a plan and its athlete file (default: athlete.yaml beside the plan)."""
+def default_changes_path(plan_path: Path) -> Path | None:
+    """<repo>/training/logs/changes.yaml for <repo>/config/plan.yaml; None for any other plan file
+    (a candidate in plans/, a test copy elsewhere), whose expansion has no changes.
+    PEDESTAL_CHANGES, when set, overrides it: a path, or "none" (the test suite sets it)."""
+    override = os.environ.get("PEDESTAL_CHANGES")
+    if override is not None:
+        return None if override.strip().lower() in ("", "none") else Path(override)
+    plan_path = Path(plan_path)
+    if plan_path.name == "plan.yaml" and plan_path.parent.name == "config":
+        return plan_path.parent.parent / "training" / "logs" / "changes.yaml"
+    return None
+
+
+_DEFAULT = object()
+
+
+def load_checked(plan_path: Path, athlete_path: Path | None = None, *, changes_path=_DEFAULT) -> tuple[Plan, Athlete]:
+    """Load and validate a plan and its athlete file (default: athlete.yaml beside the plan).
+    Also loads and checks the session changes (default: default_changes_path) when that file exists."""
     plan_path = Path(plan_path)
     athlete_path = Path(athlete_path) if athlete_path else plan_path.with_name("athlete.yaml")
     try:
@@ -497,6 +523,17 @@ def load_checked(plan_path: Path, athlete_path: Path | None = None) -> tuple[Pla
         plan = validate_plan(data, athlete)
     except ValidationError as e:
         raise invalid(plan_path, e, data) from e
+
+    path = default_changes_path(plan_path) if changes_path is _DEFAULT else changes_path
+    if path is not None and Path(path).exists():
+        from pipeline.plan import changes as ch
+        from pipeline.plan.expand import apply_changes
+
+        try:
+            plan._changes = ch.load(Path(path))
+            apply_changes(plan, athlete)  # every change must apply, in order
+        except ch.ChangesError as e:
+            raise PlanLoadError([f"{path}: INVALID"] + [f"  {line}" for line in e.lines], 1) from e
     return plan, athlete
 
 

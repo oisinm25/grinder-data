@@ -1,0 +1,10 @@
+# Session changes on top of config/plan.yaml, applied in this order by pipeline.plan.expand.
+# Positions are "YYYY-MM-DD am" or "YYYY-MM-DD pm". Entries are history: once committed they
+# stay, even when their dates are past. Check with: python -m pipeline.plan.changes
+#
+#   - { type: move, session: <id>, from: <date> <am|pm>, to: <date> <am|pm>, reason: "..." }
+#   - { type: swap, a: <date> <am|pm>, b: <date> <am|pm> }
+#   - { type: drop, session: <id>, date: <date> <am|pm>, reason: "..." }
+#   - { type: done_late, session: <id>, planned: <date> <am|pm>, done: <date> <am|pm>, reason: "..." }
+
+- { type: done_late, session: upper_me, planned: 2026-10-26 am, done: 2026-10-27 pm, reason: "skipped Monday" }

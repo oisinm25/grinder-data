@@ -52,7 +52,8 @@ def schedule(plan: Plan, athlete: Athlete, start: dt.date, end: dt.date) -> dict
     """date -> [(slot, order, session_id)] for every date the plan covers in start..end."""
     if end < start:
         return {}
-    return {d.date: [(s.slot, s.order, s.session_id) for s in d.sessions] for d in expand(plan, athlete, start, end)}
+    # the plans as written: changes.yaml moves are date-scoped edits, not part of either plan
+    return {d.date: [(s.slot, s.order, s.session_id) for s in d.sessions] for d in expand(plan, athlete, start, end, changes=())}
 
 
 def _week_of(day: dt.date) -> dt.date:

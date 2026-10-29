@@ -92,6 +92,9 @@ def build_event(plan_id: str, s: ScheduledSession, rx: list[Prescription], lift_
         lines += strength_lines(rx, lift_names) or ["Run python -m pipeline.prescribe for weights."]
     if session.readiness_exempt:
         lines += ["", "Test: readiness-exempt (amber doesn't soften it; red still cuts it)."]
+    if s.moved_from:
+        verb = "Done late; planned" if s.change_kind == "done_late" else "Moved from"
+        lines += ["", f"{verb} {s.moved_from.date:%a %d %b} {s.moved_from.half.upper()}" + (f": {s.change_reason}" if s.change_reason else "") + "."]
     hour = START_HOUR[s.slot[-2:]] + s.order
     event = {
         "category": "WORKOUT",

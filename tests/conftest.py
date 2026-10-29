@@ -22,6 +22,13 @@ _ATHLETE_DATA = load_yaml(ATHLETE)
 
 
 @pytest.fixture(autouse=True)
+def no_live_changes(monkeypatch):
+    """The real training/logs/changes.yaml never reaches a test (subprocesses inherit this too);
+    tests that want changes pass changes_path or set PEDESTAL_CHANGES themselves."""
+    monkeypatch.setenv("PEDESTAL_CHANGES", "none")
+
+
+@pytest.fixture(autouse=True)
 def no_network(monkeypatch):
     """Tests never reach the internet; HTTP goes through httpx.MockTransport."""
 

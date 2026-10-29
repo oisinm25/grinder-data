@@ -22,7 +22,7 @@ from pipeline.ingest.tidy import read_csv, write_csv
 from pipeline.plan.expand import expand
 from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
 from pipeline.prescribe import load_history, load_readiness, prescribe
-from pipeline.review.compliance import FIELDS, grade_days
+from pipeline.review.compliance import FIELDS, grade_days, vacated_grades
 from pipeline.review.drift import WEEKLY_FIELDS, review_week, week_markdown
 from pipeline.settings import MissingSetting, load_env, require_env
 
@@ -101,6 +101,7 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
     finally:
         if client is not None:
             client.close()
+    grades += vacated_grades(days, plan.sessions, graded_to)  # moved or dropped by changes.yaml
     for g in grades:  # today isn't over: nothing done yet is pending, not skipped
         if g.date == today and g.grade == "skipped":
             g.grade, g.note = "pending", "not done yet today"

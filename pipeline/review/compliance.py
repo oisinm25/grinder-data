@@ -11,6 +11,8 @@ in order:
 - done:       done, but nothing to grade on power (no power steps, or no interval data)
 - missed:     an activity under half the planned duration
 - skipped:    no matching activity
+- moved:      training/logs/changes.yaml moved it to another slot, where it is graded ("moved to Tue AM")
+- dropped:    changes.yaml dropped it (the note gives the reason)
 
 Strength is graded per prescription against the logged sets (derived/strength.csv):
 held (weight, reps and RPE cap all met), under (lighter or short reps), over_rpe (above the
@@ -20,7 +22,7 @@ cap), logged (a first "choose" weight, or an amrap/test result) or skipped (lift
 import datetime as dt
 from dataclasses import dataclass
 
-from pipeline.plan.expand import ENDURANCE_MODALITIES, ResolvedStep, ScheduledSession
+from pipeline.plan.expand import ENDURANCE_MODALITIES, Day, ResolvedStep, ScheduledSession
 from pipeline.prescribe import LogRow, Prescription
 
 BAND_TOLERANCE = 0.03
@@ -154,6 +156,18 @@ def grade_strength(rx: Prescription, logged: list[LogRow]) -> Grade:
         return Grade(**base, actual=actual, grade="over_rpe", note=f"above RPE {rx.rpe_cap:g}")
     note = "RPE not logged" if all(r.rpe is None for r in sets) else ""
     return Grade(**base, actual=actual, grade="held", note=note)
+
+
+def vacated_grades(days: list[Day], sessions: dict, until: dt.date | None = None) -> list[Grade]:
+    """One row per planned session that changes.yaml moved away or dropped, on its original date."""
+    out = []
+    for d in days:
+        if until is not None and d.date > until:
+            continue
+        for v in d.vacated:
+            out.append(Grade(date=d.date, slot=v.slot, session=v.session_id, modality=sessions[v.session_id].modality, item="session", planned="",
+                             actual="", grade=v.kind, note=v.note(d.date)))  # fmt: skip
+    return out
 
 
 def grade_days(planned: list[ScheduledSession], activities: list[dict], intervals_for, rx: list[Prescription],

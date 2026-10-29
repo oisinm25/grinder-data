@@ -190,9 +190,20 @@ def _rep_status(watts: float, band: tuple[int, int]) -> str:
 # ------------------------------------------------------------------ items
 
 
+def _moved(s: ScheduledSession) -> dict:
+    return {"moved_from": str(s.moved_from), "moved_note": s.moved_note} if s.moved_from else {}
+
+
+def vacated_item(v, day: dt.date, plan: Plan) -> dict:
+    """A planned slot that changes.yaml emptied: 'moved to Tue AM' or 'dropped', never skipped."""
+    session = plan.sessions[v.session_id]
+    return {"kind": "vacated", "slot": v.slot, "session": v.session_id, "modality": session.modality,
+            "summary": session.summary, "grade": v.kind, "grade_note": v.note(day)}  # fmt: skip
+
+
 def endurance_item(s: ScheduledSession, activity: dict | None, fetch: Fetch, athlete: Athlete) -> dict:
     item = {"kind": "endurance", "slot": s.slot, "session": s.session_id, "modality": s.session.modality,
-            "summary": s.session.summary, "planned_min": round((s.duration_s or 0) / 60), "planned_tss": s.tss}  # fmt: skip
+            "summary": s.session.summary, "planned_min": round((s.duration_s or 0) / 60), "planned_tss": s.tss, **_moved(s)}  # fmt: skip
     intervals = fetch.intervals(activity["id"]) if activity else None
     grade = grade_endurance(s, activity, intervals)
     item.update(grade=grade.grade, grade_note=grade.note)
@@ -258,7 +269,7 @@ def strength_item(s: ScheduledSession, day: dt.date, plan: Plan, athlete: Athlet
                       "e1rm_after": round(after, 1) if after else None,
                       "next": next_time(s, lift, day, plan, athlete, history) if today else None})  # fmt: skip
     return {"kind": "strength", "slot": s.slot, "session": s.session_id, "modality": "strength",
-            "summary": s.session.summary, "planned_tss": s.tss, "lifts": lifts,
+            "summary": s.session.summary, "planned_tss": s.tss, "lifts": lifts, **_moved(s),
             "grade": "skipped" if not logged else ("under" if any(x["status"] == "under" for lf in lifts for x in lf["sets"]) else "held")}  # fmt: skip
 
 
@@ -291,7 +302,7 @@ def unplanned_item(activity: dict, fetch: Fetch, athlete: Athlete) -> dict:
 
 
 def verdict(items: list[dict], planned_any: bool) -> str:
-    planned = [i for i in items if i["kind"] != "unplanned"]
+    planned = [i for i in items if i["kind"] not in ("unplanned", "vacated")]
     extra = [i for i in items if i["kind"] == "unplanned"]
     if not planned_any and not extra:
         return "Rest day, as planned."
@@ -393,6 +404,8 @@ def build(day: dt.date, plan: Plan, athlete: Athlete, derived: Path, fetch: Fetc
             items.append(strength_item(s, day, plan, athlete, history, readiness))
         else:
             items.append(endurance_item(s, matched.get(k), fetch, athlete))
+    if days:
+        items += [vacated_item(v, day, plan) for v in days[0].vacated if plan.sessions[v.session_id].modality not in ("rest", "mobility")]
     items.sort(key=lambda i: (i["slot"][-2:] if "slot" in i else "zz"))
     items += [unplanned_item(a, fetch, athlete) for a in activities if a["id"] not in used]
 
@@ -435,7 +448,11 @@ def to_markdown(b: dict, heading: str = "#") -> str:
                 out.append(_grind_md(i["grind_load"]))
             out.append("")
             continue
-        out.append(f"{sub} {i['slot'][-2:].upper()}: {i['summary']}")
+        moved = f" {i['moved_note']}" if i.get("moved_note") else ""
+        out.append(f"{sub} {i['slot'][-2:].upper()}: {i['summary']}{moved}")
+        if i["kind"] == "vacated":
+            out += [i["grade_note"], ""]
+            continue
         if i["kind"] == "strength":
             out.append(f"{i['grade']}")
             out += ["", "| Lift | Set | Prescribed | Achieved | |", "|---|---|---|---|---|"]
