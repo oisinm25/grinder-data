@@ -15,4 +15,6 @@ i201411654,2026-10-25,2026-10-25T09:46:03,bike,type,,Ride,Palma Road Cycling,147
 i201941402,2026-10-26,2026-10-26T13:36:59,bike,type,,Ride,Palma Road Cycling,117.2,195.9,56.46,69,69,84,310,71,184,141,175,59.4,,GARMIN_CONNECT,full
 i202256794,2026-10-27,2026-10-27T11:53:24,sail_or_other,type,plain Workout without a Grind title: sail or something else?,Workout,Mobility,30.5,30.5,,4,,4,,,,84,157,28.1,,GARMIN_CONNECT,full
 i202291785,2026-10-27,2026-10-27T12:25:22,sail_or_other,type,plain Workout without a Grind title: sail or something else?,Workout,Cardio,43.5,64.8,1.51,42,,42,,,,139,188,62.4,,GARMIN_CONNECT,full
-i202311222,2026-10-27,2026-10-27T14:06:59,conditioning,"type, no log",,WeightTraining,Strength,47.6,47.6,,17,,17,,,,113,160,46.3,,GARMIN_CONNECT,full
+i202311222,2026-10-27,2026-10-27T14:06:59,strength,type+log,,WeightTraining,Strength,47.6,47.6,,17,,17,,,,113,160,46.3,,GARMIN_CONNECT,full
+i203282513,2026-10-29,2026-10-29T17:54:22,strength,type+log,,WeightTraining,Strength,48,48,,19,,19,,,,110,171,48.7,,GARMIN_CONNECT,full
+i203303190,2026-10-29,2026-10-29T18:42:48,conditioning,type,,HighIntensityIntervalTraining,HIIT,53,53,,50,,50,,,,151,184,75.3,,GARMIN_CONNECT,full

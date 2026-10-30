@@ -1,7 +1,10 @@
 date,session,lift,role,set_no,kg,reps,rpe,e1rm_kg,notes,log_line
 2026-10-19,test_bench,bench_press,amrap,1,100,8,8.5,131.7,Clean reps only; 1-2 slow reps left in reserve. e1RM ~127 kg,2
 2026-10-21,test_lower,trap_bar_deadlift,test,1,180,6,,216,Test top set (target was 5 @ RPE 8). e1RM ~216 kg. RPE not reported,3
-2026-10-26,upper_me,bench_press,top,1,100,6,8.5,125,Top set 100 x 6 @ RPE 8.5 (prescribed 90 on a red day),4
-2026-10-26,upper_me,bench_press,backoff,2,77.5,8,,98.2,"Back-off set 1, logged as prescribed (3 x 8 @ 77.5)",5
-2026-10-26,upper_me,bench_press,backoff,3,77.5,8,,98.2,"Back-off set 2, logged as prescribed",6
-2026-10-26,upper_me,bench_press,backoff,4,77.5,8,,98.2,"Back-off set 3, logged as prescribed",7
+2026-10-27,upper_me,bench_press,top,1,100,6,8.5,125,Top set 100 x 6 @ RPE 8.5. Done Tue 27 Oct (moved from Mon 26),4
+2026-10-27,upper_me,bench_press,backoff,2,77.5,8,,98.2,"Back-off set 1, logged as prescribed (3 x 8 @ 77.5)",5
+2026-10-27,upper_me,bench_press,backoff,3,77.5,8,,98.2,"Back-off set 2, logged as prescribed",6
+2026-10-27,upper_me,bench_press,backoff,4,77.5,8,,98.2,"Back-off set 3, logged as prescribed",7
+2026-10-29,lower_me,trap_bar_deadlift,top,1,170,5,8,209.7,Top set 170 x 5 @ RPE 8 (prescribed 175 x 5 @ RPE 8). Done Thu 29 Oct (planned Wed 28),8
+2026-10-29,lower_me,trap_bar_deadlift,backoff,2,145,5,,169.2,Back-off set 1 (prescribed 2 x 5 @ 90% of top). RPE not reported,9
+2026-10-29,lower_me,trap_bar_deadlift,backoff,3,145,5,,169.2,Back-off set 2. RPE not reported,10
