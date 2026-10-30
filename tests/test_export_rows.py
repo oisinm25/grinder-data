@@ -216,11 +216,11 @@ def test_cli_from_a_directory(tmp_path, capsys):
     write_sources(tmp_path / "derived")
     out = tmp_path / "rows"
     assert ex.main(["--src", str(tmp_path / "derived"), "--out", str(out), "--athlete", str(ATHLETE)]) == 0
-    week = ["week_outline", "fitness_week", "zones_week", "heavy_reps_week"]
+    week = ["week_outline", "fitness_week", "zones_week", "heavy_reps_week", "plan_sessions", "plan_lifts", "plan_days"]
     assert sorted(p.stem for p in out.glob("*.json")) == sorted([*ex.build(dashboard(), today(), debrief(), analysis()), *week])
     assert json.loads((out / "summary.json").read_text(encoding="utf-8"))[0]["days_to_goal"] == 172
     assert len(json.loads((out / "fitness_week.json").read_text(encoding="utf-8"))) == 7
-    assert "wrote 21 datasets" in capsys.readouterr().out
+    assert "wrote 24 datasets" in capsys.readouterr().out
 
 
 def test_week_tables_are_read_when_present(tmp_path):
@@ -287,3 +287,28 @@ def test_no_earlier_analysis_keeps_the_status_row(tmp_path):
     (tmp_path / "analysis" / "latest.json").write_text(json.dumps({"status": "no_new_activity", "generated_at": "2026-10-27T20:00+01:00"}), encoding="utf-8")
     s = ex.read_sources(tmp_path)
     assert ex.latest_session(s["analysis/latest.json"])[0]["status"] == "no_new_activity"
+
+
+# ------------------------------------------------------------------ plan rows (what Pedestal Coach validates against)
+
+
+def test_plan_rows_name_sessions_lifts_and_dated_slots(plan_data, athlete):
+    import datetime as dt
+
+    from pipeline.plan import changes as ch
+    from pipeline.plan.schema import validate_plan
+
+    plan = validate_plan(plan_data, athlete)
+    plan._changes = ch.parse([{"type": "done_late", "session": "upper_me", "planned": "2026-10-26 am", "done": "2026-10-27 pm"}])
+    r = ex.plan_rows(plan, athlete, dt.date(2026, 10, 29))
+    sessions = {x["session"]: x for x in r["plan_sessions"]}
+    assert sessions["upper_me"]["lifts"] == "bench_press,weighted_pullup,chest_supported_row"
+    assert sessions["z2_60"] == {"session": "z2_60", "modality": "bike", "summary": "Z2 60 min", "lifts": ""}
+    assert {x["lift"] for x in r["plan_lifts"]} >= {"bench_press", "trap_bar_deadlift"}
+    days = r["plan_days"]
+    assert min(x["date"] for x in days) == "2026-10-14"  # the plan starts after today-28
+    assert max(x["date"] for x in days) == "2026-11-22"  # the ATHX week after it is still design-pending
+    assert not any(x["date"] == "2026-10-26" and x["session"] == "upper_me" for x in days)
+    late = next(x for x in days if x["date"] == "2026-10-27" and x["session"] == "upper_me")
+    assert (late["half"], late["moved_from"]) == ("pm", "2026-10-26 am")
+    assert all(set(x) == set(days[0]) for x in days)

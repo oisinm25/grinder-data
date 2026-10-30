@@ -24,6 +24,7 @@ from pipeline.ingest.tidy import (
     activity_row,
     heavy_rows,
     add_readiness,
+    apply_body_log,
     latest_measured_wellness,
     read_csv,
     strength_rows,
@@ -58,6 +59,7 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
     parser.add_argument("--plan", type=Path, default=Path("config/plan.yaml"))
     parser.add_argument("--athlete", type=Path, help="default: athlete.yaml beside the plan")
     parser.add_argument("--log", type=Path, default=Path("training/logs/strength.csv"))
+    parser.add_argument("--body", type=Path, default=Path("training/logs/body.csv"), help="bodyweights that override intervals.icu's")
     parser.add_argument("--out", type=Path, default=Path("derived"))
     parser.add_argument("--cache", type=Path, default=Path("cache"))
     parser.add_argument("--offline", action="store_true", help="read intervals.icu responses from the cache")
@@ -111,7 +113,8 @@ def main(argv=None, *, env=None, transport: httpx.BaseTransport | None = None, s
 
         act_path, well_path = args.out / "activities.csv", args.out / "wellness.csv"
         act_total = upsert_range(act_path, ACTIVITY_FIELDS, "id", activities, args.start, args.end)
-        upsert_range(well_path, WELLNESS_FIELDS, "date", [wellness_row(w) for w in raw_wellness], wellness_from, args.end)
+        body = read_csv(args.body) if args.body.exists() else []
+        upsert_range(well_path, WELLNESS_FIELDS, "date", apply_body_log([wellness_row(w) for w in raw_wellness], body), wellness_from, args.end)
         wellness = add_readiness(read_csv(well_path), rules)
         write_csv(well_path, WELLNESS_FIELDS, wellness)
 

@@ -117,6 +117,12 @@ def activity_row(a: dict[str, Any], strength_dates: frozenset[str] = frozenset()
     }
 
 
+def apply_body_log(rows: list[dict[str, str]], body: list[dict[str, str]]) -> list[dict[str, str]]:
+    """training/logs/body.csv wins over intervals.icu's weight on the same day (its last row for a date)."""
+    kg = {r["date"]: r["kg"] for r in body if r.get("date") and r.get("kg")}
+    return [{**r, "weight_kg": kg[r["date"]]} if r.get("date") in kg else r for r in rows]
+
+
 def wellness_row(w: dict[str, Any]) -> dict[str, str]:
     ctl, atl = w.get("ctl"), w.get("atl")
     return {

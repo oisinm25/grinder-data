@@ -57,8 +57,10 @@ class Clock:
 
 def run(tmp_path, git, *extra, clock=None):
     clock = clock or Clock()
-    times = iter([REQUESTED, REQUESTED + dt.timedelta(minutes=5), REQUESTED + dt.timedelta(minutes=6)])
-    code = refresh.main(["--out", str(tmp_path / "rows"), "--poll", "20", "--athlete", str(ATHLETE), *extra], run=git, sleep=clock.sleep, clock=clock, now=lambda: next(times))
+    five = REQUESTED + dt.timedelta(minutes=5)
+    times = iter([REQUESTED, five, five, REQUESTED + dt.timedelta(minutes=6)])  # requested, exported, snapshot, finished
+    code = refresh.main(["--out", str(tmp_path / "rows"), "--snapshot", str(tmp_path / "snapshot.json"), "--poll", "20", "--athlete", str(ATHLETE), *extra],
+                        run=git, sleep=clock.sleep, clock=clock, now=lambda: next(times))  # fmt: skip
     return code, clock
 
 
@@ -80,10 +82,13 @@ def test_pushes_a_request_waits_and_exports(tmp_path, capsys):
     out = json.loads(capsys.readouterr().out)
     assert code == 0
     datasets = out.pop("datasets")
-    assert len(datasets) == 21 and datasets[-4:] == ["week_outline", "fitness_week", "zones_week", "heavy_reps_week"]
+    assert len(datasets) == 24 and datasets[-7:] == ["week_outline", "fitness_week", "zones_week", "heavy_reps_week", "plan_sessions", "plan_lifts", "plan_days"]
     assert (tmp_path / "rows" / "week_outline.json").exists()
     assert out == {"requested_at": "2026-10-27T18:03:57Z", "finished_at": "2026-10-27T18:09:57Z", "result": "ok",
-                   "activity_id": "i9", "status_detail": "", "rows": str(tmp_path / "rows")}  # fmt: skip
+                   "activity_id": "i9", "status_detail": "", "rows": str(tmp_path / "rows"), "pending": None,
+                   "snapshot": str(tmp_path / "snapshot.json")}  # fmt: skip
+    snap = json.loads((tmp_path / "snapshot.json").read_text(encoding="utf-8"))
+    assert snap["exported_at"] == "2026-10-27T18:08:57Z" and len(snap["rows"]) == 24 and snap["rows"]["summary"][0]["exported_at"]
     assert git.pushed == {"20261027T180357Z.json": '{"activity": "latest", "requested_at": "2026-10-27T18:03:57Z", "by": "claude-chat"}\n'}
     assert ["push", "-q", "origin", "HEAD:refs/heads/requests"] in git.calls
     assert any(c[:2] == ["worktree", "remove"] for c in git.calls)

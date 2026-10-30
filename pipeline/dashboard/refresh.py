@@ -1,12 +1,19 @@
-"""python -m pipeline.dashboard.refresh [--activity latest] [--timeout 720] [--no-request]
+"""python -m pipeline.dashboard.refresh [--pending DIR] [--activity latest] [--timeout 720] [--no-request]
 
-The git half of "Refresh the dashboard" (README.md): push requests/<UTC timestamp>.json to the
-`requests` branch, wait for origin/data's analysis/latest.json to have a generated_at at or after
-the request, then run export_rows from origin/data (and the plan in config/) into derived/rows/,
-one file per dashboard dataset. Prints one JSON line:
-{requested_at, finished_at, result, activity_id, status_detail, rows, datasets}, where result is ok,
-no_new_activity, error or timed_out. Uploading the rows to the Pedestal dashboard is done by Claude
-with the Artifact tools (README.md). Never touches main, the plan, athlete.yaml or the calendar.
+The git half of "Refresh Pedestal" (README.md), in order:
+
+1. With --pending: apply the items Pedestal Coach saved (pipeline.coach.pending) to
+   training/logs/changes.yaml, strength.csv and body.csv, commit only those files and push main.
+   Each item's outcome goes to --pending-results for Claude to mark in Coach's store.
+2. Push requests/<UTC timestamp>.json to the `requests` branch and wait for origin/data's
+   analysis/latest.json to have a generated_at at or after the request.
+3. Run export_rows from origin/data (and the plan in config/, changes log applied) into
+   derived/rows/, one file per dataset, and build Coach's snapshot document (--snapshot).
+
+Prints one JSON line: {requested_at, finished_at, result, activity_id, status_detail, rows,
+datasets, pending, snapshot}, where result is ok, no_new_activity, error or timed_out. Writing the
+rows to the dashboard and the snapshot to Coach is done by Claude with the Artifact tools. Never
+touches the plan, athlete.yaml or the calendar; on main it only ever commits the three logs.
 """
 
 import argparse
@@ -19,7 +26,7 @@ import time
 from pathlib import Path
 
 from pipeline.dashboard import export_rows
-from pipeline.plan.schema import PlanLoadError, load_checked, report_load_error
+from pipeline.plan.schema import PlanLoadError, default_changes_path, load_checked, report_load_error
 
 UTC = dt.timezone.utc
 
@@ -97,18 +104,52 @@ def main(argv=None, *, run=subprocess.run, sleep=time.sleep, clock=time.monotoni
     parser.add_argument("--out", type=Path, default=Path("derived/rows"))
     parser.add_argument("--plan", type=Path, default=Path("config/plan.yaml"), help="for the week rows (default: config/plan.yaml)")
     parser.add_argument("--athlete", type=Path, help="default: athlete.yaml beside the plan")
+    parser.add_argument("--pending", type=Path, help="Coach's pending items (a directory of <id>.json): applied, committed and pushed first")
+    parser.add_argument("--pending-results", type=Path, default=Path("derived/coach_pending_results.json"))
+    parser.add_argument("--no-push", action="store_true", help="commit the applied items but don't push main")
+    parser.add_argument("--changes", type=Path, help="default: training/logs/changes.yaml beside config/ (PEDESTAL_CHANGES overrides)")
+    parser.add_argument("--log", type=Path, default=Path("training/logs/strength.csv"))
+    parser.add_argument("--body", type=Path, default=Path("training/logs/body.csv"))
+    parser.add_argument("--snapshot", type=Path, default=Path("derived/coach_snapshot.json"), help="Coach's snapshot document")
+    parser.add_argument("--today", type=dt.date.fromisoformat, default=dt.date.today())
     args = parser.parse_args(argv)
     if not (args.activity == "latest" or args.activity.replace("_", "").replace("-", "").isalnum()) or len(args.activity) > 40:
         print(f"refresh: refusing activity {args.activity!r}: 'latest' or an activity id", file=sys.stderr)
         return 2
+    now = now or (lambda: dt.datetime.now(UTC))
+    out = {"requested_at": None, "finished_at": None, "result": None, "activity_id": None, "status_detail": "", "rows": None, "datasets": [],
+           "pending": None, "snapshot": None}  # fmt: skip
+    load = lambda: load_checked(args.plan, args.athlete, **({"changes_path": args.changes} if args.changes else {}))  # noqa: E731
     try:
-        plan, athlete = load_checked(args.plan, args.athlete)
+        plan, athlete = load()
     except PlanLoadError as e:
         return report_load_error(e)
 
-    now = now or (lambda: dt.datetime.now(UTC))
+    if args.pending:  # 1. Coach's items into the logs, committed and pushed before anything reads main
+        from pipeline.coach import pending
+
+        items = pending.read_items(args.pending) if args.pending.exists() else []
+        changes = args.changes or default_changes_path(args.plan) or Path("training/logs/changes.yaml")
+        res = pending.apply(items, plan=plan, athlete=athlete, today=args.today, changes_path=changes, log_path=args.log, body_path=args.body)
+        res["commit"] = None
+        try:
+            if res["files"]:
+                res["commit"] = pending.commit(res["files"], pending.message(res, items), push=not args.no_push, run=run)
+        except RuntimeError as e:
+            res["error"] = str(e)
+        args.pending_results.parent.mkdir(parents=True, exist_ok=True)
+        args.pending_results.write_text(json.dumps(res) + "\n", encoding="utf-8")
+        out["pending"] = {k: res.get(k) for k in ("applied", "rejected", "skipped", "commit", "error")} | {"results": str(args.pending_results)}
+        if res.get("error"):
+            out["result"], out["status_detail"], out["finished_at"] = "error", "pending items: " + res["error"], _stamp(now())
+            print(json.dumps(out))
+            return 1
+        try:
+            plan, athlete = load()  # with the new changes
+        except PlanLoadError as e:
+            return report_load_error(e)
+
     requested = now()
-    out = {"requested_at": None, "finished_at": None, "result": None, "activity_id": None, "status_detail": "", "rows": None, "datasets": []}
     try:
         if args.no_request:
             latest = read_latest(run=run)
@@ -126,6 +167,12 @@ def main(argv=None, *, run=subprocess.run, sleep=time.sleep, clock=time.monotoni
                                   request=s["analysis/request"], now=now(), plan=plan, athlete=athlete, tables=s["tables"])  # fmt: skip
         export_rows.write(rows, args.out)
         out["rows"], out["datasets"] = str(args.out), list(rows)
+        from pipeline.coach import snapshot
+
+        doc = snapshot.build(rows, ref="origin/data", now=now(), run=run)
+        args.snapshot.parent.mkdir(parents=True, exist_ok=True)
+        args.snapshot.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+        out["snapshot"] = str(args.snapshot)
     except (GitError, FileNotFoundError, json.JSONDecodeError) as e:
         out["result"], out["status_detail"] = "error", str(e)
     out["finished_at"] = _stamp(now())

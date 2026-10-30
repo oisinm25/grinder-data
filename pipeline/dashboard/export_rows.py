@@ -198,7 +198,26 @@ def _week(dash: dict, today: dict, plan, athlete, tables: dict) -> dict[str, lis
     from pipeline.dashboard import week
 
     day = dt.date.fromisoformat(today.get("date") or dash["date"])
-    return {k: _even(v) for k, v in week.build(day, plan, athlete, dash["charts"]["fitness"], tables).items()}
+    rows = {k: _even(v) for k, v in week.build(day, plan, athlete, dash["charts"]["fitness"], tables).items()}
+    return rows | plan_rows(plan, athlete, day)
+
+
+PLAN_WINDOW_DAYS = 28  # plan_days covers today-28 to today+28: what a logged change or set can name
+
+
+def plan_rows(plan, athlete, day: dt.date) -> dict[str, list[dict]]:
+    """The plan as Pedestal Coach validates against: its sessions (with their lifts), the lift ids, and
+    which session sits in which dated slot around today, changes log applied."""
+    from pipeline.dashboard.week import short_summary
+    from pipeline.plan.expand import expand
+
+    sessions = [{"session": sid, "modality": s.modality, "summary": short_summary(s.summary),
+                 "lifts": ",".join(dict.fromkeys(e.lift for e in s.exercises or []))} for sid, s in plan.sessions.items()]  # fmt: skip
+    lifts = [{"lift": k, "name": v.name} for k, v in athlete.strength.lifts.items()]
+    days = expand(plan, athlete, day - dt.timedelta(days=PLAN_WINDOW_DAYS), day + dt.timedelta(days=PLAN_WINDOW_DAYS))
+    slots = [{"date": d.date.isoformat(), "half": s.slot[-2:], "order": s.order, "session": s.session_id,
+              "moved_from": str(s.moved_from) if s.moved_from else None} for d in days for s in d.sessions]  # fmt: skip
+    return {"plan_sessions": _even(sessions), "plan_lifts": lifts, "plan_days": _even(slots)}
 
 
 def read_sources(src: Path | None = None, ref: str | None = None, *, git=subprocess.run) -> dict[str, dict | None]:
