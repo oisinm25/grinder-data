@@ -25,3 +25,8 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-10-29,thu_pm,lower_me,strength,trap_bar_deadlift backoff,2 x 5 @ 157.5 kg,"2 x 5,5 @ 145 kg",under,12.5 kg lighter
 2026-10-29,thu_pm,lower_me,strength,rfe_split_squat work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
 2026-10-29,thu_am,upper_re,strength,session,,,moved,moved to Fri AM: Thursday went to the late lower session and erg intervals
+2026-10-30,fri_am,upper_re,strength,bench_press work,3 x 10 @ 80 kg RPE<=8.5,,skipped,not logged
+2026-10-30,fri_am,upper_re,strength,bench_pull work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
+2026-10-30,fri_am,upper_re,strength,landmine_press work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
+2026-10-30,fri_pm,bike_threshold_2x20,bike,session,75 min,,skipped,no matching activity
+2026-10-30,fri_am,upper_de,strength,session,,,moved,moved to Sun AM: upper rep day moved to Friday AM

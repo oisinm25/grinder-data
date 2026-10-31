@@ -1,81 +1,58 @@
 {
- "date": "2026-10-29",
- "verdict": "Trap-bar deadlift under prescription: 170 x 5 @8 vs 1 x 5 @ 175 kg RPE<=8.",
- "note_for_today": "Trap-bar deadlift: 175 x 5 next Wed 4 Nov.",
+ "date": "2026-10-30",
+ "verdict": "Missed: Upper repetition effort, Threshold 2 x 20 min at 92-95% FTP, 5 min easy between.",
+ "note_for_today": "Today: Long ride 3 h, Z2, fuel 60-90 g carb/h.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 65 >= 32.4 (baseline 43.2 - 1 SD 10.8); resting HR 50 <= 62.2 (baseline 57.2 + 5); sleep 9.68 h >= 6",
-  "sleep_h": 9.68,
-  "load_done": 69,
-  "load_planned": 108
+  "readiness_reason": "green: HRV 60 >= 32.2 (baseline 43.5 - 1 SD 11.3); resting HR 52 <= 62.1 (baseline 57.1 + 5); sleep 8.72 h >= 6",
+  "sleep_h": 8.72,
+  "load_done": 0,
+  "load_planned": 130
  },
  "items": [
   {
-   "kind": "vacated",
-   "slot": "thu_am",
+   "kind": "strength",
+   "slot": "fri_am",
    "session": "upper_re",
    "modality": "strength",
    "summary": "Upper repetition effort - bench volume toward 10 x 110",
-   "grade": "moved",
-   "grade_note": "moved to Fri AM: Thursday went to the late lower session and erg intervals"
-  },
-  {
-   "kind": "endurance",
-   "slot": "thu_pm",
-   "session": "z2_75",
-   "modality": "bike",
-   "summary": "Z2 75 min",
-   "planned_min": 75,
-   "planned_tss": 58.0,
-   "grade": "skipped",
-   "grade_note": "no matching activity"
-  },
-  {
-   "kind": "strength",
-   "slot": "thu_pm",
-   "session": "lower_me",
-   "modality": "strength",
-   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
-   "planned_tss": 50.0,
+   "planned_tss": 45.0,
    "lifts": [
     {
-     "lift": "trap_bar_deadlift",
-     "name": "Trap-bar deadlift",
+     "lift": "bench_press",
+     "name": "Bench press",
      "sets": [
       {
-       "role": "top",
-       "set": 1,
-       "prescribed": "1 x 5 @ 175 kg RPE<=8",
-       "achieved": "170 x 5 @8",
-       "status": "under"
-      },
-      {
-       "role": "backoff",
-       "set": 2,
-       "prescribed": "2 x 5 @ 157.5 kg",
-       "achieved": "145 x 5",
-       "status": "under"
-      },
-      {
-       "role": "backoff",
-       "set": 3,
-       "prescribed": "2 x 5 @ 157.5 kg",
-       "achieved": "145 x 5",
-       "status": "under"
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 10 @ 80 kg RPE<=8.5",
+       "achieved": "",
+       "status": "not logged"
       }
      ],
-     "e1rm_before": 216.0,
-     "e1rm_after": 209.7,
-     "next": {
-      "date": "2026-11-04",
-      "kg": 175.0,
-      "reps": 5,
-      "reason": "last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5"
-     }
+     "e1rm_before": 125.0,
+     "e1rm_after": null,
+     "next": null
     },
     {
-     "lift": "rfe_split_squat",
-     "name": "Rear-foot-elevated split squat",
+     "lift": "bench_pull",
+     "name": "Bench pull",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "landmine_press",
+     "name": "Landmine press",
      "sets": [
       {
        "role": "work",
@@ -90,29 +67,29 @@
      "next": null
     }
    ],
-   "moved_from": "2026-10-28 am",
-   "moved_note": "(done late, planned Wed)",
-   "grade": "under"
+   "moved_from": "2026-10-29 am",
+   "moved_note": "(moved from Thu)",
+   "grade": "skipped"
   },
   {
-   "kind": "unplanned",
-   "sport": "conditioning",
-   "type": "HighIntensityIntervalTraining",
-   "name": "HIIT",
-   "moving_min": 53.0,
-   "hr_load": 50.0,
-   "avg_hr": 151.0,
-   "review": "",
-   "np_w": null,
-   "intensity": 0.75,
-   "tss": 50.0,
-   "hr_drift_pct": null,
-   "grind_load": {
-    "source": "hr stream",
-    "efforts": 3,
-    "work_min": 33.8,
-    "efforts_85": 3
-   }
+   "kind": "vacated",
+   "slot": "fri_am",
+   "session": "upper_de",
+   "modality": "strength",
+   "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
+   "grade": "moved",
+   "grade_note": "moved to Sun AM: upper rep day moved to Friday AM"
+  },
+  {
+   "kind": "endurance",
+   "slot": "fri_pm",
+   "session": "bike_threshold_2x20",
+   "modality": "bike",
+   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+   "planned_min": 75,
+   "planned_tss": 85.0,
+   "grade": "skipped",
+   "grade_note": "no matching activity"
   }
  ],
  "problems": []
