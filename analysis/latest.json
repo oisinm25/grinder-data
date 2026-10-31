@@ -1,7 +1,89 @@
 {
- "status": "no_new_activity",
- "generated_at": "2026-10-30T12:05+01:00",
- "activity_id": "i203303190",
- "requested": "latest",
- "last_analysis": "analysis/2026-10-29-i203303190.md"
+ "status": "ok",
+ "generated_at": "2026-10-31T19:17+01:00",
+ "activity_id": "i204035445",
+ "activity": {
+  "id": "i204035445",
+  "date": "2026-10-31",
+  "start_local": "2026-10-31T15:32:46",
+  "sport": "bike",
+  "type": "Ride",
+  "name": "County Down Road Cycling",
+  "moving_min": "52"
+ },
+ "breakdown": {
+  "kind": "endurance",
+  "slot": "sat_am",
+  "session": "long_ride_3h",
+  "modality": "bike",
+  "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
+  "planned_min": 180,
+  "planned_tss": 140.0,
+  "grade": "missed",
+  "grade_note": "under 50% of the planned duration",
+  "activity": {
+   "id": "i204035445",
+   "name": "County Down Road Cycling",
+   "moving_min": 52.0
+  },
+  "np_w": null,
+  "intensity": 0.76,
+  "tss": 51.0,
+  "reps": [],
+  "hr_drift_pct": null,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 51.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 37.5,
+   "atl": 47.3,
+   "form": -9.8
+  },
+  "after": {
+   "ctl": 38.7,
+   "atl": 54.1,
+   "form": -15.4
+  },
+  "projections": {
+   "form_tomorrow": -15.4,
+   "next_key_session": {
+    "date": "2026-11-02",
+    "session": "upper_me",
+    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+    "form": -16.3
+   }
+  },
+  "week": {
+   "start": "2026-10-26",
+   "label": "acc1",
+   "done_tss": 298,
+   "band": [
+    650.0,
+    750.0
+   ],
+   "share_pct": [
+    40,
+    46
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -15.4,
+  "next_key_session": {
+   "date": "2026-11-02",
+   "session": "upper_me",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "form": -16.3
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-10-31-i204035445.json",
+  "md": "analysis/2026-10-31-i204035445.md"
+ }
 }
