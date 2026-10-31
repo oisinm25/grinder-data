@@ -1,6 +1,6 @@
 {
  "status": "ok",
- "generated_at": "2026-10-31T19:17+01:00",
+ "generated_at": "2026-10-31T19:20+01:00",
  "activity_id": "i204035445",
  "activity": {
   "id": "i204035445",
@@ -13,14 +13,16 @@
  },
  "breakdown": {
   "kind": "endurance",
-  "slot": "sat_am",
-  "session": "long_ride_3h",
+  "slot": "sat_pm",
+  "session": "bike_threshold_2x20",
   "modality": "bike",
-  "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
-  "planned_min": 180,
-  "planned_tss": 140.0,
-  "grade": "missed",
-  "grade_note": "under 50% of the planned duration",
+  "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+  "planned_min": 75,
+  "planned_tss": 85.0,
+  "moved_from": "2026-10-30 pm",
+  "moved_note": "(done late, planned Fri)",
+  "grade": "done",
+  "grade_note": "no interval data to grade power",
   "activity": {
    "id": "i204035445",
    "name": "County Down Road Cycling",
@@ -30,7 +32,6 @@
   "intensity": 0.76,
   "tss": 51.0,
   "reps": [],
-  "hr_drift_pct": null,
   "power_curve": {}
  },
  "fitness": {
@@ -50,10 +51,10 @@
   "projections": {
    "form_tomorrow": -15.4,
    "next_key_session": {
-    "date": "2026-11-02",
-    "session": "upper_me",
-    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-    "form": -16.3
+    "date": "2026-11-01",
+    "session": "long_ride_3h",
+    "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
+    "form": -15.4
    }
   },
   "week": {
@@ -73,10 +74,10 @@
  "projections": {
   "form_tomorrow": -15.4,
   "next_key_session": {
-   "date": "2026-11-02",
-   "session": "upper_me",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-   "form": -16.3
+   "date": "2026-11-01",
+   "session": "long_ride_3h",
+   "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
+   "form": -15.4
   }
  },
  "bests": [],
