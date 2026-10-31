@@ -11,3 +11,5 @@
 - { type: done_late, session: lower_me, planned: 2026-10-28 am, done: 2026-10-29 pm, reason: "done Thursday afternoon instead of Wednesday" }
 - { type: move, session: upper_re, from: 2026-10-29 am, to: 2026-10-30 am, reason: "Thursday went to the late lower session and erg intervals" }
 - { type: move, session: upper_de, from: 2026-10-30 am, to: 2026-11-01 am, reason: "upper rep day moved to Friday AM" }
+- { type: done_late, session: upper_re, planned: 2026-10-30 am, done: 2026-10-31 am, reason: "done Saturday instead of Friday" }
+- { type: done_late, session: bike_threshold_2x20, planned: 2026-10-30 pm, done: 2026-10-31 pm, reason: "done Saturday instead of Friday, Donaghadee roads" }
