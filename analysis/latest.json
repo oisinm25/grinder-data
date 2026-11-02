@@ -1,123 +1,82 @@
 {
  "status": "ok",
- "generated_at": "2026-11-02T14:02+01:00",
- "activity_id": "i204293711",
+ "generated_at": "2026-11-02T18:08+01:00",
+ "activity_id": "i204842417",
  "activity": {
-  "id": "i204293711",
-  "date": "2026-11-01",
-  "start_local": "2026-11-01T08:16:16",
-  "sport": "bike",
-  "type": "Ride",
-  "name": "County Down Road Cycling",
-  "moving_min": "141.9"
+  "id": "i204842417",
+  "date": "2026-11-02",
+  "start_local": "2026-11-02T16:14:57",
+  "sport": "concept2",
+  "type": "VirtualRow",
+  "name": "Indoor Rowing",
+  "moving_min": "84.1"
  },
  "breakdown": {
-  "kind": "endurance",
-  "slot": "sun_am",
-  "session": "long_ride_3h",
-  "modality": "bike",
-  "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
-  "planned_min": 180,
-  "planned_tss": 140.0,
-  "moved_from": "2026-10-31 am",
-  "moved_note": "(moved from Sat)",
-  "grade": "off_target",
-  "grade_note": "0/1 steps in band; W: 565!",
-  "activity": {
-   "id": "i204293711",
-   "name": "County Down Road Cycling",
-   "moving_min": 141.9
-  },
-  "np_w": 270.0,
-  "intensity": 0.87,
-  "tss": 179.0,
-  "reps": [
-   {
-    "n": 1,
-    "target": "211-245 W",
-    "band": [
-     211,
-     245
-    ],
-    "watts": 565,
-    "hr": 160.0,
-    "status": "over"
-   }
-  ],
-  "hr_drift_pct": 8.2,
-  "power_curve": {
-   "5": 1392,
-   "60": 448,
-   "240": 287,
-   "300": 283,
-   "1200": 259,
-   "3600": 250
-  }
+  "kind": "unplanned",
+  "sport": "concept2",
+  "type": "VirtualRow",
+  "name": "Indoor Rowing",
+  "moving_min": 84.1,
+  "hr_load": 59.0,
+  "avg_hr": 141.0,
+  "review": "",
+  "np_w": null,
+  "intensity": 0.65,
+  "tss": 59.0,
+  "hr_drift_pct": null,
+  "power_curve": {}
  },
  "fitness": {
-  "session_load": 179.0,
-  "load_source": "power",
+  "session_load": 59.0,
+  "load_source": "hr",
   "grind_correction": 0.0,
   "before": {
-   "ctl": 37.9,
-   "atl": 47.4,
-   "form": -9.5
+   "ctl": 41.6,
+   "atl": 64.4,
+   "form": -22.8
   },
   "after": {
-   "ctl": 42.1,
-   "atl": 71.3,
-   "form": -29.2
+   "ctl": 43.0,
+   "atl": 72.3,
+   "form": -29.3
   },
   "projections": {
-   "form_tomorrow": -29.2,
+   "form_tomorrow": -29.3,
    "next_key_session": {
-    "date": "2026-11-02",
-    "session": "upper_me",
-    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-    "form": -29.2
+    "date": "2026-11-03",
+    "session": "handbike_intervals",
+    "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+    "form": -29.3
    }
   },
   "week": {
-   "start": "2026-10-26",
-   "label": "acc1",
-   "done_tss": 481,
+   "start": "2026-11-02",
+   "label": "acc2",
+   "done_tss": 79,
    "band": [
-    650.0,
-    750.0
+    675.0,
+    775.0
    ],
    "share_pct": [
-    64,
-    74
+    10,
+    12
    ]
   }
  },
  "projections": {
-  "form_tomorrow": -29.2,
+  "form_tomorrow": -29.3,
   "next_key_session": {
-   "date": "2026-11-02",
-   "session": "upper_me",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-   "form": -29.2
+   "date": "2026-11-03",
+   "session": "handbike_intervals",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+   "form": -29.3
   }
  },
- "bests": [
-  {
-   "kind": "power",
-   "sport": "bike",
-   "duration": "60 min",
-   "watts": 250,
-   "previous": {
-    "watts": 231,
-    "date": "2026-10-25",
-    "activity": "i201411654"
-   },
-   "first": false
-  }
- ],
+ "bests": [],
  "bests_since": "2026-10-25",
  "anchor_flags": [],
  "files": {
-  "json": "analysis/2026-11-01-i204293711.json",
-  "md": "analysis/2026-11-01-i204293711.md"
+  "json": "analysis/2026-11-02-i204842417.json",
+  "md": "analysis/2026-11-02-i204842417.md"
  }
 }
