@@ -8,7 +8,7 @@ Activities: 15 (bike 7, strength 4, sail_or_other 3, conditioning 1) -> derived/
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 15 activities (streams 15) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (54 rows incl. baseline)
-  latest 2026-11-02: resting HR 54 bpm, CTL 38.2 / ATL 84.3 (form -46.1)
+  latest 2026-11-02: resting HR 54 bpm, CTL 37.6 / ATL 76.6 (form -39)
   readiness no call: no HRV; resting HR 54 <= 61.2 (baseline 56.2 + 5); no sleep
 Strength: 12 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 0 reps at >= 90% e1RM in 7 sets -> derived/heavy_reps.csv
@@ -39,7 +39,7 @@ Fri 2026-11-06  upper_de (fri_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (29 rows total)
 
-## [ok     ] publish   intervals.icu: 1 created, 0 updated, 0 stale Pedestal events deleted, 12 unchanged
+## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
 Publish 2026-11-02 to 2026-11-08: 13 sessions
   2026-11-02 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
   2026-11-02 17:00  VirtualRide       70 TSS  Z2 90 min
@@ -55,7 +55,7 @@ Publish 2026-11-02 to 2026-11-08: 13 sessions
   2026-11-07 07:00  Ride             162 TSS  Long ride 3 h 30, Z2, fuel 60-90 g carb/h
   2026-11-08 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 1 created, 0 updated, 0 stale Pedestal events deleted, 12 unchanged
+intervals.icu: no changes (13 events unchanged)
 
 ## [ok     ] review    Week 2026-10-26 to 2026-11-01  block1 / acc1
 Week 2026-10-26 to 2026-11-01  block1 / acc1
@@ -87,7 +87,7 @@ Strength: held 1, skipped 8, under 3, over_rpe 1
   moved      Fri 30 Oct  upper_de session: moved to Sun AM: upper rep day moved to Friday AM
   done_late  Fri 30 Oct  bike_threshold_2x20: done late: Sat PM (done Saturday instead of Friday, Donaghadee roads)
   moved      Sat 31 Oct  long_ride_3h: moved to Sun AM: no time Saturday
-Recovery: green 4, amber 0, red 3, no call 0; HRV 7d 60 vs 28d 42.9; resting HR 7d 51.9 vs 28d 57.3; CTL 37.1 / ATL 76.8 (form -39.7)
+Recovery: green 4, amber 0, red 3, no call 0; HRV 7d 60 vs 28d 42.9; resting HR 7d 51.9 vs 28d 57.3; CTL 36.5 / ATL 68 (form -31.5)
 Bench: e1RM 125 vs line 131.8 (-6.8 kg)
 Flags:
   - load: 435 TSS done, under the 650-750 target (advisory: targets provisional)
