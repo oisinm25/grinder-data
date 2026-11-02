@@ -1,7 +1,7 @@
 {
  "date": "2026-11-02",
- "status": "provisional",
- "generated_at": "2026-11-02T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-02T14:01+01:00",
  "html": "dashboard_email.html",
  "attachment": "../dashboard.html",
  "images": [
@@ -21,13 +21,13 @@
    "file": "bench_line.png",
    "cid": "bench_line",
    "alt": "Bench press e1RM against the checkpoint path to the April goal.",
-   "bytes": 42065
+   "bytes": 43620
   },
   {
    "file": "readiness_strip.png",
    "cid": "readiness_strip",
    "alt": "Readiness per day: green, amber, red or no call.",
-   "bytes": 23813
+   "bytes": 23793
   },
   {
    "file": "yesterday_intervals.png",

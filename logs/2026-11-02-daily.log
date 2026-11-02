@@ -1,6 +1,6 @@
-# daily 2026-11-02: 8 ok; provisional (no sleep yet)
+# daily 2026-11-02: 8 ok; final
 
-## [ok     ] ingest    15 activities (bike 7, strength 4, sail_or_other 3, conditioning 1), 15 wellness days, 12 strength sets; 3 to review
+## [ok     ] ingest    15 activities (bike 7, strength 4, sail_or_other 3, conditioning 1), 15 wellness days, 13 strength sets; 3 to review
 Ingest 2026-10-19 to 2026-11-02
 Activities: 15 (bike 7, strength 4, sail_or_other 3, conditioning 1) -> derived/activities.csv (22 rows total)
   review: 2026-11-01 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
@@ -8,19 +8,19 @@ Activities: 15 (bike 7, strength 4, sail_or_other 3, conditioning 1) -> derived/
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 15 activities (streams 15) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (54 rows incl. baseline)
-  latest 2026-11-02: resting HR 54 bpm, CTL 37.6 / ATL 76.6 (form -39)
-  readiness no call: no HRV; resting HR 54 <= 61.2 (baseline 56.2 + 5); no sleep
-Strength: 12 sets from training/logs/strength.csv -> derived/strength.csv
-Heavy reps: 0 reps at >= 90% e1RM in 7 sets -> derived/heavy_reps.csv
-  bench_press        2026-10-27  100 kg x 6 @ RPE 8.5  (top)  e1RM 125.0 kg
+  latest 2026-11-02: resting HR 52 bpm, HRV 50 ms, sleep 7.42 h (score 83), CTL 37.6 / ATL 76.6 (form -39)
+  readiness green: HRV 50 >= 33.7 (baseline 46.5 - 1 SD 12.8); resting HR 52 <= 61.2 (baseline 56.2 + 5); sleep 7.42 h >= 6
+Strength: 13 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 8 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   trap_bar_deadlift  2026-10-29  170 kg x 5 @ RPE 8  (top)  e1RM 209.7 kg
 
-## [ok     ] readiness no call for 2026-11-02 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-02 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness green: HRV 50 >= 33.7; RHR 52 <= 61.2; sleep 7.42 h >= 6; final
+green: HRV 50 >= 33.7; RHR 52 <= 61.2; sleep 7.42 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
-Mon 2026-11-02  upper_me (mon_am)  readiness: not known yet
-  bench_press          top     1 x 6      100 kg  RPE<=8    last 100x6 @8.5 on 27 Oct: miss (above RPE 8) -> repeat 100 x 6; readiness not known yet
+Mon 2026-11-02  upper_me (mon_am)  readiness: green
+  bench_press          top     1 x 6      100 kg  RPE<=8    last 100x6 @8.5 on 27 Oct: miss (above RPE 8) -> repeat 100 x 6
   bench_press          backoff 3 x 8       85 kg            85% of top 100 -> 85 x 8
   weighted_pullup      work    4 x 5      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it
   chest_supported_row  work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
@@ -39,7 +39,7 @@ Fri 2026-11-06  upper_de (fri_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (29 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 Publish 2026-11-02 to 2026-11-08: 13 sessions
   2026-11-02 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
   2026-11-02 17:00  VirtualRide       70 TSS  Z2 90 min
@@ -55,7 +55,7 @@ Publish 2026-11-02 to 2026-11-08: 13 sessions
   2026-11-07 07:00  Ride             162 TSS  Long ride 3 h 30, Z2, fuel 60-90 g carb/h
   2026-11-08 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (13 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 
 ## [ok     ] review    Week 2026-10-26 to 2026-11-01  block1 / acc1
 Week 2026-10-26 to 2026-11-01  block1 / acc1
@@ -99,8 +99,8 @@ Wrote 27 grades to derived/compliance.csv and the week to derived/weekly.csv and
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.
 wrote debrief.md and debrief.json: Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness no call
-wrote today.md and today.json: provisional, 2 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness green
+wrote today.md and today.json: final, 2 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 41.1, form -20.7
 wrote dashboard.json, dashboard.html, email/ (5 charts): CTL 41.1, form -20.7
