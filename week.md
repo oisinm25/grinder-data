@@ -3,16 +3,16 @@
 block1, week acc1
 
 ## Flags
-- load: 252 TSS done, under the 650-750 target (advisory: targets provisional)
-- sessions: 4 endurance sessions missed or skipped
-- recovery: 2 red days
+- load: 435 TSS done, under the 650-750 target (advisory: targets provisional)
+- sessions: 5 endurance sessions missed or skipped
+- recovery: 3 red days
 - bench: e1RM 125.0 is 6.8 kg under the line (131.8)
 
 ## Load
-252 TSS done of 693 planned (target 650-750).
+435 TSS done of 693 planned (target 650-750).
 
 ## Sessions
-Endurance: off target 1, done 1, skipped 4. Strength: held 1, under 3, over_rpe 1, skipped 5.
+Endurance: off target 2, done 1, skipped 5. Strength: held 1, under 3, over_rpe 1, skipped 8.
 
 - **off_target** Mon z2_90: 0/1 steps in band; W: 406!
 - **skipped** Tue handbike_intervals: no matching activity
@@ -28,6 +28,11 @@ Endurance: off target 1, done 1, skipped 4. Strength: held 1, under 3, over_rpe 
 - **skipped** Thu lower_me rfe_split_squat work: not logged
 - **skipped** Sat upper_re bench_pull work: not logged
 - **skipped** Sat upper_re landmine_press work: not logged
+- **skipped** Sun handbike_easy_40: no matching activity
+- **skipped** Sun upper_de bench_pull speed: not logged
+- **skipped** Sun upper_de bench_press speed: not logged
+- **skipped** Sun upper_de push_press speed: not logged
+- **off_target** Sun long_ride_3h: 0/1 steps in band; W: 565!
 - **done_late** Mon upper_me session: done late: Tue PM (skipped Monday)
 - **done_late** Wed lower_me session: done late: Thu PM (done Thursday afternoon instead of Wednesday)
 - **done_late** Thu upper_re session: done late: Sat AM (done Saturday instead of Friday)
@@ -36,11 +41,11 @@ Endurance: off target 1, done 1, skipped 4. Strength: held 1, under 3, over_rpe 
 - **moved** Sat long_ride_3h: moved to Sun AM: no time Saturday
 
 ## Recovery
-Readiness: green 4, amber 0, red 2, no call 1.
-HRV 7-day 59 vs 28-day 42.9; resting HR 7-day 51.9 vs 28-day 57.3.
-CTL 36.7, ATL 74, form -37.3.
+Readiness: green 4, amber 0, red 3, no call 0.
+HRV 7-day 60 vs 28-day 42.9; resting HR 7-day 51.9 vs 28-day 57.3.
+CTL 37.1, ATL 76.8, form -39.7.
 
 ## Bench
 e1RM 125 kg against a line of 131.8 kg (-6.8 kg).
 
-Power index (actual / target watts across graded steps): 1.742.
+Power index (actual / target watts across graded steps): 2.11.

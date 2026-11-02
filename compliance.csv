@@ -31,8 +31,8 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-10-31,sat_am,upper_re,strength,landmine_press work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
 2026-10-31,sat_pm,bike_threshold_2x20,bike,session,75 min,"52 min, activity i204035445",done,no interval data to grade power
 2026-10-31,sat_am,long_ride_3h,bike,session,,,moved,moved to Sun AM: no time Saturday
-2026-11-01,sun_am,handbike_easy_40,handbike,session,40 min,,pending,not done yet today
-2026-11-01,sun_am,upper_de,strength,bench_pull speed,6 x 3 @ choose RPE<=7,,pending,not done yet today
-2026-11-01,sun_am,upper_de,strength,bench_press speed,8 x 3 @ 72.5 kg,,pending,not done yet today
-2026-11-01,sun_am,upper_de,strength,push_press speed,5 x 3 @ choose RPE<=7,,pending,not done yet today
-2026-11-01,sun_am,long_ride_3h,bike,session,180 min,,pending,not done yet today
+2026-11-01,sun_am,handbike_easy_40,handbike,session,40 min,,skipped,no matching activity
+2026-11-01,sun_am,upper_de,strength,bench_pull speed,6 x 3 @ choose RPE<=7,,skipped,not logged
+2026-11-01,sun_am,upper_de,strength,bench_press speed,8 x 3 @ 65 kg RPE<=7,,skipped,not logged
+2026-11-01,sun_am,upper_de,strength,push_press speed,5 x 3 @ choose RPE<=7,,skipped,not logged
+2026-11-01,sun_am,long_ride_3h,bike,session,"180 min, 1 steps","142 min, activity i204293711",off_target,0/1 steps in band; W: 565!

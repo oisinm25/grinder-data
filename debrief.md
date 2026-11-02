@@ -1,26 +1,31 @@
-# Debrief: Sat 31 Oct 2026
+# Debrief: Sun 1 Nov 2026
 
-**Held the plan.**
+**Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.**
 
-Note for today: Today: Easy hand-bike 40 min (optional.
+Note for today: Long ride 3 h, Z2, fuel 60-90 g carb/h faded: start today's Upper max effort at the bottom of its band.
 
-readiness green · sleep 8.46 h · load 51 of 130 planned TSS
+readiness red · sleep 3.13 h · load 183 of 206 planned TSS
 
-## AM: Upper repetition effort - bench volume toward 10 x 110 (done late, planned Thu)
-held
+## AM: Easy hand-bike 40 min (optional - rest is fine)
+skipped: no matching activity
+
+## AM: Long ride 3 h, Z2, fuel 60-90 g carb/h (moved from Sat)
+off_target: 0/1 steps in band; W: 565! · 142 of 180 min · NP 270 W · IF 0.87 · TSS 179 · HR drift 8.2%
+
+| Rep | Target | Watts | HR | |
+|---|---|---|---|---|
+| 1 | 211-245 W | 565 | 160 | over |
+
+## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot) (moved from Fri)
+skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Bench press | work 1 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench press | work 2 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench press | work 3 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench pull | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
-| Landmine press | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
+| Bench pull | speed | 6 x 3 @ choose RPE<=7 | - | not logged |
+| Bench press | speed | 8 x 3 @ 65 kg RPE<=7 | - | not logged |
+| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
 
-- Bench press: e1RM 125 -> 106.7 (-18.3); next time 80 x 11 on Thu 5 Nov (last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11)
 
-## AM: Long ride 3 h, Z2, fuel 60-90 g carb/h
-moved to Sun AM: no time Saturday
-
-## PM: Threshold 2 x 20 min at 92-95% FTP, 5 min easy between (done late, planned Fri)
-done: no interval data to grade power · 52 of 75 min · IF 0.76 · TSS 51
+## Unplanned: Mobility (sail or other)
+38 min · IF 0.25 · TSS 4 · HR load 4 · avg HR 79
+Grind Load: 0 efforts, 0 work min, 0 at >= 85% LTHR (hr stream)

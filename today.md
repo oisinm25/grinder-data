@@ -1,60 +1,61 @@
-# Pedestal brief: Sun 1 Nov 2026
+# Pedestal brief: Mon 2 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-01 06:49*
+*Status: provisional (no sleep yet) · generated 2026-11-02 06:36*
 
-**Readiness: no call**: no call: no HRV; resting HR 51 <= 61.5 (baseline 56.5 + 5); no sleep
+**Readiness: no call**: no call: no HRV; resting HR 54 <= 61.2 (baseline 56.2 + 5); no sleep
 
-Accumulation, week acc1
+Accumulation, week acc2
 
-## AM: Easy hand-bike 40 min (optional - rest is fine)
-handbike · 40 min · 26 TSS
-
-- steady 40:00 139-164 W*
-- \* watts from a provisional FTP
-
-## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot) (moved from Fri)
-strength · 40 TSS
+## AM: Upper max effort - bench top set, back-offs, heavy pulling
+strength · 50 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench pull | speed | 6 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it |
-| Bench press | speed | 8 × 3 | 72.5 |  | wave week 1 of 3: 55% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 72.5 x 3; readiness not known yet |
-| Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it |
+| Bench press | top | 1 × 6 | 100 | 8 | last 100x6 @8.5 on 27 Oct: miss (above RPE 8) -> repeat 100 x 6; readiness not known yet |
+| Bench press | backoff | 3 × 8 | 85 |  | 85% of top 100 -> 85 x 8 |
+| Weighted pull-up | work | 4 × 5 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it |
+| Chest-supported row | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
-## AM: Long ride 3 h, Z2, fuel 60-90 g carb/h (moved from Sat)
-bike · 180 min · 140 TSS
+## PM: Z2 90 min
+bike · 90 min · 70 TSS
 
-- steady 3:00:00 211-245 W
+- warmup 5:00 170-211 W
+- steady 1:25:00 221-245 W
 
-## Yesterday's debrief: Sat 31 Oct 2026
+## Yesterday's debrief: Sun 1 Nov 2026
 
-**Held the plan.**
+**Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.**
 
-Note for today: Today: Easy hand-bike 40 min (optional.
+Note for today: Long ride 3 h, Z2, fuel 60-90 g carb/h faded: start today's Upper max effort at the bottom of its band.
 
-readiness green · sleep 8.46 h · load 51 of 130 planned TSS
+readiness red · sleep 3.13 h · load 183 of 206 planned TSS
 
-### AM: Upper repetition effort - bench volume toward 10 x 110 (done late, planned Thu)
-held
+### AM: Easy hand-bike 40 min (optional - rest is fine)
+skipped: no matching activity
+
+### AM: Long ride 3 h, Z2, fuel 60-90 g carb/h (moved from Sat)
+off_target: 0/1 steps in band; W: 565! · 142 of 180 min · NP 270 W · IF 0.87 · TSS 179 · HR drift 8.2%
+
+| Rep | Target | Watts | HR | |
+|---|---|---|---|---|
+| 1 | 211-245 W | 565 | 160 | over |
+
+### AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot) (moved from Fri)
+skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Bench press | work 1 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench press | work 2 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench press | work 3 | 3 x 10 @ 80 kg RPE<=8.5 | 80 x 10 | hit |
-| Bench pull | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
-| Landmine press | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
+| Bench pull | speed | 6 x 3 @ choose RPE<=7 | - | not logged |
+| Bench press | speed | 8 x 3 @ 65 kg RPE<=7 | - | not logged |
+| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
 
-- Bench press: e1RM 125 -> 106.7 (-18.3); next time 80 x 11 on Thu 5 Nov (last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11)
 
-### AM: Long ride 3 h, Z2, fuel 60-90 g carb/h
-moved to Sun AM: no time Saturday
-
-### PM: Threshold 2 x 20 min at 92-95% FTP, 5 min easy between (done late, planned Fri)
-done: no interval data to grade power · 52 of 75 min · IF 0.76 · TSS 51
+### Unplanned: Mobility (sail or other)
+38 min · IF 0.25 · TSS 4 · HR load 4 · avg HR 79
+Grind Load: 0 efforts, 0 work min, 0 at >= 85% LTHR (hr stream)
 
 ## Flags (review of the week ending Sun 1 Nov)
-- load: 252 TSS done, under the 650-750 target (advisory: targets provisional)
-- sessions: 4 endurance sessions missed or skipped
-- recovery: 2 red days
+- load: 435 TSS done, under the 650-750 target (advisory: targets provisional)
+- sessions: 5 endurance sessions missed or skipped
+- recovery: 3 red days
 - bench: e1RM 125.0 is 6.8 kg under the line (131.8)

@@ -1,7 +1,7 @@
 {
- "date": "2026-11-01",
+ "date": "2026-11-02",
  "status": "provisional",
- "generated_at": "2026-11-01T06:49+01:00",
+ "generated_at": "2026-11-02T06:36+01:00",
  "html": "dashboard_email.html",
  "attachment": "../dashboard.html",
  "images": [
@@ -9,25 +9,31 @@
    "file": "fitness_fatigue.png",
    "cid": "fitness_fatigue",
    "alt": "Fitness (CTL), fatigue (ATL) and form over the season, with intervals.icu's CTL and the planned path.",
-   "bytes": 67759
+   "bytes": 69565
   },
   {
    "file": "weekly_load.png",
    "cid": "weekly_load",
    "alt": "Weekly training load by sport against the plan's weekly band.",
-   "bytes": 29834
+   "bytes": 41943
   },
   {
    "file": "bench_line.png",
    "cid": "bench_line",
    "alt": "Bench press e1RM against the checkpoint path to the April goal.",
-   "bytes": 42069
+   "bytes": 42065
   },
   {
    "file": "readiness_strip.png",
    "cid": "readiness_strip",
    "alt": "Readiness per day: green, amber, red or no call.",
-   "bytes": 23608
+   "bytes": 23813
+  },
+  {
+   "file": "yesterday_intervals.png",
+   "cid": "yesterday_intervals",
+   "alt": "Yesterday's interval watts against each rep's target band.",
+   "bytes": 20658
   }
  ]
 }
