@@ -1,7 +1,7 @@
 {
  "date": "2026-11-03",
- "status": "provisional",
- "generated_at": "2026-11-03T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-03T17:39+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": null,
-   "reason": "no call: no HRV; resting HR 55 <= 61.1 (baseline 56.1 + 5); no sleep"
+   "colour": "green",
+   "reason": "green: HRV 65 >= 33.8 (baseline 46.6 - 1 SD 12.8); resting HR 57 <= 61.1 (baseline 56.1 + 5); sleep 7.63 h >= 6"
   },
   "sessions": [
    {
@@ -2029,12 +2029,12 @@
    },
    {
     "date": "2026-11-03",
-    "readiness": null,
-    "hrv": null,
+    "readiness": "green",
+    "hrv": 65.0,
     "hrv_baseline": 46.6,
-    "resting_hr": 55.0,
+    "resting_hr": 57.0,
     "resting_hr_baseline": 56.1,
-    "sleep_h": null
+    "sleep_h": 7.63
    }
   ],
   "compliance": [

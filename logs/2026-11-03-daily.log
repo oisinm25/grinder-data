@@ -1,4 +1,4 @@
-# daily 2026-11-03: 8 ok; provisional (no sleep yet)
+# daily 2026-11-03: 8 ok; final
 
 ## [ok     ] ingest    16 activities (bike 7, strength 4, sail_or_other 3, concept2 1, conditioning 1), 15 wellness days, 13 strength sets; 3 to review
 Ingest 2026-10-20 to 2026-11-03
@@ -8,15 +8,15 @@ Activities: 16 (bike 7, strength 4, sail_or_other 3, concept2 1, conditioning 1)
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 16 activities (streams 16) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (55 rows incl. baseline)
-  latest 2026-11-03: resting HR 55 bpm, CTL 37.3 / ATL 71.9 (form -34.6)
-  readiness no call: no HRV; resting HR 55 <= 61.1 (baseline 56.1 + 5); no sleep
+  latest 2026-11-03: resting HR 57 bpm, HRV 65 ms, sleep 7.63 h (score 90), CTL 37.3 / ATL 71.9 (form -34.6)
+  readiness green: HRV 65 >= 33.8 (baseline 46.6 - 1 SD 12.8); resting HR 57 <= 61.1 (baseline 56.1 + 5); sleep 7.63 h >= 6
 Strength: 13 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 8 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   trap_bar_deadlift  2026-10-29  170 kg x 5 @ RPE 8  (top)  e1RM 209.7 kg
 
-## [ok     ] readiness no call for 2026-11-03 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-03 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness green: HRV 65 >= 33.8; RHR 57 <= 61.1; sleep 7.63 h >= 6; final
+green: HRV 65 >= 33.8; RHR 57 <= 61.1; sleep 7.63 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
 Wed 2026-11-04  lower_me (wed_am)  readiness: not known yet
@@ -69,8 +69,8 @@ Wrote 5 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Upper max effort done; Z2 90 min missed.
 wrote debrief.md and debrief.json: Upper max effort done; Z2 90 min missed.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 3 sessions, readiness no call
-wrote today.md and today.json: provisional, 3 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 3 sessions, readiness green
+wrote today.md and today.json: final, 3 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 42.0, form -20.7
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 42.0, form -20.7
