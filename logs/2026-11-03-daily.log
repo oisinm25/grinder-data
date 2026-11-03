@@ -8,7 +8,7 @@ Activities: 16 (bike 7, strength 4, sail_or_other 3, concept2 1, conditioning 1)
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 16 activities (streams 16) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (55 rows incl. baseline)
-  latest 2026-11-03: resting HR 55 bpm, CTL 39.2 / ATL 87.3 (form -48.1)
+  latest 2026-11-03: resting HR 55 bpm, CTL 37.3 / ATL 71.9 (form -34.6)
   readiness no call: no HRV; resting HR 55 <= 61.1 (baseline 56.1 + 5); no sleep
 Strength: 13 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 8 sets -> derived/heavy_reps.csv
@@ -39,7 +39,7 @@ Mon 2026-11-09  upper_me (mon_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (33 rows total)
 
-## [ok     ] publish   intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
 Publish 2026-11-03 to 2026-11-09: 13 sessions
   2026-11-03 07:00  Handcycle         48 TSS  Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
   2026-11-03 08:00  Workout           40 TSS  Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy
@@ -55,7 +55,7 @@ Publish 2026-11-03 to 2026-11-09: 13 sessions
   2026-11-09 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
   2026-11-09 17:00  VirtualRide       70 TSS  Z2 90 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+intervals.icu: no changes (13 events unchanged)
 
 ## [ok     ] review    Day Mon 2026-11-02: skipped 4, over_rpe 1
 Day Mon 2026-11-02: skipped 4, over_rpe 1

@@ -1,6 +1,6 @@
 # Pedestal brief: Tue 3 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-03 06:36*
+*Status: provisional (no sleep yet) · generated 2026-11-03 06:49*
 
 **Readiness: no call**: no call: no HRV; resting HR 55 <= 61.1 (baseline 56.1 + 5); no sleep
 
