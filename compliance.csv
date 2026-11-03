@@ -36,3 +36,8 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-11-01,sun_am,upper_de,strength,bench_press speed,8 x 3 @ 65 kg RPE<=7,,skipped,not logged
 2026-11-01,sun_am,upper_de,strength,push_press speed,5 x 3 @ choose RPE<=7,,skipped,not logged
 2026-11-01,sun_am,long_ride_3h,bike,session,"180 min, 1 steps","142 min, activity i204293711",off_target,0/1 steps in band; W: 565!
+2026-11-02,mon_am,upper_me,strength,bench_press top,1 x 6 @ 100 kg RPE<=8,1 x 9 @ 100 kg RPE 9,over_rpe,above RPE 8
+2026-11-02,mon_am,upper_me,strength,bench_press backoff,3 x 8 @ 85 kg,,skipped,not logged
+2026-11-02,mon_am,upper_me,strength,weighted_pullup work,4 x 5 @ choose RPE<=8.5,,skipped,not logged
+2026-11-02,mon_am,upper_me,strength,chest_supported_row work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
+2026-11-02,mon_pm,z2_90,bike,session,90 min,,skipped,no matching activity

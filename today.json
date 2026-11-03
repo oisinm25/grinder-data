@@ -1,11 +1,11 @@
 {
- "date": "2026-11-02",
- "status": "final",
- "status_reason": "",
- "generated_at": "2026-11-02T14:01+01:00",
+ "date": "2026-11-03",
+ "status": "provisional",
+ "status_reason": "no sleep yet",
+ "generated_at": "2026-11-03T06:36+01:00",
  "readiness": {
-  "colour": "green",
-  "reason": "green: HRV 50 >= 33.7 (baseline 46.5 - 1 SD 12.8); resting HR 52 <= 61.2 (baseline 56.2 + 5); sleep 7.42 h >= 6"
+  "colour": null,
+  "reason": "no call: no HRV; resting HR 55 <= 61.1 (baseline 56.1 + 5); no sleep"
  },
  "block": {
   "id": "block1",
@@ -15,242 +15,241 @@
  },
  "sessions": [
   {
-   "slot": "mon_am",
+   "slot": "tue_am",
    "order": 0,
-   "session": "upper_me",
-   "modality": "strength",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "session": "handbike_intervals",
+   "modality": "handbike",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
    "environment": null,
-   "duration_min": null,
-   "tss": 50.0,
-   "readiness_exempt": false,
-   "strength": [
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "role": "top",
-     "sets": 1,
-     "reps": 6,
-     "kg": 100,
-     "rpe_cap": 8,
-     "basis": "last",
-     "reason": "last 100x6 @8.5 on 27 Oct: miss (above RPE 8) -> repeat 100 x 6"
-    },
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "role": "backoff",
-     "sets": 3,
-     "reps": 8,
-     "kg": 85,
-     "rpe_cap": null,
-     "basis": "top",
-     "reason": "85% of top 100 -> 85 x 8"
-    },
-    {
-     "lift": "weighted_pullup",
-     "name": "Weighted pull-up",
-     "role": "work",
-     "sets": 4,
-     "reps": 5,
-     "kg": null,
-     "rpe_cap": 8.5,
-     "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it"
-    },
-    {
-     "lift": "chest_supported_row",
-     "name": "Chest-supported row",
-     "role": "work",
-     "sets": 3,
-     "reps": 8,
-     "kg": null,
-     "rpe_cap": 8.5,
-     "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
-    }
-   ]
-  },
-  {
-   "slot": "mon_pm",
-   "order": 0,
-   "session": "z2_90",
-   "modality": "bike",
-   "summary": "Z2 90 min",
-   "environment": null,
-   "duration_min": 90,
-   "tss": 70.0,
+   "duration_min": 50,
+   "tss": 48.0,
    "readiness_exempt": false,
    "steps": [
     {
      "kind": "warmup",
-     "duration_s": 300,
-     "target": "170-211 W",
+     "duration_s": 600,
+     "target": "126-164 W*",
      "anchor": "pct_ftp",
      "watts": [
-      170,
-      211
+      126,
+      164
      ],
-     "provisional": false
+     "provisional": true
     },
     {
-     "kind": "steady",
-     "duration_s": 5100,
-     "target": "221-245 W",
+     "kind": "repeat",
+     "count": 5,
+     "duration_s": 2100,
+     "steps": [
+      {
+       "kind": "work",
+       "duration_s": 240,
+       "target": "265-277 W*",
+       "anchor": "pct_ftp",
+       "watts": [
+        265,
+        277
+       ],
+       "provisional": true
+      },
+      {
+       "kind": "rest",
+       "duration_s": 180,
+       "target": "113-139 W*",
+       "anchor": "pct_ftp",
+       "watts": [
+        113,
+        139
+       ],
+       "provisional": true
+      }
+     ]
+    },
+    {
+     "kind": "cooldown",
+     "duration_s": 300,
+     "target": "113-139 W*",
      "anchor": "pct_ftp",
      "watts": [
-      221,
-      245
+      113,
+      139
      ],
-     "provisional": false
+     "provisional": true
+    }
+   ],
+   "provisional_ftp": true
+  },
+  {
+   "slot": "tue_am",
+   "order": 1,
+   "session": "grinding_repeats_10",
+   "modality": "grinding",
+   "summary": "Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy",
+   "environment": null,
+   "duration_min": 45,
+   "tss": 40.0,
+   "readiness_exempt": false,
+   "steps": [
+    {
+     "kind": "warmup",
+     "duration_s": 600,
+     "target": "RPE 4",
+     "anchor": "rpe"
+    },
+    {
+     "kind": "repeat",
+     "count": 10,
+     "duration_s": 1800,
+     "steps": [
+      {
+       "kind": "work",
+       "duration_s": 60,
+       "target": "400 W",
+       "anchor": "pct_curve",
+       "watts": [
+        400,
+        400
+       ],
+       "provisional": false
+      },
+      {
+       "kind": "rest",
+       "duration_s": 120,
+       "target": "RPE 2",
+       "anchor": "rpe"
+      }
+     ]
+    },
+    {
+     "kind": "cooldown",
+     "duration_s": 300,
+     "target": "RPE 3",
+     "anchor": "rpe"
     }
    ],
    "provisional_ftp": false
+  },
+  {
+   "slot": "tue_pm",
+   "order": 0,
+   "session": "mobility_trunk",
+   "modality": "mobility",
+   "summary": "Mobility and trunk, 30 min",
+   "environment": null,
+   "duration_min": null,
+   "tss": null,
+   "readiness_exempt": false
   }
  ],
  "moved_away": [],
  "yesterday": {
-  "date": "2026-11-01",
+  "date": "2026-11-02",
   "grades": [
    {
-    "session": "handbike_easy_40",
+    "session": "upper_me",
+    "item": "bench_press top",
+    "grade": "over_rpe",
+    "note": "above RPE 8"
+   },
+   {
+    "session": "upper_me",
+    "item": "bench_press backoff",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "upper_me",
+    "item": "weighted_pullup work",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "upper_me",
+    "item": "chest_supported_row work",
+    "grade": "skipped",
+    "note": "not logged"
+   },
+   {
+    "session": "z2_90",
     "item": "session",
     "grade": "skipped",
     "note": "no matching activity"
-   },
-   {
-    "session": "upper_de",
-    "item": "bench_pull speed",
-    "grade": "skipped",
-    "note": "not logged"
-   },
-   {
-    "session": "upper_de",
-    "item": "bench_press speed",
-    "grade": "skipped",
-    "note": "not logged"
-   },
-   {
-    "session": "upper_de",
-    "item": "push_press speed",
-    "grade": "skipped",
-    "note": "not logged"
-   },
-   {
-    "session": "long_ride_3h",
-    "item": "session",
-    "grade": "off_target",
-    "note": "0/1 steps in band; W: 565!"
    }
   ],
   "status": "graded"
  },
  "debrief": {
-  "date": "2026-11-01",
-  "verdict": "Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.",
-  "note_for_today": "Long ride 3 h, Z2, fuel 60-90 g carb/h faded: start today's Upper max effort at the bottom of its band.",
+  "date": "2026-11-02",
+  "verdict": "Upper max effort done; Z2 90 min missed.",
+  "note_for_today": "Today: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy.",
   "context": {
-   "readiness": "red",
-   "readiness_reason": "red: HRV 66 >= 33.4 (baseline 45.7 - 1 SD 12.2); resting HR 51 <= 61.5 (baseline 56.5 + 5); sleep 3.13 h < 6",
-   "sleep_h": 3.13,
-   "load_done": 183,
-   "load_planned": 206
+   "readiness": "green",
+   "readiness_reason": "green: HRV 50 >= 33.7 (baseline 46.5 - 1 SD 12.8); resting HR 52 <= 61.2 (baseline 56.2 + 5); sleep 7.42 h >= 6",
+   "sleep_h": 7.42,
+   "load_done": 79,
+   "load_planned": 120
   },
   "items": [
    {
-    "kind": "endurance",
-    "slot": "sun_am",
-    "session": "handbike_easy_40",
-    "modality": "handbike",
-    "summary": "Easy hand-bike 40 min (optional - rest is fine)",
-    "planned_min": 40,
-    "planned_tss": 26.0,
-    "grade": "skipped",
-    "grade_note": "no matching activity"
-   },
-   {
-    "kind": "endurance",
-    "slot": "sun_am",
-    "session": "long_ride_3h",
-    "modality": "bike",
-    "summary": "Long ride 3 h, Z2, fuel 60-90 g carb/h",
-    "planned_min": 180,
-    "planned_tss": 140.0,
-    "moved_from": "2026-10-31 am",
-    "moved_note": "(moved from Sat)",
-    "grade": "off_target",
-    "grade_note": "0/1 steps in band; W: 565!",
-    "activity": {
-     "id": "i204293711",
-     "name": "County Down Road Cycling",
-     "moving_min": 141.9
-    },
-    "np_w": 270.0,
-    "intensity": 0.87,
-    "tss": 179.0,
-    "reps": [
-     {
-      "n": 1,
-      "target": "211-245 W",
-      "band": [
-       211,
-       245
-      ],
-      "watts": 565,
-      "hr": 160.0,
-      "status": "over"
-     }
-    ],
-    "hr_drift_pct": 8.2
-   },
-   {
     "kind": "strength",
-    "slot": "sun_am",
-    "session": "upper_de",
+    "slot": "mon_am",
+    "session": "upper_me",
     "modality": "strength",
-    "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
-    "planned_tss": 40.0,
+    "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+    "planned_tss": 50.0,
     "lifts": [
-     {
-      "lift": "bench_pull",
-      "name": "Bench pull",
-      "sets": [
-       {
-        "role": "speed",
-        "set": null,
-        "prescribed": "6 x 3 @ choose RPE<=7",
-        "achieved": "",
-        "status": "not logged"
-       }
-      ],
-      "e1rm_before": null,
-      "e1rm_after": null,
-      "next": null
-     },
      {
       "lift": "bench_press",
       "name": "Bench press",
       "sets": [
        {
-        "role": "speed",
+        "role": "top",
+        "set": 1,
+        "prescribed": "1 x 6 @ 100 kg RPE<=8",
+        "achieved": "100 x 9 @9",
+        "status": "over RPE"
+       },
+       {
+        "role": "backoff",
         "set": null,
-        "prescribed": "8 x 3 @ 65 kg RPE<=7",
+        "prescribed": "3 x 8 @ 85 kg",
         "achieved": "",
         "status": "not logged"
        }
       ],
       "e1rm_before": 125.0,
+      "e1rm_after": 133.3,
+      "next": {
+       "date": "2026-11-09",
+       "kg": 95.0,
+       "reps": 6,
+       "reason": "last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6"
+      }
+     },
+     {
+      "lift": "weighted_pullup",
+      "name": "Weighted pull-up",
+      "sets": [
+       {
+        "role": "work",
+        "set": null,
+        "prescribed": "4 x 5 @ choose RPE<=8.5",
+        "achieved": "",
+        "status": "not logged"
+       }
+      ],
+      "e1rm_before": null,
       "e1rm_after": null,
       "next": null
      },
      {
-      "lift": "push_press",
-      "name": "Push press",
+      "lift": "chest_supported_row",
+      "name": "Chest-supported row",
       "sets": [
        {
-        "role": "speed",
+        "role": "work",
         "set": null,
-        "prescribed": "5 x 3 @ choose RPE<=7",
+        "prescribed": "3 x 8 @ choose RPE<=8.5",
         "achieved": "",
         "status": "not logged"
        }
@@ -260,29 +259,32 @@
       "next": null
      }
     ],
-    "moved_from": "2026-10-30 am",
-    "moved_note": "(moved from Fri)",
-    "grade": "skipped"
+    "grade": "held"
+   },
+   {
+    "kind": "endurance",
+    "slot": "mon_pm",
+    "session": "z2_90",
+    "modality": "bike",
+    "summary": "Z2 90 min",
+    "planned_min": 90,
+    "planned_tss": 70.0,
+    "grade": "skipped",
+    "grade_note": "no matching activity"
    },
    {
     "kind": "unplanned",
-    "sport": "sail_or_other",
-    "type": "Workout",
-    "name": "Mobility",
-    "moving_min": 38.0,
-    "hr_load": 4.0,
-    "avg_hr": 79.0,
-    "review": "plain Workout without a Grind title: sail or something else?",
+    "sport": "concept2",
+    "type": "VirtualRow",
+    "name": "Indoor Rowing",
+    "moving_min": 84.1,
+    "hr_load": 59.0,
+    "avg_hr": 141.0,
+    "review": "",
     "np_w": null,
-    "intensity": 0.25,
-    "tss": 4.0,
-    "hr_drift_pct": null,
-    "grind_load": {
-     "source": "hr stream",
-     "efforts": 0,
-     "work_min": 0.0,
-     "efforts_85": 0
-    }
+    "intensity": 0.65,
+    "tss": 59.0,
+    "hr_drift_pct": null
    }
   ],
   "problems": []

@@ -1,31 +1,25 @@
-# Debrief: Sun 1 Nov 2026
+# Debrief: Mon 2 Nov 2026
 
-**Long ride 3 h, Z2, fuel 60-90 g carb/h off target: 0/1 steps in band.**
+**Upper max effort done; Z2 90 min missed.**
 
-Note for today: Long ride 3 h, Z2, fuel 60-90 g carb/h faded: start today's Upper max effort at the bottom of its band.
+Note for today: Today: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy.
 
-readiness red · sleep 3.13 h · load 183 of 206 planned TSS
+readiness green · sleep 7.42 h · load 79 of 120 planned TSS
 
-## AM: Easy hand-bike 40 min (optional - rest is fine)
-skipped: no matching activity
-
-## AM: Long ride 3 h, Z2, fuel 60-90 g carb/h (moved from Sat)
-off_target: 0/1 steps in band; W: 565! · 142 of 180 min · NP 270 W · IF 0.87 · TSS 179 · HR drift 8.2%
-
-| Rep | Target | Watts | HR | |
-|---|---|---|---|---|
-| 1 | 211-245 W | 565 | 160 | over |
-
-## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot) (moved from Fri)
-skipped
+## AM: Upper max effort - bench top set, back-offs, heavy pulling
+held
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Bench pull | speed | 6 x 3 @ choose RPE<=7 | - | not logged |
-| Bench press | speed | 8 x 3 @ 65 kg RPE<=7 | - | not logged |
-| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
+| Bench press | top 1 | 1 x 6 @ 100 kg RPE<=8 | 100 x 9 @9 | over RPE |
+| Bench press | backoff | 3 x 8 @ 85 kg | - | not logged |
+| Weighted pull-up | work | 4 x 5 @ choose RPE<=8.5 | - | not logged |
+| Chest-supported row | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
 
+- Bench press: e1RM 125 -> 133.3 (+8.3); next time 95 x 6 on Mon 9 Nov (last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6)
 
-## Unplanned: Mobility (sail or other)
-38 min · IF 0.25 · TSS 4 · HR load 4 · avg HR 79
-Grind Load: 0 efforts, 0 work min, 0 at >= 85% LTHR (hr stream)
+## PM: Z2 90 min
+skipped: no matching activity
+
+## Unplanned: Indoor Rowing (concept2)
+84 min · IF 0.65 · TSS 59 · HR load 59 · avg HR 141
