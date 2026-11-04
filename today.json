@@ -1,11 +1,11 @@
 {
  "date": "2026-11-04",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-04T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-04T08:14+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 56 <= 60.8 (baseline 55.8 + 5); no sleep"
+  "colour": "green",
+  "reason": "green: HRV 67 >= 34.8 (baseline 47.8 - 1 SD 13.0); resting HR 50 <= 60.8 (baseline 55.8 + 5); sleep 7.73 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -34,7 +34,7 @@
      "kg": 175,
      "rpe_cap": 8,
      "basis": "last",
-     "reason": "last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5; readiness not known yet"
+     "reason": "last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5"
     },
     {
      "lift": "trap_bar_deadlift",

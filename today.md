@@ -1,8 +1,8 @@
 # Pedestal brief: Wed 4 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-04 06:49*
+*Status: final · generated 2026-11-04 08:14*
 
-**Readiness: no call**: no call: no HRV; resting HR 56 <= 60.8 (baseline 55.8 + 5); no sleep
+**Readiness: GREEN**: HRV 67 >= 34.8 (baseline 47.8 - 1 SD 13.0); resting HR 50 <= 60.8 (baseline 55.8 + 5); sleep 7.73 h >= 6
 
 Accumulation, week acc2
 
@@ -11,7 +11,7 @@ strength · 50 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Trap-bar deadlift | top | 1 × 5 | 175 | 8 | last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5; readiness not known yet |
+| Trap-bar deadlift | top | 1 × 5 | 175 | 8 | last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5 |
 | Trap-bar deadlift | backoff | 2 × 5 | 157.5 |  | 90% of top 175 -> 157.5 x 5 |
 | Rear-foot-elevated split squat | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
