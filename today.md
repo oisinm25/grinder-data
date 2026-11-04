@@ -1,54 +1,39 @@
-# Pedestal brief: Tue 3 Nov 2026
+# Pedestal brief: Wed 4 Nov 2026
 
-*Status: final · generated 2026-11-03 17:39*
+*Status: provisional (no sleep yet) · generated 2026-11-04 06:35*
 
-**Readiness: GREEN**: HRV 65 >= 33.8 (baseline 46.6 - 1 SD 12.8); resting HR 57 <= 61.1 (baseline 56.1 + 5); sleep 7.63 h >= 6
+**Readiness: no call**: no call: no HRV; resting HR 56 <= 60.8 (baseline 55.8 + 5); no sleep
 
 Accumulation, week acc2
 
-## AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
-handbike · 50 min · 48 TSS
+## AM: Lower max effort - trap-bar top set, single-leg, trunk
+strength · 50 TSS
 
-- warmup 10:00 126-164 W*
-- 5 × [work 4:00 265-277 W*, rest 3:00 113-139 W*]
-- cooldown 5:00 113-139 W*
-- \* watts from a provisional FTP
+| Lift | Group | Sets × reps | kg | RPE cap | Why |
+|---|---|---|---|---|---|
+| Trap-bar deadlift | top | 1 × 5 | 175 | 8 | last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5; readiness not known yet |
+| Trap-bar deadlift | backoff | 2 × 5 | 157.5 |  | 90% of top 175 -> 157.5 x 5 |
+| Rear-foot-elevated split squat | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
-## AM: Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy
-grinding · 45 min · 40 TSS
+## PM: Z2 60 min
+bike · 60 min · 46 TSS
 
-- warmup 10:00 RPE 4
-- 10 × [work 1:00 400 W, rest 2:00 RPE 2]
-- cooldown 5:00 RPE 3
+- warmup 5:00 170-211 W
+- steady 55:00 221-245 W
 
-## PM: Mobility and trunk, 30 min
-mobility
+## Yesterday's debrief: Tue 3 Nov 2026
 
-## Yesterday's debrief: Mon 2 Nov 2026
+**Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy.**
 
-**Upper max effort done; Z2 90 min missed.**
+Note for today: Today: Lower max effort.
 
-Note for today: Today: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy.
+readiness green · sleep 7.63 h · load 0 of 88 planned TSS
 
-readiness green · sleep 7.42 h · load 79 of 120 planned TSS
-
-### AM: Upper max effort - bench top set, back-offs, heavy pulling
-held
-
-| Lift | Set | Prescribed | Achieved | |
-|---|---|---|---|---|
-| Bench press | top 1 | 1 x 6 @ 100 kg RPE<=8 | 100 x 9 @9 | over RPE |
-| Bench press | backoff | 3 x 8 @ 85 kg | - | not logged |
-| Weighted pull-up | work | 4 x 5 @ choose RPE<=8.5 | - | not logged |
-| Chest-supported row | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
-
-- Bench press: e1RM 125 -> 133.3 (+8.3); next time 95 x 6 on Mon 9 Nov (last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6)
-
-### PM: Z2 90 min
+### AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
 skipped: no matching activity
 
-### Unplanned: Indoor Rowing (concept2)
-84 min · IF 0.65 · TSS 59 · HR load 59 · avg HR 141
+### AM: Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy
+skipped: no matching activity
 
 ## Flags (review of the week ending Sun 1 Nov)
 - load: 435 TSS done, under the 650-750 target (advisory: targets provisional)
