@@ -39,7 +39,7 @@ Mon 2026-11-09  upper_me (mon_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (33 rows total)
 
-## [ok     ] publish   intervals.icu: 3 created, 0 updated, 0 stale Pedestal events deleted, 10 unchanged
+## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
 Publish 2026-11-04 to 2026-11-10: 13 sessions
   2026-11-04 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
   2026-11-04 17:00  VirtualRide       46 TSS  Z2 60 min
@@ -55,7 +55,7 @@ Publish 2026-11-04 to 2026-11-10: 13 sessions
   2026-11-10 08:00  Workout           45 TSS  Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
   2026-11-10 17:00  Workout                   Mobility and trunk, 30 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 3 created, 0 updated, 0 stale Pedestal events deleted, 10 unchanged
+intervals.icu: no changes (13 events unchanged)
 
 ## [ok     ] review    Day Tue 2026-11-03: skipped 2
 Day Tue 2026-11-03: skipped 2
