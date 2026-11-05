@@ -1,0 +1,121 @@
+{
+ "status": "ok",
+ "generated_at": "2026-11-05T08:16+01:00",
+ "activity_id": "i205728013",
+ "activity": {
+  "id": "i205728013",
+  "date": "2026-11-04",
+  "start_local": "2026-11-04T15:05:27",
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Lower max effort - trap-bar top",
+  "moving_min": "89.3"
+ },
+ "breakdown": {
+  "kind": "strength",
+  "slot": "wed_am",
+  "session": "lower_me",
+  "modality": "strength",
+  "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+  "planned_tss": 50.0,
+  "lifts": [
+   {
+    "lift": "trap_bar_deadlift",
+    "name": "Trap-bar deadlift",
+    "sets": [
+     {
+      "role": "top",
+      "set": null,
+      "prescribed": "1 x 5 @ 175 kg RPE<=8",
+      "achieved": "",
+      "status": "not logged"
+     },
+     {
+      "role": "backoff",
+      "set": null,
+      "prescribed": "2 x 5 @ 157.5 kg",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": 209.7,
+    "e1rm_after": null,
+    "next": null
+   },
+   {
+    "lift": "rfe_split_squat",
+    "name": "Rear-foot-elevated split squat",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": null,
+    "next": null
+   }
+  ],
+  "grade": "skipped",
+  "np_w": null,
+  "intensity": 0.34,
+  "tss": 17.0,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 17.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 41.0,
+   "atl": 54.3,
+   "form": -13.3
+  },
+  "after": {
+   "ctl": 41.4,
+   "atl": 56.6,
+   "form": -15.2
+  },
+  "projections": {
+   "form_tomorrow": -15.2,
+   "next_key_session": {
+    "date": "2026-11-06",
+    "session": "bike_threshold_2x20",
+    "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+    "form": -19.9
+   }
+  },
+  "week": {
+   "start": "2026-11-02",
+   "label": "acc2",
+   "done_tss": 96,
+   "band": [
+    675.0,
+    775.0
+   ],
+   "share_pct": [
+    12,
+    14
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -15.2,
+  "next_key_session": {
+   "date": "2026-11-06",
+   "session": "bike_threshold_2x20",
+   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+   "form": -19.9
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-11-04-i205728013.json",
+  "md": "analysis/2026-11-04-i205728013.md"
+ }
+}
