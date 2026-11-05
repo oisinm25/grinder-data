@@ -1,38 +1,45 @@
-# Pedestal brief: Wed 4 Nov 2026
+# Pedestal brief: Thu 5 Nov 2026
 
-*Status: final · generated 2026-11-04 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-05 06:36*
 
-**Readiness: GREEN**: HRV 67 >= 34.8 (baseline 47.8 - 1 SD 13.0); resting HR 50 <= 60.8 (baseline 55.8 + 5); sleep 7.73 h >= 6
+**Readiness: no call**: no call: no HRV; resting HR 54 <= 60.4 (baseline 55.4 + 5); no sleep
 
 Accumulation, week acc2
 
-## AM: Lower max effort - trap-bar top set, single-leg, trunk
-strength · 50 TSS
+## AM: Upper repetition effort - bench volume toward 10 x 110
+strength · 45 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Trap-bar deadlift | top | 1 × 5 | 175 | 8 | last 170x5 @8 on 29 Oct: every rep at or below RPE 8 -> +5 = 175 x 5 |
-| Trap-bar deadlift | backoff | 2 × 5 | 157.5 |  | 90% of top 175 -> 157.5 x 5 |
-| Rear-foot-elevated split squat | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
+| Bench press | work | 3 × 11 | 80 | 8.5 | last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11; readiness not known yet |
+| Bench pull | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
+| Landmine press | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
-## PM: Z2 60 min
-bike · 60 min · 46 TSS
+## PM: Z2 75 min
+bike · 75 min · 58 TSS
 
 - warmup 5:00 170-211 W
-- steady 55:00 221-245 W
+- steady 1:10:00 221-245 W
 
-## Yesterday's debrief: Tue 3 Nov 2026
+## Yesterday's debrief: Wed 4 Nov 2026
 
-**Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy.**
+**Missed: Lower max effort, Z2 60 min.**
 
-Note for today: Today: Lower max effort.
+Note for today: Today: Upper repetition effort.
 
-readiness green · sleep 7.63 h · load 0 of 88 planned TSS
+readiness green · sleep 7.73 h · load 17 of 96 planned TSS
 
-### AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
-skipped: no matching activity
+### AM: Lower max effort - trap-bar top set, single-leg, trunk
+skipped
 
-### AM: Grinding repeat-sprints 10 x 1 min at ~85% of 1-min best, 2 min easy
+| Lift | Set | Prescribed | Achieved | |
+|---|---|---|---|---|
+| Trap-bar deadlift | top | 1 x 5 @ 175 kg RPE<=8 | - | not logged |
+| Trap-bar deadlift | backoff | 2 x 5 @ 157.5 kg | - | not logged |
+| Rear-foot-elevated split squat | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
+
+
+### PM: Z2 60 min
 skipped: no matching activity
 
 ## Flags (review of the week ending Sun 1 Nov)

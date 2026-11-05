@@ -1,7 +1,7 @@
 {
- "date": "2026-11-04",
- "status": "final",
- "generated_at": "2026-11-04T08:14+01:00",
+ "date": "2026-11-05",
+ "status": "provisional",
+ "generated_at": "2026-11-05T06:36+01:00",
  "html": "dashboard_email.html",
  "attachment": "../dashboard.html",
  "images": [
@@ -9,25 +9,25 @@
    "file": "fitness_fatigue.png",
    "cid": "fitness_fatigue",
    "alt": "Fitness (CTL), fatigue (ATL) and form over the season, with intervals.icu's CTL and the planned path.",
-   "bytes": 70208
+   "bytes": 71410
   },
   {
    "file": "weekly_load.png",
    "cid": "weekly_load",
    "alt": "Weekly training load by sport against the plan's weekly band.",
-   "bytes": 43827
+   "bytes": 43837
   },
   {
    "file": "bench_line.png",
    "cid": "bench_line",
    "alt": "Bench press e1RM against the checkpoint path to the April goal.",
-   "bytes": 43709
+   "bytes": 43671
   },
   {
    "file": "readiness_strip.png",
    "cid": "readiness_strip",
    "alt": "Readiness per day: green, amber, red or no call.",
-   "bytes": 23813
+   "bytes": 22185
   }
  ]
 }
