@@ -34,6 +34,7 @@
    }
   },
   "conditioning": {},
-  "concept2": {}
+  "concept2": {},
+  "strength": {}
  }
 }

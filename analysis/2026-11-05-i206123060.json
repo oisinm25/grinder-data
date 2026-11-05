@@ -1,0 +1,184 @@
+{
+ "status": "ok",
+ "generated_at": "2026-11-05T13:58+01:00",
+ "activity_id": "i206123060",
+ "activity": {
+  "id": "i206123060",
+  "date": "2026-11-05",
+  "start_local": "2026-11-05T10:54:52",
+  "sport": "strength",
+  "type": "WeightTraining",
+  "name": "Upper repetition effort - bench",
+  "moving_min": "155.1"
+ },
+ "breakdown": {
+  "kind": "strength",
+  "slot": "thu_am",
+  "session": "upper_re",
+  "modality": "strength",
+  "summary": "Upper repetition effort - bench volume toward 10 x 110",
+  "planned_tss": 45.0,
+  "lifts": [
+   {
+    "lift": "bench_press",
+    "name": "Bench press",
+    "sets": [
+     {
+      "role": "work",
+      "set": 1,
+      "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+      "achieved": "80 x 12 @8",
+      "status": "hit"
+     },
+     {
+      "role": "work",
+      "set": 2,
+      "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+      "achieved": "80 x 12 @8",
+      "status": "hit"
+     },
+     {
+      "role": "work",
+      "set": 3,
+      "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+      "achieved": "80 x 12 @8",
+      "status": "hit"
+     }
+    ],
+    "e1rm_before": 133.3,
+    "e1rm_after": 117.3,
+    "next": {
+     "date": "2026-11-12",
+     "kg": 82.5,
+     "reps": 10,
+     "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10"
+    }
+   },
+   {
+    "lift": "bench_pull",
+    "name": "Bench pull",
+    "sets": [
+     {
+      "role": "work",
+      "set": 1,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "70 x 8",
+      "status": "logged"
+     },
+     {
+      "role": "work",
+      "set": 2,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "70 x 8",
+      "status": "logged"
+     },
+     {
+      "role": "work",
+      "set": 3,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "70 x 8",
+      "status": "logged"
+     },
+     {
+      "role": "work",
+      "set": 4,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "70 x 8",
+      "status": "logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": 88.7,
+    "next": {
+     "date": "2026-11-12",
+     "kg": 70.0,
+     "reps": 9,
+     "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9"
+    }
+   },
+   {
+    "lift": "landmine_press",
+    "name": "Landmine press",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": null,
+    "next": null
+   }
+  ],
+  "grade": "held",
+  "np_w": null,
+  "intensity": 0.33,
+  "tss": 28.0,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 28.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 40.4,
+   "atl": 49.1,
+   "form": -8.6
+  },
+  "after": {
+   "ctl": 41.1,
+   "atl": 52.8,
+   "form": -11.7
+  },
+  "projections": {
+   "form_tomorrow": -11.7,
+   "next_key_session": {
+    "date": "2026-11-06",
+    "session": "bike_threshold_2x20",
+    "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+    "form": -11.7
+   }
+  },
+  "week": {
+   "start": "2026-11-02",
+   "label": "acc2",
+   "done_tss": 124,
+   "band": [
+    675.0,
+    775.0
+   ],
+   "share_pct": [
+    16,
+    18
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -11.7,
+  "next_key_session": {
+   "date": "2026-11-06",
+   "session": "bike_threshold_2x20",
+   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
+   "form": -11.7
+  }
+ },
+ "bests": [
+  {
+   "kind": "e1rm",
+   "lift": "bench_pull",
+   "name": "Bench pull",
+   "e1rm": 88.7,
+   "previous": null,
+   "first": true
+  }
+ ],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-11-05-i206123060.json",
+  "md": "analysis/2026-11-05-i206123060.md"
+ }
+}
