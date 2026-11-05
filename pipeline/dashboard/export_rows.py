@@ -77,6 +77,17 @@ def today_sessions(today: dict) -> list[dict]:
     return _even(rows)
 
 
+def _best_text(x: dict) -> str:
+    """One new best as text: a power-curve point ("60 min 250 W (was 231 W)") or a lift e1RM."""
+    prev = x.get("previous")
+    if x.get("kind", "power") == "power":
+        was = prev.get("watts") if isinstance(prev, dict) else prev
+        tail = " (first)" if x.get("first") else f" (was {was} W)" if was is not None else ""
+        return f"{x.get('duration', '')} {x.get('watts')} W".strip() + tail
+    tail = " (first)" if x.get("first") else f" (was {prev:g} kg)" if isinstance(prev, (int, float)) else ""
+    return f"{x.get('name') or x.get('lift')} e1RM {x.get('e1rm'):g} kg" + tail
+
+
 def latest_session(an: dict) -> list[dict]:
     if not an or an.get("status") != "ok":
         return [{"status": (an or {}).get("status", "none"), "generated_at": (an or {}).get("generated_at")}]
@@ -97,8 +108,7 @@ def latest_session(an: dict) -> list[dict]:
         "form_tomorrow": proj.get("form_tomorrow"), "next_key_date": nxt.get("date"), "next_key_session": nxt.get("summary"),
         "next_key_form": nxt.get("form"), "week_label": week.get("label"), "week_done_tss": week.get("done_tss"),
         "week_band_lo": lo, "week_band_hi": hi,
-        "bests": " · ".join(f"{x['duration']} {x['watts']} W" + (" (first)" if x.get("first") else f" (was {x['previous']} W)" if x.get("previous") else "")
-                            for x in an.get("bests", [])),  # fmt: skip
+        "bests": " · ".join(_best_text(x) for x in an.get("bests", [])),
         "bests_since": an.get("bests_since"),
         "anchor_flags": "; ".join(f"{x['anchor']} {x['current_w']:g} → {x['suggested_w']:g} W ({x['change_pct']:+g}%): {x['evidence']}"
                                   for x in an.get("anchor_flags", [])),  # fmt: skip
