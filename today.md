@@ -1,8 +1,8 @@
 # Pedestal brief: Thu 5 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-05 08:15*
+*Status: final · generated 2026-11-05 10:53*
 
-**Readiness: no call**: no call: no HRV; resting HR 54 <= 60.4 (baseline 55.4 + 5); no sleep
+**Readiness: GREEN**: HRV 53 >= 35.7 (baseline 48.9 - 1 SD 13.2); resting HR 54 <= 60.4 (baseline 55.4 + 5); sleep 8.44 h >= 6
 
 Accumulation, week acc2
 
@@ -11,7 +11,7 @@ strength · 45 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench press | work | 3 × 11 | 80 | 8.5 | last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11; readiness not known yet |
+| Bench press | work | 3 × 11 | 80 | 8.5 | last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11 |
 | Bench pull | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 | Landmine press | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 

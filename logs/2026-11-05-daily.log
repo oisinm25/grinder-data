@@ -1,4 +1,4 @@
-# daily 2026-11-05: 8 ok; provisional (no sleep yet)
+# daily 2026-11-05: 8 ok; final
 
 ## [ok     ] ingest    15 activities (bike 6, strength 3, sail_or_other 3, conditioning 2, concept2 1), 15 wellness days, 13 strength sets; 3 to review
 Ingest 2026-10-22 to 2026-11-05
@@ -8,19 +8,19 @@ Activities: 15 (bike 6, strength 3, sail_or_other 3, conditioning 2, concept2 1)
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 15 activities (streams 15) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (57 rows incl. baseline)
-  latest 2026-11-05: resting HR 54 bpm, CTL 36.1 / ATL 62.4 (form -26.3)
-  readiness no call: no HRV; resting HR 54 <= 60.4 (baseline 55.4 + 5); no sleep
+  latest 2026-11-05: resting HR 54 bpm, HRV 53 ms, sleep 8.44 h (score 57), CTL 36.1 / ATL 62.4 (form -26.3)
+  readiness green: HRV 53 >= 35.7 (baseline 48.9 - 1 SD 13.2); resting HR 54 <= 60.4 (baseline 55.4 + 5); sleep 8.44 h >= 6
 Strength: 13 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 8 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   trap_bar_deadlift  2026-10-29  170 kg x 5 @ RPE 8  (top)  e1RM 209.7 kg
 
-## [ok     ] readiness no call for 2026-11-05 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-05 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness green: HRV 53 >= 35.7; RHR 54 <= 60.4; sleep 8.44 h >= 6; final
+green: HRV 53 >= 35.7; RHR 54 <= 60.4; sleep 8.44 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
-Thu 2026-11-05  upper_re (thu_am)  readiness: not known yet
-  bench_press          work    3 x 11      80 kg  RPE<=8.5  last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11; readiness not known yet
+Thu 2026-11-05  upper_re (thu_am)  readiness: green
+  bench_press          work    3 x 11      80 kg  RPE<=8.5  last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11
   bench_pull           work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
   landmine_press       work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
 Fri 2026-11-06  upper_de (fri_am)  readiness: not known yet
@@ -39,7 +39,7 @@ Wed 2026-11-11  lower_me (wed_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (36 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 Publish 2026-11-05 to 2026-11-11: 13 sessions
   2026-11-05 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
   2026-11-05 17:00  VirtualRide       58 TSS  Z2 75 min
@@ -55,7 +55,7 @@ Publish 2026-11-05 to 2026-11-11: 13 sessions
   2026-11-11 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
   2026-11-11 17:00  VirtualRide       46 TSS  Z2 60 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (13 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 
 ## [ok     ] review    Day Wed 2026-11-04: skipped 4
 Day Wed 2026-11-04: skipped 4
@@ -68,8 +68,8 @@ Wrote 4 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness no call
-wrote today.md and today.json: provisional, 2 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness green
+wrote today.md and today.json: final, 2 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 40.4, form -8.6
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 40.4, form -8.6

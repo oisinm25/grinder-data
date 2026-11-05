@@ -1,11 +1,11 @@
 {
  "date": "2026-11-05",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-05T08:15+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-05T10:53+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 54 <= 60.4 (baseline 55.4 + 5); no sleep"
+  "colour": "green",
+  "reason": "green: HRV 53 >= 35.7 (baseline 48.9 - 1 SD 13.2); resting HR 54 <= 60.4 (baseline 55.4 + 5); sleep 8.44 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -34,7 +34,7 @@
      "kg": 80,
      "rpe_cap": 8.5,
      "basis": "last",
-     "reason": "last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11; readiness not known yet"
+     "reason": "last 80 x 10,10,10 on 31 Oct: weakest 10 -> same weight, aim 11"
     },
     {
      "lift": "bench_pull",
