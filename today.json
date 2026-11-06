@@ -1,11 +1,11 @@
 {
  "date": "2026-11-06",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-06T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-06T08:15+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 56 <= 60.1 (baseline 55.1 + 5); no sleep"
+  "colour": "green",
+  "reason": "green: HRV 57 >= 36.5 (baseline 49.5 - 1 SD 13.0); resting HR 55 <= 60.1 (baseline 55.1 + 5); sleep 6.73 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -34,7 +34,7 @@
      "kg": 75,
      "rpe_cap": 7,
      "basis": "e1rm",
-     "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet"
+     "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7"
     },
     {
      "lift": "bench_press",
@@ -45,7 +45,7 @@
      "kg": 80,
      "rpe_cap": null,
      "basis": "e1rm",
-     "reason": "wave week 2 of 3: 60% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 80 x 3; readiness not known yet"
+     "reason": "wave week 2 of 3: 60% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 80 x 3"
     },
     {
      "lift": "push_press",

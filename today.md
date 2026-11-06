@@ -1,8 +1,8 @@
 # Pedestal brief: Fri 6 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-06 06:49*
+*Status: final · generated 2026-11-06 08:15*
 
-**Readiness: no call**: no call: no HRV; resting HR 56 <= 60.1 (baseline 55.1 + 5); no sleep
+**Readiness: GREEN**: HRV 57 >= 36.5 (baseline 49.5 - 1 SD 13.0); resting HR 55 <= 60.1 (baseline 55.1 + 5); sleep 6.73 h >= 6
 
 Accumulation, week acc2
 
@@ -11,8 +11,8 @@ strength · 40 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet |
-| Bench press | speed | 8 × 3 | 80 |  | wave week 2 of 3: 60% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 80 x 3; readiness not known yet |
+| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7 |
+| Bench press | speed | 8 × 3 | 80 |  | wave week 2 of 3: 60% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 80 x 3 |
 | Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it |
 
 ## PM: Threshold 2 x 20 min at 92-95% FTP, 5 min easy between
