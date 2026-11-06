@@ -1,15 +1,15 @@
 {
  "status": "ok",
- "generated_at": "2026-11-05T13:58+01:00",
- "activity_id": "i206123060",
+ "generated_at": "2026-11-06T08:18+01:00",
+ "activity_id": "i206297043",
  "activity": {
-  "id": "i206123060",
+  "id": "i206297043",
   "date": "2026-11-05",
-  "start_local": "2026-11-05T10:54:52",
-  "sport": "strength",
-  "type": "WeightTraining",
-  "name": "Upper repetition effort - bench",
-  "moving_min": "155.1"
+  "start_local": "2026-11-05T18:34:27",
+  "sport": "conditioning",
+  "type": "HighIntensityIntervalTraining",
+  "name": "HIIT",
+  "moving_min": "84.9"
  },
  "breakdown": {
   "kind": "strength",
@@ -115,54 +115,54 @@
   ],
   "grade": "held",
   "np_w": null,
-  "intensity": 0.33,
-  "tss": 28.0,
+  "intensity": 0.72,
+  "tss": 73.0,
   "power_curve": {}
  },
  "fitness": {
-  "session_load": 28.0,
+  "session_load": 73.0,
   "load_source": "hr",
   "grind_correction": 0.0,
   "before": {
-   "ctl": 40.4,
-   "atl": 49.1,
-   "form": -8.6
+   "ctl": 41.1,
+   "atl": 53.2,
+   "form": -12.0
   },
   "after": {
-   "ctl": 41.1,
-   "atl": 52.8,
-   "form": -11.7
+   "ctl": 42.9,
+   "atl": 62.9,
+   "form": -20.0
   },
   "projections": {
-   "form_tomorrow": -11.7,
+   "form_tomorrow": -20.0,
    "next_key_session": {
     "date": "2026-11-06",
     "session": "bike_threshold_2x20",
     "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
-    "form": -11.7
+    "form": -20.0
    }
   },
   "week": {
    "start": "2026-11-02",
    "label": "acc2",
-   "done_tss": 124,
+   "done_tss": 200,
    "band": [
     675.0,
     775.0
    ],
    "share_pct": [
-    16,
-    18
+    26,
+    30
    ]
   }
  },
  "projections": {
-  "form_tomorrow": -11.7,
+  "form_tomorrow": -20.0,
   "next_key_session": {
    "date": "2026-11-06",
    "session": "bike_threshold_2x20",
    "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
-   "form": -11.7
+   "form": -20.0
   }
  },
  "bests": [
@@ -178,7 +178,7 @@
  "bests_since": "2026-10-25",
  "anchor_flags": [],
  "files": {
-  "json": "analysis/2026-11-05-i206123060.json",
-  "md": "analysis/2026-11-05-i206123060.md"
+  "json": "analysis/2026-11-05-i206297043.json",
+  "md": "analysis/2026-11-05-i206297043.md"
  }
 }
