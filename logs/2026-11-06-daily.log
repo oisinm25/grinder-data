@@ -1,0 +1,75 @@
+# daily 2026-11-06: 8 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    17 activities (strength 5, bike 5, sail_or_other 4, conditioning 2, concept2 1), 15 wellness days, 23 strength sets; 4 to review
+Ingest 2026-10-23 to 2026-11-06
+Activities: 17 (strength 5, bike 5, sail_or_other 4, conditioning 2, concept2 1) -> derived/activities.csv (28 rows total)
+  review: 2026-11-05 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+  review: 2026-11-01 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+  review: 2026-10-27 'Cardio' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+  review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
+Zones: 17 activities (streams 17) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (58 rows incl. baseline)
+  latest 2026-11-06: resting HR 56 bpm, CTL 39.3 / ATL 79.8 (form -40.5)
+  readiness no call: no HRV; resting HR 56 <= 60.1 (baseline 55.1 + 5); no sleep
+Strength: 23 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
+  bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
+  trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
+
+## [ok     ] readiness no call for 2026-11-06 yet (no HRV or resting HR synced); provisional
+no call for 2026-11-06 yet (no HRV or resting HR synced); provisional
+
+## [ok     ] prescribe wrote 13 prescriptions
+Fri 2026-11-06  upper_de (fri_am)  readiness: not known yet
+  bench_pull           speed   6 x 3       75 kg  RPE<=7    e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet
+  bench_press          speed   8 x 3       80 kg            wave week 2 of 3: 60% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 80 x 3; readiness not known yet
+  push_press           speed   5 x 3      choose  RPE<=7    no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it
+Mon 2026-11-09  upper_me (mon_am)  readiness: not known yet
+  bench_press          top     1 x 6       95 kg  RPE<=8    last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6; readiness not known yet
+  bench_press          backoff 3 x 8       80 kg            85% of top 95 -> 80 x 8
+  weighted_pullup      work    4 x 5      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it
+  chest_supported_row  work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Wed 2026-11-11  lower_me (wed_am)  readiness: not known yet
+  trap_bar_deadlift    top     1 x 5      175 kg  RPE<=8    last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; readiness not known yet
+  trap_bar_deadlift    backoff 2 x 5    157.5 kg            90% of top 175 -> 157.5 x 5
+  rfe_split_squat      work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Thu 2026-11-12  upper_re (thu_am)  readiness: not known yet
+  bench_press          work    3 x 10    82.5 kg  RPE<=8.5  last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; readiness not known yet
+  bench_pull           work    3 x 9       70 kg  RPE<=8.5  last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; readiness not known yet
+  landmine_press       work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+
+wrote 13 prescriptions to derived/prescriptions.csv (39 rows total)
+
+## [ok     ] publish   intervals.icu: 2 created, 2 updated, 0 stale Pedestal events deleted, 9 unchanged
+Publish 2026-11-06 to 2026-11-12: 13 sessions
+  2026-11-06 07:00  WeightTraining    40 TSS  Upper dynamic effort - speed bench, power pull, push press (freshest slot)
+  2026-11-06 17:00  VirtualRide       85 TSS  Threshold 2 x 20 min at 92-95% FTP, 5 min easy between
+  2026-11-07 07:00  Ride             162 TSS  Long ride 3 h 30, Z2, fuel 60-90 g carb/h
+  2026-11-08 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
+  2026-11-09 07:00  WeightTraining    50 TSS  Upper max effort - bench top set, back-offs, heavy pulling
+  2026-11-09 17:00  VirtualRide       70 TSS  Z2 90 min
+  2026-11-10 07:00  Handcycle         48 TSS  Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+  2026-11-10 08:00  Workout           45 TSS  Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
+  2026-11-10 17:00  Workout                   Mobility and trunk, 30 min
+  2026-11-11 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
+  2026-11-11 17:00  VirtualRide       46 TSS  Z2 60 min
+  2026-11-12 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
+  2026-11-12 17:00  VirtualRide       58 TSS  Z2 75 min
+Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: 2 created, 2 updated, 0 stale Pedestal events deleted, 9 unchanged
+
+## [ok     ] review    Day Thu 2026-11-05: skipped 2, held 1, logged 1
+Day Thu 2026-11-05: skipped 2, held 1, logged 1
+  skipped    upper_re landmine_press work: not logged
+  skipped    z2_75: no matching activity
+Wrote 4 grades to derived/compliance.csv
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Upper repetition effort done; Z2 75 min missed.
+wrote debrief.md and debrief.json: Upper repetition effort done; Z2 75 min missed.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness no call
+wrote today.md and today.json: provisional, 2 sessions, readiness no call
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 41.9, form -12.7
+wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 41.9, form -12.7

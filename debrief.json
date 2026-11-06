@@ -1,49 +1,103 @@
 {
- "date": "2026-11-04",
- "verdict": "Missed: Lower max effort, Z2 60 min.",
- "note_for_today": "Today: Upper repetition effort.",
+ "date": "2026-11-05",
+ "verdict": "Upper repetition effort done; Z2 75 min missed.",
+ "note_for_today": "Bench press: 82.5 x 10 next Thu 12 Nov.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 67 >= 34.8 (baseline 47.8 - 1 SD 13.0); resting HR 50 <= 60.8 (baseline 55.8 + 5); sleep 7.73 h >= 6",
-  "sleep_h": 7.73,
-  "load_done": 17,
-  "load_planned": 96
+  "readiness_reason": "green: HRV 53 >= 35.7 (baseline 48.9 - 1 SD 13.2); resting HR 54 <= 60.4 (baseline 55.4 + 5); sleep 8.44 h >= 6",
+  "sleep_h": 8.44,
+  "load_done": 104,
+  "load_planned": 103
  },
  "items": [
   {
    "kind": "strength",
-   "slot": "wed_am",
-   "session": "lower_me",
+   "slot": "thu_am",
+   "session": "upper_re",
    "modality": "strength",
-   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
-   "planned_tss": 50.0,
+   "summary": "Upper repetition effort - bench volume toward 10 x 110",
+   "planned_tss": 45.0,
    "lifts": [
     {
-     "lift": "trap_bar_deadlift",
-     "name": "Trap-bar deadlift",
+     "lift": "bench_press",
+     "name": "Bench press",
      "sets": [
       {
-       "role": "top",
-       "set": null,
-       "prescribed": "1 x 5 @ 175 kg RPE<=8",
-       "achieved": "",
-       "status": "not logged"
+       "role": "work",
+       "set": 1,
+       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+       "achieved": "80 x 12 @8",
+       "status": "hit"
       },
       {
-       "role": "backoff",
-       "set": null,
-       "prescribed": "2 x 5 @ 157.5 kg",
-       "achieved": "",
-       "status": "not logged"
+       "role": "work",
+       "set": 2,
+       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+       "achieved": "80 x 12 @8",
+       "status": "hit"
+      },
+      {
+       "role": "work",
+       "set": 3,
+       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
+       "achieved": "80 x 12 @8",
+       "status": "hit"
       }
      ],
-     "e1rm_before": 209.7,
-     "e1rm_after": null,
-     "next": null
+     "e1rm_before": 133.3,
+     "e1rm_after": 117.3,
+     "next": {
+      "date": "2026-11-12",
+      "kg": 82.5,
+      "reps": 10,
+      "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10"
+     }
     },
     {
-     "lift": "rfe_split_squat",
-     "name": "Rear-foot-elevated split squat",
+     "lift": "bench_pull",
+     "name": "Bench pull",
+     "sets": [
+      {
+       "role": "work",
+       "set": 1,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "achieved": "70 x 8",
+       "status": "logged"
+      },
+      {
+       "role": "work",
+       "set": 2,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "achieved": "70 x 8",
+       "status": "logged"
+      },
+      {
+       "role": "work",
+       "set": 3,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "achieved": "70 x 8",
+       "status": "logged"
+      },
+      {
+       "role": "work",
+       "set": 4,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "achieved": "70 x 8",
+       "status": "logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": 88.7,
+     "next": {
+      "date": "2026-11-12",
+      "kg": 70.0,
+      "reps": 9,
+      "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9"
+     }
+    },
+    {
+     "lift": "landmine_press",
+     "name": "Landmine press",
      "sets": [
       {
        "role": "work",
@@ -58,18 +112,58 @@
      "next": null
     }
    ],
-   "grade": "skipped"
+   "grade": "held"
   },
   {
    "kind": "endurance",
-   "slot": "wed_pm",
-   "session": "z2_60",
+   "slot": "thu_pm",
+   "session": "z2_75",
    "modality": "bike",
-   "summary": "Z2 60 min",
-   "planned_min": 60,
-   "planned_tss": 46.0,
+   "summary": "Z2 75 min",
+   "planned_min": 75,
+   "planned_tss": 58.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
+  },
+  {
+   "kind": "unplanned",
+   "sport": "sail_or_other",
+   "type": "Workout",
+   "name": "Mobility",
+   "moving_min": 28.5,
+   "hr_load": 3.0,
+   "avg_hr": 84.0,
+   "review": "plain Workout without a Grind title: sail or something else?",
+   "np_w": null,
+   "intensity": 0.25,
+   "tss": 3.0,
+   "hr_drift_pct": null,
+   "grind_load": {
+    "source": "hr stream",
+    "efforts": 0,
+    "work_min": 0.0,
+    "efforts_85": 0
+   }
+  },
+  {
+   "kind": "unplanned",
+   "sport": "conditioning",
+   "type": "HighIntensityIntervalTraining",
+   "name": "HIIT",
+   "moving_min": 84.9,
+   "hr_load": 73.0,
+   "avg_hr": 141.0,
+   "review": "",
+   "np_w": null,
+   "intensity": 0.72,
+   "tss": 73.0,
+   "hr_drift_pct": null,
+   "grind_load": {
+    "source": "hr stream",
+    "efforts": 8,
+    "work_min": 50.9,
+    "efforts_85": 7
+   }
   }
  ],
  "problems": []

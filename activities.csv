@@ -23,4 +23,7 @@ i204293711,2026-11-01,2026-11-01T08:16:16,bike,type,,Ride,County Down Road Cycli
 i204507948,2026-11-01,2026-11-01T16:48:00,sail_or_other,type,plain Workout without a Grind title: sail or something else?,Workout,Mobility,38,38,,4,,4,,,,79,128,25.1,,GARMIN_CONNECT,full
 i204831494,2026-11-02,2026-11-02T11:39:35,strength,type+log,,WeightTraining,Upper max effort - bench top set,93.4,93.4,,20,,20,,,,99,141,35.9,,GARMIN_CONNECT,full
 i204842417,2026-11-02,2026-11-02T16:14:57,concept2,type,,VirtualRow,Indoor Rowing,84.1,84.1,,59,,59,,,,141,170,64.9,true,GARMIN_CONNECT,full
-i205728013,2026-11-04,2026-11-04T15:05:27,conditioning,"type, no log",,WeightTraining,Lower max effort - trap-bar top,89.3,89.3,,17,,17,,,,93,147,33.8,,GARMIN_CONNECT,full
+i205728013,2026-11-04,2026-11-04T15:05:27,strength,type+log,,WeightTraining,Lower max effort - trap-bar top,89.3,89.3,,17,,17,,,,93,147,33.8,,GARMIN_CONNECT,full
+i206123060,2026-11-05,2026-11-05T10:54:52,strength,type+log,,WeightTraining,Upper repetition effort - bench,155.1,155.1,,28,,28,,,,93,155,32.9,,GARMIN_CONNECT,full
+i206260163,2026-11-05,2026-11-05T18:03:41,sail_or_other,type,plain Workout without a Grind title: sail or something else?,Workout,Mobility,28.5,28.5,,3,,3,,,,84,136,25.2,,GARMIN_CONNECT,full
+i206297043,2026-11-05,2026-11-05T18:34:27,conditioning,type,,HighIntensityIntervalTraining,HIIT,84.9,84.9,,73,,73,,,,141,185,71.8,,GARMIN_CONNECT,full

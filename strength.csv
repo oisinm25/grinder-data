@@ -12,3 +12,13 @@ date,session,lift,role,set_no,kg,reps,rpe,e1rm_kg,notes,log_line
 2026-10-31,upper_re,bench_press,work,2,80,10,,106.7,Set 2 of 3 x 10 @ 80 as prescribed,12
 2026-10-31,upper_re,bench_press,work,3,80,10,,106.7,Set 3 of 3 x 10 @ 80 as prescribed,13
 2026-11-02,upper_me,bench_press,top,1,100,9,9,133.3,Top set 100 x 9 @ RPE 9 (prescribed 100 x 6 @ RPE 8),14
+2026-11-04,lower_me,trap_bar_deadlift,top,1,175,5,,204.2,"Top set 175 x 5 as prescribed. RPE not reported. Box squats instead of RFE split squats: sets at 100 kg, then 3 x 3 @ 120 kg RPE 8 (not a tracked lift)",15
+2026-11-04,lower_me,trap_bar_deadlift,backoff,2,157.5,5,,183.8,"Back-off set 1, as prescribed",16
+2026-11-04,lower_me,trap_bar_deadlift,backoff,3,157.5,5,,183.8,"Back-off set 2, as prescribed",17
+2026-11-05,upper_re,bench_press,work,1,80,12,8,117.3,Set 1: 12 @ 80 RPE 8 (prescribed 3 x 11). Assumed all three sets were 12,18
+2026-11-05,upper_re,bench_press,work,2,80,12,8,117.3,Set 2: assumed 12 @ 80 RPE 8,19
+2026-11-05,upper_re,bench_press,work,3,80,12,8,117.3,Set 3: assumed 12 @ 80 RPE 8,20
+2026-11-05,upper_re,bench_pull,work,1,70,8,,88.7,4 x 8 @ 70 (he called it the row). Set 1,21
+2026-11-05,upper_re,bench_pull,work,2,70,8,,88.7,Set 2,22
+2026-11-05,upper_re,bench_pull,work,3,70,8,,88.7,Set 3,23
+2026-11-05,upper_re,bench_pull,work,4,70,8,,88.7,"Set 4. Also sled pulls and triceps pushdowns (not tracked); landmine press with 20 kg plates, reps not given",24
