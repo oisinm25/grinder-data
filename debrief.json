@@ -1,108 +1,63 @@
 {
- "date": "2026-11-05",
- "verdict": "Upper repetition effort done; Z2 75 min missed.",
- "note_for_today": "Bench press: 82.5 x 10 next Thu 12 Nov.",
+ "date": "2026-11-06",
+ "verdict": "Missed: Upper dynamic effort, Threshold 2 x 20 min at 92-95% FTP, 5 min easy between.",
+ "note_for_today": "Today: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 53 >= 35.7 (baseline 48.9 - 1 SD 13.2); resting HR 54 <= 60.4 (baseline 55.4 + 5); sleep 8.44 h >= 6",
-  "sleep_h": 8.44,
-  "load_done": 104,
-  "load_planned": 103
+  "readiness_reason": "green: HRV 57 >= 36.5 (baseline 49.5 - 1 SD 13.0); resting HR 55 <= 60.1 (baseline 55.1 + 5); sleep 6.73 h >= 6",
+  "sleep_h": 6.73,
+  "load_done": 9,
+  "load_planned": 125
  },
  "items": [
   {
    "kind": "strength",
-   "slot": "thu_am",
-   "session": "upper_re",
+   "slot": "fri_am",
+   "session": "upper_de",
    "modality": "strength",
-   "summary": "Upper repetition effort - bench volume toward 10 x 110",
-   "planned_tss": 45.0,
+   "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
+   "planned_tss": 40.0,
    "lifts": [
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "sets": [
-      {
-       "role": "work",
-       "set": 1,
-       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
-       "achieved": "80 x 12 @8",
-       "status": "hit"
-      },
-      {
-       "role": "work",
-       "set": 2,
-       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
-       "achieved": "80 x 12 @8",
-       "status": "hit"
-      },
-      {
-       "role": "work",
-       "set": 3,
-       "prescribed": "3 x 11 @ 80 kg RPE<=8.5",
-       "achieved": "80 x 12 @8",
-       "status": "hit"
-      }
-     ],
-     "e1rm_before": 133.3,
-     "e1rm_after": 117.3,
-     "next": {
-      "date": "2026-11-12",
-      "kg": 82.5,
-      "reps": 10,
-      "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10"
-     }
-    },
     {
      "lift": "bench_pull",
      "name": "Bench pull",
      "sets": [
       {
-       "role": "work",
-       "set": 1,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
-       "achieved": "70 x 8",
-       "status": "logged"
-      },
-      {
-       "role": "work",
-       "set": 2,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
-       "achieved": "70 x 8",
-       "status": "logged"
-      },
-      {
-       "role": "work",
-       "set": 3,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
-       "achieved": "70 x 8",
-       "status": "logged"
-      },
-      {
-       "role": "work",
-       "set": 4,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
-       "achieved": "70 x 8",
-       "status": "logged"
+       "role": "speed",
+       "set": null,
+       "prescribed": "6 x 3 @ 75 kg RPE<=7",
+       "achieved": "",
+       "status": "not logged"
       }
      ],
-     "e1rm_before": null,
-     "e1rm_after": 88.7,
-     "next": {
-      "date": "2026-11-12",
-      "kg": 70.0,
-      "reps": 9,
-      "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9"
-     }
+     "e1rm_before": 88.7,
+     "e1rm_after": null,
+     "next": null
     },
     {
-     "lift": "landmine_press",
-     "name": "Landmine press",
+     "lift": "bench_press",
+     "name": "Bench press",
      "sets": [
       {
-       "role": "work",
+       "role": "speed",
        "set": null,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
+       "prescribed": "8 x 3 @ 80 kg",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 133.3,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "push_press",
+     "name": "Push press",
+     "sets": [
+      {
+       "role": "speed",
+       "set": null,
+       "prescribed": "5 x 3 @ choose RPE<=7",
        "achieved": "",
        "status": "not logged"
       }
@@ -112,58 +67,18 @@
      "next": null
     }
    ],
-   "grade": "held"
+   "grade": "skipped"
   },
   {
    "kind": "endurance",
-   "slot": "thu_pm",
-   "session": "z2_75",
+   "slot": "fri_pm",
+   "session": "bike_threshold_2x20",
    "modality": "bike",
-   "summary": "Z2 75 min",
+   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
    "planned_min": 75,
-   "planned_tss": 58.0,
+   "planned_tss": 85.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
-  },
-  {
-   "kind": "unplanned",
-   "sport": "sail_or_other",
-   "type": "Workout",
-   "name": "Mobility",
-   "moving_min": 28.5,
-   "hr_load": 3.0,
-   "avg_hr": 84.0,
-   "review": "plain Workout without a Grind title: sail or something else?",
-   "np_w": null,
-   "intensity": 0.25,
-   "tss": 3.0,
-   "hr_drift_pct": null,
-   "grind_load": {
-    "source": "hr stream",
-    "efforts": 0,
-    "work_min": 0.0,
-    "efforts_85": 0
-   }
-  },
-  {
-   "kind": "unplanned",
-   "sport": "conditioning",
-   "type": "HighIntensityIntervalTraining",
-   "name": "HIIT",
-   "moving_min": 84.9,
-   "hr_load": 73.0,
-   "avg_hr": 141.0,
-   "review": "",
-   "np_w": null,
-   "intensity": 0.72,
-   "tss": 73.0,
-   "hr_drift_pct": null,
-   "grind_load": {
-    "source": "hr stream",
-    "efforts": 8,
-    "work_min": 50.9,
-    "efforts_85": 7
-   }
   }
  ],
  "problems": []

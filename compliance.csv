@@ -51,3 +51,7 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-11-05,thu_am,upper_re,strength,bench_pull work,3 x 8 @ choose RPE<=8.5,"4 x 8,8,8,8 @ 70 kg",logged,first weight logged; it's next week's basis
 2026-11-05,thu_am,upper_re,strength,landmine_press work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
 2026-11-05,thu_pm,z2_75,bike,session,75 min,,skipped,no matching activity
+2026-11-06,fri_am,upper_de,strength,bench_pull speed,6 x 3 @ 75 kg RPE<=7,,skipped,not logged
+2026-11-06,fri_am,upper_de,strength,bench_press speed,8 x 3 @ 80 kg,,skipped,not logged
+2026-11-06,fri_am,upper_de,strength,push_press speed,5 x 3 @ choose RPE<=7,,skipped,not logged
+2026-11-06,fri_pm,bike_threshold_2x20,bike,session,75 min,,skipped,no matching activity
