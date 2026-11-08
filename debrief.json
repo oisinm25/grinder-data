@@ -1,82 +1,23 @@
 {
- "date": "2026-11-06",
- "verdict": "Missed: Upper dynamic effort, Threshold 2 x 20 min at 92-95% FTP, 5 min easy between.",
- "note_for_today": "Today: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.",
+ "date": "2026-11-07",
+ "verdict": "Missed: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.",
+ "note_for_today": "Today: Easy hand-bike 40 min (optional.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 57 >= 36.5 (baseline 49.5 - 1 SD 13.0); resting HR 55 <= 60.1 (baseline 55.1 + 5); sleep 6.73 h >= 6",
-  "sleep_h": 6.73,
-  "load_done": 9,
-  "load_planned": 125
+  "readiness_reason": "green: HRV 52 >= 37.2 (baseline 50.1 - 1 SD 12.9); resting HR 51 <= 60.0 (baseline 55.0 + 5); sleep 6.53 h >= 6",
+  "sleep_h": 6.53,
+  "load_done": 0,
+  "load_planned": 162
  },
  "items": [
   {
-   "kind": "strength",
-   "slot": "fri_am",
-   "session": "upper_de",
-   "modality": "strength",
-   "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
-   "planned_tss": 40.0,
-   "lifts": [
-    {
-     "lift": "bench_pull",
-     "name": "Bench pull",
-     "sets": [
-      {
-       "role": "speed",
-       "set": null,
-       "prescribed": "6 x 3 @ 75 kg RPE<=7",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": 88.7,
-     "e1rm_after": null,
-     "next": null
-    },
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "sets": [
-      {
-       "role": "speed",
-       "set": null,
-       "prescribed": "8 x 3 @ 80 kg",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": 133.3,
-     "e1rm_after": null,
-     "next": null
-    },
-    {
-     "lift": "push_press",
-     "name": "Push press",
-     "sets": [
-      {
-       "role": "speed",
-       "set": null,
-       "prescribed": "5 x 3 @ choose RPE<=7",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": null,
-     "e1rm_after": null,
-     "next": null
-    }
-   ],
-   "grade": "skipped"
-  },
-  {
    "kind": "endurance",
-   "slot": "fri_pm",
-   "session": "bike_threshold_2x20",
+   "slot": "sat_am",
+   "session": "long_ride_3h30",
    "modality": "bike",
-   "summary": "Threshold 2 x 20 min at 92-95% FTP, 5 min easy between",
-   "planned_min": 75,
-   "planned_tss": 85.0,
+   "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
+   "planned_min": 210,
+   "planned_tss": 162.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
   }

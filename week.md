@@ -1,51 +1,38 @@
-# Week 26 Oct to 1 Nov 2026
+# Week 2 Nov to 8 Nov 2026
 
-block1, week acc1
+block1, week acc2
 
 ## Flags
-- load: 435 TSS done, under the 650-750 target (advisory: targets provisional)
-- sessions: 5 endurance sessions missed or skipped
-- recovery: 3 red days
-- bench: e1RM 125.0 is 6.8 kg under the line (131.8)
+- load: 209 TSS done, under the 675-775 target (advisory: targets provisional)
+- sessions: 7 endurance sessions missed or skipped
 
 ## Load
-435 TSS done of 693 planned (target 650-750).
+209 TSS done of 720 planned (target 675-775).
 
 ## Sessions
-Endurance: off target 2, done 1, skipped 5. Strength: held 1, under 3, over_rpe 1, skipped 8.
+Endurance: skipped 7. Strength: held 3, over_rpe 1, logged 1, skipped 8.
 
-- **off_target** Mon z2_90: 0/1 steps in band; W: 406!
+- **over_rpe** Mon upper_me bench_press top: above RPE 8
+- **skipped** Mon upper_me bench_press backoff: not logged
+- **skipped** Mon upper_me weighted_pullup work: not logged
+- **skipped** Mon upper_me chest_supported_row work: not logged
+- **skipped** Mon z2_90: no matching activity
 - **skipped** Tue handbike_intervals: no matching activity
-- **skipped** Tue grinding_repeats_8: no matching activity
-- **over_rpe** Tue upper_me bench_press top: above RPE 8
-- **under** Tue upper_me bench_press backoff: 7.5 kg lighter
-- **skipped** Tue upper_me weighted_pullup work: not logged
-- **skipped** Tue upper_me chest_supported_row work: not logged
+- **skipped** Tue grinding_repeats_10: no matching activity
+- **skipped** Wed lower_me rfe_split_squat work: not logged
 - **skipped** Wed z2_60: no matching activity
+- **skipped** Thu upper_re landmine_press work: not logged
 - **skipped** Thu z2_75: no matching activity
-- **under** Thu lower_me trap_bar_deadlift top: 5 kg lighter
-- **under** Thu lower_me trap_bar_deadlift backoff: 12.5 kg lighter
-- **skipped** Thu lower_me rfe_split_squat work: not logged
-- **skipped** Sat upper_re bench_pull work: not logged
-- **skipped** Sat upper_re landmine_press work: not logged
-- **skipped** Sun handbike_easy_40: no matching activity
-- **skipped** Sun upper_de bench_pull speed: not logged
-- **skipped** Sun upper_de bench_press speed: not logged
-- **skipped** Sun upper_de push_press speed: not logged
-- **off_target** Sun long_ride_3h: 0/1 steps in band; W: 565!
-- **done_late** Mon upper_me session: done late: Tue PM (skipped Monday)
-- **done_late** Wed lower_me session: done late: Thu PM (done Thursday afternoon instead of Wednesday)
-- **done_late** Thu upper_re session: done late: Sat AM (done Saturday instead of Friday)
-- **moved** Fri upper_de session: moved to Sun AM: upper rep day moved to Friday AM
-- **done_late** Fri bike_threshold_2x20: done late: Sat PM (done Saturday instead of Friday, Donaghadee roads)
-- **moved** Sat long_ride_3h: moved to Sun AM: no time Saturday
+- **skipped** Fri upper_de bench_pull speed: not logged
+- **skipped** Fri upper_de bench_press speed: not logged
+- **skipped** Fri upper_de push_press speed: not logged
+- **skipped** Fri bike_threshold_2x20: no matching activity
+- **skipped** Sat long_ride_3h30: no matching activity
 
 ## Recovery
-Readiness: green 4, amber 0, red 3, no call 0.
-HRV 7-day 60 vs 28-day 42.9; resting HR 7-day 51.9 vs 28-day 57.3.
-CTL 36.5, ATL 68, form -31.5.
+Readiness: green 6, amber 0, red 0, no call 1.
+HRV 7-day 57.3 vs 28-day 46.5; resting HR 7-day 53.1 vs 28-day 56.2.
+CTL 34.3, ATL 44.1, form -9.8.
 
 ## Bench
-e1RM 125 kg against a line of 131.8 kg (-6.8 kg).
-
-Power index (actual / target watts across graded steps): 2.11.
+e1RM 133.3 kg against a line of 132 kg (+1.3 kg).
