@@ -30,8 +30,8 @@ Endurance: skipped 7. Strength: held 3, over_rpe 1, logged 1, skipped 8.
 - **skipped** Sat long_ride_3h30: no matching activity
 
 ## Recovery
-Readiness: green 6, amber 0, red 0, no call 1.
-HRV 7-day 57.3 vs 28-day 46.5; resting HR 7-day 53.1 vs 28-day 56.2.
+Readiness: green 7, amber 0, red 0, no call 0.
+HRV 7-day 56.1 vs 28-day 46.5; resting HR 7-day 53 vs 28-day 56.2.
 CTL 34.3, ATL 44.1, form -9.8.
 
 ## Bench
