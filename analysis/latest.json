@@ -1,7 +1,130 @@
 {
- "status": "no_new_activity",
- "generated_at": "2026-11-08T08:14+01:00",
+ "status": "ok",
+ "generated_at": "2026-11-09T08:22+01:00",
  "activity_id": "i206513143",
- "requested": "latest",
- "last_analysis": "analysis/2026-11-06-i206513143.md"
+ "activity": {
+  "id": "i206513143",
+  "date": "2026-11-06",
+  "start_local": "2026-11-06T10:16:33",
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Upper dynamic effort - speed ben",
+  "moving_min": "84.9"
+ },
+ "breakdown": {
+  "kind": "strength",
+  "slot": "fri_am",
+  "session": "upper_de",
+  "modality": "strength",
+  "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
+  "planned_tss": 40.0,
+  "lifts": [
+   {
+    "lift": "bench_pull",
+    "name": "Bench pull",
+    "sets": [
+     {
+      "role": "speed",
+      "set": null,
+      "prescribed": "6 x 3 @ 75 kg RPE<=7",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": 88.7,
+    "e1rm_after": null,
+    "next": null
+   },
+   {
+    "lift": "bench_press",
+    "name": "Bench press",
+    "sets": [
+     {
+      "role": "speed",
+      "set": null,
+      "prescribed": "8 x 3 @ 80 kg",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": 133.3,
+    "e1rm_after": null,
+    "next": null
+   },
+   {
+    "lift": "push_press",
+    "name": "Push press",
+    "sets": [
+     {
+      "role": "speed",
+      "set": null,
+      "prescribed": "5 x 3 @ choose RPE<=7",
+      "achieved": "",
+      "status": "not logged"
+     }
+    ],
+    "e1rm_before": null,
+    "e1rm_after": null,
+    "next": null
+   }
+  ],
+  "grade": "skipped",
+  "np_w": null,
+  "intensity": 0.25,
+  "tss": 9.0,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 9.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 41.9,
+   "atl": 54.5,
+   "form": -12.7
+  },
+  "after": {
+   "ctl": 42.1,
+   "atl": 55.7,
+   "form": -13.7
+  },
+  "projections": {
+   "form_tomorrow": -13.7,
+   "next_key_session": {
+    "date": "2026-11-07",
+    "session": "long_ride_3h30",
+    "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
+    "form": -13.7
+   }
+  },
+  "week": {
+   "start": "2026-11-02",
+   "label": "acc2",
+   "done_tss": 209,
+   "band": [
+    675.0,
+    775.0
+   ],
+   "share_pct": [
+    27,
+    31
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -13.7,
+  "next_key_session": {
+   "date": "2026-11-07",
+   "session": "long_ride_3h30",
+   "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
+   "form": -13.7
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-11-06-i206513143.json",
+  "md": "analysis/2026-11-06-i206513143.md"
+ }
 }
