@@ -1,7 +1,7 @@
 {
  "date": "2026-11-09",
- "status": "provisional",
- "generated_at": "2026-11-09T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-09T08:21+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": null,
-   "reason": "no call: no HRV; resting HR 57 <= 59.2 (baseline 54.2 + 5); no sleep"
+   "colour": "green",
+   "reason": "green: HRV 46 >= 41.4 (baseline 51.9 - 1 SD 10.5); resting HR 52 <= 59.2 (baseline 54.2 + 5); sleep 8.73 h >= 6"
   },
   "sessions": [
    {
@@ -35,7 +35,7 @@
       "kg": 95,
       "rpe_cap": 8,
       "basis": "last",
-      "reason": "last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6; readiness not known yet"
+      "reason": "last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6"
      },
      {
       "lift": "bench_press",
@@ -1958,12 +1958,12 @@
    },
    {
     "date": "2026-11-09",
-    "readiness": null,
-    "hrv": null,
+    "readiness": "green",
+    "hrv": 46.0,
     "hrv_baseline": 51.9,
-    "resting_hr": 57.0,
+    "resting_hr": 52.0,
     "resting_hr_baseline": 54.2,
-    "sleep_h": null
+    "sleep_h": 8.73
    }
   ],
   "compliance": [
