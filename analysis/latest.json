@@ -1,64 +1,97 @@
 {
  "status": "ok",
- "generated_at": "2026-11-09T08:22+01:00",
- "activity_id": "i206513143",
+ "generated_at": "2026-11-09T21:55+01:00",
+ "activity_id": "i207971376",
  "activity": {
-  "id": "i206513143",
-  "date": "2026-11-06",
-  "start_local": "2026-11-06T10:16:33",
-  "sport": "conditioning",
+  "id": "i207971376",
+  "date": "2026-11-09",
+  "start_local": "2026-11-09T17:14:20",
+  "sport": "strength",
   "type": "WeightTraining",
-  "name": "Upper dynamic effort - speed ben",
-  "moving_min": "84.9"
+  "name": "Upper max effort - bench top set",
+  "moving_min": "79.2"
  },
  "breakdown": {
   "kind": "strength",
-  "slot": "fri_am",
-  "session": "upper_de",
+  "slot": "mon_am",
+  "session": "upper_me",
   "modality": "strength",
-  "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
-  "planned_tss": 40.0,
+  "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+  "planned_tss": 50.0,
   "lifts": [
-   {
-    "lift": "bench_pull",
-    "name": "Bench pull",
-    "sets": [
-     {
-      "role": "speed",
-      "set": null,
-      "prescribed": "6 x 3 @ 75 kg RPE<=7",
-      "achieved": "",
-      "status": "not logged"
-     }
-    ],
-    "e1rm_before": 88.7,
-    "e1rm_after": null,
-    "next": null
-   },
    {
     "lift": "bench_press",
     "name": "Bench press",
     "sets": [
      {
-      "role": "speed",
+      "role": "top",
       "set": null,
-      "prescribed": "8 x 3 @ 80 kg",
+      "prescribed": "1 x 6 @ 95 kg RPE<=8",
+      "achieved": "",
+      "status": "not logged"
+     },
+     {
+      "role": "backoff",
+      "set": 1,
+      "prescribed": "3 x 8 @ 80 kg",
+      "achieved": "90 x 6",
+      "status": "under"
+     },
+     {
+      "role": "backoff",
+      "set": 2,
+      "prescribed": "3 x 8 @ 80 kg",
+      "achieved": "90 x 6",
+      "status": "under"
+     },
+     {
+      "role": "backoff",
+      "set": 3,
+      "prescribed": "3 x 8 @ 80 kg",
+      "achieved": "90 x 6",
+      "status": "under"
+     },
+     {
+      "role": "backoff",
+      "set": 4,
+      "prescribed": "3 x 8 @ 80 kg",
+      "achieved": "90 x 6",
+      "status": "under"
+     }
+    ],
+    "e1rm_before": 133.3,
+    "e1rm_after": 108.0,
+    "next": {
+     "date": "2026-11-16",
+     "kg": 85.0,
+     "reps": 6,
+     "reason": "last 90x6 (RPE not logged, treated as 10) on 9 Nov (4 sets): 3 misses in a row -> reset -5% = 85 x 6"
+    }
+   },
+   {
+    "lift": "weighted_pullup",
+    "name": "Weighted pull-up",
+    "sets": [
+     {
+      "role": "work",
+      "set": null,
+      "prescribed": "4 x 5 @ choose RPE<=8.5",
       "achieved": "",
       "status": "not logged"
      }
     ],
-    "e1rm_before": 133.3,
+    "e1rm_before": null,
     "e1rm_after": null,
     "next": null
    },
    {
-    "lift": "push_press",
-    "name": "Push press",
+    "lift": "chest_supported_row",
+    "name": "Chest-supported row",
     "sets": [
      {
-      "role": "speed",
+      "role": "work",
       "set": null,
-      "prescribed": "5 x 3 @ choose RPE<=7",
+      "prescribed": "3 x 8 @ choose RPE<=8.5",
       "achieved": "",
       "status": "not logged"
      }
@@ -68,63 +101,63 @@
     "next": null
    }
   ],
-  "grade": "skipped",
+  "grade": "under",
   "np_w": null,
-  "intensity": 0.25,
-  "tss": 9.0,
+  "intensity": 0.29,
+  "tss": 11.0,
   "power_curve": {}
  },
  "fitness": {
-  "session_load": 9.0,
+  "session_load": 11.0,
   "load_source": "hr",
   "grind_correction": 0.0,
   "before": {
-   "ctl": 41.9,
-   "atl": 54.5,
-   "form": -12.7
+   "ctl": 40.2,
+   "atl": 42.4,
+   "form": -2.2
   },
   "after": {
-   "ctl": 42.1,
-   "atl": 55.7,
-   "form": -13.7
+   "ctl": 40.5,
+   "atl": 43.9,
+   "form": -3.4
   },
   "projections": {
-   "form_tomorrow": -13.7,
+   "form_tomorrow": -3.4,
    "next_key_session": {
-    "date": "2026-11-07",
-    "session": "long_ride_3h30",
-    "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
-    "form": -13.7
+    "date": "2026-11-10",
+    "session": "handbike_intervals",
+    "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+    "form": -3.4
    }
   },
   "week": {
-   "start": "2026-11-02",
-   "label": "acc2",
-   "done_tss": 209,
+   "start": "2026-11-09",
+   "label": "acc3",
+   "done_tss": 57,
    "band": [
-    675.0,
-    775.0
+    700.0,
+    800.0
    ],
    "share_pct": [
-    27,
-    31
+    7,
+    8
    ]
   }
  },
  "projections": {
-  "form_tomorrow": -13.7,
+  "form_tomorrow": -3.4,
   "next_key_session": {
-   "date": "2026-11-07",
-   "session": "long_ride_3h30",
-   "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
-   "form": -13.7
+   "date": "2026-11-10",
+   "session": "handbike_intervals",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+   "form": -3.4
   }
  },
  "bests": [],
  "bests_since": "2026-10-25",
  "anchor_flags": [],
  "files": {
-  "json": "analysis/2026-11-06-i206513143.json",
-  "md": "analysis/2026-11-06-i206513143.md"
+  "json": "analysis/2026-11-09-i207971376.json",
+  "md": "analysis/2026-11-09-i207971376.md"
  }
 }
