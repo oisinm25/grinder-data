@@ -4,13 +4,13 @@ block1, week acc2
 
 ## Flags
 - load: 209 TSS done, under the 675-775 target (advisory: targets provisional)
-- sessions: 7 endurance sessions missed or skipped
+- sessions: 8 endurance sessions missed or skipped
 
 ## Load
 209 TSS done of 720 planned (target 675-775).
 
 ## Sessions
-Endurance: skipped 7. Strength: held 3, over_rpe 1, logged 1, skipped 8.
+Endurance: skipped 8. Strength: held 3, over_rpe 1, logged 1, skipped 8.
 
 - **over_rpe** Mon upper_me bench_press top: above RPE 8
 - **skipped** Mon upper_me bench_press backoff: not logged
@@ -28,11 +28,12 @@ Endurance: skipped 7. Strength: held 3, over_rpe 1, logged 1, skipped 8.
 - **skipped** Fri upper_de push_press speed: not logged
 - **skipped** Fri bike_threshold_2x20: no matching activity
 - **skipped** Sat long_ride_3h30: no matching activity
+- **skipped** Sun handbike_easy_40: no matching activity
 
 ## Recovery
 Readiness: green 7, amber 0, red 0, no call 0.
 HRV 7-day 56.1 vs 28-day 46.5; resting HR 7-day 53 vs 28-day 56.2.
-CTL 34.3, ATL 44.1, form -9.8.
+CTL 33.7, ATL 40.7, form -7.
 
 ## Bench
 e1RM 133.3 kg against a line of 132 kg (+1.3 kg).

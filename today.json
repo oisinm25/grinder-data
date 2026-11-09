@@ -1,51 +1,119 @@
 {
- "date": "2026-11-08",
- "status": "final",
- "status_reason": "",
- "generated_at": "2026-11-08T08:14+01:00",
+ "date": "2026-11-09",
+ "status": "provisional",
+ "status_reason": "no sleep yet",
+ "generated_at": "2026-11-09T06:36+01:00",
  "readiness": {
-  "colour": "green",
-  "reason": "green: HRV 49 >= 38.0 (baseline 50.6 - 1 SD 12.7); resting HR 56 <= 59.5 (baseline 54.5 + 5); sleep 8.91 h >= 6"
+  "colour": null,
+  "reason": "no call: no HRV; resting HR 57 <= 59.2 (baseline 54.2 + 5); no sleep"
  },
  "block": {
   "id": "block1",
   "name": "Accumulation",
-  "week": "acc2",
+  "week": "acc3",
   "design_pending": false
  },
  "sessions": [
   {
-   "slot": "sun_am",
+   "slot": "mon_am",
    "order": 0,
-   "session": "handbike_easy_40",
-   "modality": "handbike",
-   "summary": "Easy hand-bike 40 min (optional - rest is fine)",
+   "session": "upper_me",
+   "modality": "strength",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
    "environment": null,
-   "duration_min": 40,
-   "tss": 26.0,
+   "duration_min": null,
+   "tss": 50.0,
+   "readiness_exempt": false,
+   "strength": [
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "role": "top",
+     "sets": 1,
+     "reps": 6,
+     "kg": 95,
+     "rpe_cap": 8,
+     "basis": "last",
+     "reason": "last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6; readiness not known yet"
+    },
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "role": "backoff",
+     "sets": 3,
+     "reps": 8,
+     "kg": 80,
+     "rpe_cap": null,
+     "basis": "top",
+     "reason": "85% of top 95 -> 80 x 8"
+    },
+    {
+     "lift": "weighted_pullup",
+     "name": "Weighted pull-up",
+     "role": "work",
+     "sets": 4,
+     "reps": 5,
+     "kg": null,
+     "rpe_cap": 8.5,
+     "basis": "choose",
+     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it"
+    },
+    {
+     "lift": "chest_supported_row",
+     "name": "Chest-supported row",
+     "role": "work",
+     "sets": 3,
+     "reps": 8,
+     "kg": null,
+     "rpe_cap": 8.5,
+     "basis": "choose",
+     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+    }
+   ]
+  },
+  {
+   "slot": "mon_pm",
+   "order": 0,
+   "session": "z2_90",
+   "modality": "bike",
+   "summary": "Z2 90 min",
+   "environment": null,
+   "duration_min": 90,
+   "tss": 70.0,
    "readiness_exempt": false,
    "steps": [
     {
-     "kind": "steady",
-     "duration_s": 2400,
-     "target": "139-164 W*",
+     "kind": "warmup",
+     "duration_s": 300,
+     "target": "170-211 W",
      "anchor": "pct_ftp",
      "watts": [
-      139,
-      164
+      170,
+      211
      ],
-     "provisional": true
+     "provisional": false
+    },
+    {
+     "kind": "steady",
+     "duration_s": 5100,
+     "target": "221-245 W",
+     "anchor": "pct_ftp",
+     "watts": [
+      221,
+      245
+     ],
+     "provisional": false
     }
    ],
-   "provisional_ftp": true
+   "provisional_ftp": false
   }
  ],
  "moved_away": [],
  "yesterday": {
-  "date": "2026-11-07",
+  "date": "2026-11-08",
   "grades": [
    {
-    "session": "long_ride_3h30",
+    "session": "handbike_easy_40",
     "item": "session",
     "grade": "skipped",
     "note": "no matching activity"
@@ -54,25 +122,25 @@
   "status": "graded"
  },
  "debrief": {
-  "date": "2026-11-07",
-  "verdict": "Missed: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.",
-  "note_for_today": "Today: Easy hand-bike 40 min (optional.",
+  "date": "2026-11-08",
+  "verdict": "Missed: Easy hand-bike 40 min (optional.",
+  "note_for_today": "Today: Upper max effort.",
   "context": {
    "readiness": "green",
-   "readiness_reason": "green: HRV 52 >= 37.2 (baseline 50.1 - 1 SD 12.9); resting HR 51 <= 60.0 (baseline 55.0 + 5); sleep 6.53 h >= 6",
-   "sleep_h": 6.53,
+   "readiness_reason": "green: HRV 49 >= 38.0 (baseline 50.6 - 1 SD 12.7); resting HR 56 <= 59.5 (baseline 54.5 + 5); sleep 8.91 h >= 6",
+   "sleep_h": 8.91,
    "load_done": 0,
-   "load_planned": 162
+   "load_planned": 26
   },
   "items": [
    {
     "kind": "endurance",
-    "slot": "sat_am",
-    "session": "long_ride_3h30",
-    "modality": "bike",
-    "summary": "Long ride 3 h 30, Z2, fuel 60-90 g carb/h",
-    "planned_min": 210,
-    "planned_tss": 162.0,
+    "slot": "sun_am",
+    "session": "handbike_easy_40",
+    "modality": "handbike",
+    "summary": "Easy hand-bike 40 min (optional - rest is fine)",
+    "planned_min": 40,
+    "planned_tss": 26.0,
     "grade": "skipped",
     "grade_note": "no matching activity"
    }
@@ -83,7 +151,7 @@
   "week_end": "2026-11-08",
   "flags": [
    "load: 209 TSS done, under the 675-775 target (advisory: targets provisional)",
-   "sessions: 7 endurance sessions missed or skipped"
+   "sessions: 8 endurance sessions missed or skipped"
   ]
  },
  "pipeline": {

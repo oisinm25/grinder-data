@@ -1,10 +1,10 @@
-# Debrief: Sat 7 Nov 2026
+# Debrief: Sun 8 Nov 2026
 
-**Missed: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.**
+**Missed: Easy hand-bike 40 min (optional.**
 
-Note for today: Today: Easy hand-bike 40 min (optional.
+Note for today: Today: Upper max effort.
 
-readiness green · sleep 6.53 h · load 0 of 162 planned TSS
+readiness green · sleep 8.91 h · load 0 of 26 planned TSS
 
-## AM: Long ride 3 h 30, Z2, fuel 60-90 g carb/h
+## AM: Easy hand-bike 40 min (optional - rest is fine)
 skipped: no matching activity

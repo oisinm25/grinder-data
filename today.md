@@ -1,28 +1,38 @@
-# Pedestal brief: Sun 8 Nov 2026
+# Pedestal brief: Mon 9 Nov 2026
 
-*Status: final · generated 2026-11-08 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-09 06:36*
 
-**Readiness: GREEN**: HRV 49 >= 38.0 (baseline 50.6 - 1 SD 12.7); resting HR 56 <= 59.5 (baseline 54.5 + 5); sleep 8.91 h >= 6
+**Readiness: no call**: no call: no HRV; resting HR 57 <= 59.2 (baseline 54.2 + 5); no sleep
 
-Accumulation, week acc2
+Accumulation, week acc3
 
-## AM: Easy hand-bike 40 min (optional - rest is fine)
-handbike · 40 min · 26 TSS
+## AM: Upper max effort - bench top set, back-offs, heavy pulling
+strength · 50 TSS
 
-- steady 40:00 139-164 W*
-- \* watts from a provisional FTP
+| Lift | Group | Sets × reps | kg | RPE cap | Why |
+|---|---|---|---|---|---|
+| Bench press | top | 1 × 6 | 95 | 8 | last 100x9 @9 on 2 Nov: 2 misses in a row -> reset -5% = 95 x 6; readiness not known yet |
+| Bench press | backoff | 3 × 8 | 80 |  | 85% of top 95 -> 80 x 8 |
+| Weighted pull-up | work | 4 × 5 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it |
+| Chest-supported row | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
-## Yesterday's debrief: Sat 7 Nov 2026
+## PM: Z2 90 min
+bike · 90 min · 70 TSS
 
-**Missed: Long ride 3 h 30, Z2, fuel 60-90 g carb/h.**
+- warmup 5:00 170-211 W
+- steady 1:25:00 221-245 W
 
-Note for today: Today: Easy hand-bike 40 min (optional.
+## Yesterday's debrief: Sun 8 Nov 2026
 
-readiness green · sleep 6.53 h · load 0 of 162 planned TSS
+**Missed: Easy hand-bike 40 min (optional.**
 
-### AM: Long ride 3 h 30, Z2, fuel 60-90 g carb/h
+Note for today: Today: Upper max effort.
+
+readiness green · sleep 8.91 h · load 0 of 26 planned TSS
+
+### AM: Easy hand-bike 40 min (optional - rest is fine)
 skipped: no matching activity
 
 ## Flags (review of the week ending Sun 8 Nov)
 - load: 209 TSS done, under the 675-775 target (advisory: targets provisional)
-- sessions: 7 endurance sessions missed or skipped
+- sessions: 8 endurance sessions missed or skipped
