@@ -57,3 +57,8 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-11-06,fri_pm,bike_threshold_2x20,bike,session,75 min,,skipped,no matching activity
 2026-11-07,sat_am,long_ride_3h30,bike,session,210 min,,skipped,no matching activity
 2026-11-08,sun_am,handbike_easy_40,handbike,session,40 min,,skipped,no matching activity
+2026-11-09,mon_am,upper_me,strength,bench_press top,1 x 6 @ 95 kg RPE<=8,,skipped,not logged
+2026-11-09,mon_am,upper_me,strength,bench_press backoff,3 x 8 @ 80 kg,"4 x 6,6,6,6 @ 90 kg",under,reps under 8
+2026-11-09,mon_am,upper_me,strength,weighted_pullup work,4 x 5 @ choose RPE<=8.5,,skipped,not logged
+2026-11-09,mon_am,upper_me,strength,chest_supported_row work,3 x 8 @ choose RPE<=8.5,,skipped,not logged
+2026-11-09,mon_pm,z2_90,bike,session,90 min,,skipped,no matching activity
