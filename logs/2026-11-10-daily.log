@@ -1,4 +1,4 @@
-# daily 2026-11-10: 8 ok; provisional (no sleep yet)
+# daily 2026-11-10: 8 ok; final
 
 ## [ok     ] ingest    17 activities (strength 6, sail_or_other 4, conditioning 3, bike 2, other 1, concept2 1), 15 wellness days, 27 strength sets; 4 to review
 Ingest 2026-10-27 to 2026-11-10
@@ -9,16 +9,16 @@ Activities: 17 (strength 6, sail_or_other 4, conditioning 3, bike 2, other 1, co
   review: 2026-10-27 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 17 activities (streams 17) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (62 rows incl. baseline)
-  latest 2026-11-10: resting HR 57 bpm, CTL 34.3 / ATL 49.5 (form -15.2)
-  readiness no call: no HRV; resting HR 57 <= 58.9 (baseline 53.9 + 5); no sleep
+  latest 2026-11-10: resting HR 57 bpm, HRV 44 ms, sleep 9.36 h (score 82), CTL 34.3 / ATL 49.5 (form -15.2)
+  readiness green: HRV 44 >= 42.6 (baseline 52.4 - 1 SD 9.8); resting HR 57 <= 58.9 (baseline 53.9 + 5); sleep 9.36 h >= 6
 Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
   trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
 
-## [ok     ] readiness no call for 2026-11-10 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-10 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness green: HRV 44 >= 42.6; RHR 57 <= 58.9; sleep 9.36 h >= 6; final
+green: HRV 44 >= 42.6; RHR 57 <= 58.9; sleep 9.36 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
 Wed 2026-11-11  lower_me (wed_am)  readiness: not known yet
@@ -71,8 +71,8 @@ Wrote 5 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Bench press under prescription: 90 x 6 vs 3 x 8 @ 80 kg.
 wrote debrief.md and debrief.json: Bench press under prescription: 90 x 6 vs 3 x 8 @ 80 kg.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 3 sessions, readiness no call
-wrote today.md and today.json: provisional, 3 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 3 sessions, readiness green
+wrote today.md and today.json: final, 3 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 39.6, form 1.5
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 39.6, form 1.5

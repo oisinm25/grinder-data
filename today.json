@@ -1,11 +1,11 @@
 {
  "date": "2026-11-10",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-10T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-10T08:22+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 57 <= 58.9 (baseline 53.9 + 5); no sleep"
+  "colour": "green",
+  "reason": "green: HRV 44 >= 42.6 (baseline 52.4 - 1 SD 9.8); resting HR 57 <= 58.9 (baseline 53.9 + 5); sleep 9.36 h >= 6"
  },
  "block": {
   "id": "block1",
