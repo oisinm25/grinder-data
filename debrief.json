@@ -1,115 +1,34 @@
 {
- "date": "2026-11-09",
- "verdict": "Bench press under prescription: 90 x 6 vs 3 x 8 @ 80 kg.",
- "note_for_today": "Today: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy.",
+ "date": "2026-11-10",
+ "verdict": "Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.",
+ "note_for_today": "Today: Lower max effort.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 46 >= 41.4 (baseline 51.9 - 1 SD 10.5); resting HR 52 <= 59.2 (baseline 54.2 + 5); sleep 8.73 h >= 6",
-  "sleep_h": 8.73,
-  "load_done": 57,
-  "load_planned": 120
+  "readiness_reason": "green: HRV 44 >= 42.6 (baseline 52.4 - 1 SD 9.8); resting HR 57 <= 58.9 (baseline 53.9 + 5); sleep 9.36 h >= 6",
+  "sleep_h": 9.36,
+  "load_done": 20,
+  "load_planned": 93
  },
  "items": [
   {
-   "kind": "strength",
-   "slot": "mon_am",
-   "session": "upper_me",
-   "modality": "strength",
-   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
-   "planned_tss": 50.0,
-   "lifts": [
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "sets": [
-      {
-       "role": "top",
-       "set": null,
-       "prescribed": "1 x 6 @ 95 kg RPE<=8",
-       "achieved": "",
-       "status": "not logged"
-      },
-      {
-       "role": "backoff",
-       "set": 1,
-       "prescribed": "3 x 8 @ 80 kg",
-       "achieved": "90 x 6",
-       "status": "under"
-      },
-      {
-       "role": "backoff",
-       "set": 2,
-       "prescribed": "3 x 8 @ 80 kg",
-       "achieved": "90 x 6",
-       "status": "under"
-      },
-      {
-       "role": "backoff",
-       "set": 3,
-       "prescribed": "3 x 8 @ 80 kg",
-       "achieved": "90 x 6",
-       "status": "under"
-      },
-      {
-       "role": "backoff",
-       "set": 4,
-       "prescribed": "3 x 8 @ 80 kg",
-       "achieved": "90 x 6",
-       "status": "under"
-      }
-     ],
-     "e1rm_before": 133.3,
-     "e1rm_after": 108.0,
-     "next": {
-      "date": "2026-11-16",
-      "kg": 85.0,
-      "reps": 6,
-      "reason": "last 90x6 (RPE not logged, treated as 10) on 9 Nov (4 sets): 3 misses in a row -> reset -5% = 85 x 6"
-     }
-    },
-    {
-     "lift": "weighted_pullup",
-     "name": "Weighted pull-up",
-     "sets": [
-      {
-       "role": "work",
-       "set": null,
-       "prescribed": "4 x 5 @ choose RPE<=8.5",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": null,
-     "e1rm_after": null,
-     "next": null
-    },
-    {
-     "lift": "chest_supported_row",
-     "name": "Chest-supported row",
-     "sets": [
-      {
-       "role": "work",
-       "set": null,
-       "prescribed": "3 x 8 @ choose RPE<=8.5",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": null,
-     "e1rm_after": null,
-     "next": null
-    }
-   ],
-   "grade": "under"
+   "kind": "endurance",
+   "slot": "tue_am",
+   "session": "handbike_intervals",
+   "modality": "handbike",
+   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
+   "planned_min": 50,
+   "planned_tss": 48.0,
+   "grade": "skipped",
+   "grade_note": "no matching activity"
   },
   {
    "kind": "endurance",
-   "slot": "mon_pm",
-   "session": "z2_90",
-   "modality": "bike",
-   "summary": "Z2 90 min",
-   "planned_min": 90,
-   "planned_tss": 70.0,
+   "slot": "tue_am",
+   "session": "grinding_repeats_12",
+   "modality": "grinding",
+   "summary": "Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy",
+   "planned_min": 51,
+   "planned_tss": 45.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
   },
@@ -118,13 +37,13 @@
    "sport": "other",
    "type": "WaterSport",
    "name": "Sailing",
-   "moving_min": 224.7,
-   "hr_load": 46.0,
-   "avg_hr": 97.0,
+   "moving_min": 160.9,
+   "hr_load": 20.0,
+   "avg_hr": 88.0,
    "review": "",
    "np_w": null,
-   "intensity": 0.35,
-   "tss": 46.0,
+   "intensity": 0.26,
+   "tss": 20.0,
    "hr_drift_pct": null
   }
  ],
