@@ -1,4 +1,4 @@
-# daily 2026-11-11: 8 ok; provisional (no sleep yet)
+# daily 2026-11-11: 8 ok; final
 
 ## [ok     ] ingest    15 activities (strength 5, conditioning 3, other 2, sail_or_other 2, bike 2, concept2 1), 15 wellness days, 27 strength sets; 2 to review
 Ingest 2026-10-28 to 2026-11-11
@@ -7,22 +7,22 @@ Activities: 15 (strength 5, conditioning 3, other 2, sail_or_other 2, bike 2, co
   review: 2026-11-01 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 15 activities (streams 15) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (63 rows incl. baseline)
-  latest 2026-11-11: resting HR 54 bpm, CTL 34.2 / ATL 48.5 (form -14.3)
-  readiness no call: no HRV; resting HR 54 <= 59.0 (baseline 54.0 + 5); no sleep
+  latest 2026-11-11: resting HR 54 bpm, HRV 41 ms, sleep 8.15 h (score 85), CTL 34.2 / ATL 48.5 (form -14.3)
+  readiness amber: HRV 41 < 42.0 (baseline 51.8 - 1 SD 9.8); resting HR 54 <= 59.0 (baseline 54.0 + 5); sleep 8.15 h >= 6
 Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
   trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
 
-## [ok     ] readiness no call for 2026-11-11 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-11 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness amber: HRV 41 < 42.0; RHR 54 <= 59.0; sleep 8.15 h >= 6; final
+amber: HRV 41 < 42.0; RHR 54 <= 59.0; sleep 8.15 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
-Wed 2026-11-11  lower_me (wed_am)  readiness: not known yet
-  trap_bar_deadlift    top     1 x 5      175 kg  RPE<=8    last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; readiness not known yet
+Wed 2026-11-11  lower_me (wed_am)  readiness: amber
+  trap_bar_deadlift    top     1 x 5      175 kg  RPE<=8    last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; amber: hold last 175, no increment, RPE cap 8 -> 175
   trap_bar_deadlift    backoff 2 x 5    157.5 kg            90% of top 175 -> 157.5 x 5
-  rfe_split_squat      work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+  rfe_split_squat      work    3 x 8      choose  RPE<=8    no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8
 Thu 2026-11-12  upper_re (thu_am)  readiness: not known yet
   bench_press          work    3 x 10    82.5 kg  RPE<=8.5  last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; readiness not known yet
   bench_pull           work    3 x 9       70 kg  RPE<=8.5  last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; readiness not known yet
@@ -39,7 +39,7 @@ Mon 2026-11-16  upper_me (mon_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (46 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 Publish 2026-11-11 to 2026-11-17: 13 sessions
   2026-11-11 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
   2026-11-11 17:00  VirtualRide       46 TSS  Z2 60 min
@@ -55,7 +55,7 @@ Publish 2026-11-11 to 2026-11-17: 13 sessions
   2026-11-17 08:00  Workout           45 TSS  Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
   2026-11-17 17:00  Workout                   Mobility and trunk, 30 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (13 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 
 ## [ok     ] review    Day Tue 2026-11-10: skipped 2
 Day Tue 2026-11-10: skipped 2
@@ -66,8 +66,8 @@ Wrote 2 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.
 wrote debrief.md and debrief.json: Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness no call
-wrote today.md and today.json: provisional, 2 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness amber
+wrote today.md and today.json: final, 2 sessions, readiness amber
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 39.1, form 3.8
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 39.1, form 3.8

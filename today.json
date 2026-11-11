@@ -1,11 +1,11 @@
 {
  "date": "2026-11-11",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-11T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-11T08:14+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 54 <= 59.0 (baseline 54.0 + 5); no sleep"
+  "colour": "amber",
+  "reason": "amber: HRV 41 < 42.0 (baseline 51.8 - 1 SD 9.8); resting HR 54 <= 59.0 (baseline 54.0 + 5); sleep 8.15 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -34,7 +34,7 @@
      "kg": 175,
      "rpe_cap": 8,
      "basis": "last",
-     "reason": "last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; readiness not known yet"
+     "reason": "last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; amber: hold last 175, no increment, RPE cap 8 -> 175"
     },
     {
      "lift": "trap_bar_deadlift",
@@ -54,9 +54,9 @@
      "sets": 3,
      "reps": 8,
      "kg": null,
-     "rpe_cap": 8.5,
+     "rpe_cap": 8,
      "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8"
     }
    ]
   },
@@ -119,7 +119,7 @@
  "debrief": {
   "date": "2026-11-10",
   "verdict": "Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.",
-  "note_for_today": "Today: Lower max effort.",
+  "note_for_today": "Amber today: last weights held, RPE cap 8.",
   "context": {
    "readiness": "green",
    "readiness_reason": "green: HRV 44 >= 42.6 (baseline 52.4 - 1 SD 9.8); resting HR 57 <= 58.9 (baseline 53.9 + 5); sleep 9.36 h >= 6",

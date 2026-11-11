@@ -2,7 +2,7 @@
 
 **Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.**
 
-Note for today: Today: Lower max effort.
+Note for today: Amber today: last weights held, RPE cap 8.
 
 readiness green · sleep 9.36 h · load 20 of 93 planned TSS
 
