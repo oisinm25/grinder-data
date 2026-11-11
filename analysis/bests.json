@@ -35,6 +35,7 @@
   },
   "conditioning": {},
   "concept2": {},
-  "strength": {}
+  "strength": {},
+  "other": {}
  }
 }
