@@ -1,7 +1,7 @@
 {
  "date": "2026-11-11",
  "status": "provisional",
- "generated_at": "2026-11-11T06:36+01:00",
+ "generated_at": "2026-11-11T06:49+01:00",
  "html": "dashboard_email.html",
  "attachment": "../dashboard.html",
  "images": [
@@ -9,7 +9,7 @@
    "file": "fitness_fatigue.png",
    "cid": "fitness_fatigue",
    "alt": "Fitness (CTL), fatigue (ATL) and form over the season, with intervals.icu's CTL and the planned path.",
-   "bytes": 74856
+   "bytes": 74795
   },
   {
    "file": "weekly_load.png",
