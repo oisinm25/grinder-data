@@ -39,7 +39,7 @@ Wed 2026-11-18  lower_me (wed_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (49 rows total)
 
-## [ok     ] publish   intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
 Publish 2026-11-12 to 2026-11-18: 13 sessions
   2026-11-12 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
   2026-11-12 17:00  VirtualRide       58 TSS  Z2 75 min
@@ -55,7 +55,7 @@ Publish 2026-11-12 to 2026-11-18: 13 sessions
   2026-11-18 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
   2026-11-18 17:00  VirtualRide       46 TSS  Z2 60 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: 2 created, 0 updated, 0 stale Pedestal events deleted, 11 unchanged
+intervals.icu: no changes (13 events unchanged)
 
 ## [ok     ] review    Day Wed 2026-11-11: skipped 4
 Day Wed 2026-11-11: skipped 4
