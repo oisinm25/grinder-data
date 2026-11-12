@@ -1,11 +1,11 @@
 {
  "date": "2026-11-12",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-12T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-12T08:13+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 58 <= 59.0 (baseline 54.0 + 5); no sleep"
+  "colour": "amber",
+  "reason": "amber: HRV 28 < 41.4 (baseline 51.4 - 1 SD 10.0); resting HR 58 <= 59.0 (baseline 54.0 + 5); sleep 7.54 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -31,10 +31,10 @@
      "role": "work",
      "sets": 3,
      "reps": 10,
-     "kg": 82.5,
-     "rpe_cap": 8.5,
+     "kg": 80,
+     "rpe_cap": 8,
      "basis": "last",
-     "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; readiness not known yet"
+     "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80"
     },
     {
      "lift": "bench_pull",
@@ -43,9 +43,9 @@
      "sets": 3,
      "reps": 9,
      "kg": 70,
-     "rpe_cap": 8.5,
+     "rpe_cap": 8,
      "basis": "last",
-     "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; readiness not known yet"
+     "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70"
     },
     {
      "lift": "landmine_press",
@@ -54,9 +54,9 @@
      "sets": 3,
      "reps": 8,
      "kg": null,
-     "rpe_cap": 8.5,
+     "rpe_cap": 8,
      "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8"
     }
    ]
   },
@@ -131,7 +131,7 @@
  "debrief": {
   "date": "2026-11-11",
   "verdict": "Missed: Lower max effort, Z2 60 min.",
-  "note_for_today": "Today: Upper repetition effort.",
+  "note_for_today": "Amber today: last weights held, RPE cap 8.",
   "context": {
    "readiness": "amber",
    "readiness_reason": "amber: HRV 41 < 42.0 (baseline 51.8 - 1 SD 9.8); resting HR 54 <= 59.0 (baseline 54.0 + 5); sleep 8.15 h >= 6",

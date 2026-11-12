@@ -1,4 +1,4 @@
-# daily 2026-11-12: 8 ok; provisional (no sleep yet)
+# daily 2026-11-12: 8 ok; final
 
 ## [ok     ] ingest    15 activities (strength 5, conditioning 3, other 2, sail_or_other 2, bike 2, concept2 1), 15 wellness days, 27 strength sets; 2 to review
 Ingest 2026-10-29 to 2026-11-12
@@ -7,22 +7,22 @@ Activities: 15 (strength 5, conditioning 3, other 2, sail_or_other 2, bike 2, co
   review: 2026-11-01 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 15 activities (streams 15) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (64 rows incl. baseline)
-  latest 2026-11-12: resting HR 58 bpm, CTL 33.7 / ATL 45.1 (form -11.4)
-  readiness no call: no HRV; resting HR 58 <= 59.0 (baseline 54.0 + 5); no sleep
+  latest 2026-11-12: resting HR 58 bpm, HRV 28 ms, sleep 7.54 h (score 55), CTL 33.7 / ATL 45.1 (form -11.4)
+  readiness amber: HRV 28 < 41.4 (baseline 51.4 - 1 SD 10.0); resting HR 58 <= 59.0 (baseline 54.0 + 5); sleep 7.54 h >= 6
 Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
   trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
 
-## [ok     ] readiness no call for 2026-11-12 yet (no HRV or resting HR synced); provisional
-no call for 2026-11-12 yet (no HRV or resting HR synced); provisional
+## [ok     ] readiness amber: HRV 28 < 41.4; RHR 58 <= 59.0; sleep 7.54 h >= 6; final
+amber: HRV 28 < 41.4; RHR 58 <= 59.0; sleep 7.54 h >= 6; final
 
 ## [ok     ] prescribe wrote 13 prescriptions
-Thu 2026-11-12  upper_re (thu_am)  readiness: not known yet
-  bench_press          work    3 x 10    82.5 kg  RPE<=8.5  last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; readiness not known yet
-  bench_pull           work    3 x 9       70 kg  RPE<=8.5  last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; readiness not known yet
-  landmine_press       work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
+Thu 2026-11-12  upper_re (thu_am)  readiness: amber
+  bench_press          work    3 x 10      80 kg  RPE<=8    last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80
+  bench_pull           work    3 x 9       70 kg  RPE<=8    last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70
+  landmine_press       work    3 x 8      choose  RPE<=8    no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8
 Fri 2026-11-13  upper_de (fri_am)  readiness: not known yet
   bench_pull           speed   6 x 3       75 kg  RPE<=7    e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet
   bench_press          speed   8 x 3       85 kg            wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; readiness not known yet
@@ -39,7 +39,7 @@ Wed 2026-11-18  lower_me (wed_am)  readiness: not known yet
 
 wrote 13 prescriptions to derived/prescriptions.csv (49 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (13 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 Publish 2026-11-12 to 2026-11-18: 13 sessions
   2026-11-12 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
   2026-11-12 17:00  VirtualRide       58 TSS  Z2 75 min
@@ -55,7 +55,7 @@ Publish 2026-11-12 to 2026-11-18: 13 sessions
   2026-11-18 07:00  WeightTraining    50 TSS  Lower max effort - trap-bar top set, single-leg, trunk
   2026-11-18 17:00  VirtualRide       46 TSS  Z2 60 min
 Files: 13 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (13 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 12 unchanged
 
 ## [ok     ] review    Day Wed 2026-11-11: skipped 4
 Day Wed 2026-11-11: skipped 4
@@ -68,8 +68,8 @@ Wrote 4 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness no call
-wrote today.md and today.json: provisional, 2 sessions, readiness no call
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness amber
+wrote today.md and today.json: final, 2 sessions, readiness amber
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 38.2, form 7.6
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 38.2, form 7.6
