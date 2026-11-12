@@ -1,7 +1,82 @@
 {
- "status": "no_new_activity",
- "generated_at": "2026-11-12T08:14+01:00",
+ "status": "ok",
+ "generated_at": "2026-11-12T08:15+01:00",
  "activity_id": "i208296166",
- "requested": "latest",
- "last_analysis": "analysis/2026-11-10-i208296166.md"
+ "activity": {
+  "id": "i208296166",
+  "date": "2026-11-10",
+  "start_local": "2026-11-10T11:01:09",
+  "sport": "other",
+  "type": "WaterSport",
+  "name": "Sailing",
+  "moving_min": "160.9"
+ },
+ "breakdown": {
+  "kind": "unplanned",
+  "sport": "other",
+  "type": "WaterSport",
+  "name": "Sailing",
+  "moving_min": 160.9,
+  "hr_load": 20.0,
+  "avg_hr": 88.0,
+  "review": "",
+  "np_w": null,
+  "intensity": 0.26,
+  "tss": 20.0,
+  "hr_drift_pct": null,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 20.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 39.6,
+   "atl": 38.0,
+   "form": 1.5
+  },
+  "after": {
+   "ctl": 40.0,
+   "atl": 40.7,
+   "form": -0.7
+  },
+  "projections": {
+   "form_tomorrow": -0.7,
+   "next_key_session": {
+    "date": "2026-11-11",
+    "session": "lower_me",
+    "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+    "form": -0.7
+   }
+  },
+  "week": {
+   "start": "2026-11-09",
+   "label": "acc3",
+   "done_tss": 77,
+   "band": [
+    700.0,
+    800.0
+   ],
+   "share_pct": [
+    10,
+    11
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": -0.7,
+  "next_key_session": {
+   "date": "2026-11-11",
+   "session": "lower_me",
+   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+   "form": -0.7
+  }
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-11-10-i208296166.json",
+  "md": "analysis/2026-11-10-i208296166.md"
+ }
 }
