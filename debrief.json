@@ -1,50 +1,75 @@
 {
- "date": "2026-11-10",
- "verdict": "Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did other 161 min instead.",
- "note_for_today": "Amber today: last weights held, RPE cap 8.",
+ "date": "2026-11-11",
+ "verdict": "Missed: Lower max effort, Z2 60 min.",
+ "note_for_today": "Today: Upper repetition effort.",
  "context": {
-  "readiness": "green",
-  "readiness_reason": "green: HRV 44 >= 42.6 (baseline 52.4 - 1 SD 9.8); resting HR 57 <= 58.9 (baseline 53.9 + 5); sleep 9.36 h >= 6",
-  "sleep_h": 9.36,
-  "load_done": 20,
-  "load_planned": 93
+  "readiness": "amber",
+  "readiness_reason": "amber: HRV 41 < 42.0 (baseline 51.8 - 1 SD 9.8); resting HR 54 <= 59.0 (baseline 54.0 + 5); sleep 8.15 h >= 6",
+  "sleep_h": 8.15,
+  "load_done": 0,
+  "load_planned": 96
  },
  "items": [
   {
-   "kind": "endurance",
-   "slot": "tue_am",
-   "session": "handbike_intervals",
-   "modality": "handbike",
-   "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
-   "planned_min": 50,
-   "planned_tss": 48.0,
-   "grade": "skipped",
-   "grade_note": "no matching activity"
+   "kind": "strength",
+   "slot": "wed_am",
+   "session": "lower_me",
+   "modality": "strength",
+   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+   "planned_tss": 50.0,
+   "lifts": [
+    {
+     "lift": "trap_bar_deadlift",
+     "name": "Trap-bar deadlift",
+     "sets": [
+      {
+       "role": "top",
+       "set": null,
+       "prescribed": "1 x 5 @ 175 kg RPE<=8",
+       "achieved": "",
+       "status": "not logged"
+      },
+      {
+       "role": "backoff",
+       "set": null,
+       "prescribed": "2 x 5 @ 157.5 kg",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 204.2,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "rfe_split_squat",
+     "name": "Rear-foot-elevated split squat",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 8 @ choose RPE<=8",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    }
+   ],
+   "grade": "skipped"
   },
   {
    "kind": "endurance",
-   "slot": "tue_am",
-   "session": "grinding_repeats_12",
-   "modality": "grinding",
-   "summary": "Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy",
-   "planned_min": 51,
-   "planned_tss": 45.0,
+   "slot": "wed_pm",
+   "session": "z2_60",
+   "modality": "bike",
+   "summary": "Z2 60 min",
+   "planned_min": 60,
+   "planned_tss": 46.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
-  },
-  {
-   "kind": "unplanned",
-   "sport": "other",
-   "type": "WaterSport",
-   "name": "Sailing",
-   "moving_min": 160.9,
-   "hr_load": 20.0,
-   "avg_hr": 88.0,
-   "review": "",
-   "np_w": null,
-   "intensity": 0.26,
-   "tss": 20.0,
-   "hr_drift_pct": null
   }
  ],
  "problems": []
