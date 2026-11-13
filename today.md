@@ -1,8 +1,8 @@
 # Pedestal brief: Fri 13 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-13 06:49*
+*Status: final · generated 2026-11-13 08:14*
 
-**Readiness: no call**: no call: no HRV; resting HR 59 <= 59.1 (baseline 54.1 + 5); no sleep
+**Readiness: AMBER**: HRV 34 < 39.7 (baseline 50.6 - 1 SD 10.9); resting HR 59 <= 59.1 (baseline 54.1 + 5); sleep 6.48 h >= 6
 
 Accumulation, week acc3
 
@@ -11,9 +11,9 @@ strength · 40 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet |
-| Bench press | speed | 8 × 3 | 85 |  | wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; readiness not known yet |
-| Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it |
+| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75 |
+| Bench press | speed | 8 × 3 | 85 | 8 | wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; amber: hold 85, no increment, RPE cap 8 -> 85 |
+| Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8 |
 
 ## PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
 bike · 85 min · 92 TSS
@@ -26,7 +26,7 @@ bike · 85 min · 92 TSS
 
 **Missed: Upper repetition effort, Z2 75 min.**
 
-Note for today: Today: Upper dynamic effort.
+Note for today: Amber today: last weights held, RPE cap 8.
 
 readiness amber · sleep 7.54 h · load 0 of 103 planned TSS
 

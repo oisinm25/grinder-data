@@ -1,11 +1,11 @@
 {
  "date": "2026-11-13",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-13T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-13T08:14+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 59 <= 59.1 (baseline 54.1 + 5); no sleep"
+  "colour": "amber",
+  "reason": "amber: HRV 34 < 39.7 (baseline 50.6 - 1 SD 10.9); resting HR 59 <= 59.1 (baseline 54.1 + 5); sleep 6.48 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -34,7 +34,7 @@
      "kg": 75,
      "rpe_cap": 7,
      "basis": "e1rm",
-     "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet"
+     "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75"
     },
     {
      "lift": "bench_press",
@@ -43,9 +43,9 @@
      "sets": 8,
      "reps": 3,
      "kg": 85,
-     "rpe_cap": null,
+     "rpe_cap": 8,
      "basis": "e1rm",
-     "reason": "wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; readiness not known yet"
+     "reason": "wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; amber: hold 85, no increment, RPE cap 8 -> 85"
     },
     {
      "lift": "push_press",
@@ -56,7 +56,7 @@
      "kg": null,
      "rpe_cap": 7,
      "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it"
+     "reason": "no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8"
     }
    ]
   },
@@ -160,7 +160,7 @@
  "debrief": {
   "date": "2026-11-12",
   "verdict": "Missed: Upper repetition effort, Z2 75 min.",
-  "note_for_today": "Today: Upper dynamic effort.",
+  "note_for_today": "Amber today: last weights held, RPE cap 8.",
   "context": {
    "readiness": "amber",
    "readiness_reason": "amber: HRV 28 < 41.4 (baseline 51.4 - 1 SD 10.0); resting HR 58 <= 59.0 (baseline 54.0 + 5); sleep 7.54 h >= 6",
