@@ -72,3 +72,7 @@ date,slot,session,modality,item,planned,actual,grade,note
 2026-11-12,thu_am,upper_re,strength,bench_pull work,3 x 9 @ 70 kg RPE<=8,,skipped,not logged
 2026-11-12,thu_am,upper_re,strength,landmine_press work,3 x 8 @ choose RPE<=8,,skipped,not logged
 2026-11-12,thu_pm,z2_75,bike,session,75 min,,skipped,no matching activity
+2026-11-13,fri_am,upper_de,strength,bench_pull speed,6 x 3 @ 75 kg RPE<=7,,skipped,not logged
+2026-11-13,fri_am,upper_de,strength,bench_press speed,8 x 3 @ 85 kg RPE<=8,,skipped,not logged
+2026-11-13,fri_am,upper_de,strength,push_press speed,5 x 3 @ choose RPE<=7,,skipped,not logged
+2026-11-13,fri_pm,bike_threshold_3x15,bike,session,85 min,,skipped,no matching activity

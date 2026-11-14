@@ -1,46 +1,35 @@
-# Pedestal brief: Fri 13 Nov 2026
+# Pedestal brief: Sat 14 Nov 2026
 
-*Status: final · generated 2026-11-13 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-14 06:35*
 
-**Readiness: AMBER**: HRV 34 < 39.7 (baseline 50.6 - 1 SD 10.9); resting HR 59 <= 59.1 (baseline 54.1 + 5); sleep 6.48 h >= 6
+**Readiness: no call**: no call: no HRV; no resting HR; no sleep
 
 Accumulation, week acc3
 
-## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
-strength · 40 TSS
+## AM: Long ride 4 h, Z2, fuel 60-90 g carb/h
+bike · 240 min · 185 TSS
 
-| Lift | Group | Sets × reps | kg | RPE cap | Why |
-|---|---|---|---|---|---|
-| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75 |
-| Bench press | speed | 8 × 3 | 85 | 8 | wave week 3 of 3: 65% of e1RM 132 (from 100x8 @8.5 on 19 Oct) -> 85 x 3; amber: hold 85, no increment, RPE cap 8 -> 85 |
-| Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8 |
+- steady 4:00:00 211-245 W
 
-## PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
-bike · 85 min · 92 TSS
+## Yesterday's debrief: Fri 13 Nov 2026
 
-- warmup 15:00 170-255 W
-- 3 × [work 15:00 323-333 W, rest 5:00 170-204 W]
-- cooldown 10:00 153-187 W
+**Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.**
 
-## Yesterday's debrief: Thu 12 Nov 2026
+Note for today: Today: Long ride 4 h, Z2, fuel 60-90 g carb/h.
 
-**Missed: Upper repetition effort, Z2 75 min.**
+readiness amber · sleep 6.48 h · load 0 of 132 planned TSS
 
-Note for today: Amber today: last weights held, RPE cap 8.
-
-readiness amber · sleep 7.54 h · load 0 of 103 planned TSS
-
-### AM: Upper repetition effort - bench volume toward 10 x 110
+### AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
 skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Bench press | work | 3 x 10 @ 80 kg RPE<=8 | - | not logged |
-| Bench pull | work | 3 x 9 @ 70 kg RPE<=8 | - | not logged |
-| Landmine press | work | 3 x 8 @ choose RPE<=8 | - | not logged |
+| Bench pull | speed | 6 x 3 @ 75 kg RPE<=7 | - | not logged |
+| Bench press | speed | 8 x 3 @ 85 kg RPE<=8 | - | not logged |
+| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
 
 
-### PM: Z2 75 min
+### PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
 skipped: no matching activity
 
 ## Flags (review of the week ending Sun 8 Nov)

@@ -1,47 +1,31 @@
 {
- "date": "2026-11-12",
- "verdict": "Missed: Upper repetition effort, Z2 75 min.",
- "note_for_today": "Amber today: last weights held, RPE cap 8.",
+ "date": "2026-11-13",
+ "verdict": "Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.",
+ "note_for_today": "Today: Long ride 4 h, Z2, fuel 60-90 g carb/h.",
  "context": {
   "readiness": "amber",
-  "readiness_reason": "amber: HRV 28 < 41.4 (baseline 51.4 - 1 SD 10.0); resting HR 58 <= 59.0 (baseline 54.0 + 5); sleep 7.54 h >= 6",
-  "sleep_h": 7.54,
+  "readiness_reason": "amber: HRV 34 < 39.7 (baseline 50.6 - 1 SD 10.9); resting HR 59 <= 59.1 (baseline 54.1 + 5); sleep 6.48 h >= 6",
+  "sleep_h": 6.48,
   "load_done": 0,
-  "load_planned": 103
+  "load_planned": 132
  },
  "items": [
   {
    "kind": "strength",
-   "slot": "thu_am",
-   "session": "upper_re",
+   "slot": "fri_am",
+   "session": "upper_de",
    "modality": "strength",
-   "summary": "Upper repetition effort - bench volume toward 10 x 110",
-   "planned_tss": 45.0,
+   "summary": "Upper dynamic effort - speed bench, power pull, push press (freshest slot)",
+   "planned_tss": 40.0,
    "lifts": [
-    {
-     "lift": "bench_press",
-     "name": "Bench press",
-     "sets": [
-      {
-       "role": "work",
-       "set": null,
-       "prescribed": "3 x 10 @ 80 kg RPE<=8",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": 133.3,
-     "e1rm_after": null,
-     "next": null
-    },
     {
      "lift": "bench_pull",
      "name": "Bench pull",
      "sets": [
       {
-       "role": "work",
+       "role": "speed",
        "set": null,
-       "prescribed": "3 x 9 @ 70 kg RPE<=8",
+       "prescribed": "6 x 3 @ 75 kg RPE<=7",
        "achieved": "",
        "status": "not logged"
       }
@@ -51,13 +35,29 @@
      "next": null
     },
     {
-     "lift": "landmine_press",
-     "name": "Landmine press",
+     "lift": "bench_press",
+     "name": "Bench press",
      "sets": [
       {
-       "role": "work",
+       "role": "speed",
        "set": null,
-       "prescribed": "3 x 8 @ choose RPE<=8",
+       "prescribed": "8 x 3 @ 85 kg RPE<=8",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 133.3,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "push_press",
+     "name": "Push press",
+     "sets": [
+      {
+       "role": "speed",
+       "set": null,
+       "prescribed": "5 x 3 @ choose RPE<=7",
        "achieved": "",
        "status": "not logged"
       }
@@ -71,12 +71,12 @@
   },
   {
    "kind": "endurance",
-   "slot": "thu_pm",
-   "session": "z2_75",
+   "slot": "fri_pm",
+   "session": "bike_threshold_3x15",
    "modality": "bike",
-   "summary": "Z2 75 min",
-   "planned_min": 75,
-   "planned_tss": 58.0,
+   "summary": "Threshold 3 x 15 min at 95-98% FTP, 5 min easy between",
+   "planned_min": 85,
+   "planned_tss": 92.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
   }

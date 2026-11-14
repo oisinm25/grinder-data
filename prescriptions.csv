@@ -51,3 +51,6 @@ date,session,lift,role,sets,reps,kg,rpe_cap,basis,reason
 2026-11-19,upper_re,bench_press,work,3,10,82.5,8.5,last,"last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; readiness not known yet"
 2026-11-19,upper_re,bench_pull,work,3,9,70,8.5,last,"last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; readiness not known yet"
 2026-11-19,upper_re,landmine_press,work,3,8,,8.5,choose,"no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
+2026-11-20,upper_de,bench_pull,speed,6,3,75,7,e1rm,"e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet"
+2026-11-20,upper_de,bench_press,speed,8,3,75,,e1rm,wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3; readiness not known yet
+2026-11-20,upper_de,push_press,speed,5,3,,7,choose,"no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it"
