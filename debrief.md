@@ -2,7 +2,7 @@
 
 **Missed: Long ride 4 h, Z2, fuel 60-90 g carb/h. Did other 296 min instead.**
 
-Note for today: Today: Easy hand-bike 40 min (optional.
+Note for today: Amber today: last weights held, RPE cap 8.
 
 readiness green · sleep 8.2 h · load 33 of 185 planned TSS
 

@@ -1,7 +1,7 @@
 {
  "date": "2026-11-15",
  "status": "provisional",
- "generated_at": "2026-11-15T06:49+01:00",
+ "generated_at": "2026-11-15T08:14+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": null,
-   "reason": "no call: no HRV; no resting HR; no sleep"
+   "colour": "amber",
+   "reason": "amber: no HRV; resting HR 65 > 59.1 (baseline 54.1 + 5); no sleep"
   },
   "sessions": [
    {
@@ -1380,7 +1380,7 @@
   "yesterday": {
    "date": "2026-11-14",
    "verdict": "Missed: Long ride 4 h, Z2, fuel 60-90 g carb/h. Did other 296 min instead.",
-   "note_for_today": "Today: Easy hand-bike 40 min (optional.",
+   "note_for_today": "Amber today: last weights held, RPE cap 8.",
    "context": {
     "readiness": "green",
     "readiness_reason": "green: HRV 42 >= 38.8 (baseline 50.2 - 1 SD 11.4); resting HR 59 <= 59.2 (baseline 54.2 + 5); sleep 8.2 h >= 6",
@@ -1931,10 +1931,10 @@
    },
    {
     "date": "2026-11-15",
-    "readiness": null,
+    "readiness": "amber",
     "hrv": null,
     "hrv_baseline": 50.6,
-    "resting_hr": null,
+    "resting_hr": 65.0,
     "resting_hr_baseline": 54.1,
     "sleep_h": null
    }
