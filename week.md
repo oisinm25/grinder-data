@@ -38,7 +38,7 @@ Endurance: skipped 7. Strength: under 1, skipped 12.
 ## Recovery
 Readiness: green 3, amber 3, red 0, no call 1.
 HRV 7-day 39.2 vs 28-day 51.9; resting HR 7-day 56.5 vs 28-day 54.2.
-CTL 36.2, ATL 51.7, form -15.5.
+CTL 31.3, ATL 26.8, form 4.5.
 
 ## Bench
 e1RM 133.3 kg against a line of 132.2 kg (+1.2 kg).
