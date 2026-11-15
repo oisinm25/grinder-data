@@ -1,37 +1,33 @@
-# Pedestal brief: Sat 14 Nov 2026
+# Pedestal brief: Sun 15 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-14 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-15 06:36*
 
 **Readiness: no call**: no call: no HRV; no resting HR; no sleep
 
 Accumulation, week acc3
 
-## AM: Long ride 4 h, Z2, fuel 60-90 g carb/h
-bike · 240 min · 185 TSS
+## AM: Easy hand-bike 40 min (optional - rest is fine)
+handbike · 40 min · 26 TSS
 
-- steady 4:00:00 211-245 W
+- steady 40:00 139-164 W*
+- \* watts from a provisional FTP
 
-## Yesterday's debrief: Fri 13 Nov 2026
+## Yesterday's debrief: Sat 14 Nov 2026
 
-**Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.**
+**Missed: Long ride 4 h, Z2, fuel 60-90 g carb/h. Did other 296 min instead.**
 
-Note for today: Today: Long ride 4 h, Z2, fuel 60-90 g carb/h.
+Note for today: Today: Easy hand-bike 40 min (optional.
 
-readiness amber · sleep 6.48 h · load 0 of 132 planned TSS
+readiness green · sleep 8.2 h · load 33 of 185 planned TSS
 
-### AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
-skipped
-
-| Lift | Set | Prescribed | Achieved | |
-|---|---|---|---|---|
-| Bench pull | speed | 6 x 3 @ 75 kg RPE<=7 | - | not logged |
-| Bench press | speed | 8 x 3 @ 85 kg RPE<=8 | - | not logged |
-| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
-
-
-### PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
+### AM: Long ride 4 h, Z2, fuel 60-90 g carb/h
 skipped: no matching activity
 
-## Flags (review of the week ending Sun 8 Nov)
-- load: 209 TSS done, under the 675-775 target (advisory: targets provisional)
-- sessions: 8 endurance sessions missed or skipped
+### Unplanned: Sailing (other)
+296 min · IF 0.25 · TSS 33 · HR load 33 · avg HR 86
+
+## Flags (review of the week ending Sun 15 Nov)
+- load: 110 TSS done, under the 700-800 target (advisory: targets provisional)
+- sessions: 7 endurance sessions missed or skipped
+- recovery: 3 amber days
+- recovery: 7-day HRV 39 is 25% under its 28-day baseline 52

@@ -1,20 +1,13 @@
-# Debrief: Fri 13 Nov 2026
+# Debrief: Sat 14 Nov 2026
 
-**Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.**
+**Missed: Long ride 4 h, Z2, fuel 60-90 g carb/h. Did other 296 min instead.**
 
-Note for today: Today: Long ride 4 h, Z2, fuel 60-90 g carb/h.
+Note for today: Today: Easy hand-bike 40 min (optional.
 
-readiness amber · sleep 6.48 h · load 0 of 132 planned TSS
+readiness green · sleep 8.2 h · load 33 of 185 planned TSS
 
-## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
-skipped
-
-| Lift | Set | Prescribed | Achieved | |
-|---|---|---|---|---|
-| Bench pull | speed | 6 x 3 @ 75 kg RPE<=7 | - | not logged |
-| Bench press | speed | 8 x 3 @ 85 kg RPE<=8 | - | not logged |
-| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
-
-
-## PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
+## AM: Long ride 4 h, Z2, fuel 60-90 g carb/h
 skipped: no matching activity
+
+## Unplanned: Sailing (other)
+296 min · IF 0.25 · TSS 33 · HR load 33 · avg HR 86
