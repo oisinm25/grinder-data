@@ -1,11 +1,11 @@
 {
  "date": "2026-11-16",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-16T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-16T08:14+01:00",
  "readiness": {
-  "colour": "amber",
-  "reason": "amber: no HRV; resting HR 62 > 59.2 (baseline 54.2 + 5); no sleep"
+  "colour": "red",
+  "reason": "red: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6"
  },
  "block": {
   "id": "block1",
@@ -31,10 +31,10 @@
      "role": "top",
      "sets": 1,
      "reps": 6,
-     "kg": 90,
-     "rpe_cap": 8,
+     "kg": 80,
+     "rpe_cap": 7,
      "basis": "last",
-     "reason": "last 90x6 (RPE not logged, treated as 10) on 9 Nov (4 sets): 3 misses in a row -> reset -5% = 85 x 6; amber: hold last 90, no increment, RPE cap 8 -> 90"
+     "reason": "last 90x6 (RPE not logged, treated as 10) on 9 Nov (4 sets): 3 misses in a row -> reset -5% = 85 x 6; red: 90% of last 90 -> 80, RPE cap 7"
     },
     {
      "lift": "bench_press",
@@ -42,10 +42,10 @@
      "role": "backoff",
      "sets": 3,
      "reps": 8,
-     "kg": 77.5,
+     "kg": 67.5,
      "rpe_cap": null,
      "basis": "top",
-     "reason": "85% of top 90 -> 77.5 x 8"
+     "reason": "85% of top 80 -> 67.5 x 8"
     },
     {
      "lift": "weighted_pullup",
@@ -54,9 +54,9 @@
      "sets": 4,
      "reps": 5,
      "kg": null,
-     "rpe_cap": 8,
+     "rpe_cap": 7,
      "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; amber: RPE cap 8"
+     "reason": "no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7"
     },
     {
      "lift": "chest_supported_row",
@@ -65,9 +65,9 @@
      "sets": 3,
      "reps": 8,
      "kg": null,
-     "rpe_cap": 8,
+     "rpe_cap": 7,
      "basis": "choose",
-     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8"
+     "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7"
     }
    ]
   },
@@ -124,7 +124,7 @@
  "debrief": {
   "date": "2026-11-15",
   "verdict": "Missed: Easy hand-bike 40 min (optional.",
-  "note_for_today": "Amber today: last weights held, RPE cap 8.",
+  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
   "context": {
    "readiness": null,
    "readiness_reason": "no call: no HRV; resting HR 59 <= 59.1 (baseline 54.1 + 5); no sleep",
