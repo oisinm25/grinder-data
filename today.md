@@ -1,36 +1,49 @@
-# Pedestal brief: Mon 16 Nov 2026
+# Pedestal brief: Tue 17 Nov 2026
 
-*Status: final · generated 2026-11-16 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-17 06:36*
 
-**Readiness: RED**: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6
+**Readiness: AMBER**: no HRV; resting HR 63 > 59.4 (baseline 54.4 + 5); no sleep
 
 Accumulation, week acc4
 
-## AM: Upper max effort - bench top set, back-offs, heavy pulling
-strength · 50 TSS
+## AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+handbike · 50 min · 48 TSS
 
-| Lift | Group | Sets × reps | kg | RPE cap | Why |
-|---|---|---|---|---|---|
-| Bench press | top | 1 × 6 | 80 | 7 | last 90x6 (RPE not logged, treated as 10) on 9 Nov (4 sets): 3 misses in a row -> reset -5% = 85 x 6; red: 90% of last 90 -> 80, RPE cap 7 |
-| Bench press | backoff | 3 × 8 | 67.5 |  | 85% of top 80 -> 67.5 x 8 |
-| Weighted pull-up | work | 4 × 5 | choose | 7 | no history, e1RM or start_kg: choose a weight for 5 at RPE 8.5 and log it; red: RPE cap 7 |
-| Chest-supported row | work | 3 × 8 | choose | 7 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7 |
+- warmup 10:00 126-164 W*
+- 5 × [work 4:00 265-277 W*, rest 3:00 113-139 W*]
+- cooldown 5:00 113-139 W*
+- \* watts from a provisional FTP
 
-## PM: Z2 90 min
-bike · 90 min · 70 TSS
+## AM: Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
+grinding · 51 min · 45 TSS
 
-- warmup 5:00 170-211 W
-- steady 1:25:00 221-245 W
+- warmup 10:00 RPE 4
+- 12 × [work 1:00 400 W, rest 2:00 RPE 2]
+- cooldown 5:00 RPE 3
 
-## Yesterday's debrief: Sun 15 Nov 2026
+## PM: Mobility and trunk, 30 min
+mobility
 
-**Missed: Easy hand-bike 40 min (optional.**
+## Yesterday's debrief: Mon 16 Nov 2026
 
-Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
+**Missed: Upper max effort, Z2 90 min.**
 
-no readiness call · load 0 of 26 planned TSS
+Note for today: Amber today: last weights held, RPE cap 8.
 
-### AM: Easy hand-bike 40 min (optional - rest is fine)
+readiness red · sleep 5 h · load 0 of 120 planned TSS
+
+### AM: Upper max effort - bench top set, back-offs, heavy pulling
+skipped
+
+| Lift | Set | Prescribed | Achieved | |
+|---|---|---|---|---|
+| Bench press | top | 1 x 6 @ 80 kg RPE<=7 | - | not logged |
+| Bench press | backoff | 3 x 8 @ 67.5 kg | - | not logged |
+| Weighted pull-up | work | 4 x 5 @ choose RPE<=7 | - | not logged |
+| Chest-supported row | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+
+
+### PM: Z2 90 min
 skipped: no matching activity
 
 ## Flags (review of the week ending Sun 15 Nov)

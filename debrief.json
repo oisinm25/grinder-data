@@ -1,23 +1,89 @@
 {
- "date": "2026-11-15",
- "verdict": "Missed: Easy hand-bike 40 min (optional.",
- "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+ "date": "2026-11-16",
+ "verdict": "Missed: Upper max effort, Z2 90 min.",
+ "note_for_today": "Amber today: last weights held, RPE cap 8.",
  "context": {
-  "readiness": null,
-  "readiness_reason": "no call: no HRV; resting HR 59 <= 59.1 (baseline 54.1 + 5); no sleep",
-  "sleep_h": null,
+  "readiness": "red",
+  "readiness_reason": "red: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6",
+  "sleep_h": 5.0,
   "load_done": 0,
-  "load_planned": 26
+  "load_planned": 120
  },
  "items": [
   {
+   "kind": "strength",
+   "slot": "mon_am",
+   "session": "upper_me",
+   "modality": "strength",
+   "summary": "Upper max effort - bench top set, back-offs, heavy pulling",
+   "planned_tss": 50.0,
+   "lifts": [
+    {
+     "lift": "bench_press",
+     "name": "Bench press",
+     "sets": [
+      {
+       "role": "top",
+       "set": null,
+       "prescribed": "1 x 6 @ 80 kg RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      },
+      {
+       "role": "backoff",
+       "set": null,
+       "prescribed": "3 x 8 @ 67.5 kg",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 133.3,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "weighted_pullup",
+     "name": "Weighted pull-up",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "4 x 5 @ choose RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "chest_supported_row",
+     "name": "Chest-supported row",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 8 @ choose RPE<=7",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": null,
+     "e1rm_after": null,
+     "next": null
+    }
+   ],
+   "grade": "skipped"
+  },
+  {
    "kind": "endurance",
-   "slot": "sun_am",
-   "session": "handbike_easy_40",
-   "modality": "handbike",
-   "summary": "Easy hand-bike 40 min (optional - rest is fine)",
-   "planned_min": 40,
-   "planned_tss": 26.0,
+   "slot": "mon_pm",
+   "session": "z2_90",
+   "modality": "bike",
+   "summary": "Z2 90 min",
+   "planned_min": 90,
+   "planned_tss": 70.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
   }
