@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
- "status": "provisional",
- "generated_at": "2026-11-17T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-17T08:14+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": "amber",
-   "reason": "amber: no HRV; resting HR 63 > 59.4 (baseline 54.4 + 5); no sleep"
+   "colour": "red",
+   "reason": "red: HRV 21 < 39.3 (baseline 50.6 - 1 SD 11.3); resting HR 63 > 59.4 (baseline 54.4 + 5); sleep 5.53 h < 6"
   },
   "sessions": [
    {
@@ -1500,7 +1500,7 @@
   "yesterday": {
    "date": "2026-11-16",
    "verdict": "Missed: Upper max effort, Z2 90 min.",
-   "note_for_today": "Amber today: last weights held, RPE cap 8.",
+   "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
    "context": {
     "readiness": "red",
     "readiness_reason": "red: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6",
@@ -2103,12 +2103,12 @@
    },
    {
     "date": "2026-11-17",
-    "readiness": "amber",
-    "hrv": null,
+    "readiness": "red",
+    "hrv": 21.0,
     "hrv_baseline": 50.6,
     "resting_hr": 63.0,
     "resting_hr_baseline": 54.4,
-    "sleep_h": null
+    "sleep_h": 5.53
    }
   ],
   "compliance": [

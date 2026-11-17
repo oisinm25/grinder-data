@@ -1,11 +1,11 @@
 {
  "date": "2026-11-17",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-17T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-17T08:14+01:00",
  "readiness": {
-  "colour": "amber",
-  "reason": "amber: no HRV; resting HR 63 > 59.4 (baseline 54.4 + 5); no sleep"
+  "colour": "red",
+  "reason": "red: HRV 21 < 39.3 (baseline 50.6 - 1 SD 11.3); resting HR 63 > 59.4 (baseline 54.4 + 5); sleep 5.53 h < 6"
  },
  "block": {
   "id": "block1",
@@ -181,7 +181,7 @@
  "debrief": {
   "date": "2026-11-16",
   "verdict": "Missed: Upper max effort, Z2 90 min.",
-  "note_for_today": "Amber today: last weights held, RPE cap 8.",
+  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
   "context": {
    "readiness": "red",
    "readiness_reason": "red: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6",

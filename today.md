@@ -1,8 +1,8 @@
 # Pedestal brief: Tue 17 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-17 06:49*
+*Status: final · generated 2026-11-17 08:14*
 
-**Readiness: AMBER**: no HRV; resting HR 63 > 59.4 (baseline 54.4 + 5); no sleep
+**Readiness: RED**: HRV 21 < 39.3 (baseline 50.6 - 1 SD 11.3); resting HR 63 > 59.4 (baseline 54.4 + 5); sleep 5.53 h < 6
 
 Accumulation, week acc4
 
@@ -28,7 +28,7 @@ mobility
 
 **Missed: Upper max effort, Z2 90 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
 
 readiness red · sleep 5 h · load 0 of 120 planned TSS
 

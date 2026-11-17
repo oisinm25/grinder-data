@@ -1,7 +1,7 @@
 {
  "date": "2026-11-16",
  "verdict": "Missed: Upper max effort, Z2 90 min.",
- "note_for_today": "Amber today: last weights held, RPE cap 8.",
+ "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
  "context": {
   "readiness": "red",
   "readiness_reason": "red: HRV 30 < 40.3 (baseline 51.0 - 1 SD 10.7); resting HR 62 > 59.2 (baseline 54.2 + 5); sleep 5 h < 6",
