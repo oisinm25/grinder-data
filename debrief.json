@@ -1,7 +1,7 @@
 {
  "date": "2026-11-17",
  "verdict": "Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did bike 17 min instead.",
- "note_for_today": "Today: Lower max effort.",
+ "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
  "context": {
   "readiness": "red",
   "readiness_reason": "red: HRV 21 < 39.3 (baseline 50.6 - 1 SD 11.3); resting HR 63 > 59.4 (baseline 54.4 + 5); sleep 5.53 h < 6",

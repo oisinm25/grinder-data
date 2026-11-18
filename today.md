@@ -1,8 +1,8 @@
 # Pedestal brief: Wed 18 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-18 06:49*
+*Status: final · generated 2026-11-18 08:14*
 
-**Readiness: no call**: no call: no HRV; no resting HR; no sleep
+**Readiness: RED**: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 64 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6
 
 Accumulation, week acc4
 
@@ -11,9 +11,9 @@ strength · 50 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Trap-bar deadlift | top | 1 × 5 | 175 | 8 | last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; readiness not known yet |
-| Trap-bar deadlift | backoff | 2 × 5 | 157.5 |  | 90% of top 175 -> 157.5 x 5 |
-| Rear-foot-elevated split squat | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
+| Trap-bar deadlift | top | 1 × 5 | 157.5 | 7 | last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; red: 90% of last 175 -> 157.5, RPE cap 7 |
+| Trap-bar deadlift | backoff | 2 × 5 | 142.5 |  | 90% of top 157.5 -> 142.5 x 5 |
+| Rear-foot-elevated split squat | work | 3 × 8 | choose | 7 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7 |
 
 ## PM: Z2 60 min
 bike · 60 min · 46 TSS
@@ -25,7 +25,7 @@ bike · 60 min · 46 TSS
 
 **Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did bike 17 min instead.**
 
-Note for today: Today: Lower max effort.
+Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
 
 readiness red · sleep 5.53 h · load 5 of 93 planned TSS
 
