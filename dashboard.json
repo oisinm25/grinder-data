@@ -1,7 +1,7 @@
 {
- "date": "2026-11-18",
- "status": "final",
- "generated_at": "2026-11-18T08:14+01:00",
+ "date": "2026-11-19",
+ "status": "provisional",
+ "generated_at": "2026-11-19T06:36+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,65 +11,65 @@
  },
  "today": {
   "readiness": {
-   "colour": "red",
-   "reason": "red: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 64 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6"
+   "colour": "amber",
+   "reason": "amber: no HRV; resting HR 62 > 59.9 (baseline 54.9 + 5); no sleep"
   },
   "sessions": [
    {
-    "slot": "wed_am",
+    "slot": "thu_am",
     "order": 0,
-    "session": "lower_me",
+    "session": "upper_re",
     "modality": "strength",
-    "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+    "summary": "Upper repetition effort - bench volume toward 10 x 110",
     "environment": null,
     "duration_min": null,
-    "tss": 50.0,
+    "tss": 45.0,
     "readiness_exempt": false,
     "strength": [
      {
-      "lift": "trap_bar_deadlift",
-      "name": "Trap-bar deadlift",
-      "role": "top",
-      "sets": 1,
-      "reps": 5,
-      "kg": 157.5,
-      "rpe_cap": 7,
+      "lift": "bench_press",
+      "name": "Bench press",
+      "role": "work",
+      "sets": 3,
+      "reps": 10,
+      "kg": 80,
+      "rpe_cap": 8,
       "basis": "last",
-      "reason": "last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; red: 90% of last 175 -> 157.5, RPE cap 7"
+      "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80"
      },
      {
-      "lift": "trap_bar_deadlift",
-      "name": "Trap-bar deadlift",
-      "role": "backoff",
-      "sets": 2,
-      "reps": 5,
-      "kg": 142.5,
-      "rpe_cap": null,
-      "basis": "top",
-      "reason": "90% of top 157.5 -> 142.5 x 5"
+      "lift": "bench_pull",
+      "name": "Bench pull",
+      "role": "work",
+      "sets": 3,
+      "reps": 9,
+      "kg": 70,
+      "rpe_cap": 8,
+      "basis": "last",
+      "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70"
      },
      {
-      "lift": "rfe_split_squat",
-      "name": "Rear-foot-elevated split squat",
+      "lift": "landmine_press",
+      "name": "Landmine press",
       "role": "work",
       "sets": 3,
       "reps": 8,
       "kg": null,
-      "rpe_cap": 7,
+      "rpe_cap": 8,
       "basis": "choose",
-      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7"
+      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8"
      }
     ]
    },
    {
-    "slot": "wed_pm",
+    "slot": "thu_pm",
     "order": 0,
-    "session": "z2_60",
+    "session": "z2_75",
     "modality": "bike",
-    "summary": "Z2 60 min",
+    "summary": "Z2 75 min",
     "environment": null,
-    "duration_min": 60,
-    "tss": 46.0,
+    "duration_min": 75,
+    "tss": 58.0,
     "readiness_exempt": false,
     "steps": [
      {
@@ -85,7 +85,7 @@
      },
      {
       "kind": "steady",
-      "duration_s": 3300,
+      "duration_s": 4200,
       "target": "221-245 W",
       "anchor": "pct_ftp",
       "watts": [
@@ -468,8 +468,8 @@
      "ctl": 34.7,
      "atl": 18.5,
      "form": 16.2,
-     "icu_ctl": 30.5,
-     "icu_atl": 30.6
+     "icu_ctl": 29.3,
+     "icu_atl": 18.2
     },
     {
      "date": "2026-11-18",
@@ -477,729 +477,733 @@
      "ctl": 33.9,
      "atl": 16.0,
      "form": 17.9,
-     "icu_ctl": 31.0,
-     "icu_atl": 40.5
+     "icu_ctl": 28.6,
+     "icu_atl": 15.8
+    },
+    {
+     "date": "2026-11-19",
+     "load": 0,
+     "ctl": 33.1,
+     "atl": 13.9,
+     "form": 19.2,
+     "icu_ctl": 29.6,
+     "icu_atl": 28.8
     }
    ],
    "planned": [
     {
-     "date": "2026-11-19",
-     "ctl": 35.5,
-     "atl": 27.6
-    },
-    {
      "date": "2026-11-20",
-     "ctl": 37.8,
-     "atl": 41.5
+     "ctl": 35.4,
+     "atl": 29.6
     },
     {
      "date": "2026-11-21",
-     "ctl": 42.3,
-     "atl": 66.7
+     "ctl": 40.0,
+     "atl": 56.4
     },
     {
      "date": "2026-11-22",
-     "ctl": 42.0,
-     "atl": 61.3
-    },
-    {
-     "date": "2026-11-23",
-     "ctl": 42.2,
-     "atl": 60.3
-    },
-    {
-     "date": "2026-11-24",
-     "ctl": 42.5,
-     "atl": 59.4
-    },
-    {
-     "date": "2026-11-25",
-     "ctl": 42.8,
-     "atl": 58.6
-    },
-    {
-     "date": "2026-11-26",
-     "ctl": 43.0,
-     "atl": 57.9
-    },
-    {
-     "date": "2026-11-27",
-     "ctl": 43.3,
-     "atl": 57.4
-    },
-    {
-     "date": "2026-11-28",
-     "ctl": 43.5,
-     "atl": 56.9
-    },
-    {
-     "date": "2026-11-29",
-     "ctl": 43.7,
-     "atl": 56.4
-    },
-    {
-     "date": "2026-11-30",
-     "ctl": 43.7,
-     "atl": 54.6
-    },
-    {
-     "date": "2026-12-01",
-     "ctl": 43.7,
-     "atl": 53.0
-    },
-    {
-     "date": "2026-12-02",
-     "ctl": 43.7,
-     "atl": 51.7
-    },
-    {
-     "date": "2026-12-03",
-     "ctl": 43.7,
-     "atl": 50.5
-    },
-    {
-     "date": "2026-12-04",
-     "ctl": 43.6,
-     "atl": 49.5
-    },
-    {
-     "date": "2026-12-05",
-     "ctl": 43.6,
-     "atl": 48.6
-    },
-    {
-     "date": "2026-12-06",
-     "ctl": 43.6,
-     "atl": 47.8
-    },
-    {
-     "date": "2026-12-07",
-     "ctl": 44.5,
+     "ctl": 39.7,
      "atl": 52.4
     },
     {
+     "date": "2026-11-23",
+     "ctl": 40.0,
+     "atl": 52.5
+    },
+    {
+     "date": "2026-11-24",
+     "ctl": 40.3,
+     "atl": 52.7
+    },
+    {
+     "date": "2026-11-25",
+     "ctl": 40.7,
+     "atl": 52.8
+    },
+    {
+     "date": "2026-11-26",
+     "ctl": 41.0,
+     "atl": 52.9
+    },
+    {
+     "date": "2026-11-27",
+     "ctl": 41.3,
+     "atl": 53.0
+    },
+    {
+     "date": "2026-11-28",
+     "ctl": 41.5,
+     "atl": 53.1
+    },
+    {
+     "date": "2026-11-29",
+     "ctl": 41.8,
+     "atl": 53.1
+    },
+    {
+     "date": "2026-11-30",
+     "ctl": 41.9,
+     "atl": 51.8
+    },
+    {
+     "date": "2026-12-01",
+     "ctl": 41.9,
+     "atl": 50.6
+    },
+    {
+     "date": "2026-12-02",
+     "ctl": 41.9,
+     "atl": 49.6
+    },
+    {
+     "date": "2026-12-03",
+     "ctl": 41.9,
+     "atl": 48.7
+    },
+    {
+     "date": "2026-12-04",
+     "ctl": 41.9,
+     "atl": 47.9
+    },
+    {
+     "date": "2026-12-05",
+     "ctl": 42.0,
+     "atl": 47.2
+    },
+    {
+     "date": "2026-12-06",
+     "ctl": 42.0,
+     "atl": 46.6
+    },
+    {
+     "date": "2026-12-07",
+     "ctl": 42.9,
+     "atl": 51.4
+    },
+    {
      "date": "2026-12-08",
-     "ctl": 45.4,
-     "atl": 56.4
+     "ctl": 43.9,
+     "atl": 55.5
     },
     {
      "date": "2026-12-09",
-     "ctl": 46.3,
-     "atl": 59.8
+     "ctl": 44.8,
+     "atl": 59.0
     },
     {
      "date": "2026-12-10",
-     "ctl": 47.1,
-     "atl": 62.8
+     "ctl": 45.6,
+     "atl": 62.1
     },
     {
      "date": "2026-12-11",
-     "ctl": 47.9,
-     "atl": 65.4
+     "ctl": 46.5,
+     "atl": 64.8
     },
     {
      "date": "2026-12-12",
-     "ctl": 48.7,
-     "atl": 67.6
+     "ctl": 47.3,
+     "atl": 67.1
     },
     {
      "date": "2026-12-13",
-     "ctl": 49.5,
-     "atl": 69.5
+     "ctl": 48.2,
+     "atl": 69.1
     },
     {
      "date": "2026-12-14",
-     "ctl": 50.3,
-     "atl": 71.2
+     "ctl": 49.0,
+     "atl": 70.8
     },
     {
      "date": "2026-12-15",
-     "ctl": 51.0,
-     "atl": 72.7
+     "ctl": 49.7,
+     "atl": 72.3
     },
     {
      "date": "2026-12-16",
-     "ctl": 51.8,
-     "atl": 73.9
+     "ctl": 50.5,
+     "atl": 73.6
     },
     {
      "date": "2026-12-17",
-     "ctl": 52.5,
-     "atl": 75.0
+     "ctl": 51.2,
+     "atl": 74.8
     },
     {
      "date": "2026-12-18",
-     "ctl": 53.2,
-     "atl": 76.0
+     "ctl": 52.0,
+     "atl": 75.7
     },
     {
      "date": "2026-12-19",
-     "ctl": 53.9,
-     "atl": 76.8
+     "ctl": 52.7,
+     "atl": 76.6
     },
     {
      "date": "2026-12-20",
-     "ctl": 54.5,
-     "atl": 77.5
+     "ctl": 53.4,
+     "atl": 77.3
     },
     {
      "date": "2026-12-21",
-     "ctl": 55.2,
-     "atl": 78.1
+     "ctl": 54.0,
+     "atl": 78.0
     },
     {
      "date": "2026-12-22",
-     "ctl": 55.8,
-     "atl": 78.7
+     "ctl": 54.7,
+     "atl": 78.5
     },
     {
      "date": "2026-12-23",
-     "ctl": 56.4,
-     "atl": 79.1
+     "ctl": 55.4,
+     "atl": 79.0
     },
     {
      "date": "2026-12-24",
-     "ctl": 58.6,
-     "atl": 88.1
+     "ctl": 57.5,
+     "atl": 88.0
     },
     {
      "date": "2026-12-25",
-     "ctl": 60.6,
+     "ctl": 59.6,
      "atl": 95.8
     },
     {
      "date": "2026-12-26",
-     "ctl": 62.6,
-     "atl": 102.6
+     "ctl": 61.6,
+     "atl": 102.5
     },
     {
      "date": "2026-12-27",
-     "ctl": 64.6,
+     "ctl": 63.6,
      "atl": 108.4
     },
     {
      "date": "2026-12-28",
-     "ctl": 66.5,
-     "atl": 113.5
+     "ctl": 65.6,
+     "atl": 113.4
     },
     {
      "date": "2026-12-29",
-     "ctl": 68.4,
-     "atl": 117.9
+     "ctl": 67.5,
+     "atl": 117.8
     },
     {
      "date": "2026-12-30",
-     "ctl": 70.2,
-     "atl": 121.7
+     "ctl": 69.3,
+     "atl": 121.6
     },
     {
      "date": "2026-12-31",
-     "ctl": 72.0,
-     "atl": 125.0
+     "ctl": 71.2,
+     "atl": 124.9
     },
     {
      "date": "2027-01-01",
-     "ctl": 70.3,
+     "ctl": 69.5,
      "atl": 108.3
     },
     {
      "date": "2027-01-02",
-     "ctl": 68.7,
+     "ctl": 67.8,
      "atl": 93.9
     },
     {
      "date": "2027-01-03",
-     "ctl": 67.1,
+     "ctl": 66.2,
      "atl": 81.4
     },
     {
      "date": "2027-01-04",
-     "ctl": 67.8,
+     "ctl": 67.0,
      "atl": 83.4
     },
     {
      "date": "2027-01-05",
-     "ctl": 68.4,
+     "ctl": 67.6,
      "atl": 85.1
     },
     {
      "date": "2027-01-06",
-     "ctl": 69.1,
+     "ctl": 68.3,
      "atl": 86.6
     },
     {
      "date": "2027-01-07",
-     "ctl": 69.7,
+     "ctl": 69.0,
      "atl": 87.9
     },
     {
      "date": "2027-01-08",
-     "ctl": 70.4,
+     "ctl": 69.6,
      "atl": 89.1
     },
     {
      "date": "2027-01-09",
-     "ctl": 71.0,
-     "atl": 90.1
+     "ctl": 70.3,
+     "atl": 90.0
     },
     {
      "date": "2027-01-10",
-     "ctl": 71.6,
+     "ctl": 70.9,
      "atl": 90.9
     },
     {
      "date": "2027-01-11",
-     "ctl": 72.2,
+     "ctl": 71.5,
      "atl": 91.6
     },
     {
      "date": "2027-01-12",
-     "ctl": 72.7,
+     "ctl": 72.1,
      "atl": 92.3
     },
     {
      "date": "2027-01-13",
-     "ctl": 73.3,
+     "ctl": 72.6,
      "atl": 92.8
     },
     {
      "date": "2027-01-14",
-     "ctl": 73.8,
+     "ctl": 73.2,
      "atl": 93.3
     },
     {
      "date": "2027-01-15",
-     "ctl": 74.4,
+     "ctl": 73.7,
      "atl": 93.7
     },
     {
      "date": "2027-01-16",
-     "ctl": 74.9,
+     "ctl": 74.3,
      "atl": 94.1
     },
     {
      "date": "2027-01-17",
-     "ctl": 75.4,
+     "ctl": 74.8,
      "atl": 94.4
     },
     {
      "date": "2027-01-18",
-     "ctl": 75.9,
+     "ctl": 75.3,
      "atl": 94.7
     },
     {
      "date": "2027-01-19",
-     "ctl": 76.4,
+     "ctl": 75.8,
      "atl": 94.9
     },
     {
      "date": "2027-01-20",
-     "ctl": 76.8,
+     "ctl": 76.3,
      "atl": 95.1
     },
     {
      "date": "2027-01-21",
-     "ctl": 77.3,
+     "ctl": 76.8,
      "atl": 95.3
     },
     {
      "date": "2027-01-22",
-     "ctl": 77.8,
+     "ctl": 77.2,
      "atl": 95.4
     },
     {
      "date": "2027-01-23",
-     "ctl": 78.2,
+     "ctl": 77.7,
      "atl": 95.6
     },
     {
      "date": "2027-01-24",
-     "ctl": 78.6,
+     "ctl": 78.1,
      "atl": 95.7
     },
     {
      "date": "2027-01-25",
-     "ctl": 79.0,
+     "ctl": 78.6,
      "atl": 95.8
     },
     {
      "date": "2027-01-26",
-     "ctl": 79.5,
+     "ctl": 79.0,
      "atl": 95.9
     },
     {
      "date": "2027-01-27",
-     "ctl": 79.9,
+     "ctl": 79.4,
      "atl": 95.9
     },
     {
      "date": "2027-01-28",
-     "ctl": 80.2,
+     "ctl": 79.8,
      "atl": 96.0
     },
     {
      "date": "2027-01-29",
-     "ctl": 80.6,
+     "ctl": 80.2,
      "atl": 96.1
     },
     {
      "date": "2027-01-30",
-     "ctl": 81.0,
+     "ctl": 80.6,
      "atl": 96.1
     },
     {
      "date": "2027-01-31",
-     "ctl": 81.4,
+     "ctl": 80.9,
      "atl": 96.2
     },
     {
      "date": "2027-02-01",
-     "ctl": 81.7,
+     "ctl": 81.3,
      "atl": 96.2
     },
     {
      "date": "2027-02-02",
-     "ctl": 82.1,
+     "ctl": 81.7,
      "atl": 96.2
     },
     {
      "date": "2027-02-03",
-     "ctl": 82.4,
+     "ctl": 82.0,
      "atl": 96.2
     },
     {
      "date": "2027-02-04",
-     "ctl": 82.7,
+     "ctl": 82.3,
      "atl": 96.3
     },
     {
      "date": "2027-02-05",
-     "ctl": 83.0,
+     "ctl": 82.7,
      "atl": 96.3
     },
     {
      "date": "2027-02-06",
-     "ctl": 83.4,
+     "ctl": 83.0,
      "atl": 96.3
     },
     {
      "date": "2027-02-07",
-     "ctl": 83.7,
+     "ctl": 83.3,
      "atl": 96.3
     },
     {
      "date": "2027-02-08",
-     "ctl": 84.0,
+     "ctl": 83.6,
      "atl": 96.3
     },
     {
      "date": "2027-02-09",
-     "ctl": 84.3,
+     "ctl": 83.9,
      "atl": 96.4
     },
     {
      "date": "2027-02-10",
-     "ctl": 84.6,
+     "ctl": 84.2,
      "atl": 96.4
     },
     {
      "date": "2027-02-11",
-     "ctl": 84.8,
+     "ctl": 84.5,
      "atl": 96.4
     },
     {
      "date": "2027-02-12",
-     "ctl": 85.1,
+     "ctl": 84.8,
      "atl": 96.4
     },
     {
      "date": "2027-02-13",
-     "ctl": 85.4,
+     "ctl": 85.1,
      "atl": 96.4
     },
     {
      "date": "2027-02-14",
-     "ctl": 85.6,
+     "ctl": 85.3,
      "atl": 96.4
     },
     {
      "date": "2027-02-15",
-     "ctl": 85.9,
+     "ctl": 85.6,
      "atl": 96.4
     },
     {
      "date": "2027-02-16",
-     "ctl": 86.1,
+     "ctl": 85.8,
      "atl": 96.4
     },
     {
      "date": "2027-02-17",
-     "ctl": 86.4,
+     "ctl": 86.1,
      "atl": 96.4
     },
     {
      "date": "2027-02-18",
-     "ctl": 86.6,
+     "ctl": 86.3,
      "atl": 96.4
     },
     {
      "date": "2027-02-19",
-     "ctl": 86.8,
+     "ctl": 86.6,
      "atl": 96.4
     },
     {
      "date": "2027-02-20",
-     "ctl": 87.1,
+     "ctl": 86.8,
      "atl": 96.4
     },
     {
      "date": "2027-02-21",
-     "ctl": 87.3,
+     "ctl": 87.0,
      "atl": 96.4
     },
     {
      "date": "2027-02-22",
-     "ctl": 87.9,
+     "ctl": 87.7,
      "atl": 98.8
     },
     {
      "date": "2027-02-23",
-     "ctl": 88.5,
+     "ctl": 88.3,
      "atl": 100.9
     },
     {
      "date": "2027-02-24",
-     "ctl": 89.1,
+     "ctl": 88.9,
      "atl": 102.6
     },
     {
      "date": "2027-02-25",
-     "ctl": 89.7,
+     "ctl": 89.5,
      "atl": 104.2
     },
     {
      "date": "2027-02-26",
-     "ctl": 90.3,
+     "ctl": 90.1,
      "atl": 105.5
     },
     {
      "date": "2027-02-27",
-     "ctl": 90.9,
+     "ctl": 90.7,
      "atl": 106.7
     },
     {
      "date": "2027-02-28",
-     "ctl": 91.4,
+     "ctl": 91.2,
      "atl": 107.7
     },
     {
      "date": "2027-03-01",
-     "ctl": 92.0,
+     "ctl": 91.8,
      "atl": 108.6
     },
     {
      "date": "2027-03-02",
-     "ctl": 92.5,
+     "ctl": 92.3,
      "atl": 109.3
     },
     {
      "date": "2027-03-03",
-     "ctl": 93.0,
+     "ctl": 92.8,
      "atl": 110.0
     },
     {
      "date": "2027-03-04",
-     "ctl": 93.5,
+     "ctl": 93.3,
      "atl": 110.6
     },
     {
      "date": "2027-03-05",
-     "ctl": 94.0,
+     "ctl": 93.8,
      "atl": 111.1
     },
     {
      "date": "2027-03-06",
-     "ctl": 94.5,
+     "ctl": 94.3,
      "atl": 111.5
     },
     {
      "date": "2027-03-07",
-     "ctl": 94.9,
+     "ctl": 94.8,
      "atl": 111.9
     },
     {
      "date": "2027-03-08",
-     "ctl": 95.4,
+     "ctl": 95.2,
      "atl": 112.2
     },
     {
      "date": "2027-03-09",
-     "ctl": 95.8,
+     "ctl": 95.7,
      "atl": 112.5
     },
     {
      "date": "2027-03-10",
-     "ctl": 96.3,
+     "ctl": 96.1,
      "atl": 112.7
     },
     {
      "date": "2027-03-11",
-     "ctl": 96.7,
+     "ctl": 96.5,
      "atl": 112.9
     },
     {
      "date": "2027-03-12",
-     "ctl": 97.1,
+     "ctl": 96.9,
      "atl": 113.1
     },
     {
      "date": "2027-03-13",
-     "ctl": 97.5,
+     "ctl": 97.4,
      "atl": 113.3
     },
     {
      "date": "2027-03-14",
-     "ctl": 97.9,
+     "ctl": 97.8,
      "atl": 113.4
     },
     {
      "date": "2027-03-15",
-     "ctl": 98.3,
+     "ctl": 98.1,
      "atl": 113.5
     },
     {
      "date": "2027-03-16",
-     "ctl": 98.7,
+     "ctl": 98.5,
      "atl": 113.6
     },
     {
      "date": "2027-03-17",
-     "ctl": 99.0,
+     "ctl": 98.9,
      "atl": 113.7
     },
     {
      "date": "2027-03-18",
-     "ctl": 99.4,
+     "ctl": 99.3,
      "atl": 113.8
     },
     {
      "date": "2027-03-19",
-     "ctl": 99.7,
+     "ctl": 99.6,
      "atl": 113.9
     },
     {
      "date": "2027-03-20",
-     "ctl": 100.1,
+     "ctl": 100.0,
      "atl": 113.9
     },
     {
      "date": "2027-03-21",
-     "ctl": 100.4,
+     "ctl": 100.3,
      "atl": 114.0
     },
     {
      "date": "2027-03-22",
-     "ctl": 100.8,
+     "ctl": 100.6,
      "atl": 114.0
     },
     {
      "date": "2027-03-23",
-     "ctl": 101.1,
+     "ctl": 100.9,
      "atl": 114.0
     },
     {
      "date": "2027-03-24",
-     "ctl": 101.4,
+     "ctl": 101.3,
      "atl": 114.1
     },
     {
      "date": "2027-03-25",
-     "ctl": 101.7,
+     "ctl": 101.6,
      "atl": 114.1
     },
     {
      "date": "2027-03-26",
-     "ctl": 102.0,
+     "ctl": 101.9,
      "atl": 114.1
     },
     {
      "date": "2027-03-27",
-     "ctl": 102.3,
+     "ctl": 102.2,
      "atl": 114.1
     },
     {
      "date": "2027-03-28",
-     "ctl": 102.6,
+     "ctl": 102.4,
      "atl": 114.2
     },
     {
      "date": "2027-03-29",
-     "ctl": 102.8,
+     "ctl": 102.7,
      "atl": 114.2
     },
     {
      "date": "2027-03-30",
-     "ctl": 103.1,
+     "ctl": 103.0,
      "atl": 114.2
     },
     {
      "date": "2027-03-31",
-     "ctl": 103.4,
+     "ctl": 103.3,
      "atl": 114.2
     },
     {
      "date": "2027-04-01",
-     "ctl": 103.6,
+     "ctl": 103.5,
      "atl": 114.2
     },
     {
      "date": "2027-04-02",
-     "ctl": 103.9,
+     "ctl": 103.8,
      "atl": 114.2
     },
     {
      "date": "2027-04-03",
-     "ctl": 104.1,
+     "ctl": 104.0,
      "atl": 114.2
     },
     {
      "date": "2027-04-04",
-     "ctl": 104.4,
+     "ctl": 104.3,
      "atl": 114.2
     },
     {
      "date": "2027-04-05",
-     "ctl": 104.6,
+     "ctl": 104.5,
      "atl": 114.2
     },
     {
      "date": "2027-04-06",
-     "ctl": 104.8,
+     "ctl": 104.7,
      "atl": 114.3
     },
     {
      "date": "2027-04-07",
-     "ctl": 105.0,
+     "ctl": 104.9,
      "atl": 114.3
     },
     {
      "date": "2027-04-08",
-     "ctl": 105.3,
+     "ctl": 105.2,
      "atl": 114.3
     },
     {
      "date": "2027-04-09",
-     "ctl": 105.5,
+     "ctl": 105.4,
      "atl": 114.3
     },
     {
      "date": "2027-04-10",
-     "ctl": 104.3,
+     "ctl": 104.2,
      "atl": 106.7
     },
     {
      "date": "2027-04-11",
-     "ctl": 103.2,
+     "ctl": 103.1,
      "atl": 100.1
     },
     {
@@ -1209,7 +1213,7 @@
     },
     {
      "date": "2027-04-13",
-     "ctl": 101.1,
+     "ctl": 101.0,
      "atl": 89.4
     },
     {
@@ -1229,7 +1233,7 @@
     },
     {
      "date": "2027-04-17",
-     "ctl": 97.1,
+     "ctl": 97.0,
      "atl": 75.4
     }
    ],
@@ -1460,52 +1464,77 @@
    }
   ],
   "yesterday": {
-   "date": "2026-11-17",
-   "verdict": "Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did bike 17 min instead.",
-   "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+   "date": "2026-11-18",
+   "verdict": "Missed: Lower max effort, Z2 60 min.",
+   "note_for_today": "Amber today: last weights held, RPE cap 8.",
    "context": {
     "readiness": "red",
-    "readiness_reason": "red: HRV 21 < 39.3 (baseline 50.6 - 1 SD 11.3); resting HR 63 > 59.4 (baseline 54.4 + 5); sleep 5.53 h < 6",
-    "sleep_h": 5.53,
-    "load_done": 5,
-    "load_planned": 93
+    "readiness_reason": "red: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 61 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6",
+    "sleep_h": 5.96,
+    "load_done": 0,
+    "load_planned": 96
    },
    "items": [
     {
-     "kind": "endurance",
-     "slot": "tue_am",
-     "session": "handbike_intervals",
-     "modality": "handbike",
-     "summary": "Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy",
-     "planned_min": 50,
-     "planned_tss": 48.0,
-     "grade": "skipped",
-     "grade_note": "no matching activity"
+     "kind": "strength",
+     "slot": "wed_am",
+     "session": "lower_me",
+     "modality": "strength",
+     "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
+     "planned_tss": 50.0,
+     "lifts": [
+      {
+       "lift": "trap_bar_deadlift",
+       "name": "Trap-bar deadlift",
+       "sets": [
+        {
+         "role": "top",
+         "set": null,
+         "prescribed": "1 x 5 @ 157.5 kg RPE<=7",
+         "achieved": "",
+         "status": "not logged"
+        },
+        {
+         "role": "backoff",
+         "set": null,
+         "prescribed": "2 x 5 @ 142.5 kg",
+         "achieved": "",
+         "status": "not logged"
+        }
+       ],
+       "e1rm_before": 204.2,
+       "e1rm_after": null,
+       "next": null
+      },
+      {
+       "lift": "rfe_split_squat",
+       "name": "Rear-foot-elevated split squat",
+       "sets": [
+        {
+         "role": "work",
+         "set": null,
+         "prescribed": "3 x 8 @ choose RPE<=7",
+         "achieved": "",
+         "status": "not logged"
+        }
+       ],
+       "e1rm_before": null,
+       "e1rm_after": null,
+       "next": null
+      }
+     ],
+     "grade": "skipped"
     },
     {
      "kind": "endurance",
-     "slot": "tue_am",
-     "session": "grinding_repeats_12",
-     "modality": "grinding",
-     "summary": "Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy",
-     "planned_min": 51,
-     "planned_tss": 45.0,
+     "slot": "wed_pm",
+     "session": "z2_60",
+     "modality": "bike",
+     "summary": "Z2 60 min",
+     "planned_min": 60,
+     "planned_tss": 46.0,
      "grade": "skipped",
      "grade_note": "no matching activity"
-    },
-    {
-     "kind": "unplanned",
-     "sport": "bike",
-     "type": "Ride",
-     "name": "Palma Cycling",
-     "moving_min": 17.1,
-     "hr_load": 5.0,
-     "avg_hr": 111.0,
-     "review": "",
-     "np_w": null,
-     "intensity": 0.37,
-     "tss": 5.0,
-     "hr_drift_pct": null
     }
    ],
    "problems": []
@@ -1653,15 +1682,6 @@
    ]
   },
   "readiness": [
-   {
-    "date": "2026-10-08",
-    "readiness": "amber",
-    "hrv": 36.0,
-    "hrv_baseline": 45.6,
-    "resting_hr": 63.0,
-    "resting_hr_baseline": 56.9,
-    "sleep_h": 7.54
-   },
    {
     "date": "2026-10-09",
     "readiness": "green",
@@ -2027,9 +2047,18 @@
     "readiness": "red",
     "hrv": 33.0,
     "hrv_baseline": 49.8,
-    "resting_hr": 64.0,
+    "resting_hr": 61.0,
     "resting_hr_baseline": 54.6,
     "sleep_h": 5.96
+   },
+   {
+    "date": "2026-11-19",
+    "readiness": "amber",
+    "hrv": null,
+    "hrv_baseline": 49.1,
+    "resting_hr": 62.0,
+    "resting_hr_baseline": 54.9,
+    "sleep_h": null
    }
   ],
   "compliance": [
@@ -2071,8 +2100,8 @@
    },
    {
     "week": "2026-11-16",
-    "strength_skipped": 4,
-    "skipped": 3
+    "strength_skipped": 7,
+    "skipped": 4
    }
   ],
   "body": {

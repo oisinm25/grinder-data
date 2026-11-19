@@ -1,16 +1,20 @@
-# Debrief: Tue 17 Nov 2026
+# Debrief: Wed 18 Nov 2026
 
-**Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did bike 17 min instead.**
+**Missed: Lower max effort, Z2 60 min.**
 
-Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness red · sleep 5.53 h · load 5 of 93 planned TSS
+readiness red · sleep 5.96 h · load 0 of 96 planned TSS
 
-## AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+## AM: Lower max effort - trap-bar top set, single-leg, trunk
+skipped
+
+| Lift | Set | Prescribed | Achieved | |
+|---|---|---|---|---|
+| Trap-bar deadlift | top | 1 x 5 @ 157.5 kg RPE<=7 | - | not logged |
+| Trap-bar deadlift | backoff | 2 x 5 @ 142.5 kg | - | not logged |
+| Rear-foot-elevated split squat | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+
+
+## PM: Z2 60 min
 skipped: no matching activity
-
-## AM: Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
-skipped: no matching activity
-
-## Unplanned: Palma Cycling (bike)
-17 min · IF 0.37 · TSS 5 · HR load 5 · avg HR 111

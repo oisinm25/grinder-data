@@ -1,42 +1,46 @@
-# Pedestal brief: Wed 18 Nov 2026
+# Pedestal brief: Thu 19 Nov 2026
 
-*Status: final · generated 2026-11-18 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-19 06:36*
 
-**Readiness: RED**: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 64 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6
+**Readiness: AMBER**: no HRV; resting HR 62 > 59.9 (baseline 54.9 + 5); no sleep
 
 Accumulation, week acc4
 
-## AM: Lower max effort - trap-bar top set, single-leg, trunk
-strength · 50 TSS
+## AM: Upper repetition effort - bench volume toward 10 x 110
+strength · 45 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Trap-bar deadlift | top | 1 × 5 | 157.5 | 7 | last 175x5 (RPE not logged, treated as 10) on 4 Nov: miss (RPE not logged, treated as 10) -> repeat 175 x 5; red: 90% of last 175 -> 157.5, RPE cap 7 |
-| Trap-bar deadlift | backoff | 2 × 5 | 142.5 |  | 90% of top 157.5 -> 142.5 x 5 |
-| Rear-foot-elevated split squat | work | 3 × 8 | choose | 7 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; red: RPE cap 7 |
+| Bench press | work | 3 × 10 | 80 | 8 | last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80 |
+| Bench pull | work | 3 × 9 | 70 | 8 | last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70 |
+| Landmine press | work | 3 × 8 | choose | 8 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8 |
 
-## PM: Z2 60 min
-bike · 60 min · 46 TSS
+## PM: Z2 75 min
+bike · 75 min · 58 TSS
 
 - warmup 5:00 170-211 W
-- steady 55:00 221-245 W
+- steady 1:10:00 221-245 W
 
-## Yesterday's debrief: Tue 17 Nov 2026
+## Yesterday's debrief: Wed 18 Nov 2026
 
-**Missed: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy, Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy. Did bike 17 min instead.**
+**Missed: Lower max effort, Z2 60 min.**
 
-Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness red · sleep 5.53 h · load 5 of 93 planned TSS
+readiness red · sleep 5.96 h · load 0 of 96 planned TSS
 
-### AM: Hand-bike 5 x 4 min at 105-110% hand-bike FTP, 3 min easy
+### AM: Lower max effort - trap-bar top set, single-leg, trunk
+skipped
+
+| Lift | Set | Prescribed | Achieved | |
+|---|---|---|---|---|
+| Trap-bar deadlift | top | 1 x 5 @ 157.5 kg RPE<=7 | - | not logged |
+| Trap-bar deadlift | backoff | 2 x 5 @ 142.5 kg | - | not logged |
+| Rear-foot-elevated split squat | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+
+
+### PM: Z2 60 min
 skipped: no matching activity
-
-### AM: Grinding repeat-sprints 12 x 1 min at ~85% of 1-min best, 2 min easy
-skipped: no matching activity
-
-### Unplanned: Palma Cycling (bike)
-17 min · IF 0.37 · TSS 5 · HR load 5 · avg HR 111
 
 ## Flags (review of the week ending Sun 15 Nov)
 - load: 110 TSS done, under the 700-800 target (advisory: targets provisional)
