@@ -1,4 +1,4 @@
-# daily 2026-11-19: 8 ok; provisional (no sleep yet)
+# daily 2026-11-19: 8 ok; final
 
 ## [ok     ] ingest    9 activities (other 3, strength 2, conditioning 2, bike 1, sail_or_other 1), 15 wellness days, 27 strength sets; 1 to review
 Ingest 2026-11-05 to 2026-11-19
@@ -6,22 +6,22 @@ Activities: 9 (other 3, strength 2, conditioning 2, bike 1, sail_or_other 1) -> 
   review: 2026-11-05 'Mobility' [Workout] -> sail_or_other: plain Workout without a Grind title: sail or something else?
 Zones: 9 activities (streams 9) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (71 rows incl. baseline)
-  latest 2026-11-19: resting HR 62 bpm, CTL 29.6 / ATL 28.8 (form 0.8)
-  readiness amber: no HRV; resting HR 62 > 59.9 (baseline 54.9 + 5); no sleep
+  latest 2026-11-19: resting HR 54 bpm, HRV 50 ms, sleep 9.73 h (score 87), CTL 29.6 / ATL 28.8 (form 0.8)
+  readiness green: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6
 Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
   trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
 
-## [ok     ] readiness amber: no HRV; RHR 62 > 59.9; no sleep; provisional (no sleep yet)
-amber: no HRV; RHR 62 > 59.9; no sleep; provisional (no sleep yet)
+## [ok     ] readiness green: HRV 50 >= 36.1; RHR 54 <= 59.9; sleep 9.73 h >= 6; final
+green: HRV 50 >= 36.1; RHR 54 <= 59.9; sleep 9.73 h >= 6; final
 
 ## [ok     ] prescribe wrote 6 prescriptions
-Thu 2026-11-19  upper_re (thu_am)  readiness: amber
-  bench_press     work    3 x 10      80 kg  RPE<=8    last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80
-  bench_pull      work    3 x 9       70 kg  RPE<=8    last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70
-  landmine_press  work    3 x 8      choose  RPE<=8    no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8
+Thu 2026-11-19  upper_re (thu_am)  readiness: green
+  bench_press     work    3 x 10    82.5 kg  RPE<=8.5  last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10
+  bench_pull      work    3 x 9       70 kg  RPE<=8.5  last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9
+  landmine_press  work    3 x 8      choose  RPE<=8.5  no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it
 Fri 2026-11-20  upper_de (fri_am)  readiness: not known yet
   bench_pull      speed   6 x 3       75 kg  RPE<=7    e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; readiness not known yet
   bench_press     speed   8 x 3       75 kg            wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3; readiness not known yet
@@ -29,7 +29,7 @@ Fri 2026-11-20  upper_de (fri_am)  readiness: not known yet
 
 wrote 6 prescriptions to derived/prescriptions.csv (55 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (6 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 5 unchanged
 Publish 2026-11-19 to 2026-11-25: 6 sessions
   2026-11-19 07:00  WeightTraining    45 TSS  Upper repetition effort - bench volume toward 10 x 110
   2026-11-19 17:00  VirtualRide       58 TSS  Z2 75 min
@@ -38,7 +38,7 @@ Publish 2026-11-19 to 2026-11-25: 6 sessions
   2026-11-21 07:00  Ride             231 TSS  Long ride 5 h, Z2, fuel 60-90 g carb/h - first step toward 312 duration
   2026-11-22 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
 Files: 7 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (6 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 5 unchanged
 
 ## [ok     ] review    Day Wed 2026-11-18: skipped 4
 Day Wed 2026-11-18: skipped 4
@@ -51,8 +51,8 @@ Wrote 4 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 wrote debrief.md and debrief.json: Missed: Lower max effort, Z2 60 min.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness amber
-wrote today.md and today.json: provisional, 2 sessions, readiness amber
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness green
+wrote today.md and today.json: final, 2 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 33.1, form 19.2
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 33.1, form 19.2

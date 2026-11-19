@@ -2,7 +2,7 @@
 
 **Missed: Lower max effort, Z2 60 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Today: Upper repetition effort.
 
 readiness red · sleep 5.96 h · load 0 of 96 planned TSS
 

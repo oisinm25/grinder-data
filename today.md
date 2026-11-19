@@ -1,8 +1,8 @@
 # Pedestal brief: Thu 19 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-19 06:49*
+*Status: final · generated 2026-11-19 08:14*
 
-**Readiness: AMBER**: no HRV; resting HR 62 > 59.9 (baseline 54.9 + 5); no sleep
+**Readiness: GREEN**: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6
 
 Accumulation, week acc4
 
@@ -11,9 +11,9 @@ strength · 45 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench press | work | 3 × 10 | 80 | 8 | last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80 |
-| Bench pull | work | 3 × 9 | 70 | 8 | last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70 |
-| Landmine press | work | 3 × 8 | choose | 8 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8 |
+| Bench press | work | 3 × 10 | 82.5 | 8.5 | last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10 |
+| Bench pull | work | 3 × 9 | 70 | 8.5 | last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9 |
+| Landmine press | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
 
 ## PM: Z2 75 min
 bike · 75 min · 58 TSS
@@ -25,7 +25,7 @@ bike · 75 min · 58 TSS
 
 **Missed: Lower max effort, Z2 60 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Today: Upper repetition effort.
 
 readiness red · sleep 5.96 h · load 0 of 96 planned TSS
 

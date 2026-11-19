@@ -1,7 +1,7 @@
 {
  "date": "2026-11-19",
- "status": "provisional",
- "generated_at": "2026-11-19T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-19T08:14+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": "amber",
-   "reason": "amber: no HRV; resting HR 62 > 59.9 (baseline 54.9 + 5); no sleep"
+   "colour": "green",
+   "reason": "green: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6"
   },
   "sessions": [
    {
@@ -32,10 +32,10 @@
       "role": "work",
       "sets": 3,
       "reps": 10,
-      "kg": 80,
-      "rpe_cap": 8,
+      "kg": 82.5,
+      "rpe_cap": 8.5,
       "basis": "last",
-      "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10; amber: hold last 80, no increment, RPE cap 8 -> 80"
+      "reason": "last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10"
      },
      {
       "lift": "bench_pull",
@@ -44,9 +44,9 @@
       "sets": 3,
       "reps": 9,
       "kg": 70,
-      "rpe_cap": 8,
+      "rpe_cap": 8.5,
       "basis": "last",
-      "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9; amber: hold last 70, no increment, RPE cap 8 -> 70"
+      "reason": "last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9"
      },
      {
       "lift": "landmine_press",
@@ -55,9 +55,9 @@
       "sets": 3,
       "reps": 8,
       "kg": null,
-      "rpe_cap": 8,
+      "rpe_cap": 8.5,
       "basis": "choose",
-      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it; amber: RPE cap 8"
+      "reason": "no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it"
      }
     ]
    },
@@ -1466,7 +1466,7 @@
   "yesterday": {
    "date": "2026-11-18",
    "verdict": "Missed: Lower max effort, Z2 60 min.",
-   "note_for_today": "Amber today: last weights held, RPE cap 8.",
+   "note_for_today": "Today: Upper repetition effort.",
    "context": {
     "readiness": "red",
     "readiness_reason": "red: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 61 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6",
@@ -2053,12 +2053,12 @@
    },
    {
     "date": "2026-11-19",
-    "readiness": "amber",
-    "hrv": null,
+    "readiness": "green",
+    "hrv": 50.0,
     "hrv_baseline": 49.1,
-    "resting_hr": 62.0,
+    "resting_hr": 54.0,
     "resting_hr_baseline": 54.9,
-    "sleep_h": null
+    "sleep_h": 9.73
    }
   ],
   "compliance": [
