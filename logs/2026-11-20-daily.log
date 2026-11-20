@@ -1,37 +1,37 @@
-# daily 2026-11-20: 8 ok; provisional (no sleep yet)
+# daily 2026-11-20: 8 ok; final
 
 ## [ok     ] ingest    6 activities (other 3, bike 1, strength 1, conditioning 1), 15 wellness days, 27 strength sets
 Ingest 2026-11-06 to 2026-11-20
 Activities: 6 (other 3, bike 1, strength 1, conditioning 1) -> derived/activities.csv (34 rows total)
 Zones: 6 activities (streams 6) -> derived/zones.csv
 Wellness: 15 days in range -> derived/wellness.csv (72 rows incl. baseline)
-  latest 2026-11-20: resting HR 64 bpm, CTL 30.2 / ATL 33.3 (form -3.1)
-  readiness amber: no HRV; resting HR 64 > 59.8 (baseline 54.8 + 5); no sleep
+  latest 2026-11-20: resting HR 57 bpm, HRV 39 ms, sleep 8.43 h (score 73), CTL 30.2 / ATL 33.3 (form -3.1)
+  readiness green: HRV 39 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.8 (baseline 54.8 + 5); sleep 8.43 h >= 6
 Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
 Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
   bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
   bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
   trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
 
-## [ok     ] readiness amber: no HRV; RHR 64 > 59.8; no sleep; provisional (no sleep yet)
-amber: no HRV; RHR 64 > 59.8; no sleep; provisional (no sleep yet)
+## [ok     ] readiness green: HRV 39 >= 36.3; RHR 57 <= 59.8; sleep 8.43 h >= 6; final
+green: HRV 39 >= 36.3; RHR 57 <= 59.8; sleep 8.43 h >= 6; final
 
 ## [ok     ] prescribe wrote 3 prescriptions
-Fri 2026-11-20  upper_de (fri_am)  readiness: amber
-  bench_pull   speed   6 x 3       75 kg  RPE<=7    e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75
-  bench_press  speed   8 x 3       75 kg  RPE<=8    wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3; amber: hold 75, no increment, RPE cap 8 -> 75
-  push_press   speed   5 x 3      choose  RPE<=7    no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8
+Fri 2026-11-20  upper_de (fri_am)  readiness: green
+  bench_pull   speed   6 x 3       75 kg  RPE<=7    e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7
+  bench_press  speed   8 x 3       75 kg            wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3
+  push_press   speed   5 x 3      choose  RPE<=7    no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it
 
 wrote 3 prescriptions to derived/prescriptions.csv (55 rows total)
 
-## [ok     ] publish   intervals.icu: no changes (4 events unchanged)
+## [ok     ] publish   intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 3 unchanged
 Publish 2026-11-20 to 2026-11-26: 4 sessions
   2026-11-20 07:00  WeightTraining    40 TSS  Upper dynamic effort - speed bench, power pull, push press (freshest slot)
   2026-11-20 17:00  VirtualRide       92 TSS  Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
   2026-11-21 07:00  Ride             231 TSS  Long ride 5 h, Z2, fuel 60-90 g carb/h - first step toward 312 duration
   2026-11-22 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
 Files: 5 in exports/workouts (.fit for endurance, .zwo for bike)
-intervals.icu: no changes (4 events unchanged)
+intervals.icu: 0 created, 1 updated, 0 stale Pedestal events deleted, 3 unchanged
 
 ## [ok     ] review    Day Thu 2026-11-19: skipped 4
 Day Thu 2026-11-19: skipped 4
@@ -44,8 +44,8 @@ Wrote 4 grades to derived/compliance.csv
 ## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Upper repetition effort, Z2 75 min.
 wrote debrief.md and debrief.json: Missed: Upper repetition effort, Z2 75 min.
 
-## [ok     ] brief     wrote today.md and today.json: provisional, 2 sessions, readiness amber
-wrote today.md and today.json: provisional, 2 sessions, readiness amber
+## [ok     ] brief     wrote today.md and today.json: final, 2 sessions, readiness green
+wrote today.md and today.json: final, 2 sessions, readiness green
 
 ## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 32.3, form 20.3
 wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 32.3, form 20.3

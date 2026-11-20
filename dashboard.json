@@ -1,7 +1,7 @@
 {
  "date": "2026-11-20",
- "status": "provisional",
- "generated_at": "2026-11-20T06:49+01:00",
+ "status": "final",
+ "generated_at": "2026-11-20T08:14+01:00",
  "load_model": {
   "ctl_days": 42,
   "atl_days": 7,
@@ -11,8 +11,8 @@
  },
  "today": {
   "readiness": {
-   "colour": "amber",
-   "reason": "amber: no HRV; resting HR 64 > 59.8 (baseline 54.8 + 5); no sleep"
+   "colour": "green",
+   "reason": "green: HRV 39 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.8 (baseline 54.8 + 5); sleep 8.43 h >= 6"
   },
   "sessions": [
    {
@@ -35,7 +35,7 @@
       "kg": 75,
       "rpe_cap": 7,
       "basis": "e1rm",
-      "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75"
+      "reason": "e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7"
      },
      {
       "lift": "bench_press",
@@ -44,9 +44,9 @@
       "sets": 8,
       "reps": 3,
       "kg": 75,
-      "rpe_cap": 8,
+      "rpe_cap": null,
       "basis": "e1rm",
-      "reason": "wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3; amber: hold 75, no increment, RPE cap 8 -> 75"
+      "reason": "wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3"
      },
      {
       "lift": "push_press",
@@ -57,7 +57,7 @@
       "kg": null,
       "rpe_cap": 7,
       "basis": "choose",
-      "reason": "no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8"
+      "reason": "no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it"
      }
     ]
    },
@@ -1499,7 +1499,7 @@
   "yesterday": {
    "date": "2026-11-19",
    "verdict": "Missed: Upper repetition effort, Z2 75 min.",
-   "note_for_today": "Amber today: last weights held, RPE cap 8.",
+   "note_for_today": "Today: Upper dynamic effort.",
    "context": {
     "readiness": "green",
     "readiness_reason": "green: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6",
@@ -2095,12 +2095,12 @@
    },
    {
     "date": "2026-11-20",
-    "readiness": "amber",
-    "hrv": null,
+    "readiness": "green",
+    "hrv": 39.0,
     "hrv_baseline": 49.3,
-    "resting_hr": 64.0,
+    "resting_hr": 57.0,
     "resting_hr_baseline": 54.8,
-    "sleep_h": null
+    "sleep_h": 8.43
    }
   ],
   "compliance": [

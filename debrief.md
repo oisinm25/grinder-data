@@ -2,7 +2,7 @@
 
 **Missed: Upper repetition effort, Z2 75 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Today: Upper dynamic effort.
 
 readiness green · sleep 9.73 h · load 0 of 103 planned TSS
 
