@@ -1,45 +1,46 @@
-# Pedestal brief: Thu 19 Nov 2026
+# Pedestal brief: Fri 20 Nov 2026
 
-*Status: final · generated 2026-11-19 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-20 06:36*
 
-**Readiness: GREEN**: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6
+**Readiness: AMBER**: no HRV; resting HR 64 > 59.8 (baseline 54.8 + 5); no sleep
 
 Accumulation, week acc4
 
-## AM: Upper repetition effort - bench volume toward 10 x 110
-strength · 45 TSS
+## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
+strength · 40 TSS
 
 | Lift | Group | Sets × reps | kg | RPE cap | Why |
 |---|---|---|---|---|---|
-| Bench press | work | 3 × 10 | 82.5 | 8.5 | last 80 x 12,12,12 on 5 Nov: every set reached 12 -> +2.5 = 82.5 x 10 |
-| Bench pull | work | 3 × 9 | 70 | 8.5 | last 70 x 8,8,8,8 on 5 Nov: weakest 8 -> same weight, aim 9 |
-| Landmine press | work | 3 × 8 | choose | 8.5 | no history, e1RM or start_kg: choose a weight for 8 at RPE 8.5 and log it |
+| Bench pull | speed | 6 × 3 | 75 | 7 | e1RM 89 from 70x8 (RPE not logged, treated as 10) on 5 Nov -> 75 x 3 @RPE 7; amber: hold 75, no increment, RPE cap 8 -> 75 |
+| Bench press | speed | 8 × 3 | 75 | 8 | wave week 1 of 3: 55% of e1RM 132 + 2.5 after 1 cycle(s) (from 100x8 @8.5 on 19 Oct) -> 75 x 3; amber: hold 75, no increment, RPE cap 8 -> 75 |
+| Push press | speed | 5 × 3 | choose | 7 | no history, e1RM or start_kg: choose a weight for 3 at RPE 7 and log it; amber: RPE cap 8 |
 
-## PM: Z2 75 min
-bike · 75 min · 58 TSS
+## PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
+bike · 85 min · 92 TSS
 
-- warmup 5:00 170-211 W
-- steady 1:10:00 221-245 W
+- warmup 15:00 170-255 W
+- 3 × [work 15:00 323-333 W, rest 5:00 170-204 W]
+- cooldown 10:00 153-187 W
 
-## Yesterday's debrief: Wed 18 Nov 2026
+## Yesterday's debrief: Thu 19 Nov 2026
 
-**Missed: Lower max effort, Z2 60 min.**
+**Missed: Upper repetition effort, Z2 75 min.**
 
-Note for today: Today: Upper repetition effort.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness red · sleep 5.96 h · load 0 of 96 planned TSS
+readiness green · sleep 9.73 h · load 0 of 103 planned TSS
 
-### AM: Lower max effort - trap-bar top set, single-leg, trunk
+### AM: Upper repetition effort - bench volume toward 10 x 110
 skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Trap-bar deadlift | top | 1 x 5 @ 157.5 kg RPE<=7 | - | not logged |
-| Trap-bar deadlift | backoff | 2 x 5 @ 142.5 kg | - | not logged |
-| Rear-foot-elevated split squat | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+| Bench press | work | 3 x 10 @ 82.5 kg RPE<=8.5 | - | not logged |
+| Bench pull | work | 3 x 9 @ 70 kg RPE<=8.5 | - | not logged |
+| Landmine press | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
 
 
-### PM: Z2 60 min
+### PM: Z2 75 min
 skipped: no matching activity
 
 ## Flags (review of the week ending Sun 15 Nov)

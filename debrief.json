@@ -1,54 +1,63 @@
 {
- "date": "2026-11-18",
- "verdict": "Missed: Lower max effort, Z2 60 min.",
- "note_for_today": "Today: Upper repetition effort.",
+ "date": "2026-11-19",
+ "verdict": "Missed: Upper repetition effort, Z2 75 min.",
+ "note_for_today": "Amber today: last weights held, RPE cap 8.",
  "context": {
-  "readiness": "red",
-  "readiness_reason": "red: HRV 33 < 37.2 (baseline 49.8 - 1 SD 12.6); resting HR 61 > 59.6 (baseline 54.6 + 5); sleep 5.96 h < 6",
-  "sleep_h": 5.96,
+  "readiness": "green",
+  "readiness_reason": "green: HRV 50 >= 36.1 (baseline 49.1 - 1 SD 13.0); resting HR 54 <= 59.9 (baseline 54.9 + 5); sleep 9.73 h >= 6",
+  "sleep_h": 9.73,
   "load_done": 0,
-  "load_planned": 96
+  "load_planned": 103
  },
  "items": [
   {
    "kind": "strength",
-   "slot": "wed_am",
-   "session": "lower_me",
+   "slot": "thu_am",
+   "session": "upper_re",
    "modality": "strength",
-   "summary": "Lower max effort - trap-bar top set, single-leg, trunk",
-   "planned_tss": 50.0,
+   "summary": "Upper repetition effort - bench volume toward 10 x 110",
+   "planned_tss": 45.0,
    "lifts": [
     {
-     "lift": "trap_bar_deadlift",
-     "name": "Trap-bar deadlift",
-     "sets": [
-      {
-       "role": "top",
-       "set": null,
-       "prescribed": "1 x 5 @ 157.5 kg RPE<=7",
-       "achieved": "",
-       "status": "not logged"
-      },
-      {
-       "role": "backoff",
-       "set": null,
-       "prescribed": "2 x 5 @ 142.5 kg",
-       "achieved": "",
-       "status": "not logged"
-      }
-     ],
-     "e1rm_before": 204.2,
-     "e1rm_after": null,
-     "next": null
-    },
-    {
-     "lift": "rfe_split_squat",
-     "name": "Rear-foot-elevated split squat",
+     "lift": "bench_press",
+     "name": "Bench press",
      "sets": [
       {
        "role": "work",
        "set": null,
-       "prescribed": "3 x 8 @ choose RPE<=7",
+       "prescribed": "3 x 10 @ 82.5 kg RPE<=8.5",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 133.3,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "bench_pull",
+     "name": "Bench pull",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 9 @ 70 kg RPE<=8.5",
+       "achieved": "",
+       "status": "not logged"
+      }
+     ],
+     "e1rm_before": 88.7,
+     "e1rm_after": null,
+     "next": null
+    },
+    {
+     "lift": "landmine_press",
+     "name": "Landmine press",
+     "sets": [
+      {
+       "role": "work",
+       "set": null,
+       "prescribed": "3 x 8 @ choose RPE<=8.5",
        "achieved": "",
        "status": "not logged"
       }
@@ -62,12 +71,12 @@
   },
   {
    "kind": "endurance",
-   "slot": "wed_pm",
-   "session": "z2_60",
+   "slot": "thu_pm",
+   "session": "z2_75",
    "modality": "bike",
-   "summary": "Z2 60 min",
-   "planned_min": 60,
-   "planned_tss": 46.0,
+   "summary": "Z2 75 min",
+   "planned_min": 75,
+   "planned_tss": 58.0,
    "grade": "skipped",
    "grade_note": "no matching activity"
   }

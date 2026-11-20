@@ -1,20 +1,20 @@
-# Debrief: Wed 18 Nov 2026
+# Debrief: Thu 19 Nov 2026
 
-**Missed: Lower max effort, Z2 60 min.**
+**Missed: Upper repetition effort, Z2 75 min.**
 
-Note for today: Today: Upper repetition effort.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness red · sleep 5.96 h · load 0 of 96 planned TSS
+readiness green · sleep 9.73 h · load 0 of 103 planned TSS
 
-## AM: Lower max effort - trap-bar top set, single-leg, trunk
+## AM: Upper repetition effort - bench volume toward 10 x 110
 skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Trap-bar deadlift | top | 1 x 5 @ 157.5 kg RPE<=7 | - | not logged |
-| Trap-bar deadlift | backoff | 2 x 5 @ 142.5 kg | - | not logged |
-| Rear-foot-elevated split squat | work | 3 x 8 @ choose RPE<=7 | - | not logged |
+| Bench press | work | 3 x 10 @ 82.5 kg RPE<=8.5 | - | not logged |
+| Bench pull | work | 3 x 9 @ 70 kg RPE<=8.5 | - | not logged |
+| Landmine press | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
 
 
-## PM: Z2 60 min
+## PM: Z2 75 min
 skipped: no matching activity
