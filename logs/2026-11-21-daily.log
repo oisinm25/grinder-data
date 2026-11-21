@@ -1,0 +1,44 @@
+# daily 2026-11-21: 8 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    5 activities (other 3, bike 1, strength 1), 15 wellness days, 27 strength sets
+Ingest 2026-11-07 to 2026-11-21
+Activities: 5 (other 3, bike 1, strength 1) -> derived/activities.csv (34 rows total)
+Zones: 5 activities (streams 5) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (73 rows incl. baseline)
+  latest 2026-11-21: resting HR 58 bpm, CTL 33 / ATL 46.2 (form -13.2)
+  readiness no call: no HRV; resting HR 58 <= 59.9 (baseline 54.9 + 5); no sleep
+Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
+  bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
+  trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
+
+## [ok     ] readiness no call for 2026-11-21 yet (no HRV or resting HR synced); provisional
+no call for 2026-11-21 yet (no HRV or resting HR synced); provisional
+
+## [ok     ] prescribe no strength sessions between 2026-11-21 and 2026-11-27
+no strength sessions between 2026-11-21 and 2026-11-27
+
+## [ok     ] publish   intervals.icu: no changes (2 events unchanged)
+Publish 2026-11-21 to 2026-11-27: 2 sessions
+  2026-11-21 07:00  Ride             231 TSS  Long ride 5 h, Z2, fuel 60-90 g carb/h - first step toward 312 duration
+  2026-11-22 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
+Files: 3 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: no changes (2 events unchanged)
+
+## [ok     ] review    Day Fri 2026-11-20: skipped 4
+Day Fri 2026-11-20: skipped 4
+  skipped    upper_de bench_pull speed: not logged
+  skipped    upper_de bench_press speed: not logged
+  skipped    upper_de push_press speed: not logged
+  skipped    bike_threshold_3x15: no matching activity
+Wrote 4 grades to derived/compliance.csv
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.
+wrote debrief.md and debrief.json: Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 1 sessions, readiness no call
+wrote today.md and today.json: provisional, 1 sessions, readiness no call
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 31.6, form 21.1
+wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 31.6, form 21.1

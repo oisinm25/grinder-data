@@ -1,20 +1,20 @@
-# Debrief: Thu 19 Nov 2026
+# Debrief: Fri 20 Nov 2026
 
-**Missed: Upper repetition effort, Z2 75 min.**
+**Missed: Upper dynamic effort, Threshold 3 x 15 min at 95-98% FTP, 5 min easy between.**
 
-Note for today: Today: Upper dynamic effort.
+Note for today: Today: Long ride 5 h, Z2, fuel 60-90 g carb/h.
 
-readiness green · sleep 9.73 h · load 0 of 103 planned TSS
+readiness green · sleep 8.43 h · load 0 of 132 planned TSS
 
-## AM: Upper repetition effort - bench volume toward 10 x 110
+## AM: Upper dynamic effort - speed bench, power pull, push press (freshest slot)
 skipped
 
 | Lift | Set | Prescribed | Achieved | |
 |---|---|---|---|---|
-| Bench press | work | 3 x 10 @ 82.5 kg RPE<=8.5 | - | not logged |
-| Bench pull | work | 3 x 9 @ 70 kg RPE<=8.5 | - | not logged |
-| Landmine press | work | 3 x 8 @ choose RPE<=8.5 | - | not logged |
+| Bench pull | speed | 6 x 3 @ 75 kg RPE<=7 | - | not logged |
+| Bench press | speed | 8 x 3 @ 75 kg | - | not logged |
+| Push press | speed | 5 x 3 @ choose RPE<=7 | - | not logged |
 
 
-## PM: Z2 75 min
+## PM: Threshold 3 x 15 min at 95-98% FTP, 5 min easy between
 skipped: no matching activity
