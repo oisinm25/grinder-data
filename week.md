@@ -1,21 +1,22 @@
-# Week 9 Nov to 15 Nov 2026
+# Week 16 Nov to 22 Nov 2026
 
-block1, week acc3
+block1, week acc4
 
 ## Flags
-- load: 110 TSS done, under the 700-800 target (advisory: targets provisional)
-- sessions: 8 endurance sessions missed or skipped
-- recovery: 3 amber days
-- recovery: 7-day HRV 39 is 25% under its 28-day baseline 52
+- load: 5 TSS done, under the 750-850 target (advisory: targets provisional)
+- sessions: 7 endurance sessions missed or skipped
+- recovery: 3 red days
+- recovery: 7-day HRV 36 is 29% under its 28-day baseline 51
+- recovery: 7-day resting HR 60 is 5 bpm over its baseline 54
 
 ## Load
-110 TSS done of 755 planned (target 700-800).
+5 TSS done of 801 planned (target 750-850).
 
 ## Sessions
-Endurance: skipped 8. Strength: under 1, skipped 12.
+Endurance: skipped 7. Strength: skipped 13.
 
 - **skipped** Mon upper_me bench_press top: not logged
-- **under** Mon upper_me bench_press backoff: reps under 8
+- **skipped** Mon upper_me bench_press backoff: not logged
 - **skipped** Mon upper_me weighted_pullup work: not logged
 - **skipped** Mon upper_me chest_supported_row work: not logged
 - **skipped** Mon z2_90: no matching activity
@@ -33,13 +34,12 @@ Endurance: skipped 8. Strength: under 1, skipped 12.
 - **skipped** Fri upper_de bench_press speed: not logged
 - **skipped** Fri upper_de push_press speed: not logged
 - **skipped** Fri bike_threshold_3x15: no matching activity
-- **skipped** Sat long_ride_4h: no matching activity
-- **skipped** Sun handbike_easy_40: no matching activity
+- **skipped** Sat long_ride_5h: no matching activity
 
 ## Recovery
-Readiness: green 3, amber 3, red 0, no call 1.
-HRV 7-day 39.2 vs 28-day 51.9; resting HR 7-day 56.9 vs 28-day 54.2.
-CTL 30.6, ATL 23.3, form 7.3.
+Readiness: green 3, amber 1, red 3, no call 0.
+HRV 7-day 36.2 vs 28-day 51; resting HR 7-day 59.6 vs 28-day 54.2.
+CTL 26.7, ATL 12.4, form 14.3.
 
 ## Bench
-e1RM 133.3 kg against a line of 132.2 kg (+1.2 kg).
+e1RM 133.3 kg against a line of 132.3 kg (+1 kg).

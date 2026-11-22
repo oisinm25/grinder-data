@@ -1,0 +1,75 @@
+# daily 2026-11-22: 9 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    5 activities (other 3, bike 1, strength 1), 15 wellness days, 27 strength sets
+Ingest 2026-11-08 to 2026-11-22
+Activities: 5 (other 3, bike 1, strength 1) -> derived/activities.csv (34 rows total)
+Zones: 5 activities (streams 5) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (74 rows incl. baseline)
+  latest 2026-11-22: resting HR 63 bpm, CTL 26.7 / ATL 12.4 (form 14.3)
+  readiness amber: no HRV; resting HR 63 > 59.9 (baseline 54.9 + 5); no sleep
+Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
+  bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
+  trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
+
+## [ok     ] readiness amber: no HRV; RHR 63 > 59.9; no sleep; provisional (no sleep yet)
+amber: no HRV; RHR 63 > 59.9; no sleep; provisional (no sleep yet)
+
+## [ok     ] prescribe no strength sessions between 2026-11-22 and 2026-11-28
+no strength sessions between 2026-11-22 and 2026-11-28
+
+## [ok     ] publish   intervals.icu: no changes (1 events unchanged)
+Publish 2026-11-22 to 2026-11-28: 1 sessions
+  2026-11-22 07:00  Handcycle         26 TSS  Easy hand-bike 40 min (optional - rest is fine)
+Files: 1 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: no changes (1 events unchanged)
+
+## [ok     ] review    Day Sat 2026-11-21: skipped 1
+Day Sat 2026-11-21: skipped 1
+  skipped    long_ride_5h: no matching activity
+Wrote 1 grades to derived/compliance.csv
+
+## [ok     ] weekly    Week 2026-11-16 to 2026-11-22  block1 / acc4; flags: load: 5 TSS done, under the 750-850 target (advisory: targets provisional); sessions: 7 endurance sessions missed or skipped; recovery: 3 red days; recovery: 7-day HRV 36 is 29% under its 28-day baseline 51; recovery: 7-day resting HR 60 is 5 bpm over its baseline 54
+Week 2026-11-16 to 2026-11-22  block1 / acc4
+Load: 801 TSS planned, 5 done (target 750-850)
+Sessions: skipped 7, pending 1
+Strength: skipped 13
+  skipped    Mon 16 Nov  upper_me bench_press top: not logged
+  skipped    Mon 16 Nov  upper_me bench_press backoff: not logged
+  skipped    Mon 16 Nov  upper_me weighted_pullup work: not logged
+  skipped    Mon 16 Nov  upper_me chest_supported_row work: not logged
+  skipped    Mon 16 Nov  z2_90: no matching activity
+  skipped    Tue 17 Nov  handbike_intervals: no matching activity
+  skipped    Tue 17 Nov  grinding_repeats_12: no matching activity
+  skipped    Wed 18 Nov  lower_me trap_bar_deadlift top: not logged
+  skipped    Wed 18 Nov  lower_me trap_bar_deadlift backoff: not logged
+  skipped    Wed 18 Nov  lower_me rfe_split_squat work: not logged
+  skipped    Wed 18 Nov  z2_60: no matching activity
+  skipped    Thu 19 Nov  upper_re bench_press work: not logged
+  skipped    Thu 19 Nov  upper_re bench_pull work: not logged
+  skipped    Thu 19 Nov  upper_re landmine_press work: not logged
+  skipped    Thu 19 Nov  z2_75: no matching activity
+  skipped    Fri 20 Nov  upper_de bench_pull speed: not logged
+  skipped    Fri 20 Nov  upper_de bench_press speed: not logged
+  skipped    Fri 20 Nov  upper_de push_press speed: not logged
+  skipped    Fri 20 Nov  bike_threshold_3x15: no matching activity
+  skipped    Sat 21 Nov  long_ride_5h: no matching activity
+Recovery: green 3, amber 1, red 3, no call 0; HRV 7d 36.2 vs 28d 51; resting HR 7d 59.6 vs 28d 54.2; CTL 26.7 / ATL 12.4 (form 14.3)
+Bench: e1RM 133.3 vs line 132.3 (+1 kg)
+Flags:
+  - load: 5 TSS done, under the 750-850 target (advisory: targets provisional)
+  - sessions: 7 endurance sessions missed or skipped
+  - recovery: 3 red days
+  - recovery: 7-day HRV 36 is 29% under its 28-day baseline 51
+  - recovery: 7-day resting HR 60 is 5 bpm over its baseline 54
+Wrote 21 grades to derived/compliance.csv and the week to derived/weekly.csv and derived/week.md
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Missed: Long ride 5 h, Z2, fuel 60-90 g carb/h.
+wrote debrief.md and debrief.json: Missed: Long ride 5 h, Z2, fuel 60-90 g carb/h.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 1 sessions, readiness amber
+wrote today.md and today.json: provisional, 1 sessions, readiness amber
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.8, form 21.8
+wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.8, form 21.8
