@@ -1,7 +1,7 @@
 {
  "date": "2026-11-21",
  "verdict": "Missed: Long ride 5 h, Z2, fuel 60-90 g carb/h.",
- "note_for_today": "Amber today: last weights held, RPE cap 8.",
+ "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
  "context": {
   "readiness": "green",
   "readiness_reason": "green: HRV 44 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.9 (baseline 54.9 + 5); sleep 10.14 h >= 6",

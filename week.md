@@ -5,9 +5,9 @@ block1, week acc4
 ## Flags
 - load: 5 TSS done, under the 750-850 target (advisory: targets provisional)
 - sessions: 7 endurance sessions missed or skipped
-- recovery: 3 red days
-- recovery: 7-day HRV 36 is 29% under its 28-day baseline 51
-- recovery: 7-day resting HR 60 is 5 bpm over its baseline 54
+- recovery: 4 red days
+- recovery: 7-day HRV 35 is 31% under its 28-day baseline 51
+- recovery: 7-day resting HR 59 is 5 bpm over its baseline 54
 
 ## Load
 5 TSS done of 801 planned (target 750-850).
@@ -37,8 +37,8 @@ Endurance: skipped 7. Strength: skipped 13.
 - **skipped** Sat long_ride_5h: no matching activity
 
 ## Recovery
-Readiness: green 3, amber 1, red 3, no call 0.
-HRV 7-day 36.2 vs 28-day 51; resting HR 7-day 59.6 vs 28-day 54.2.
+Readiness: green 3, amber 0, red 4, no call 0.
+HRV 7-day 35.1 vs 28-day 51; resting HR 7-day 59.3 vs 28-day 54.2.
 CTL 26.7, ATL 12.4, form 14.3.
 
 ## Bench

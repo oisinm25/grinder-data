@@ -1,11 +1,11 @@
 {
  "date": "2026-11-22",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-22T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-22T08:14+01:00",
  "readiness": {
-  "colour": "amber",
-  "reason": "amber: no HRV; resting HR 63 > 59.9 (baseline 54.9 + 5); no sleep"
+  "colour": "red",
+  "reason": "red: HRV 29 < 35.9 (baseline 48.9 - 1 SD 13.0); resting HR 61 > 59.9 (baseline 54.9 + 5); sleep 7.37 h >= 6"
  },
  "block": {
   "id": "block1",
@@ -56,7 +56,7 @@
  "debrief": {
   "date": "2026-11-21",
   "verdict": "Missed: Long ride 5 h, Z2, fuel 60-90 g carb/h.",
-  "note_for_today": "Amber today: last weights held, RPE cap 8.",
+  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
   "context": {
    "readiness": "green",
    "readiness_reason": "green: HRV 44 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.9 (baseline 54.9 + 5); sleep 10.14 h >= 6",
@@ -84,9 +84,9 @@
   "flags": [
    "load: 5 TSS done, under the 750-850 target (advisory: targets provisional)",
    "sessions: 7 endurance sessions missed or skipped",
-   "recovery: 3 red days",
-   "recovery: 7-day HRV 36 is 29% under its 28-day baseline 51",
-   "recovery: 7-day resting HR 60 is 5 bpm over its baseline 54"
+   "recovery: 4 red days",
+   "recovery: 7-day HRV 35 is 31% under its 28-day baseline 51",
+   "recovery: 7-day resting HR 59 is 5 bpm over its baseline 54"
   ]
  },
  "pipeline": {
