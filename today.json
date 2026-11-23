@@ -1,51 +1,25 @@
 {
- "date": "2026-11-22",
- "status": "final",
- "status_reason": "",
- "generated_at": "2026-11-22T08:14+01:00",
+ "date": "2026-11-23",
+ "status": "provisional",
+ "status_reason": "no sleep yet",
+ "generated_at": "2026-11-23T06:36+01:00",
  "readiness": {
-  "colour": "red",
-  "reason": "red: HRV 29 < 35.9 (baseline 48.9 - 1 SD 13.0); resting HR 61 > 59.9 (baseline 54.9 + 5); sleep 7.37 h >= 6"
+  "colour": null,
+  "reason": "no call: no HRV; resting HR 58 <= 60.1 (baseline 55.1 + 5); no sleep"
  },
  "block": {
-  "id": "block1",
-  "name": "Accumulation",
-  "week": "acc4",
-  "design_pending": false
+  "id": "athx",
+  "name": "ATHX week (Portugal)",
+  "week": null,
+  "design_pending": true
  },
- "sessions": [
-  {
-   "slot": "sun_am",
-   "order": 0,
-   "session": "handbike_easy_40",
-   "modality": "handbike",
-   "summary": "Easy hand-bike 40 min (optional - rest is fine)",
-   "environment": null,
-   "duration_min": 40,
-   "tss": 26.0,
-   "readiness_exempt": false,
-   "steps": [
-    {
-     "kind": "steady",
-     "duration_s": 2400,
-     "target": "139-164 W*",
-     "anchor": "pct_ftp",
-     "watts": [
-      139,
-      164
-     ],
-     "provisional": true
-    }
-   ],
-   "provisional_ftp": true
-  }
- ],
+ "sessions": [],
  "moved_away": [],
  "yesterday": {
-  "date": "2026-11-21",
+  "date": "2026-11-22",
   "grades": [
    {
-    "session": "long_ride_5h",
+    "session": "handbike_easy_40",
     "item": "session",
     "grade": "skipped",
     "note": "no matching activity"
@@ -54,25 +28,25 @@
   "status": "graded"
  },
  "debrief": {
-  "date": "2026-11-21",
-  "verdict": "Missed: Long ride 5 h, Z2, fuel 60-90 g carb/h.",
-  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+  "date": "2026-11-22",
+  "verdict": "Missed: Easy hand-bike 40 min (optional.",
+  "note_for_today": "Rest today.",
   "context": {
-   "readiness": "green",
-   "readiness_reason": "green: HRV 44 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.9 (baseline 54.9 + 5); sleep 10.14 h >= 6",
-   "sleep_h": 10.14,
+   "readiness": "amber",
+   "readiness_reason": "amber: HRV 29 < 35.9 (baseline 48.9 - 1 SD 13.0); resting HR 58 <= 59.9 (baseline 54.9 + 5); sleep 7.37 h >= 6",
+   "sleep_h": 7.37,
    "load_done": 0,
-   "load_planned": 231
+   "load_planned": 26
   },
   "items": [
    {
     "kind": "endurance",
-    "slot": "sat_am",
-    "session": "long_ride_5h",
-    "modality": "bike",
-    "summary": "Long ride 5 h, Z2, fuel 60-90 g carb/h - first step toward 312 duration",
-    "planned_min": 300,
-    "planned_tss": 231.0,
+    "slot": "sun_am",
+    "session": "handbike_easy_40",
+    "modality": "handbike",
+    "summary": "Easy hand-bike 40 min (optional - rest is fine)",
+    "planned_min": 40,
+    "planned_tss": 26.0,
     "grade": "skipped",
     "grade_note": "no matching activity"
    }
@@ -83,8 +57,8 @@
   "week_end": "2026-11-22",
   "flags": [
    "load: 5 TSS done, under the 750-850 target (advisory: targets provisional)",
-   "sessions: 7 endurance sessions missed or skipped",
-   "recovery: 4 red days",
+   "sessions: 8 endurance sessions missed or skipped",
+   "recovery: 3 red days",
    "recovery: 7-day HRV 35 is 31% under its 28-day baseline 51",
    "recovery: 7-day resting HR 59 is 5 bpm over its baseline 54"
   ]

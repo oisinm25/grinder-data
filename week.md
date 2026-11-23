@@ -4,8 +4,8 @@ block1, week acc4
 
 ## Flags
 - load: 5 TSS done, under the 750-850 target (advisory: targets provisional)
-- sessions: 7 endurance sessions missed or skipped
-- recovery: 4 red days
+- sessions: 8 endurance sessions missed or skipped
+- recovery: 3 red days
 - recovery: 7-day HRV 35 is 31% under its 28-day baseline 51
 - recovery: 7-day resting HR 59 is 5 bpm over its baseline 54
 
@@ -13,7 +13,7 @@ block1, week acc4
 5 TSS done of 801 planned (target 750-850).
 
 ## Sessions
-Endurance: skipped 7. Strength: skipped 13.
+Endurance: skipped 8. Strength: skipped 13.
 
 - **skipped** Mon upper_me bench_press top: not logged
 - **skipped** Mon upper_me bench_press backoff: not logged
@@ -35,11 +35,12 @@ Endurance: skipped 7. Strength: skipped 13.
 - **skipped** Fri upper_de push_press speed: not logged
 - **skipped** Fri bike_threshold_3x15: no matching activity
 - **skipped** Sat long_ride_5h: no matching activity
+- **skipped** Sun handbike_easy_40: no matching activity
 
 ## Recovery
-Readiness: green 3, amber 0, red 4, no call 0.
-HRV 7-day 35.1 vs 28-day 51; resting HR 7-day 59.3 vs 28-day 54.2.
-CTL 26.7, ATL 12.4, form 14.3.
+Readiness: green 3, amber 1, red 3, no call 0.
+HRV 7-day 35.1 vs 28-day 51; resting HR 7-day 58.9 vs 28-day 54.2.
+CTL 26, ATL 8.9, form 17.1.
 
 ## Bench
 e1RM 133.3 kg against a line of 132.3 kg (+1 kg).
