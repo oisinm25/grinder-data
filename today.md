@@ -1,6 +1,6 @@
 # Pedestal brief: Tue 24 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-24 06:36*
+*Status: provisional (no sleep yet) · generated 2026-11-24 06:49*
 
 **Readiness: AMBER**: no HRV; resting HR 62 > 60.3 (baseline 55.3 + 5); no sleep
 
