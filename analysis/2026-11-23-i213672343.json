@@ -1,0 +1,72 @@
+{
+ "status": "ok",
+ "generated_at": "2026-11-24T08:15+01:00",
+ "activity_id": "i213672343",
+ "activity": {
+  "id": "i213672343",
+  "date": "2026-11-23",
+  "start_local": "2026-11-23T12:00:54",
+  "sport": "other",
+  "type": "WaterSport",
+  "name": "Sailing",
+  "moving_min": "175.7"
+ },
+ "breakdown": {
+  "kind": "unplanned",
+  "sport": "other",
+  "type": "WaterSport",
+  "name": "Sailing",
+  "moving_min": 175.7,
+  "hr_load": 47.0,
+  "avg_hr": 108.0,
+  "review": "",
+  "np_w": null,
+  "intensity": 0.4,
+  "tss": 47.0,
+  "hr_drift_pct": null,
+  "power_curve": {}
+ },
+ "fitness": {
+  "session_load": 47.0,
+  "load_source": "hr",
+  "grind_correction": 0.0,
+  "before": {
+   "ctl": 30.1,
+   "atl": 7.9,
+   "form": 22.2
+  },
+  "after": {
+   "ctl": 31.2,
+   "atl": 14.1,
+   "form": 17.1
+  },
+  "projections": {
+   "form_tomorrow": 17.1,
+   "next_key_session": null
+  },
+  "week": {
+   "start": "2026-11-23",
+   "label": "athx",
+   "done_tss": 47,
+   "band": [
+    300.0,
+    450.0
+   ],
+   "share_pct": [
+    10,
+    16
+   ]
+  }
+ },
+ "projections": {
+  "form_tomorrow": 17.1,
+  "next_key_session": null
+ },
+ "bests": [],
+ "bests_since": "2026-10-25",
+ "anchor_flags": [],
+ "files": {
+  "json": "analysis/2026-11-23-i213672343.json",
+  "md": "analysis/2026-11-23-i213672343.md"
+ }
+}
