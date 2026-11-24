@@ -1,10 +1,10 @@
-# Debrief: Sun 22 Nov 2026
+# Debrief: Mon 23 Nov 2026
 
-**Missed: Easy hand-bike 40 min (optional.**
+**Unplanned: other 176 min.**
 
-Note for today: Rest today.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness amber · sleep 7.37 h · load 0 of 26 planned TSS
+readiness green · sleep 7.93 h · load 47 of 0 planned TSS
 
-## AM: Easy hand-bike 40 min (optional - rest is fine)
-skipped: no matching activity
+## Unplanned: Sailing (other)
+176 min · IF 0.40 · TSS 47 · HR load 47 · avg HR 108

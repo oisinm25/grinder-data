@@ -1,11 +1,11 @@
 {
- "date": "2026-11-23",
+ "date": "2026-11-24",
  "status": "provisional",
  "status_reason": "no sleep yet",
- "generated_at": "2026-11-23T08:14+01:00",
+ "generated_at": "2026-11-24T06:36+01:00",
  "readiness": {
-  "colour": null,
-  "reason": "no call: no HRV; resting HR 58 <= 60.1 (baseline 55.1 + 5); no sleep"
+  "colour": "amber",
+  "reason": "amber: no HRV; resting HR 62 > 60.3 (baseline 55.3 + 5); no sleep"
  },
  "block": {
   "id": "athx",
@@ -16,39 +16,35 @@
  "sessions": [],
  "moved_away": [],
  "yesterday": {
-  "date": "2026-11-22",
-  "grades": [
-   {
-    "session": "handbike_easy_40",
-    "item": "session",
-    "grade": "skipped",
-    "note": "no matching activity"
-   }
-  ],
-  "status": "graded"
+  "date": "2026-11-23",
+  "grades": [],
+  "status": "rest day"
  },
  "debrief": {
-  "date": "2026-11-22",
-  "verdict": "Missed: Easy hand-bike 40 min (optional.",
-  "note_for_today": "Rest today.",
+  "date": "2026-11-23",
+  "verdict": "Unplanned: other 176 min.",
+  "note_for_today": "Amber today: last weights held, RPE cap 8.",
   "context": {
-   "readiness": "amber",
-   "readiness_reason": "amber: HRV 29 < 35.9 (baseline 48.9 - 1 SD 13.0); resting HR 58 <= 59.9 (baseline 54.9 + 5); sleep 7.37 h >= 6",
-   "sleep_h": 7.37,
-   "load_done": 0,
-   "load_planned": 26
+   "readiness": "green",
+   "readiness_reason": "green: HRV 42 >= 34.5 (baseline 47.9 - 1 SD 13.5); resting HR 58 <= 60.1 (baseline 55.1 + 5); sleep 7.93 h >= 6",
+   "sleep_h": 7.93,
+   "load_done": 47,
+   "load_planned": 0
   },
   "items": [
    {
-    "kind": "endurance",
-    "slot": "sun_am",
-    "session": "handbike_easy_40",
-    "modality": "handbike",
-    "summary": "Easy hand-bike 40 min (optional - rest is fine)",
-    "planned_min": 40,
-    "planned_tss": 26.0,
-    "grade": "skipped",
-    "grade_note": "no matching activity"
+    "kind": "unplanned",
+    "sport": "other",
+    "type": "WaterSport",
+    "name": "Sailing",
+    "moving_min": 175.7,
+    "hr_load": 47.0,
+    "avg_hr": 108.0,
+    "review": "",
+    "np_w": null,
+    "intensity": 0.4,
+    "tss": 47.0,
+    "hr_drift_pct": null
    }
   ],
   "problems": []

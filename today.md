@@ -1,23 +1,23 @@
-# Pedestal brief: Mon 23 Nov 2026
+# Pedestal brief: Tue 24 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-23 08:14*
+*Status: provisional (no sleep yet) · generated 2026-11-24 06:36*
 
-**Readiness: no call**: no call: no HRV; resting HR 58 <= 60.1 (baseline 55.1 + 5); no sleep
+**Readiness: AMBER**: no HRV; resting HR 62 > 60.3 (baseline 55.3 + 5); no sleep
 
 ATHX week (Portugal)
 
 Design pending: no sessions planned yet.
 
-## Yesterday's debrief: Sun 22 Nov 2026
+## Yesterday's debrief: Mon 23 Nov 2026
 
-**Missed: Easy hand-bike 40 min (optional.**
+**Unplanned: other 176 min.**
 
-Note for today: Rest today.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness amber · sleep 7.37 h · load 0 of 26 planned TSS
+readiness green · sleep 7.93 h · load 47 of 0 planned TSS
 
-### AM: Easy hand-bike 40 min (optional - rest is fine)
-skipped: no matching activity
+### Unplanned: Sailing (other)
+176 min · IF 0.40 · TSS 47 · HR load 47 · avg HR 108
 
 ## Flags (review of the week ending Sun 22 Nov)
 - load: 5 TSS done, under the 750-850 target (advisory: targets provisional)

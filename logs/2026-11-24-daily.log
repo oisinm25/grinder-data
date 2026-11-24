@@ -1,0 +1,38 @@
+# daily 2026-11-24: 8 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    4 activities (other 3, bike 1), 15 wellness days, 27 strength sets
+Ingest 2026-11-10 to 2026-11-24
+Activities: 4 (other 3, bike 1) -> derived/activities.csv (35 rows total)
+Zones: 4 activities (streams 4) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (76 rows incl. baseline)
+  latest 2026-11-24: resting HR 62 bpm, CTL 25.9 / ATL 12.1 (form 13.8)
+  readiness amber: no HRV; resting HR 62 > 60.3 (baseline 55.3 + 5); no sleep
+Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
+  bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
+  trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
+
+## [ok     ] readiness amber: no HRV; RHR 62 > 60.3; no sleep; provisional (no sleep yet)
+amber: no HRV; RHR 62 > 60.3; no sleep; provisional (no sleep yet)
+
+## [ok     ] prescribe no strength sessions between 2026-11-24 and 2026-11-30
+no strength sessions between 2026-11-24 and 2026-11-30
+
+## [ok     ] publish   intervals.icu: no changes (0 events unchanged)
+Publish 2026-11-24 to 2026-11-30: 0 sessions
+Files: 0 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: no changes (0 events unchanged)
+
+## [ok     ] review    Day Mon 2026-11-23: nothing planned
+Day Mon 2026-11-23: nothing planned
+Wrote 0 grades to derived/compliance.csv
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Unplanned: other 176 min.
+wrote debrief.md and debrief.json: Unplanned: other 176 min.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 0 sessions, readiness amber
+wrote today.md and today.json: provisional, 0 sessions, readiness amber
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.5, form 18.2
+wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.5, form 18.2
