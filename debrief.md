@@ -2,7 +2,7 @@
 
 **Unplanned: other 176 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Rest today.
 
 readiness green · sleep 7.93 h · load 47 of 0 planned TSS
 
