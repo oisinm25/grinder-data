@@ -74,4 +74,5 @@ date,readiness,readiness_reason,resting_hr,hrv,hrv_sdnn,sleep_h,sleep_score,slee
 2026-11-21,green,green: HRV 44 >= 36.3 (baseline 49.3 - 1 SD 13.0); resting HR 57 <= 59.9 (baseline 54.9 + 5); sleep 10.14 h >= 6,57,44,,10.14,84,2,,,26.7,10.3,16.4,,,,,,,10221,49.3,13,54.9
 2026-11-22,amber,amber: HRV 29 < 35.9 (baseline 48.9 - 1 SD 13.0); resting HR 58 <= 59.9 (baseline 54.9 + 5); sleep 7.37 h >= 6,58,29,,7.37,47,4,,,26,8.9,17.1,,,,,,,10726,48.9,13,54.9
 2026-11-23,green,green: HRV 42 >= 34.5 (baseline 47.9 - 1 SD 13.5); resting HR 58 <= 60.1 (baseline 55.1 + 5); sleep 7.93 h >= 6,58,42,,7.93,79,3,,,26.5,14,12.6,,,,,,,10237,47.9,13.5,55.1
-2026-11-24,green,green: HRV 35 >= 34.0 (baseline 47.3 - 1 SD 13.4); resting HR 57 <= 60.3 (baseline 55.3 + 5); sleep 7.93 h >= 6,57,35,,7.93,72,3,,,25.9,12.1,13.8,,,,,,,11,47.3,13.4,55.3
+2026-11-24,green,green: HRV 35 >= 34.0 (baseline 47.3 - 1 SD 13.4); resting HR 57 <= 60.3 (baseline 55.3 + 5); sleep 7.93 h >= 6,57,35,,7.93,72,3,,,26.9,17.7,9.2,,,,,,,9028,47.3,13.4,55.3
+2026-11-25,amber,amber: no HRV; resting HR 61 > 60.4 (baseline 55.4 + 5); no sleep,61,,,,,,,,26.3,15.3,10.9,,,,,,,,46.9,13.6,55.4

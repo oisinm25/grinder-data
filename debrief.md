@@ -1,10 +1,10 @@
-# Debrief: Mon 23 Nov 2026
+# Debrief: Tue 24 Nov 2026
 
-**Unplanned: other 176 min.**
+**Unplanned: other 242 min.**
 
-Note for today: Rest today.
+Note for today: Amber today: last weights held, RPE cap 8.
 
-readiness green · sleep 7.93 h · load 47 of 0 planned TSS
+readiness green · sleep 7.93 h · load 42 of 0 planned TSS
 
 ## Unplanned: Sailing (other)
-176 min · IF 0.40 · TSS 47 · HR load 47 · avg HR 108
+242 min · IF 0.32 · TSS 42 · HR load 42 · avg HR 94

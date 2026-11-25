@@ -1,12 +1,12 @@
 {
- "date": "2026-11-23",
- "verdict": "Unplanned: other 176 min.",
- "note_for_today": "Rest today.",
+ "date": "2026-11-24",
+ "verdict": "Unplanned: other 242 min.",
+ "note_for_today": "Amber today: last weights held, RPE cap 8.",
  "context": {
   "readiness": "green",
-  "readiness_reason": "green: HRV 42 >= 34.5 (baseline 47.9 - 1 SD 13.5); resting HR 58 <= 60.1 (baseline 55.1 + 5); sleep 7.93 h >= 6",
+  "readiness_reason": "green: HRV 35 >= 34.0 (baseline 47.3 - 1 SD 13.4); resting HR 57 <= 60.3 (baseline 55.3 + 5); sleep 7.93 h >= 6",
   "sleep_h": 7.93,
-  "load_done": 47,
+  "load_done": 42,
   "load_planned": 0
  },
  "items": [
@@ -15,13 +15,13 @@
    "sport": "other",
    "type": "WaterSport",
    "name": "Sailing",
-   "moving_min": 175.7,
-   "hr_load": 47.0,
-   "avg_hr": 108.0,
+   "moving_min": 241.6,
+   "hr_load": 42.0,
+   "avg_hr": 94.0,
    "review": "",
    "np_w": null,
-   "intensity": 0.4,
-   "tss": 47.0,
+   "intensity": 0.32,
+   "tss": 42.0,
    "hr_drift_pct": null
   }
  ],
