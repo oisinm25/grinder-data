@@ -1,11 +1,11 @@
 {
  "date": "2026-11-25",
- "status": "provisional",
- "status_reason": "no sleep yet",
- "generated_at": "2026-11-25T06:49+01:00",
+ "status": "final",
+ "status_reason": "",
+ "generated_at": "2026-11-25T08:14+01:00",
  "readiness": {
-  "colour": "amber",
-  "reason": "amber: no HRV; resting HR 61 > 60.4 (baseline 55.4 + 5); no sleep"
+  "colour": "red",
+  "reason": "red: HRV 31 < 33.3 (baseline 46.9 - 1 SD 13.6); resting HR 61 > 60.4 (baseline 55.4 + 5); sleep 6.72 h >= 6"
  },
  "block": {
   "id": "athx",
@@ -23,7 +23,7 @@
  "debrief": {
   "date": "2026-11-24",
   "verdict": "Unplanned: other 242 min.",
-  "note_for_today": "Amber today: last weights held, RPE cap 8.",
+  "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
   "context": {
    "readiness": "green",
    "readiness_reason": "green: HRV 35 >= 34.0 (baseline 47.3 - 1 SD 13.4); resting HR 57 <= 60.3 (baseline 55.3 + 5); sleep 7.93 h >= 6",

@@ -1,8 +1,8 @@
 # Pedestal brief: Wed 25 Nov 2026
 
-*Status: provisional (no sleep yet) · generated 2026-11-25 06:49*
+*Status: final · generated 2026-11-25 08:14*
 
-**Readiness: AMBER**: no HRV; resting HR 61 > 60.4 (baseline 55.4 + 5); no sleep
+**Readiness: RED**: HRV 31 < 33.3 (baseline 46.9 - 1 SD 13.6); resting HR 61 > 60.4 (baseline 55.4 + 5); sleep 6.72 h >= 6
 
 ATHX week (Portugal)
 
@@ -12,7 +12,7 @@ Design pending: no sessions planned yet.
 
 **Unplanned: other 242 min.**
 
-Note for today: Amber today: last weights held, RPE cap 8.
+Note for today: Red today: weights cut to 90%, RPE cap 7; keep it all easy.
 
 readiness green · sleep 7.93 h · load 42 of 0 planned TSS
 
