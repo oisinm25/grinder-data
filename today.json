@@ -2,7 +2,7 @@
  "date": "2026-11-26",
  "status": "provisional",
  "status_reason": "no sleep yet",
- "generated_at": "2026-11-26T06:36+01:00",
+ "generated_at": "2026-11-26T06:50+01:00",
  "readiness": {
   "colour": "amber",
   "reason": "amber: no HRV; resting HR 62 > 60.8 (baseline 55.8 + 5); no sleep"
