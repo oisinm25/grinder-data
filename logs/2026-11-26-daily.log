@@ -1,0 +1,38 @@
+# daily 2026-11-26: 8 ok; provisional (no sleep yet)
+
+## [ok     ] ingest    4 activities (other 3, bike 1), 15 wellness days, 27 strength sets
+Ingest 2026-11-12 to 2026-11-26
+Activities: 4 (other 3, bike 1) -> derived/activities.csv (36 rows total)
+Zones: 4 activities (streams 4) -> derived/zones.csv
+Wellness: 15 days in range -> derived/wellness.csv (78 rows incl. baseline)
+  latest 2026-11-26: resting HR 62 bpm, CTL 25.7 / ATL 13.3 (form 12.3)
+  readiness amber: no HRV; resting HR 62 > 60.8 (baseline 55.8 + 5); no sleep
+Strength: 27 sets from training/logs/strength.csv -> derived/strength.csv
+Heavy reps: 9 reps at >= 90% e1RM in 16 sets -> derived/heavy_reps.csv
+  bench_press        2026-11-02  100 kg x 9 @ RPE 9  (top)  e1RM 133.3 kg
+  bench_pull         2026-11-05  70 kg x 8  (work)  e1RM 88.7 kg
+  trap_bar_deadlift  2026-11-04  175 kg x 5  (top)  e1RM 204.2 kg
+
+## [ok     ] readiness amber: no HRV; RHR 62 > 60.8; no sleep; provisional (no sleep yet)
+amber: no HRV; RHR 62 > 60.8; no sleep; provisional (no sleep yet)
+
+## [ok     ] prescribe no strength sessions between 2026-11-26 and 2026-12-02
+no strength sessions between 2026-11-26 and 2026-12-02
+
+## [ok     ] publish   intervals.icu: no changes (0 events unchanged)
+Publish 2026-11-26 to 2026-12-02: 0 sessions
+Files: 0 in exports/workouts (.fit for endurance, .zwo for bike)
+intervals.icu: no changes (0 events unchanged)
+
+## [ok     ] review    Day Wed 2026-11-25: nothing planned
+Day Wed 2026-11-25: nothing planned
+Wrote 0 grades to derived/compliance.csv
+
+## [ok     ] debrief   wrote debrief.md and debrief.json: Rest day, as planned.
+wrote debrief.md and debrief.json: Rest day, as planned.
+
+## [ok     ] brief     wrote today.md and today.json: provisional, 0 sessions, readiness amber
+wrote today.md and today.json: provisional, 0 sessions, readiness amber
+
+## [ok     ] dashboard wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.0, form 16.6
+wrote dashboard.json, dashboard.html, email/ (4 charts): CTL 30.0, form 16.6
