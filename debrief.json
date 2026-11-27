@@ -1,11 +1,11 @@
 {
- "date": "2026-11-25",
+ "date": "2026-11-26",
  "verdict": "Rest day, as planned.",
- "note_for_today": "Red today: weights cut to 90%, RPE cap 7; keep it all easy.",
+ "note_for_today": "Rest today.",
  "context": {
   "readiness": "red",
-  "readiness_reason": "red: HRV 31 < 33.3 (baseline 46.9 - 1 SD 13.6); resting HR 61 > 60.4 (baseline 55.4 + 5); sleep 6.72 h >= 6",
-  "sleep_h": 6.72,
+  "readiness_reason": "red: HRV 30 < 32.3 (baseline 46.1 - 1 SD 13.9); resting HR 61 > 60.8 (baseline 55.8 + 5); sleep 5 h < 6",
+  "sleep_h": 5.0,
   "load_done": 0,
   "load_planned": 0
  },
