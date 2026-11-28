@@ -1,7 +1,11 @@
-# Debrief: Thu 26 Nov 2026
+# Debrief: Fri 27 Nov 2026
 
-**Rest day, as planned.**
+**Unplanned: conditioning 69 min.**
 
 Note for today: Rest today.
 
-readiness red · sleep 5 h · load 0 of 0 planned TSS
+readiness green · sleep 8.12 h · load 11 of 0 planned TSS
+
+## Unplanned: Strength (conditioning)
+69 min · IF 0.31 · TSS 11 · HR load 11 · avg HR 96
+Grind Load: 0 efforts, 0 work min, 0 at >= 85% LTHR (hr stream)

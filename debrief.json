@@ -1,14 +1,35 @@
 {
- "date": "2026-11-26",
- "verdict": "Rest day, as planned.",
+ "date": "2026-11-27",
+ "verdict": "Unplanned: conditioning 69 min.",
  "note_for_today": "Rest today.",
  "context": {
-  "readiness": "red",
-  "readiness_reason": "red: HRV 30 < 32.3 (baseline 46.1 - 1 SD 13.9); resting HR 61 > 60.8 (baseline 55.8 + 5); sleep 5 h < 6",
-  "sleep_h": 5.0,
-  "load_done": 0,
+  "readiness": "green",
+  "readiness_reason": "green: HRV 44 >= 31.2 (baseline 44.9 - 1 SD 13.7); resting HR 56 <= 61.1 (baseline 56.1 + 5); sleep 8.12 h >= 6",
+  "sleep_h": 8.12,
+  "load_done": 11,
   "load_planned": 0
  },
- "items": [],
+ "items": [
+  {
+   "kind": "unplanned",
+   "sport": "conditioning",
+   "type": "WeightTraining",
+   "name": "Strength",
+   "moving_min": 69.0,
+   "hr_load": 11.0,
+   "avg_hr": 96.0,
+   "review": "",
+   "np_w": null,
+   "intensity": 0.31,
+   "tss": 11.0,
+   "hr_drift_pct": null,
+   "grind_load": {
+    "source": "hr stream",
+    "efforts": 0,
+    "work_min": 0.0,
+    "efforts_85": 0
+   }
+  }
+ ],
  "problems": []
 }
