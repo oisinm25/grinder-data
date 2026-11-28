@@ -1,72 +1,78 @@
 {
  "status": "ok",
- "generated_at": "2026-11-27T08:14+01:00",
- "activity_id": "i214136915",
+ "generated_at": "2026-11-28T08:15+01:00",
+ "activity_id": "i215259829",
  "activity": {
-  "id": "i214136915",
-  "date": "2026-11-24",
-  "start_local": "2026-11-24T11:45:08",
-  "sport": "other",
-  "type": "WaterSport",
-  "name": "Sailing",
-  "moving_min": "241.6"
+  "id": "i215259829",
+  "date": "2026-11-27",
+  "start_local": "2026-11-27T09:10:23",
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Strength",
+  "moving_min": "69"
  },
  "breakdown": {
   "kind": "unplanned",
-  "sport": "other",
-  "type": "WaterSport",
-  "name": "Sailing",
-  "moving_min": 241.6,
-  "hr_load": 42.0,
-  "avg_hr": 94.0,
+  "sport": "conditioning",
+  "type": "WeightTraining",
+  "name": "Strength",
+  "moving_min": 69.0,
+  "hr_load": 11.0,
+  "avg_hr": 96.0,
   "review": "",
   "np_w": null,
-  "intensity": 0.32,
-  "tss": 42.0,
+  "intensity": 0.31,
+  "tss": 11.0,
   "hr_drift_pct": null,
+  "grind_load": {
+   "source": "hr stream",
+   "efforts": 0,
+   "work_min": 0.0,
+   "efforts_85": 0
+  },
   "power_curve": {}
  },
  "fitness": {
-  "session_load": 42.0,
+  "session_load": 11.0,
   "load_source": "hr",
   "grind_correction": 0.0,
   "before": {
-   "ctl": 30.5,
-   "atl": 12.2,
-   "form": 18.2
+   "ctl": 29.3,
+   "atl": 11.6,
+   "form": 17.7
   },
   "after": {
-   "ctl": 31.5,
-   "atl": 17.8,
-   "form": 13.6
+   "ctl": 29.5,
+   "atl": 13.1,
+   "form": 16.5
   },
   "projections": {
-   "form_tomorrow": 13.6,
+   "form_tomorrow": 16.5,
    "next_key_session": null
   },
   "week": {
    "start": "2026-11-23",
    "label": "athx",
-   "done_tss": 89,
+   "done_tss": 100,
    "band": [
     300.0,
     450.0
    ],
    "share_pct": [
-    20,
-    30
+    22,
+    33
    ]
   }
  },
  "projections": {
-  "form_tomorrow": 13.6,
+  "form_tomorrow": 16.5,
   "next_key_session": null
  },
  "bests": [],
  "bests_since": "2026-10-25",
  "anchor_flags": [],
  "files": {
-  "json": "analysis/2026-11-24-i214136915.json",
-  "md": "analysis/2026-11-24-i214136915.md"
+  "json": "analysis/2026-11-27-i215259829.json",
+  "md": "analysis/2026-11-27-i215259829.md"
  }
 }
